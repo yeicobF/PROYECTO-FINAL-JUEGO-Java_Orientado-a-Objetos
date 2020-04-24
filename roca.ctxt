@@ -1,6 +1,14 @@
 #BlueJ class context
-comment0.target=roca
+comment0.target=Roca
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ roca\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=void\ act()
-numComments=2
+comment1.target=void\ Roca()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=x\ y
+comment3.target=boolean\ chocanRocas(int,\ int)
+comment4.params=
+comment4.target=int\ getCoordX()
+comment5.params=
+comment5.target=int\ getCoordY()
+numComments=6

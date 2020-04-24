@@ -17,19 +17,23 @@ public class Espacio extends World
     public Espacio()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 600, 1); 
-        nave n1=new nave();
-        addObject(n1,50,300);
-        crearRocas(15);
+        super(600, 600, 1);
+        int numRocas=15, cont1=0, cont2;
+        Nave nave = new Nave();//El constructor creará las n rocas y no el método, para así manejar las rocas y compararlas.
+        Roca[] r = new Roca[numRocas];//Se hará un arreglo de rocas para luego eliminarlas si chocan
+        addObject(nave,50,300);
+        crearRocas(numRocas, r);
+        //while(numRocas>0){ Esto deberá ir en la misma clase de Rocas, porque aquí sólo se crea el escenario y ya.
+            //for(cont1=0; cont1<15; cont1++)
+                ////for(cont2=0; cont2<15; cont2++)
+                   // if(r[cont1]!=null && r[cont2]!=null && !r[cont1].chocanRocas(r[cont2].getCoordX(), r[cont2].getCoordY())){
+                       // r[cont1]=r[cont2]=null;//Eliminar los objetos que chocaron
+                       // numRocas-=2;//Descontar las rocas que han sido eliminadas
+                    //}
+       // }
     }
-    public void crearRocas(int numero)
-    {
-        for(int i=0;i<numero;i++)
-        {
-            roca r= new roca();
-            int y = Greenfoot.getRandomNumber(getWidth());
-            int x = Greenfoot.getRandomNumber(getHeight());
-            addObject(r,x,y);
-        }
+    
+    public void crearRocas(int numeroRocas, Roca[] r){
+        
     }
 }
