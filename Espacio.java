@@ -20,9 +20,9 @@ public class Espacio extends World
         super(600, 600, 1);
         int numRocas=15, cont1=0, cont2;
         Nave nave = new Nave();//El constructor creará las n rocas y no el método, para así manejar las rocas y compararlas.
-        Roca[] r = new Roca[numRocas];//Se hará un arreglo de rocas para luego eliminarlas si chocan
-        addObject(nave,50,300);
-        crearRocas(numRocas, r);
+        //Roca[] r = new Roca[numRocas];//Se hará un arreglo de rocas para luego eliminarlas si chocan
+        addObject(nave,300,300);
+        //crearRocas(numRocas, r);
         //while(numRocas>0){ Esto deberá ir en la misma clase de Rocas, porque aquí sólo se crea el escenario y ya.
             //for(cont1=0; cont1<15; cont1++)
                 ////for(cont2=0; cont2<15; cont2++)
@@ -33,7 +33,5 @@ public class Espacio extends World
        // }
     }
     
-    public void crearRocas(int numeroRocas, Roca[] r){
-        
-    }
+
 }
