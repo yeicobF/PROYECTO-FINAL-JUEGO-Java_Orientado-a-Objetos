@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Esta es la superclase que manejará a las clases relacionadas con naves.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version (Martes, 5 de mayo de 2020)
  */
 public class Nave extends Actor
 {
@@ -23,6 +23,7 @@ public class Nave extends Actor
     protected char tipoHabilidad;//Esto serán los PowerUps.
     private int cordX;//Nos ayudarán a cuando choquen con las piedras, otras naves, los disparos, etcétera.
     private int cordY;//CREO QUE NO SE NECESITAN PORQUE YA HAY UN getX y getY 
+    public Nave(){}//Constructor vacío para no tener problemas en Disparo
     public Nave(int cordX, int cordY){//char diseño para cuando tengamos más diseños
         vida=100;
         this.cordX=cordX;
@@ -30,31 +31,6 @@ public class Nave extends Actor
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
     public void act() //act(int direccion) 
     {   
-        //setDireccion(direccion); //Podría recibir aquí los parámetros y llamar a setDireccion, pero se puede hacer directo
-        // if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")){
-            // setDireccion(UP);
-        // }
-        // if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")){
-            // setDireccion(DOWN);
-        // }
-        // if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
-            // setDireccion(LEFT);
-        // }
-        // if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")){
-            // setDireccion(RIGHT);
-        // }
-        // if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&(Greenfoot.isKeyDown("w")))){
-            // setDireccion(UP_RIGHT);
-        // }
-        // if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("a")&&(Greenfoot.isKeyDown("w")))){
-            // setDireccion(UP_LEFT);
-        // }
-        // if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("d")&&(Greenfoot.isKeyDown("s")))){
-            // setDireccion(DOWN_RIGHT);
-        // }
-        // if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("a")&&(Greenfoot.isKeyDown("s")))){
-            // setDireccion(DOWN_LEFT);
-        // }
     }
     /*Clase que cambia la dirección dependiendo del parámetro que reciba. Además aquí mismo se ejecuta el movimiento.*/
     public void setDireccion(int direccion){
@@ -96,11 +72,11 @@ public class Nave extends Actor
                 setRotation(90);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX()+6,getY());
-                    cordY+=6;
+                    cordX+=6;
                 }
                 else{
                     setLocation(getX()+4,getY());
-                    cordY+=4;
+                    cordX+=4;
                 }
                 break;
                 
