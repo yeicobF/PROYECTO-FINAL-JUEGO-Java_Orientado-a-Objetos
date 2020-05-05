@@ -18,7 +18,7 @@ public class Espacio extends World
         super(1000, 600, 1);//CREAR EL ESCENARIO CON LAS MEDIDAS INDICADAS (ancho, alto, tamaño de pixel)
         int numRocas=10, cont1=0, cont2;
         //Nave nave = new Nave(50, 300);//El constructor creará las n rocas y no el método, para así manejar las rocas y compararlas.
-        NaveAliada nave = new NaveAliada('9', 50, 300);//Para empezar a utilizar la nave aliada con su propia clase, el tipo '9' lo puse por poner, pero representa el tipo de la mave
+        NaveAliada nave = new NaveAliada('0', 50, 300);//Para empezar a utilizar la nave aliada con su propia clase, el tipo '9' lo puse por poner, pero representa el tipo de la mave
         NaveEnemiga boss = new NaveEnemiga('0', super.getWidth()/2+40, super.getHeight()/2+40);//eL SPRITE 0 SERÁ EL BOSS
         NaveEnemiga enemigo = new NaveEnemiga('1', super.getWidth()/2+40, super.getHeight()/2-40);
         addObject(nave,50,300);
