@@ -1,12 +1,13 @@
 #BlueJ class context
 comment0.target=Nave
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ nave\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=void\ Nave()
+comment0.text=\r\n\ Esta\ es\ la\ superclase\ que\ manejar\u00E1\ a\ las\ clases\ relacionadas\ con\ naves.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=cordX\ cordY
+comment1.target=Nave(int,\ int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=direccion
 comment3.target=void\ setDireccion(int)
+comment3.text=Clase\ que\ cambia\ la\ direcci\u00F3n\ dependiendo\ del\ par\u00E1metro\ que\ reciba.\ Adem\u00E1s\ aqu\u00ED\ mismo\ se\ ejecuta\ el\ movimiento.
 comment4.params=
 comment4.target=int\ getCordX()
 comment5.params=

@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=NaveEnemiga
+comment0.text=\ Character.compare(char\ 'A',\ char\ 'B');\ Esto\ devuelve\ 0\ si\ al\ comparar\ los\ caracteres\ son\ iguales,\ \r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ >0\ si\ el\ 1er\ valor\ es\ mayor\ que\ el\ segundo\r\n<0\ si\ el\ 1er\ valor\ es\ menor\ que\ el\ segundo
+comment1.params=tipoEnemigo\ cordX\ cordY
+comment1.target=NaveEnemiga(char,\ int,\ int)
+comment1.text=Este\ constructor\ dar\u00E1\ vida\ y\ tipo\ de\ disparo\ (a\u00FAn\ no\ implementado)\ dependiendo\ del\ tipo\ de\ enemigo\ sea
+comment2.params=
+comment2.target=void\ act()
+numComments=3

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=NaveAliada
+comment0.text=\r\n\ Esta\ es\ una\ subclase\ de\ la\ superclase\ Nave\ que\ tiene\ como\ funci\u00F3n\ manejar\ las\ naves\ que\ controlar\u00E1\ el\ jugador.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=dise\u00F1oNave\ cordX\ cordY
+comment1.target=NaveAliada(char,\ int,\ int)
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ NaveAliada\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=Clase\ para\ el\ movimiento\ manual\ de\ la\ nave.\ La\ diferimos\ del\ Movimiento\ de\ la\ nave\ enemiga\ porque\ \r\nesa\ se\ mover\u00E1\ con\ numeros\ generados\ de\ manera\ aleatoria.\ Si\ la\ podemos\ hacer\ m\u00E1s\ general,\ lo\ haremos.
+numComments=3
