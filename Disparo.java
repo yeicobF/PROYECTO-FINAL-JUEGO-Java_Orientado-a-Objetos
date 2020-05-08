@@ -102,8 +102,7 @@ public class Disparo extends Actor
             // cordY+=1;
             
             // break;
-        // }       
-        
+        // }
     }
     public int getCordX(){
         return getX();
