@@ -1,60 +1,40 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class nave here.
- * Write a description of class Nave here.
+ * Write a description of class NaveEnemiga here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Nave extends Actor
+public class NaveEnemiga extends Nave
 {
-    public static final int UP=0;
-    public static final int DOWN=1;
-    public static final int LEFT=2;
-    public static final int RIGHT=3;
-    public static final int UP_RIGHT=4;
-    public static final int UP_LEFT=5;
-    public static final int DOWN_LEFT=6;
-    public static final int DOWN_RIGHT=7;
-    public int vida = 100;
-    protected int tipoDisparo; //Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
-    protected char diseño;//El diseño de la nave
-    protected char tipoHabilidad;//Esto serán los PowerUps.
-    protected int cordX=0;//Nos ayudarán a cuando choquen con las piedras, otras naves, los disparos, etcétera.
-    protected int cordY=0;//CREO QUE NO SE NECESITAN PORQUE YA HAY UN getX y getY 
-    public void Nave(){}//CONSTRUCTOR
-    /**
-     * Act - do whatever the Nave wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private int Direccion;//La direccion que tendra la nave
+    private int TiempoInicial=0;//Tiempo inicial del sistema
+    private int TiempoLimite=0;//Tiempo destino para hacer el cambio
     public void act() 
-    {   
-        if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")){
-            setDireccion(UP);
+    {
+        if(TiempoInicial==TiempoLimite)
+        {
+            ActualizarTiempo();//Aqui actualiza las dos variables de tiempo
+        }else
+        {
+           Direccion=Aleatorio();//Aqui se actualiza a un numero aleatorio de 0-7, para simular las teclas
+           while(TiempoInicial!=TiempoLimite)
+           {
+               setDireccion(Direccion);//Uso el override para realizar el movimiento pero en un ciclo asi la nave se mueve de forma sucesiva
+           }
         }
-        if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")){
-            setDireccion(DOWN);
-        }
-        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
-            setDireccion(LEFT);
-        }
-        if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")){
-            setDireccion(RIGHT);
-        }
-        if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&(Greenfoot.isKeyDown("w")))){
-            setDireccion(UP_RIGHT);
-        }
-        if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("a")&&(Greenfoot.isKeyDown("w")))){
-            setDireccion(UP_LEFT);
-        }
-        if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("d")&&(Greenfoot.isKeyDown("s")))){
-            setDireccion(DOWN_RIGHT);
-        }
-        if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("a")&&(Greenfoot.isKeyDown("s")))){
-            setDireccion(DOWN_LEFT);
-        }
+    }    
+    public int Aleatorio()
+    {
+        return (int) (Math.random()*8); //Esta es la funcion que genera numeros aleatorios, 8 diferentes.
     }
+    public void ActualizarTiempo()
+    {
+         TiempoInicial = (int) System.currentTimeMillis(); //Toma el tiempo del sistema
+         TiempoLimite = TiempoInicial+500; //Añade 500 milisegundos y lo designa como tiempo Limite
+    }
+    @Override
     public void setDireccion(int direccion){
         switch(direccion){
             case UP:
@@ -156,15 +136,4 @@ public class Nave extends Actor
                 break;
         }       
     }
-    //Método para verificar mediante un parámetro de coordenadas X y Y si el objeto ya chocó con algún otro
-    //public boolean choqueObjeto
-    public int getCordX(){
-        return cordX;
-    }
-    public int getCordY(){
-        return cordY;
-    }
-    {
-        // Add your action code here.
-    }    
 }
