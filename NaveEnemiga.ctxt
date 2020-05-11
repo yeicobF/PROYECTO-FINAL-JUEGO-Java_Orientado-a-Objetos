@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=NaveEnemiga
 comment0.text=\ Character.compare(char\ 'A',\ char\ 'B');\ Esto\ devuelve\ 0\ si\ al\ comparar\ los\ caracteres\ son\ iguales,\ \r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ >0\ si\ el\ 1er\ valor\ es\ mayor\ que\ el\ segundo\r\n<0\ si\ el\ 1er\ valor\ es\ menor\ que\ el\ segundo
-comment1.params=tipoEnemigo\ cordX\ cordY
-comment1.target=NaveEnemiga(char,\ int,\ int)
+comment1.params=tipoDisparo\ tipoEnemigo
+comment1.target=NaveEnemiga(int,\ int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

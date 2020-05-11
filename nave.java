@@ -4,11 +4,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Esta es la superclase que manejará a las clases relacionadas con naves.
  * 
  * @author (your name) 
- * @version (Martes, 5 de mayo de 2020)
+ * @version (Domingo, 10 de mayo - Lunes, 11 de mayo de 2020)
  */
 public class Nave extends Actor
 {
     //Nave n; //Inicializar la nave para después instanciarla, aunque no es necesario porque esta clase no se utilizará
+    protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
     public static final int UP=0;
     public static final int DOWN=1;
     public static final int LEFT=2;
@@ -17,17 +18,16 @@ public class Nave extends Actor
     public static final int UP_LEFT=5;
     public static final int DOWN_LEFT=6;
     public static final int DOWN_RIGHT=7;
-    public int vida;
+    protected int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
     protected int tipoDisparo; //Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
-    protected char diseño;//El diseño de la nave
-    protected char tipoHabilidad;//Esto serán los PowerUps.
-    private int cordX;//Nos ayudarán a cuando choquen con las piedras, otras naves, los disparos, etcétera.
-    private int cordY;//CREO QUE NO SE NECESITAN PORQUE YA HAY UN getX y getY 
+    protected int diseño;//El diseño de la nave
+    protected int tipoHabilidad;//Esto serán los PowerUps.
+    /*NO NECESITAMOS coordX ni coordY porque ya están getX() y getY()*/
     public Nave(){}//Constructor vacío para no tener problemas en Disparo
-    public Nave(int cordX, int cordY){//char diseño para cuando tengamos más diseños
-        vida=100;
-        this.cordX=cordX;
-        this.cordY=cordY;
+    public Nave(int tipoDisparo, int diseño){//char diseño para cuando tengamos más diseños
+        puntosSalud=100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
+        this.tipoDisparo = tipoDisparo;//Aquí condicionaremos para el diseño y eso pero en la clase Disparo.
+        this.diseño = diseño; //De esto dependerá el diseño que tendrá la nave.
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
     public void act() //act(int direccion) 
     {   
@@ -39,44 +39,36 @@ public class Nave extends Actor
                 setRotation(0);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX(),getY()-8);
-                    cordY-=6;
                 }
                 else{
                     setLocation(getX(),getY()-6);
-                    cordY-=4;
                 }
                 break;
             case DOWN:
                 setRotation(180);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX(),getY()+6);
-                    cordY+=6;
                 }
                 else{
                     setLocation(getX(),getY()+4);
-                    cordY+=2;
                 }
                 break;
             case LEFT:
                 setRotation(270);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX()-6,getY());
-                    cordX-=6;
                 }
                 else{
                     setLocation(getX()-4,getY());
-                    cordX-=4;
                 }
                 break;
             case RIGHT:
                 setRotation(90);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX()+6,getY());
-                    cordX+=6;
                 }
                 else{
                     setLocation(getX()+4,getY());
-                    cordX+=4;
                 }
                 break;
                 
@@ -84,13 +76,9 @@ public class Nave extends Actor
                 setRotation(45);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX()+2,getY()-2);
-                    cordX+=2;
-                    cordY-=2;
                 }
                 else{
                     setLocation(getX()+1,getY()-1);
-                    cordX+=1;
-                    cordY-=1;
                 }
                 break;
                 
@@ -98,13 +86,9 @@ public class Nave extends Actor
                 setRotation(315);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX()-2,getY()-2);
-                    cordX-=2;
-                    cordY-=2;
                 }
                 else{
                     setLocation(getX()-1,getY()-1);
-                    cordX-=1;
-                    cordY-=1;
                 }
                 break;
                 
@@ -112,13 +96,9 @@ public class Nave extends Actor
                 setRotation(225);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX()-2,getY()+2);
-                    cordX-=2;
-                    cordY+=2;
                 }
                 else{
                     setLocation(getX()-1,getY()+1);
-                    cordX-=1;
-                    cordY+=1;
                 }
                 break;
                 
@@ -126,23 +106,20 @@ public class Nave extends Actor
                 setRotation(135);
                 if(Greenfoot.isKeyDown("space")){
                     setLocation(getX()+2,getY()+2);
-                    cordX+=2;
-                    cordY+=2;
                 }
                 else{
                     setLocation(getX()+1,getY()+1);
-                    cordX+=1;
-                    cordY+=1;
                 }
                 break;
         }       
     }
     //Método para verificar mediante un parámetro de coordenadas X y Y si el objeto ya chocó con algún otro
+    //Aunque creo que ya no es necesario porque ya se implementó la forma de hacerlo
     //public boolean choqueObjeto
     public int getCordX(){
-        return cordX;
+        return getX();
     }
     public int getCordY(){
-        return cordY;
+        return getY();
     }
 }

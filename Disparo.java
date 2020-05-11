@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class Disparo here.
  * 
  * @author (your name) 
- * @version (Martes, 5 de mayo de 2020)
+ * @version (Domingo, 10 de mayo - Lunes, 11 de mayo de 2020)
  */
 public class Disparo extends Actor
 {
@@ -15,6 +15,7 @@ public class Disparo extends Actor
      *  si se instancia nada más en las naves, pero no es necesario que herede de Nave.
      */
     World w;
+    MetodosGenerales m = new MetodosGenerales();//Instanciar la clase con los métodos generales.
     int cordX, cordY, direccion; //Creo que no son necesarios por el getX() y getY()
     /* - EQUIVALENTES DE LAS DIRECCIONES - Sacadas de la clase Nave, por lo que se podrá hacer una generalización,
                                                 pero hay que ver cómo.*/
@@ -47,8 +48,11 @@ public class Disparo extends Actor
         move(4);
         /*CUANDO EL OBJETO TOQUE EL LÍMITE DE PANTALLA (O a un enemigo en un futuro porque no lo hemos implementado)*
           eliminaremos el objeto.*/
-        if(getX() >= w.getWidth()-1)
-            getWorld().removeObject(this); //Así se elimina el disparo de pantalla
+        // if(getX() >= w.getWidth()-1)
+            // getWorld().removeObject(this); //Así se elimina el disparo de pantalla
+        limitePantalla();    
+        
+        //eliminarObjetosImpacto();//Método que eliminará al disparo y los objetos con los que impacta.
         /*ESTE MÉTODO LO TOMÉ DE setDireccion de la clase Nave, pero le quité las condiciones de más velocidad,
             para que así se dispare para la dirección a la que estemos apuntando.
             Por ahora no se pudo, así que se dejará como estaba pero con estas líneas comentadas.*/
@@ -103,6 +107,18 @@ public class Disparo extends Actor
             
             // break;
         // }
+    }
+    /*Método que desaparece a los objetos con los que impacta el disparo y a sí mismo.*/
+    private void eliminarObjetosImpacto(){ //Por ahora Lunes, 11 de mayo me crasheaba, así que mejor lo implementaré en las otras clases.
+        //public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual
+        m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld());
+        m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld());
+    }
+    /*Método que revisa si el disparo está dentro de los límites de la pantalla.*/
+    private void limitePantalla(){
+        if(getX() >= w.getWidth()-1 || getX() <= 0 //Límites en X
+            || getY() <= (-w.getHeight())+1 || getY() >= w.getHeight()-1)//Límites en Y. Cuando y = 0 se encuentra en el centro de la pantalla.
+            getWorld().removeObject(this); //Así se elimina el disparo de pantalla
     }
     public int getCordX(){
         return getX();

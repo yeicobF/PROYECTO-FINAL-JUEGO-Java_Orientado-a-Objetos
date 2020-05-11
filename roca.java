@@ -4,30 +4,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class roca here.
  * 
  * @author (your name) 
- * @version (Martes, 5 de mayo de 2020)
+ * @version (Domingo, 10 de mayo - Lunes, 11 de mayo de 2020)
  */
 public class Roca extends Actor
 {
     //Roca[] r; <- Era para hacer un arreglo de rocas
     World w;
+    MetodosGenerales m = new MetodosGenerales(); //Instanciar clase en donde se encuentra el método de eliminación al chocar objetos.
     int x, y, i;
    public Roca(int tipoMeteoro){//CONSTRUCTOR
        int random; 
        /*El código de abajo servirá para reescalar la imagen, ya que estaba muy grande*/
-       if(tipoMeteoro==0){
-            setImage("pruebaMeteoro1.png");
-            GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
-            //El tamaño de la imagen será random
-            random = getRandomNumber(11,17);//Esta función está implementada más abajo.
-            image.scale(image.getWidth()/random, image.getHeight()/random);//Reescalar imagen a 2/8 de las medidas originales.
-            setImage(image);//Acomodar ahora sí la imagen modificada
-        }
-        else{//Se maneja una diferente escala dependiendo del tamaño de la imagen, pero pensamos en ponerlas a proporción del área de juego.
-            GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
-            random = getRandomNumber(2, 3);
-            image.scale(image.getWidth()/random, image.getHeight()/random);//Reescalar imagen a 2/8 de las medidas originales.
-            setImage(image);//Acomodar ahora sí la imagen modificada
-        }
+       setImage("Objetos/Meteoro"+ tipoMeteoro+ ".png");
+       //Aquí modificamos el tamaño de los meteoros a una escala random para que tengan tamaños diferentes.
+       m.modificarEscalaImagen(getImage(), m.getRandomNumber(2,4), 1);
+       // if(tipoMeteoro==0){
+            // setImage("pruebaMeteoro1.png");
+            // GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
+            // //El tamaño de la imagen será random
+            // random = getRandomNumber(11,17);//Esta función está implementada más abajo.
+            // image.scale(image.getWidth()/random, image.getHeight()/random);//Reescalar imagen a 2/8 de las medidas originales.
+            // setImage(image);//Acomodar ahora sí la imagen modificada
+        // }
+        // else{//Se maneja una diferente escala dependiendo del tamaño de la imagen, pero pensamos en ponerlas a proporción del área de juego.
+            // GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
+            // random = getRandomNumber(2, 3);
+            // image.scale(image.getWidth()/random, image.getHeight()/random);//Reescalar imagen a 2/8 de las medidas originales.
+            // setImage(image);//Acomodar ahora sí la imagen modificada
+        // }
    }
    public void act(){
         // Add your action code here.
@@ -46,24 +50,35 @@ public class Roca extends Actor
             // }
         // }
         /*MÉTODO QUE VERIFICARÁ SI UNA ROCA CHOCÓ CON ALGO. Necesitamos ver si podemos implemementar esto de manera
-            más general porque también será necesario en la clase NaveEnemiga*/
+            más general porque también será necesario en la clase NaveEnemiga.
+                Implementé este método más general en la clase "MétodosGenerales"*/
         /*Se heredan todas las características, y se ponen como parámetros 0, 0 
            porque de esta manera vamos a saber que los objetos chocaron.*/
-        Actor naveAliada = getOneObjectAtOffset(0, 0, NaveAliada.class);
-        Actor disparoNave = getOneObjectAtOffset(0, 0, Disparo.class);
-        if(naveAliada != null){ //Aquí se va a revisar si chocó con nuestra nave
-            Espacio e = (Espacio)getWorld(); //Se toma el mundo actual
-            getWorld().removeObject(naveAliada); //Se elimina la nave
-            getWorld().removeObject(this); //Se elimina la roca
-            //AQUÍ TENGO QUE TOMAR EN CUENTA LAS VIDAS QUE TENGO PARA IR BAJÁNDOLAS
-            //naveAliada.vidas++; //Esto solo es conceptual.
-        }
-        if(disparoNave != null){ //Aquí sevisamos el el disparo chocó con la roca
-            /*El único problema que veo es que cuando se elimina ni siquiera chocan los objetos. Hay que arreglar esto.*/
-            Espacio e = (Espacio)getWorld(); //Se toma el mundo actual
-            getWorld().removeObject(disparoNave); //Se elimina el disparo
-            getWorld().removeObject(this); //Se elimina la roca
-        }
+        // Actor naveAliada = getOneObjectAtOffset(0, 0, NaveAliada.class);
+        // if(naveAliada != null){ //Aquí se va a revisar si chocó con nuestra nave
+            // Espacio e = (Espacio)getWorld(); //Se toma el mundo actual
+            // getWorld().removeObject(naveAliada); //Se elimina la nave
+            // getWorld().removeObject(this); //Se elimina la roca
+            // //AQUÍ TENGO QUE TOMAR EN CUENTA LAS VIDAS QUE TENGO PARA IR BAJÁNDOLAS
+            // //naveAliada.vidas++; //Esto solo es conceptual.
+        // }
+        /*Método que elimina la roca y la nave si chocan
+           public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual)
+            El "this" es el objeto actual.
+         -> No se implementa aquí porque ya está en la clase "NaveAliada".*/
+        //m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveAliada.class), this, (Espacio)getWorld());
+        
+        // Actor disparoNave = getOneObjectAtOffset(0, 0, Disparo.class);
+        // if(disparoNave != null){ //Aquí sevisamos el el disparo chocó con la roca
+            // /*El único problema que veo es que cuando se elimina ni siquiera chocan los objetos. Hay que arreglar esto.*/
+            // Espacio e = (Espacio)getWorld(); //Se toma el mundo actual
+            // getWorld().removeObject(disparoNave); //Se elimina el disparo
+            // getWorld().removeObject(this); //Se elimina la roca
+        // }
+        /*Método que elimina la roca y el disparo al chocar.
+            public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual)
+                Lo implementé en la clase Disparo para que quede ahí todo organizado.*/
+        m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this, (Espacio)getWorld());
     }    
     
     
@@ -78,10 +93,5 @@ public class Roca extends Actor
     }
     public int getCoordY(){
         return getY();
-    }
-    /*MÉTODO PARA CALCULAR UN RANDOM EN UN RANGO DE NÚMEROS*/
-    public int getRandomNumber(int start,int end){
-       int normal = Greenfoot.getRandomNumber(end-start+1);
-       return normal+start;
     }
 }

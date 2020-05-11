@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Roca
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ roca\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (Martes,\ 5\ de\ mayo\ de\ 2020)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ roca\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (Domingo,\ 10\ de\ mayo\ -\ Lunes,\ 11\ de\ mayo\ de\ 2020)\r\n
 comment1.params=tipoMeteoro
 comment1.target=Roca(int)
 comment2.params=
@@ -9,7 +9,4 @@ comment3.params=
 comment3.target=int\ getCoordX()
 comment4.params=
 comment4.target=int\ getCoordY()
-comment5.params=start\ end
-comment5.target=int\ getRandomNumber(int,\ int)
-comment5.text=M\u00C9TODO\ PARA\ CALCULAR\ UN\ RANDOM\ EN\ UN\ RANGO\ DE\ N\u00DAMEROS
-numComments=6
+numComments=5
