@@ -3,12 +3,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Esta es la superclase que manejará a las clases relacionadas con naves.
  * 
- * @author (your name) 
- * @version (Domingo, 10 de mayo - Lunes, 11 de mayo de 2020)
+ * @author (Team Naves) 
+ * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
  */
 public class Nave extends Actor
 {
     //Nave n; //Inicializar la nave para después instanciarla, aunque no es necesario porque esta clase no se utilizará
+    protected Disparo disparo; //Porque las naves aliadas y enemigas lo necesitan
     protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
     public static final int UP=0;
     public static final int DOWN=1;
@@ -20,20 +21,20 @@ public class Nave extends Actor
     public static final int DOWN_RIGHT=7;
     protected int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
     protected int tipoDisparo; //Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
-    protected int diseño;//El diseño de la nave
+    protected int diseñoNave;//El diseño de la nave
     protected int tipoHabilidad;//Esto serán los PowerUps.
     /*NO NECESITAMOS coordX ni coordY porque ya están getX() y getY()*/
     public Nave(){}//Constructor vacío para no tener problemas en Disparo
-    public Nave(int tipoDisparo, int diseño){//char diseño para cuando tengamos más diseños
+    public Nave(int tipoDisparo, int diseñoNave){//char diseño para cuando tengamos más diseños
         puntosSalud=100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
         this.tipoDisparo = tipoDisparo;//Aquí condicionaremos para el diseño y eso pero en la clase Disparo.
-        this.diseño = diseño; //De esto dependerá el diseño que tendrá la nave.
+        this.diseñoNave = diseñoNave; //De esto dependerá el diseño que tendrá la nave.
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
     public void act() //act(int direccion) 
     {   
     }
     /*Clase que cambia la dirección dependiendo del parámetro que reciba. Además aquí mismo se ejecuta el movimiento.*/
-    public void setDireccion(int direccion){
+    protected void setDireccion(int direccion){
         switch(direccion){
             case UP:
                 setRotation(0);
@@ -113,13 +114,40 @@ public class Nave extends Actor
                 break;
         }       
     }
-    //Método para verificar mediante un parámetro de coordenadas X y Y si el objeto ya chocó con algún otro
-    //Aunque creo que ya no es necesario porque ya se implementó la forma de hacerlo
-    //public boolean choqueObjeto
+    
     public int getCordX(){
         return getX();
     }
     public int getCordY(){
         return getY();
     }
+    // NO NECESITO LOS SETTERS O GETTERS PORQUE LOS DECLARO PROTECTED PARA QUE SÓLO LAS SUBCLASES ACCEDAN
+    //Getters Y setters protected para que sólo las subclases puedan acceder
+    // protected int getPS(){//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
+        // return puntosSalud;
+    // }
+    // protected void setPS(int puntosSalud){//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
+        // this.puntosSalud = puntosSalud;
+    // }
+    
+    // protected int getTipoDisparo(){//Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
+        // return tipoDisparo;
+    // }
+    // protected void setTipoDisparo(int tipoDisparo){//Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
+        // this.tipoDisparo = tipoDisparo;
+    // }
+    
+    // protected int getDiseñoNave(){//El diseño de la nave
+        // return diseñoNave;
+    // }
+    // protected void setDiseñoNave(int diseño){//El diseño de la nave
+        // this.diseñoNave = diseñoNave;
+    // }
+    
+    // protected int getTipoHabilidad(){//Esto serán los PowerUps.
+        // return tipoHabilidad;
+    // }
+    // protected void setTipoHabilidad(int tipoHabilidad){//Esto serán los PowerUps.
+        // this.tipoHabilidad = tipoHabilidad;
+    // }
 }

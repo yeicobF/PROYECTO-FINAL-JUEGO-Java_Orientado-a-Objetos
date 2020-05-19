@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MostrarVidas
-comment0.text=\r\n\ Clase\ de\ prueba\ para\ ver\ que\ las\ vidas\ no\ se\ reinicien\ al\ perder.\ \r\n\ No\ funcion\u00F3,\ pero\ quer\u00EDa\ que\ se\ mostraran\ en\ pantalla\ para\ ver\ c\u00F3mo\ estaban\ funcionando.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (Domingo,\ 10\ de\ mayo\ -\ Lunes,\ 11\ de\ mayo\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ de\ prueba\ para\ ver\ que\ las\ vidas\ no\ se\ reinicien\ al\ perder.\ \r\n\ No\ funcion\u00F3,\ pero\ quer\u00EDa\ que\ se\ mostraran\ en\ pantalla\ para\ ver\ c\u00F3mo\ estaban\ funcionando.\r\n\ ->\ Hay\ que\ hacerla\ funcionar.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Domingo,\ 17\ de\ mayo\ -\ Lunes,\ 18\ de\ mayo\ de\ 2020)\r\n
 comment1.params=vidas
 comment1.target=MostrarVidas(int)
 comment2.params=

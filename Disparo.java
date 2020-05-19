@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Disparo here.
  * 
- * @author (your name) 
- * @version (Domingo, 10 de mayo - Lunes, 11 de mayo de 2020)
+ * @author (Team Naves) 
+ * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
  */
 public class Disparo extends Actor
 {
@@ -16,9 +16,12 @@ public class Disparo extends Actor
      */
     World w;
     MetodosGenerales m = new MetodosGenerales();//Instanciar la clase con los métodos generales.
-    int cordX, cordY, direccion; //Creo que no son necesarios por el getX() y getY()
+    private int direccion; //Creo que no son necesarias las coordenadas por el getX() y getY()
     /* - EQUIVALENTES DE LAS DIRECCIONES - Sacadas de la clase Nave, por lo que se podrá hacer una generalización,
                                                 pero hay que ver cómo.*/
+    public static int daño; //Estática para que puedan acceder desde fuera y restar el daño hecho.
+    private int velocidadDisparo;
+    
     public static final int UP=0;
     public static final int DOWN=1;
     public static final int LEFT=2;
@@ -30,22 +33,23 @@ public class Disparo extends Actor
     /*Constructor para aparecer al disparo*/
     /*En cuanto a la direccion del disparo, no pude implementarlo porque no salía como debería salir, así que hay que revisarlo
         porque hay algo que falla. Por ahora solo comentaré las líneas para después implementar dicha función.*/
-    public Disparo(char tipoDisparo, int cordX, int cordY){//, int direccion){//Recibirá las coordenadas de la nave para aparecer.
+    public Disparo(int tipoDisparo, int cordX, int cordY){//, int direccion){//Recibirá las coordenadas de la nave para aparecer.
         //super(cordX, cordY);//[LO TENÍA ASÍ] Ya que hereda de Nave y lo requiere, pero le dará 100 de vida al disparo,cosa que es innecesaria, pero ya veremos qué podemos cambiar.
-        this.cordX=cordX; //Antes Comentados por la herencia que intenté con nave
-        this.cordY=cordY;
+        // this.cordX=cordX; //Antes Comentados por la herencia que intenté con nave
+        // this.cordY=cordY;
         //this.direccion=direccion;//Para guardar la direccion del disparo. - Por ahora no se pudo hacer, pero lo comentaré.
-        if(Character.compare(tipoDisparo, '0')==0){//El disparo normal
+        if(tipoDisparo == 0){//El disparo normal
+            daño = 25; //daño inicial (que es bajo).
+            velocidadDisparo = 5;
             setImage("pruebaLaserShot.png");
             GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
             image.scale(image.getWidth()/4, image.getHeight()/4);//Reescalar imagen a 1/5 de las medidas originales.
             setImage(image);//Acomodar ahora sí la imagen modificada
         }
     }
-    public void act() 
-    {
+    public void act(){
         w = getWorld();
-        move(4);
+        move(velocidadDisparo);
         /*CUANDO EL OBJETO TOQUE EL LÍMITE DE PANTALLA (O a un enemigo en un futuro porque no lo hemos implementado)*
           eliminaremos el objeto.*/
         // if(getX() >= w.getWidth()-1)
@@ -111,8 +115,9 @@ public class Disparo extends Actor
     /*Método que desaparece a los objetos con los que impacta el disparo y a sí mismo.*/
     private void eliminarObjetosImpacto(){ //Por ahora Lunes, 11 de mayo me crasheaba, así que mejor lo implementaré en las otras clases.
         //public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual
-        m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld());
-        m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld());
+        //public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño)
+        // m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld());
+        // m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld());
     }
     /*Método que revisa si el disparo está dentro de los límites de la pantalla.*/
     private void limitePantalla(){
@@ -126,4 +131,8 @@ public class Disparo extends Actor
     public int getCordY(){
         return getY();
     }
+    // No es necesario el Getter porque es público el daño
+    // public int getDaño(){
+        // return daño;
+    // }
 }

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class roca here.
+ * Clase que maneja todo lo relacionado a los meteoros.
  * 
- * @author (your name) 
- * @version (Domingo, 10 de mayo - Lunes, 11 de mayo de 2020)
+ * @author (Team Naves) 
+ * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
  */
 public class Roca extends Actor
 {
@@ -78,7 +78,9 @@ public class Roca extends Actor
         /*Método que elimina la roca y el disparo al chocar.
             public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual)
                 Lo implementé en la clase Disparo para que quede ahí todo organizado.*/
-        m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this, (Espacio)getWorld());
+            //No tiene puntos de salud por lo que mandamos un 0 y daño 0 para que cumpla la condición de daño.
+        m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this, (Espacio)getWorld(),0, 0);
+            //Espacio.numRocasActual-= 1;
     }    
     
     

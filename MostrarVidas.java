@@ -3,9 +3,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Clase de prueba para ver que las vidas no se reinicien al perder. 
  * No funcionó, pero quería que se mostraran en pantalla para ver cómo estaban funcionando.
+ * -> Hay que hacerla funcionar.
  * 
- * @author (your name) 
- * @version (Domingo, 10 de mayo - Lunes, 11 de mayo de 2020)
+ * @author (Team Naves) 
+ * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
  */
 public class MostrarVidas extends Actor
 {
