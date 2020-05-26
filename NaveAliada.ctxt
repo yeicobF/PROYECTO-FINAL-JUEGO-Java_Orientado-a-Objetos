@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=NaveAliada
-comment0.text=\r\n\ Esta\ es\ una\ subclase\ de\ la\ superclase\ Nave\ que\ tiene\ como\ funci\u00F3n\ manejar\ las\ naves\ que\ controlar\u00E1\ el\ jugador.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (Domingo,\ 17\ de\ mayo\ -\ Lunes,\ 18\ de\ mayo\ de\ 2020)\r\n
+comment0.text=\r\n\ Esta\ es\ una\ subclase\ de\ la\ superclase\ Nave\ que\ tiene\ como\ funci\u00F3n\ manejar\ las\ naves\ que\ controlar\u00E1\ el\ jugador.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Domingo,\ 17\ de\ mayo\ -\ Lunes,\ 18\ de\ mayo\ de\ 2020)\r\n
 comment1.params=tipoDisparo\ dise\u00F1oNave
 comment1.target=NaveAliada(int,\ int)
 comment10.params=
@@ -8,7 +8,7 @@ comment10.target=int\ getCordYDisparo()
 comment10.text=M\u00E9todo\ para\ obtener\ la\ Coordenada\ en\ Y\ del\ disparo.\ Verificamos\ que\ el\ disparo\ exista\ y\ si\ no,\ deolver\ un\ valor\ no\ alcanzable.
 comment2.params=
 comment2.target=void\ act()
-comment2.text=Clase\ para\ el\ movimiento\ manual\ de\ la\ nave.\ La\ diferimos\ del\ Movimiento\ de\ la\ nave\ enemiga\ porque\ \r\nesa\ se\ mover\u00E1\ con\ numeros\ generados\ de\ manera\ aleatoria.\ Si\ la\ podemos\ hacer\ m\u00E1s\ general,\ lo\ haremos.
+comment2.text=Clase\ para\ el\ movimiento\ manual\ de\ la\ nave.\ La\ diferimos\ del\ Movimiento\ de\ la\ nave\ enemiga\ porque\r\nesa\ se\ mover\u00E1\ con\ numeros\ generados\ de\ manera\ aleatoria.\ Si\ la\ podemos\ hacer\ m\u00E1s\ general,\ lo\ haremos.
 comment3.params=
 comment3.target=void\ movimiento()
 comment3.text=M\u00E9todo\ que\ controlar\u00E1\ el\ movimiento\ de\ nuestra\ nave.
