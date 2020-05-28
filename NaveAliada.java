@@ -34,7 +34,8 @@ public class NaveAliada extends Nave
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         super(tipoDisparo, diseñoNave);//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
-        vidas-=1;/*Establecer el número de vidas, ya que estas pueden cambiar al morir. Como es estática, siempre valdrá lo mismo.
+        /* Creo que esto ya no es necesario.
+         * vidas-=1;/*Establecer el número de vidas, ya que estas pueden cambiar al morir. Como es estática, siempre valdrá lo mismo.
                     Entonces cuando se vuelva a instanciar el mundo, lo hará con 3 vidas que son las iniciales e irá restando.*/
         setImage("Naves/Aliadas/NaveA"+ diseñoNave+ ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
@@ -175,9 +176,11 @@ public class NaveAliada extends Nave
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         Items.setItemActivoFalso();
                         vidas++;
+                        System.out.println("Vidas: "+ vidas);
                         break;
                     case 2: //ESCUDO. Poner el sprite del escudo y al terminar el tiempo cambiarlo.
                         //Mandar el tiempo en el que se tocó el item
+                        //Debería bajar la velocidad. Aunque creo que no se puede porque se utiliza el setDirection.
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         setImage("Naves/Aliadas/NaveA"+ diseñoNave+ "Escudo.png");
                         setImage(m.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
@@ -192,12 +195,16 @@ public class NaveAliada extends Nave
     /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/ 
     private void morirChoque(int daño){ //Aquí tomamos en cuenta que se hayan perdido todos los PS
         if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld(), puntosSalud, daño) == 0
-            || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño) == 0)
-            Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
+            || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño) == 0){
+                Items.setItemActivoFalso(); //
+                vidas --;
+                System.out.println("Vidas: "+ vidas);
+                Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
+        }
     }
     //Desaparecer si ya perdimos todas las vidas.
     private void perder(){
-        if(vidas==0)
+        if(vidas == 0)
             Greenfoot.stop(); //Si ya perdimos todas las vidas, entonces parar
         //REINICIAR NIVEL PERO CON LAS VIDAS, PUNTUACIÓN, ETCÉTERA INTACTOS DESPUÉS DE SU MODIFICACIÓN
         //Tal vez así las vidas no se reiniciarán

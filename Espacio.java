@@ -52,11 +52,11 @@ public class Espacio extends World
             /*No están funcionando los límites. (CREO QUE YA, estaba considerando que y iba de -MinY hasta MaxY, pero
              *      "y" es 0 hasta arriba del escenario y getHeight hasta abajo.)*/
             y = m.getRandomNumber(Items.getAltoItem(), super.getHeight()-Items.getAltoItem()/2);
-            System.out.println("x: "+ x+ "y: "+ y);
-            if(NaveAliada.getVidasJugador() ==5)//Generará todos los items menos el corazón, ya que tiene el máximo de vidas.
+            //System.out.println("x: "+ x+ "y: "+ y);
+            if(NaveAliada.getVidasJugador() == 5)//Generará todos los items menos el corazón, ya que tiene el máximo de vidas.
                 tipoItem = m.getRandomNumber(2, 2);
             else
-                tipoItem = m.getRandomNumber(1, 2);//Elegirá de manera random el item que se creará.
+                tipoItem = m.getRandomNumber(1, 1);//Elegirá de manera random el item que se creará.
             if(System.currentTimeMillis() - tiempoInicialMilis >= 60000){//Cada que pase 1 minuto, aumentará la velocidad del item.
                 velocidadItem++;
                 tiempoInicialMilis = System.currentTimeMillis();//Reiniciar el contador para que ocurra cada minuto.

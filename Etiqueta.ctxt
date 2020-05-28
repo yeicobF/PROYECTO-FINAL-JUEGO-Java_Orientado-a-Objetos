@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Etiqueta
+comment0.text=\r\n\ Clase\ para\ crear\ el\ mensaje\ que\ se\ mostrar\u00E1\ en\ el\ bot\u00F3n.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=s\ tama\u00F1o\ primerPlano\ fondo
+comment1.target=Etiqueta(java.lang.String,\ int,\ greenfoot.Color,\ greenfoot.Color)
+comment2.params=etiqueta\ x\ y
+comment2.target=void\ crearCuadroTexto(Etiqueta,\ int,\ int)
+numComments=3
