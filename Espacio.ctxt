@@ -1,9 +1,24 @@
 #BlueJ class context
 comment0.target=Espacio
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Espacio\ here.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Lunes,\ 25\ de\ mayo\ de\ 2020)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Espacio\ here.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Domingo,\ 17\ de\ mayo\ -\ Lunes,\ 18\ de\ mayo\ de\ 2020)\r\n
 comment1.params=
 comment1.target=Espacio()
 comment2.params=
 comment2.target=void\ act()
 comment2.text=M\u00E9todo\ que\ siempre\ se\ estar\u00E1\ ejecutando\ en\ espacio.\ Aqu\u00ED\ ir\u00E1n\ los\ m\u00E9todos\ de\ creaci\u00F3n\ de\ objetos,\ por\ ejemplo.
-numComments=3
+comment3.params=
+comment3.target=void\ crearItemTiempo()
+comment3.text=M\u00E9todo\ en\ el\ que\ se\ crear\u00E1\ un\ item\ cada\ cierto\ tiempo\ dependiendo\ de\ la\ \u00FAltima\ vez\ que\ se\ cre\u00F3\ y\ que\ \r\nun\ tiempo\ generado\ aleatoriamente\ supere\ al\ tiempo\ m\u00EDnimo\ en\ la\ coindici\u00F3n.
+comment4.params=tiempoMilis
+comment4.target=void\ crearRocasTiempo(long)
+comment4.text=M\u00E9todo\ que\ crear\u00E1\ nuevas\ rocas\ si\ se\ han\ destruido\ y\ si\ ha\ pasado\ cierto\ tiempo.
+comment5.params=numRocas
+comment5.target=void\ crearRocas(int)
+comment5.text=M\u00E9todo\ para\ crear\ los\ meteoros\ en\ una\ posici\u00F3n\ random\ con\ un\ sprite\ random
+comment6.params=
+comment6.target=int\ getNumRocasActual()
+comment6.text=M\u00E9todo\ para\ obtener\ el\ n\u00FAmero\ actual\ de\ rocas.\ Es\ est\u00E1tico\ porque\ su\ implementaci\u00F3n\ tambi\u00E9n\ lo\ es.
+comment7.params=numRocasAct
+comment7.target=void\ setNumRocasActual(int)
+comment7.text=Setter\ est\u00E1tico\ para\ ser\ accedido\ sin\ instanciar\ y\ cambiar\ el\ n\u00FAmero\ actual\ de\ rocas.
+numComments=8

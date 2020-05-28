@@ -2,8 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Esta es una subclase de la superclase Nave que tiene como función manejar las naves que controlará el jugador.
- *
- * @author (Team Naves)
+ * 
+ * @author (Team Naves) 
  * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
  */
 public class NaveAliada extends Nave
@@ -12,7 +12,7 @@ public class NaveAliada extends Nave
      * Act - do whatever the NaveAliada wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-
+    
     World w;
     /*protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
         Se puede usar aquí porque es protected en la superclase Nave.*/
@@ -22,8 +22,8 @@ public class NaveAliada extends Nave
     /*Bandera para que no se esté haciendo el setImage() constantemente cuando no se cumplan ciertas condiciones.
        Por ejemplo, que no lo esté haciendo una y otra vez cuando se terminó el escudo, sino solo se haga una vez
         porque la bandera va a cambiar una vez cambie.*/
-    private boolean diseñoOriginalActivo;
-    private long inicioDisparoMilis=0; //Variable para comprobar el tiempo entre disparo y disparo.
+    private boolean diseñoOriginalActivo; 
+    private long inicioDisparoMillis=0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int direccion;
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
@@ -46,21 +46,21 @@ public class NaveAliada extends Nave
             //setImage("NavePotente.png");
             puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
             //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
-
+            
         }//Si no, que se utilice la nave predeterminada que es la que establecimos con los diseños de Greenfoot
         // else
             // if(Character.compare(diseñoNave, '1')==0)//Algún otro diseño y así sucesivamente
             // //vida+=50;//Cada que se modifique la nave aumentará la vida y cosas así
     }
-    /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque
+    /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque 
      * esa se moverá con numeros generados de manera aleatoria. Si la podemos hacer más general, lo haremos.*/
-    public void act()
+    public void act() 
     {
         disparar();
         movimiento();
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
         if(choqueItem() == 2 && System.currentTimeMillis() < Items.getTiempoFinalItem()){ //El item actual es el escudo.
-            /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás.
+            /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás. 
              *  O tal vez que simplemente no pase nada al chocar con algo más.*/
             morirChoque(0); //Mejor que no le pase nada al chocar con los objetos. Aunque necesito checarlo.
         }
@@ -73,7 +73,7 @@ public class NaveAliada extends Nave
                 // Mandar el tiempo en el que se terminó el item
                 // Items.setTiempoFinalItem(System.currentTimeMillis());
             }
-        // /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
+        // /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/ 
         // Ya implementé esto en un método
         morirChoque(puntosSalud);//Método que reinicia el juego si perdiste una vida
         perder(); //Método que detiene el juego
@@ -83,14 +83,14 @@ public class NaveAliada extends Nave
             // Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
             // /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/
         // }
-    }
+    }  
 
     /*Método que controlará el movimiento de nuestra nave.*/
     public void movimiento(){
         w = getWorld();
         //Checar que esté dentro de loslímites en x y y para que no se corte la nave. Limitaré con la altura para cuando estamos volteados.
         // if((getX() >= getImage().getHeight()) && (getX() <= (w.getWidth() - getImage().getHeight()))
-                // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){
+                // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){ 
             if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")){//ARRIBA
                super.setDireccion(UP); //super.act(direccion); //Se podría hacer así si recibiera esos parámetros el método act() de la superclse
                direccion = UP;
@@ -110,7 +110,7 @@ public class NaveAliada extends Nave
             /*Los métodos siguientes están así porque se revisan todas las posibilidades. Es decir, todas las combinaciones
                 de teclas que podrían causar un tipo de movimiento en diagonal. Porque esto se toma en cuenta para
                 modificar la posición de los sprites.*/
-            if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w"))
+            if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w")) 
                     || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("up"))){
                 super.setDireccion(UP_RIGHT); //ARRIBA_DERECHA
                 direccion = UP_RIGHT;
@@ -138,7 +138,7 @@ public class NaveAliada extends Nave
                 // case getImage().getHeight(): //Cuando estamos fuera del límite izquierdo
                     // setLocation(getX()+1, getY()); //Mover a la derecha
                     // break;
-
+                    
             // }
             // switch(getY()){
             // }
@@ -152,8 +152,8 @@ public class NaveAliada extends Nave
             /*Ahora guardaremos nuestra dirección para que sea la que siga el disparo*/
             /*Por ahora, Martes, 5 de mayo de 2020, no se pudo hacer lo de la dirección del disparo,
                 pero ahí quedará la variable para cuando lo implementemos nos puede ser útil.*/
-        if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMilis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
-            inicioDisparoMilis = System.currentTimeMillis();
+        if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMillis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
+            inicioDisparoMillis = System.currentTimeMillis();
             w = getWorld(); //Para agregar el objeto
             disparo = new Disparo(0, getX(), getY());//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
             //Tomar la imagen de la nave para tomarla en cuenta en la salida del disparo
@@ -185,11 +185,11 @@ public class NaveAliada extends Nave
                         break;
                 }
         }
-        return Items.getTipoItem(); //No hay item si regresa 0.
+        return Items.getTipoItem(); //No hay item si regresa 0.  
     }
-
+    
     /*Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
-    /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
+    /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/ 
     private void morirChoque(int daño){ //Aquí tomamos en cuenta que se hayan perdido todos los PS
         if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld(), puntosSalud, daño) == 0
             || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño) == 0)
@@ -203,7 +203,7 @@ public class NaveAliada extends Nave
         //Tal vez así las vidas no se reiniciarán
             /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/
     }
-
+    
     /*Método para obtener las vidas actuales del jugador.*/
     public static int getVidasJugador(){
         return vidas;

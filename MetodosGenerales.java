@@ -7,13 +7,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  *  -> La clase es estática para que no haya necesidad de instanciarla en orden de trabajar con sus métodos.
  *      Aunque de lo largo que es el nombre de la clase, tal vez sí conviene más instanciarlo para ahorrar caracteres.
  *      - Así que al final mejor no se hizo estática XD.
- *
- * @author (Team Naves)
+ * 
+ * @author (Team Naves) 
  * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
  */
-public class MetodosGenerales
+public class MetodosGenerales  
 {
-  //TODO: Ver qué es lo mejor, si dejar esta clase o mejor repartir los métodos en clases distintas.
     // instance variables - replace the example below with your own
     private int x;
     /**
@@ -50,11 +49,11 @@ public class MetodosGenerales
                 mundoActual.removeObject(objetoRaiz);//Se elimina el objeto que chocó. El objeto que llama el método.
                 //return true;//Regresar verdadero si se hizo el procedimiento anterior. Es decir, se eliminó el objeto.
             if(objetoRaiz instanceof Roca) //Tal vez podría ponerlo en la misma roca, pero como ya no existiría después del return, no haría efecto.
-                Roca.setNumRocasActual(Roca.getNumRocasActual() - 1);//Llamamos al setter estático (no necesita instanciarse).
+                Espacio.setNumRocasActual(Espacio.getNumRocasActual() - 1);//Llamamos al setter estático (no necesita instanciarse).
         }
         return puntosSalud;//Regresa los puntos de salud para que se siga evaluando el método.
     }//En el método de destruir nave habrá que bajar vidas si se eliminó.
-
+    
    /*MÉTODO PARA CALCULAR UN RANDOM EN UN RANGO DE NÚMEROS*/
     public int getRandomNumber(int start,int end){
        int normal = Greenfoot.getRandomNumber(end-start+1);
