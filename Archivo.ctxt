@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Archivo
-comment0.text=\r\n\ Esta\ clase\ manejar\u00E1\ los\ archivos\ necesarios\:\r\n\ \ Leer\ archivos\ (Cr\u00E9ditos,\ instruciones,\ etc\u00E9tera)\r\n\ \ Crear\ archivos\ (puntuaciones,\ etc\u00E9tera)\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Mi\u00E9rcoles,\ 27\ de\ mayo\ de\ 2020)\r\n
+comment0.text=\r\n\ Esta\ clase\ manejar\u00E1\ los\ archivos\ necesarios\:\r\n\ \ Leer\ archivos\ (Cr\u00E9ditos,\ instruciones,\ etc\u00E9tera)\r\n\ \ Crear\ archivos\ (puntuaciones,\ etc\u00E9tera)\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Viernes,\ 29\ de\ mayo\ de\ 2020)\r\n
 comment1.params=nombre
 comment1.target=Archivo(java.lang.String)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Archivo\r\n

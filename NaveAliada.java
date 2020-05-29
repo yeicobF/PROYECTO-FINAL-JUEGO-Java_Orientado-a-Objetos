@@ -13,7 +13,7 @@ public class NaveAliada extends Nave
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
-    World w;
+    protected World w;
     /*protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
         Se puede usar aquí porque es protected en la superclase Nave.*/
     //Medir el tiempo para no poder disparar de manera tan seguida, tener un delay entre disparo y disparo.
@@ -30,6 +30,7 @@ public class NaveAliada extends Nave
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
     private int puntuacion = 0;//La puntuación del jugador que se reiniciará al morir
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
+    public NaveAliada(){}//Constructor vacío para MostrarVidas.
     public NaveAliada(int tipoDisparo, int diseñoNave){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         super(tipoDisparo, diseñoNave);//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.

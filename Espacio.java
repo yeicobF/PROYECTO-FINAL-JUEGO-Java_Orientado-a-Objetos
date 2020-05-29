@@ -5,7 +5,7 @@ import java.util.*;
  * Write a description of class Espacio here.
  * 
  * @author (Team Naves) 
- * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
+ * @version (Viernes, 29 de mayo de 2020)
  */
 public class Espacio extends World
 {
@@ -30,6 +30,12 @@ public class Espacio extends World
         addObject(boss, super.getWidth()/2+40, super.getHeight()/2+40);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
         addObject(enemigo, super.getWidth()/2+40, super.getHeight()/2-40);
         crearRocas(numRocasMax); //Crear las rocas primero. Luego que se vayan eliminando se crearán con el tiempo.
+        //MostrarVidas cuadroVidas = new MostrarVidas();
+        /*Agrega el objeto que muestra las vidas. Como la imagen de este serán las vidas que se actualizan constantemente,
+           se agrega como objeto con las coordenadas deseadas.
+           Hacer lo mismo para mostrar los puntos, incluso podría ser en la misma clase.
+            - MostrarEstado tal vez.*/
+        addObject(new MostrarVidas(), 500, 50);
        // MostrarVidas v = new MostrarVidas(nave.getVidasJugador());
         //addObject(enemigo, super.getWidth()/2+200, super.getHeight()/2-200);
     }

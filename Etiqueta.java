@@ -1,23 +1,29 @@
 import greenfoot.*;
 /**
- * Clase para crear el mensaje que se mostrará en el botón.
+ * Clase para crear mensajes de texto con  los parámetros que reciba.  Regresa el cuadro de texto como imagen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Team Naves) 
+ * @version (Viernes, 29 de mayo de 2020)
  */
 
 public class Etiqueta extends Actor
 {
     GreenfootImage mensaje;//Variable para mostrar el mensaje luego en el boton
-    World w;
-    
-    public Etiqueta(String s, int tamaño, Color primerPlano, Color fondo){   //GreenfootImage(java.lang.String string, int size, java.awt.Color foreground, java.awt.Color background) 
-        mensaje = new GreenfootImage(s, tamaño, primerPlano, fondo);
-        setImage(mensaje);
+    int tamaño;
+    Color colorPrimerPlano, colorFondo;
+    //Constructor de etiqueta que no toma en cuenta la cadena a mostrar. De esta manera no se instancia muchas veces.
+    public Etiqueta(int tamaño, Color colorPrimerPlano, Color colorFondo){   //GreenfootImage(java.lang.String string, int size, java.awt.Color foreground, java.awt.Color background) 
+        this.tamaño = tamaño;
+        this.colorPrimerPlano = colorPrimerPlano;
+        this.colorFondo = colorFondo;
     }
-    //Crear un cuadro de texto con la misma etiqueta ya inicialozada.
-    public void crearCuadroTexto(Etiqueta etiqueta, int x, int y){
-        w = getWorld();
-        w.addObject(etiqueta, x, y);
+    //Crear un cuadro de texto con la misma etiqueta ya inicializada.
+    /*Aquí se crea la imagen con el texto deseado y se regresa esta, de esta manera el objeto la recibe y al 
+       agregar el objeto en el escenario, se pondrá la imagen con las coordenadas deseadas.*/
+    public GreenfootImage crearCuadroTexto(String s){//, int x, int y){
+        mensaje = new GreenfootImage(s, tamaño, colorPrimerPlano, colorFondo);
+        setImage(mensaje);
+        //w.addObject(etiqueta, x, y);
+        return getImage();
     }
 }

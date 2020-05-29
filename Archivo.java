@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
  *  Crear archivos (puntuaciones, etcétera)
  * 
  * @author (Team Naves) 
- * @version (Miércoles, 27 de mayo de 2020)
+ * @version (Viernes, 29 de mayo de 2020)
  */
 public class Archivo extends Actor
 {
@@ -58,9 +58,9 @@ public class Archivo extends Actor
             /*Encontré una mejor manera para crear los cuadros de texto sin tener que convertirlos en botones.
                Esto será para lo que no necesite botones. Para esto al final del ciclo, se crearán los botones.*/
             //public Etiqueta(String s, int tamaño, Color primerPlano, Color fondo)
-            Etiqueta e = new Etiqueta(archivo.nextLine(), 30, Color.WHITE, null);
+            //Etiqueta e = new Etiqueta(archivo.nextLine(), 30, Color.WHITE, null);
             //crearCuadroTexto(Etiqueta etiqueta, int x, int y)
-            e.crearCuadroTexto(e, w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
+            //e.crearCuadroTexto(e, w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
             //Crear el botón con las dimensiones deseadas.
             // b.creaBoton(archivo.nextLine(), w.getWidth()/2-archivo.nextLine().toString().length()/2,
                                             // altura, Color.WHITE, null);
