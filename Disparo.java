@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class Disparo here.
  * 
  * @author (Team Naves) 
- * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
+ * @version (Viernes, 29 de mayo de 2020)
  */
 public class Disparo extends Actor
 {
@@ -19,7 +19,7 @@ public class Disparo extends Actor
     private int direccion; //Creo que no son necesarias las coordenadas por el getX() y getY()
     /* - EQUIVALENTES DE LAS DIRECCIONES - Sacadas de la clase Nave, por lo que se podrá hacer una generalización,
                                                 pero hay que ver cómo.*/
-    public static int daño; //Estática para que puedan acceder desde fuera y restar el daño hecho.
+    private static int daño; //Estática para que puedan acceder desde fuera y restar el daño hecho.
     private int velocidadDisparo;
     
     public static final int UP=0;
@@ -131,8 +131,8 @@ public class Disparo extends Actor
     public int getCordY(){
         return getY();
     }
-    // No es necesario el Getter porque es público el daño
-    // public int getDaño(){
-        // return daño;
-    // }
+    //Método que devuelve el daño actual del disparo
+    public static int getDaño(){
+        return daño;
+    }
 }

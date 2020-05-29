@@ -19,7 +19,7 @@ public class Boton extends Actor
         // w = getWorld();
         // //El 30 es el tamaño
         // //public Etiqueta(String s, int tamaño, Color primerPlano, Color fondo)
-        // //Actor boton = new Etiqueta(s, tamaño, primerPlano, fondo);
+        // Actor boton = new Etiqueta(s, tamaño, primerPlano, fondo);
         // w.addObject(boton, x, y);
         // return boton;
     // }

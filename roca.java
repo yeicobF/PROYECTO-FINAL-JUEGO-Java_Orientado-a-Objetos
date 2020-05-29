@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Clase que maneja todo lo relacionado a los meteoros.
  * 
  * @author (Team Naves) 
- * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
+ * @version (Viernes, 29 de mayo de 2020)
  */
 public class Roca extends Actor
 {
@@ -78,8 +78,13 @@ public class Roca extends Actor
         /*Método que elimina la roca y el disparo al chocar.
             public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual)
                 Lo implementé en la clase Disparo para que quede ahí todo organizado.*/
-            //No tiene puntos de salud por lo que mandamos un 0 y daño 0 para que cumpla la condición de daño.
-        m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this, (Espacio)getWorld(),0, 0);
+            /*No tiene puntos de salud por lo que mandamos un 1 y el daño del disparo para que cumpla la condición de daño,
+               así que cualquier disparo destruirá el meteorito, pero esto sirve para aumentar los puntos.*/
+    //public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
+        if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this, 
+                (Espacio)getWorld(), 1, Disparo.getDaño(), 5) <= 0)
+            Espacio.setNumRocasActual(Espacio.getNumRocasActual() - 1); //Como se destruyó la roca, restarla al total de estas.
+            //NaveAliada.setPuntos(10);//Aumentar 10 puntos al jugador por destruir una roca.
             //Espacio.numRocasActual-= 1;
     }    
     

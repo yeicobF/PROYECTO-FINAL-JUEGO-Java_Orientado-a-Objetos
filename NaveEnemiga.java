@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Clase que maneja a las naves enemigas y su comportamiento.
  * 
  * @author (Team Naves) 
- * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
+ * @version (Viernes, 29 de mayo de 2020)
  */
 
 /* Character.compare(char 'A', char 'B'); Esto devuelve 0 si al comparar los caracteres son iguales, 
@@ -19,6 +19,7 @@ public class NaveEnemiga extends Nave
     //La vida siempre será 100 por el constructor de la superclase
     /*Este constructor dará vida y tipo de disparo (aún no implementado) dependiendo del tipo de enemigo sea*/
     World w;
+    int puntosPorDisparo; //Variable que define cuántos puntos obtendremos cuando se dispare a la nave.
     // MetodosGenerales m = new MetodosGenerales(); //No es necesario porque ya está en la superclase
     public NaveEnemiga(int tipoDisparo, int tipoEnemigo){//Tal vez haga falta un MINIBOSS
         super(tipoDisparo, tipoEnemigo);//public Nave(int tipoDisparo, int diseño)
@@ -26,10 +27,12 @@ public class NaveEnemiga extends Nave
         setImage(m.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
         if(tipoEnemigo == 1){//BOSS == "0"
             puntosSalud+= 100;//Que las naves de BOSSES tengan más vida
+            puntosPorDisparo = 50;
             //tipoDisparo=1;//Disparo más potente pero más lento
         }
         else{//ENEMIGOS PEQUEÑOS
             puntosSalud-= 50;//Que las naves de enemigos pequeños tengan menos vida (vida=100-50)
+            puntosPorDisparo = 25;
             //tipoDisparo=2;//Disparo menos potente pero más rápido
         }
         setRotation(270);
@@ -77,8 +80,12 @@ public class NaveEnemiga extends Nave
         // }
         //public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño)
         //Guardaremos la salud actual de la nave enemiga, ya que la regresa el método
+            /* - Se hace la asignación de la salud y se verifica que sea igual a 0, si es 0
+                    entonces se dan más puntos que si sólo se le dispara.*/
         puntosSalud = m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), 
-                    this, (Espacio)getWorld(), puntosSalud, Disparo.daño);//super.disparo.getDaño() ya que sedeclaró en la superclase Nave
+                    this, (Espacio)getWorld(), puntosSalud, Disparo.getDaño(), puntosPorDisparo);  
+                    //NaveAliada.setPuntos(puntosPorDisparo*2);//Los puntos obtenidos se multiplicarán por 2 al destruir la nave
+                    //Ya está condición dentro del método
     }
     public int getCordX(){
         return getX();

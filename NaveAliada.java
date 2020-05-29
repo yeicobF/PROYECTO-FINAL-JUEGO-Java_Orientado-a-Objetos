@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Esta es una subclase de la superclase Nave que tiene como función manejar las naves que controlará el jugador.
  * 
  * @author (Team Naves) 
- * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
+ * @version (Viernes, 29 de mayo de 2020)
  */
 public class NaveAliada extends Nave
 {
@@ -22,13 +22,14 @@ public class NaveAliada extends Nave
     /*Bandera para que no se esté haciendo el setImage() constantemente cuando no se cumplan ciertas condiciones.
        Por ejemplo, que no lo esté haciendo una y otra vez cuando se terminó el escudo, sino solo se haga una vez
         porque la bandera va a cambiar una vez cambie.*/
-    private boolean diseñoOriginalActivo; 
+    private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
     private long inicioDisparoMillis=0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int direccion;
+    private int puntosMenosAlMorir = -20;
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
-    private int puntuacion = 0;//La puntuación del jugador que se reiniciará al morir
+    private static int puntos = 0;//La puntuación del jugador que se reiniciará al morir
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
     public NaveAliada(){}//Constructor vacío para MostrarVidas.
     public NaveAliada(int tipoDisparo, int diseñoNave){
@@ -168,7 +169,8 @@ public class NaveAliada extends Nave
         Regresará el tipo del item que servirá para condicionar los métodos que se ejectutan en act().
             Por ejemplo con el escudo, no se bajará la salud de la nave.*/
     private int choqueItem(){
-        if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, (Espacio)getWorld(), puntosSalud, 1)
+    //public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
+        if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, (Espacio)getWorld(), puntosSalud, 1, 0)
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
                 puntosSalud++;//Subir el punto de salud que le quitó.
                 //Switch case para ver el tipo de item y actuar.
@@ -195,8 +197,8 @@ public class NaveAliada extends Nave
     /*Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
     /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/ 
     private void morirChoque(int daño){ //Aquí tomamos en cuenta que se hayan perdido todos los PS
-        if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld(), puntosSalud, daño) == 0
-            || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño) == 0){
+        if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0
+            || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){
                 Items.setItemActivoFalso(); //
                 vidas --;
                 System.out.println("Vidas: "+ vidas);
@@ -215,6 +217,19 @@ public class NaveAliada extends Nave
     /*Método para obtener las vidas actuales del jugador.*/
     public static int getVidasJugador(){
         return vidas;
+    }
+    /*Método para obtener la puntuación actual.*/
+    public static int getPuntos(){
+        return puntos;
+    }
+    /*Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
+        se mandará un número negativo.*/
+    public static void setPuntos(int puntosRecibidos){
+        puntos += puntosRecibidos;
+    }
+    /*Getter booleano para ver si el escudo está activo en métodos generales.*/
+    public static boolean isDiseñoOriginalActivo(){
+        return diseñoOriginalActivo;
     }
     /*Método para obtener la Coordenada en X del disparo. Pero para esto hay que verificar que el disparo exista.
         Si el disparo no existe, entonces devolver -1 en x porque no se puede acceder a esa coordenada.*/

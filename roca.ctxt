@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Roca
-comment0.text=\r\n\ Clase\ que\ maneja\ todo\ lo\ relacionado\ a\ los\ meteoros.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Domingo,\ 17\ de\ mayo\ -\ Lunes,\ 18\ de\ mayo\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ que\ maneja\ todo\ lo\ relacionado\ a\ los\ meteoros.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Viernes,\ 29\ de\ mayo\ de\ 2020)\r\n
 comment1.params=tipoMeteoro
 comment1.target=Roca(int)
 comment2.params=

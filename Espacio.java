@@ -35,7 +35,7 @@ public class Espacio extends World
            se agrega como objeto con las coordenadas deseadas.
            Hacer lo mismo para mostrar los puntos, incluso podría ser en la misma clase.
             - MostrarEstado tal vez.*/
-        addObject(new MostrarVidas(), 500, 50);
+        addObject(new MostrarInfo(), 500, 50);
        // MostrarVidas v = new MostrarVidas(nave.getVidasJugador());
         //addObject(enemigo, super.getWidth()/2+200, super.getHeight()/2-200);
     }
@@ -62,7 +62,7 @@ public class Espacio extends World
             if(NaveAliada.getVidasJugador() == 5)//Generará todos los items menos el corazón, ya que tiene el máximo de vidas.
                 tipoItem = m.getRandomNumber(2, 2);
             else
-                tipoItem = m.getRandomNumber(1, 1);//Elegirá de manera random el item que se creará.
+                tipoItem = m.getRandomNumber(1, 2);//Elegirá de manera random el item que se creará.
             if(System.currentTimeMillis() - tiempoInicialMilis >= 60000){//Cada que pase 1 minuto, aumentará la velocidad del item.
                 velocidadItem++;
                 tiempoInicialMilis = System.currentTimeMillis();//Reiniciar el contador para que ocurra cada minuto.
