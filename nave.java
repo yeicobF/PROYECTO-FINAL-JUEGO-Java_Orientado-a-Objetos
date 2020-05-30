@@ -19,7 +19,7 @@ public class Nave extends Actor
     public static final int UP_LEFT=5;
     public static final int DOWN_LEFT=6;
     public static final int DOWN_RIGHT=7;
-    protected int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
+    protected static int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
     protected int tipoDisparo; //Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
     protected int diseñoNave;//El diseño de la nave
     protected int tipoHabilidad;//Esto serán los PowerUps.
@@ -114,7 +114,11 @@ public class Nave extends Actor
                 break;
         }       
     }
-    
+    /*Método protegido para obtener los puntos de salud actuales de las naves. Protegido para que se pueda utilizar
+        desde las subclases y static para que no se necesite una instancia del objeto.*/
+    protected static int getPuntosSalud(){
+        return puntosSalud;
+    }
     public int getCordX(){
         return getX();
     }

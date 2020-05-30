@@ -11,6 +11,7 @@ comment11.target=void\ setPuntos(int)
 comment11.text=M\u00E9todo\ para\ establecer\ la\ puntuaci\u00F3n\ actual.\ Esto\ sumar\u00E1\ el\ par\u00E1metr\ recibido,\ as\u00ED\ que\ si\ se\ pierden\ puntos,\r\nse\ mandar\u00E1\ un\ n\u00FAmero\ negativo.
 comment12.params=
 comment12.target=boolean\ isDise\u00F1oOriginalActivo()
+comment12.text=Getter\ booleano\ para\ ver\ si\ el\ escudo\ est\u00E1\ activo\ en\ m\u00E9todos\ generales.
 comment13.params=
 comment13.target=int\ getCordXDisparo()
 comment13.text=M\u00E9todo\ para\ obtener\ la\ Coordenada\ en\ X\ del\ disparo.\ Pero\ para\ esto\ hay\ que\ verificar\ que\ el\ disparo\ exista.\r\nSi\ el\ disparo\ no\ existe,\ entonces\ devolver\ -1\ en\ x\ porque\ no\ se\ puede\ acceder\ a\ esa\ coordenada.

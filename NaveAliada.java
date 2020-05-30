@@ -179,7 +179,7 @@ public class NaveAliada extends Nave
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         Items.setItemActivoFalso();
                         vidas++;
-                        System.out.println("Vidas: "+ vidas);
+                        //System.out.println("Vidas: "+ vidas);
                         break;
                     case 2: //ESCUDO. Poner el sprite del escudo y al terminar el tiempo cambiarlo.
                         //Mandar el tiempo en el que se tocó el item
@@ -201,7 +201,7 @@ public class NaveAliada extends Nave
             || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){
                 Items.setItemActivoFalso(); //
                 vidas --;
-                System.out.println("Vidas: "+ vidas);
+                //System.out.println("Vidas: "+ vidas);
                 Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
         }
     }
@@ -218,6 +218,11 @@ public class NaveAliada extends Nave
     public static int getVidasJugador(){
         return vidas;
     }
+    /*Método para recuperar los puntos de salud del jugador.*/
+    //NO SE NECESITA PORQUE EN LA SUPERCLASE NAVE ES PROTEGIDO.
+    // public abstract static int getPuntosSalud(){
+        // return puntosSalud;
+    // }
     /*Método para obtener la puntuación actual.*/
     public static int getPuntos(){
         return puntos;

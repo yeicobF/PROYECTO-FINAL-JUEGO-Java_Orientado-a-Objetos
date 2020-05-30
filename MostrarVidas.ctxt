@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=MostrarVidas
-comment0.text=\r\n\ Clase\ que\ muestra\ las\ vidas\ actuales\ del\ jugador.\ Por\ fin\ funcion\u00F3.\ Establece\ la\ imagen\ de\ las\ vidas\ (que\ se\ van\ actualizando)\r\n\ \ y\ al\ agregar\ el\ objeto\ en\ el\ escenario,\ estas\ se\ ven.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Viernes,\ 29\ de\ mayo\ de\ 2020)\r\n
-comment1.params=
-comment1.target=MostrarVidas()
-comment2.params=
-comment2.target=void\ act()
-numComments=3

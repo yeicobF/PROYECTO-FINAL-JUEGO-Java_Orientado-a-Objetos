@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Niveles
+comment0.text=\r\n\ Superclase\ que\ tendr\u00E1\ como\ subclases\ a\ cada\ uno\ de\ los\ niveles.\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Viernes,\ 29\ de\ mayo\ de\ 2020)\r\n
+comment1.params=
+comment1.target=Niveles()
+comment2.params=
+comment2.target=int\ getNivelActual()
+numComments=3
