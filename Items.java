@@ -120,6 +120,10 @@ public class Items extends Actor
     public static int getTipoItem(){
         return tipoItemStatic;
     }
+    /*Setter del tipo de item para definir la habilidad o efecto. Aunque no es necesario porque si no existe pues no necesita ser 0.*/
+    public static void setTipoItemCero(){
+        tipoItemStatic = 0;
+    }
     /*Getters del ancho y alto del item.*/
     public static int getAnchoItem(){
         return anchoItem;

@@ -17,7 +17,7 @@ public class Niveles extends World
     //Aquí utilizaremos el mostrarInfo(tipo = niveles) y los demás también podrían ser.
     public Niveles()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        
         super(600, 400, 1); 
     }
     //Método estático que devuelve el nivel actual

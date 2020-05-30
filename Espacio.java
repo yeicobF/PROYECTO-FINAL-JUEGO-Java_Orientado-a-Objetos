@@ -35,7 +35,11 @@ public class Espacio extends World
            se agrega como objeto con las coordenadas deseadas.
            Hacer lo mismo para mostrar los puntos, incluso podría ser en la misma clase.
             - MostrarEstado tal vez.*/
-        addObject(new MostrarInfo(), 500, 50);
+        //public MostrarInfo(int tipoInfo, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
+       addObject(new MostrarInfo(1, 30, Color.WHITE, Color.BLACK, null), 500, 50);//Vidas
+       addObject(new MostrarInfo(2, 30, Color.WHITE, Color.BLACK, Color.RED), 500, 50+30);//Sumo 30 en y por el tamaño de la fuente anterior
+       addObject(new MostrarInfo(3, 20, Color.WHITE, Color.BLACK, null), 50, getHeight()-20);
+       // addObject(new MostrarInfo(4, 20, Color.RED, Color.BLACK, Color.WHITE), getWidth()-200, 20);
        // MostrarVidas v = new MostrarVidas(nave.getVidasJugador());
         //addObject(enemigo, super.getWidth()/2+200, super.getHeight()/2-200);
     }

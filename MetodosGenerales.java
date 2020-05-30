@@ -42,8 +42,6 @@ public class MetodosGenerales
         El mundo actual es de tipo "World" porque es la mayor generalización. De ahí siguen los niveles que son class diferentes.*/
     public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave){
         if(choqueActores(objetoChoque)){ //Para destruir la salud tiene que ser menor o igual a 0. No destruir en el choque inmediat0.
-            //if(Items.getTipoItem() != 2 && NaveAliada.isDiseñoOriginalActivo())//Si el item no es el escudo, eliminar el objeto de choque.
-            //Esto de arriba no funciona porque solo lo revisa en el momento.
             mundoActual.removeObject(objetoChoque);//Se elimina el objeto con el que se chocó. Este siempre se elimina. Por ejemplo el disparo.
             puntosSalud -= daño; //Restar el daño al objeto
             NaveAliada.setPuntos(puntosNave);//Se le suman los puntos al jugador

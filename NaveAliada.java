@@ -169,7 +169,7 @@ public class NaveAliada extends Nave
         Regresará el tipo del item que servirá para condicionar los métodos que se ejectutan en act().
             Por ejemplo con el escudo, no se bajará la salud de la nave.*/
     private int choqueItem(){
-    //public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
+    //eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
         if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, (Espacio)getWorld(), puntosSalud, 1, 0)
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
                 puntosSalud++;//Subir el punto de salud que le quitó.
@@ -198,7 +198,7 @@ public class NaveAliada extends Nave
     /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/ 
     private void morirChoque(int daño){ //Aquí tomamos en cuenta que se hayan perdido todos los PS
         if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0
-            || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){
+            || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){//&& Items.getTipoItem() != 2){//Que el item no sea el escudo.
                 Items.setItemActivoFalso(); //
                 vidas --;
                 //System.out.println("Vidas: "+ vidas);
