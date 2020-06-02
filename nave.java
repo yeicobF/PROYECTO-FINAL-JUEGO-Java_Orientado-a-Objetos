@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (Team Naves) 
  * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
  */
-public class Nave extends Actor
+public abstract class Nave extends Actor
 {
     //Nave n; //Inicializar la nave para después instanciarla, aunque no es necesario porque esta clase no se utilizará
     protected Disparo disparo; //Porque las naves aliadas y enemigas lo necesitan
@@ -19,14 +19,17 @@ public class Nave extends Actor
     public static final int UP_LEFT=5;
     public static final int DOWN_LEFT=6;
     public static final int DOWN_RIGHT=7;
-    protected static int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
+    /*Los PS eran estáticos pero así valían lo mismo y cambiaban con todas las estancias. 
+     *  Cuando bajaba la salud de una nave enemiga, también bajaba la nuestra.*/
+    //protected int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
     protected int tipoDisparo; //Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
     protected int diseñoNave;//El diseño de la nave
     protected int tipoHabilidad;//Esto serán los PowerUps.
     /*NO NECESITAMOS coordX ni coordY porque ya están getX() y getY()*/
     public Nave(){}//Constructor vacío para no tener problemas en Disparo
     public Nave(int tipoDisparo, int diseñoNave){//char diseño para cuando tengamos más diseños
-        puntosSalud=100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
+        //Los puntos de salud ahora serán implementados en cada clase por separado.
+        //puntosSalud=100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
         this.tipoDisparo = tipoDisparo;//Aquí condicionaremos para el diseño y eso pero en la clase Disparo.
         this.diseñoNave = diseñoNave; //De esto dependerá el diseño que tendrá la nave.
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
@@ -115,10 +118,18 @@ public class Nave extends Actor
         }       
     }
     /*Método protegido para obtener los puntos de salud actuales de las naves. Protegido para que se pueda utilizar
-        desde las subclases y static para que no se necesite una instancia del objeto.*/
-    protected static int getPuntosSalud(){
-        return puntosSalud;
-    }
+        desde las subclases y static para que no se necesite una instancia del objeto.
+        Sólo se necesitaba para MostrarInfo, pero como es subclase de NaveAliada, no se necesita
+            un getter para acceder, ya que puntosSalud es un atributo protegido.*/
+    // protected static int getPuntosSalud(){
+        // return puntosSalud;
+    // }
+    /*Método abstracto que será definido en las subclases regresando sus propios puntos de salud.
+       Estos tendrán que ser distintos porque los necesitamos manejar como estáticos,
+        y si son estáticos generales, estos valdrán lo mismo en todas las instancias.
+        - Necesitaba que fuera estático, pero eso no se puede, por lo que lo implementaré a cada
+            clase por separado aunque sea un mal diseño.*/
+    //public abstract int getPuntosSalud();
     public int getCordX(){
         return getX();
     }

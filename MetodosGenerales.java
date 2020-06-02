@@ -53,9 +53,9 @@ public class MetodosGenerales
             // if(objetoRaiz instanceof Roca) //Tal vez podría ponerlo en la misma roca, pero como ya no existiría después del return, no haría efecto.
                 // Espacio.setNumRocasActual(Espacio.getNumRocasActual() - 1);//Llamamos al setter estático (no necesita instanciarse).
                     //Esto mejor lo punto en su propia clase
-            }
+        }
         if(NaveAliada.getPuntos() < 0) //No queremos que salgan puntos negativos.
-            NaveAliada.setPuntos(0 - NaveAliada.getPuntos());//Sumar los números que están por debajo para dejarlos en 0.
+            NaveAliada.setPuntos(0);//Sumar los números que están por debajo para dejarlos en 0.
         return puntosSalud;//Regresa los puntos de salud para que se siga evaluando el método.
     }//En el método de destruir nave habrá que bajar vidas si se eliminó.
     

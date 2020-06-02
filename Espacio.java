@@ -13,7 +13,7 @@ public class Espacio extends World
      * Constructor for objects of class Espacio.
      * 
      */
-    MetodosGenerales m = new MetodosGenerales(); //Inicializar para tener los métodos no específicos.
+    MetodosGenerales m = new MetodosGenerales(); //Instanciar para tener los métodos no específicos.
     private long tiempoMilis = 0; // Para hacer comparaciones de tiempo para creación de objetos.
     private long tiempoInicialMilis = System.currentTimeMillis(); //Tomar el tiempo en que el juego inició.
     private int numRocasMax; //Número máximo de rocas.
@@ -24,8 +24,10 @@ public class Espacio extends World
         //Nave nave = new Nave(50, 300);//El constructor creará las n rocas y no el método, para así manejar las rocas y compararlas.
         //Modificamos la forma de instanciar a la nave aliada. Ahora le daremos el tipo de nave y su disparo.
         NaveAliada nave = new NaveAliada(1, 3);//Para empezar a utilizar la nave aliada con su propia clase, el tipo '9' lo puse por poner, pero representa el tipo de la mave
-        NaveEnemiga boss = new NaveEnemiga(2, 1);//eL SPRITE 1 SERÁ EL BOSS
+        //Como NaveEnemiga.puntosSalud es estático, entonces el último que se instancie dará el valor de los PS. Quitarles lo estático.
         NaveEnemiga enemigo = new NaveEnemiga(2, 2);
+        NaveEnemiga boss = new NaveEnemiga(1, 2);//eL SPRITE 1 SERÁ EL BOSS
+        
         addObject(nave,300,300);//Aparecer a la nave en el centro
         addObject(boss, super.getWidth()/2+40, super.getHeight()/2+40);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
         addObject(enemigo, super.getWidth()/2+40, super.getHeight()/2-40);
@@ -48,6 +50,7 @@ public class Espacio extends World
     public void act(){
         crearRocasTiempo(tiempoMilis);
         crearItemTiempo();
+        //System.out.println("Salud aliado: "+ NaveAliada.getPuntosSalud() +"Salud enemigo: "+ NaveEnemiga.getPuntosSalud()) ;
     }
     /*Método en el que se creará un item cada cierto tiempo dependiendo de la última vez que se creó y que 
      *  un tiempo generado aleatoriamente supere al tiempo mínimo en la coindición.*/

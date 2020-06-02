@@ -27,18 +27,19 @@ public class NaveAliada extends Nave
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int direccion;
     private int puntosMenosAlMorir = -20;
+    //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
+    private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
-    private static int puntos = 0;//La puntuación del jugador que se reiniciará al morir
+    private static int puntos;//La puntuación del jugador que se reiniciará al morir
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
     public NaveAliada(){}//Constructor vacío para MostrarVidas.
     public NaveAliada(int tipoDisparo, int diseñoNave){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         super(tipoDisparo, diseñoNave);//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
+        puntosSalud = 100; //Puntos de salud base son 100
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
-        /* Creo que esto ya no es necesario.
-         * vidas-=1;/*Establecer el número de vidas, ya que estas pueden cambiar al morir. Como es estática, siempre valdrá lo mismo.
-                    Entonces cuando se vuelva a instanciar el mundo, lo hará con 3 vidas que son las iniciales e irá restando.*/
+        puntos = 0; //Reiniciar los puntos al morir.
         setImage("Naves/Aliadas/NaveA"+ diseñoNave+ ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
@@ -172,7 +173,7 @@ public class NaveAliada extends Nave
     //eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
         if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, (Espacio)getWorld(), puntosSalud, 1, 0)
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
-                puntosSalud++;//Subir el punto de salud que le quitó.
+                //No necesitan bajarse los PS porque no se los asignamos
                 //Switch case para ver el tipo de item y actuar.
                 switch(Items.getTipoItem()){
                     case 1: //Aumentar el número de vidas. Es lo único que hacemos, por lo que terminamos de inmediato.
@@ -226,6 +227,10 @@ public class NaveAliada extends Nave
     /*Método para obtener la puntuación actual.*/
     public static int getPuntos(){
         return puntos;
+    }
+    //Método estático para obtener los Puntos de Salud de la NaveAliada específicamente.
+    public static int getPuntosSalud(){
+        return puntosSalud;
     }
     /*Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
         se mandará un número negativo.*/

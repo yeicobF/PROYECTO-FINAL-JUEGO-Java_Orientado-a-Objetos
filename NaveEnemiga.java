@@ -19,10 +19,21 @@ public class NaveEnemiga extends Nave
     //La vida siempre será 100 por el constructor de la superclase
     /*Este constructor dará vida y tipo de disparo (aún no implementado) dependiendo del tipo de enemigo sea*/
     World w;
-    int puntosPorDisparo; //Variable que define cuántos puntos obtendremos cuando se dispare a la nave.
+    MostrarInfo infoPS;
+    private int random;//Quisiera que las naves enemigas apuntaran hacia nosotros y si no al menos que apuntaran hacia la izquierda.
+    private int puntosPorDisparo; //Variable que define cuántos puntos obtendremos cuando se dispare a la nave.
+    private static int puntosSalud;
+    private boolean muestraPS; //Para ver que se haya creado MostrarInfo, ya que no se puede crear al instanciar.
     // MetodosGenerales m = new MetodosGenerales(); //No es necesario porque ya está en la superclase
-    public NaveEnemiga(int tipoDisparo, int tipoEnemigo){//Tal vez haga falta un MINIBOSS
+    public NaveEnemiga(int tipoEnemigo, int tipoDisparo){//Tal vez haga falta un MINIBOSS
         super(tipoDisparo, tipoEnemigo);//public Nave(int tipoDisparo, int diseño)
+        infoPS = new MostrarInfo(5, 20, Color.BLACK, Color.YELLOW, null);
+        muestraPS = false;
+        //Instanciar mostrarInfo para mostrar los PS de la nave enemiga encima de estas.
+        //public MostrarInfo(int tipoInfo, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
+            //getY()-getImage().getHeight()/2 para poner el texto arriba de la nave
+        //getWorld().addObject(new MostrarInfo(5, 10, Color.WHITE, Color.YELLOW, Color.RED), getX(), getY()-getImage().getHeight()/2);
+        puntosSalud = 100;  //Puntos de salud base = 100
         setImage("Naves/Enemigas/NaveE"+ tipoEnemigo+ ".png");
         setImage(m.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
         if(tipoEnemigo == 1){//BOSS == "0"
@@ -42,8 +53,11 @@ public class NaveEnemiga extends Nave
             Dependiendo del random (que será el ángulo de dirección), se moverá a una dirección.*/
         // Add your action code here.
         w = getWorld();
-        int random;//Quisiera que las naves enemigas apuntaran hacia nosotros y si no al menos que apuntaran hacia la izquierda.
         move(3);//Método que mueve a cierta velocidad el objeto
+        // if(!muestraPS){
+            // getWorld().addObject(infoPS, getX(), getY()-getImage().getHeight()/2);
+            // muestraPS = true;
+        // }
         //Si el objeto alcanza los límites en x o y, se dará la vuelta. Las limitaremos a la mitad de la pantalla.
         if(getX()>=w.getWidth()-5 || getX()<=w.getWidth()/2 || getY()>=w.getHeight()-5||getY()<=5){ 
             turn(180);
@@ -86,6 +100,11 @@ public class NaveEnemiga extends Nave
                     this, (Espacio)getWorld(), puntosSalud, Disparo.getDaño(), puntosPorDisparo);  
                     //NaveAliada.setPuntos(puntosPorDisparo*2);//Los puntos obtenidos se multiplicarán por 2 al destruir la nave
                     //Ya está condición dentro del método
+    }
+    
+    //Método estático para obtener los Puntos de Salud de la NaveAliada específicamente.
+    public static int getPuntosSalud(){
+        return puntosSalud;
     }
     public int getCordX(){
         return getX();
