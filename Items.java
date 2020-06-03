@@ -59,7 +59,7 @@ public class Items extends Actor
                 //tiempoFinalItem = System.currentTimeMillis(); //Ya que inmediatamente que tomas el corazón, hace efecto.
                 break;
             case 2: //ESCUDO. Este sí requiere tiempo de actividad, ya que no es ilimitado.
-                tiempoActividad = 10000;//10k milisegundos, es decir, 10 segundos.
+                tiempoActividad = 5000;//10k milisegundos, es decir, 10 segundos.
                 //De esta manera, sabemos cuál será el tiempo en que finalizará el efecto del item.
                 /*Esto se necesita establecer al tocar el item. Esto porque con esta implementación, 
                    * el tiempo irá contando desde que aparece el item.*/

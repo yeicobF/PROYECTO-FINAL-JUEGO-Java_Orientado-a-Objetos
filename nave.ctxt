@@ -11,9 +11,15 @@ comment3.target=void\ act()
 comment4.params=direccion
 comment4.target=void\ setDireccion(int)
 comment4.text=Clase\ que\ cambia\ la\ direcci\u00F3n\ dependiendo\ del\ par\u00E1metro\ que\ reciba.\ Adem\u00E1s\ aqu\u00ED\ mismo\ se\ ejecuta\ el\ movimiento.
-comment5.params=
-comment5.target=int\ getCordX()
-comment5.text=M\u00E9todo\ abstracto\ que\ ser\u00E1\ definido\ en\ las\ subclases\ regresando\ sus\ propios\ puntos\ de\ salud.\r\n\ \ \ \ \ \ \ Estos\ tendr\u00E1n\ que\ ser\ distintos\ porque\ los\ necesitamos\ manejar\ como\ est\u00E1ticos,\r\n\ \ \ \ \ \ \ \ y\ si\ son\ est\u00E1ticos\ generales,\ estos\ valdr\u00E1n\ lo\ mismo\ en\ todas\ las\ instancias.\r\n\ \ \ \ \ \ \ \ -\ Necesitaba\ que\ fuera\ est\u00E1tico,\ pero\ eso\ no\ se\ puede,\ por\ lo\ que\ lo\ implementar\u00E9\ a\ cada\r\nclase\ por\ separado\ aunque\ sea\ un\ mal\ dise\u00F1o.
-comment6.params=
-comment6.target=int\ getCordY()
-numComments=7
+comment5.params=infoPS\ yaExistente\ texto\ puntosSalud\ x\ y
+comment5.target=boolean\ muestraPuntosSalud(MostrarInfo,\ boolean,\ java.lang.String,\ int,\ int,\ int)
+comment5.text=M\u00E9todo\ para\ mostrar\ los\ PS\ de\ las\ naves.\ Protegido\ para\ que\ todas\ las\ naves\ lo\ puedan\ usar.
+comment6.params=infoPS\ objetoChoque\ objetoRaiz\ mundoActual\ puntosSalud\ da\u00F1o\ puntosNave
+comment6.target=int\ eliminaCuadroPS(MostrarInfo,\ greenfoot.Actor,\ greenfoot.Actor,\ greenfoot.World,\ int,\ int,\ int)
+comment6.text=M\u00E9todo\ que\ elimina\ el\ cuadro\ de\ texto\ donde\ se\ mostrar\u00E1n\ los\ PS\ cuando\ estos\ sean\ igual\ a\ 0.\ Este\ m\u00E9todo\ es\ necesario\r\n\ \ \ \ \ \ \ \ porque\ cuando\ los\ PS\ \=\=\ 0,\ el\ m\u00E9todo\ eliminarObjetoChoque\ elimina\ el\ objeto\ directamente.\r\nEn\ este\ m\u00E9todo,\ seguir\u00E1\ eliminando\ el\ objeto\ pero\ tambi\u00E9n\ el\ cuadro\ de\ texto.
+comment7.params=
+comment7.target=int\ getCordX()
+comment7.text=Podr\u00EDa\ hacer\ un\ m\u00E9todo\ igual\ al\ de\ eliminaCuadroPS,\ pero\ que\ mostrara\ el\ recuadro\ con\ los\ PS\ \=\ 0\ antes\ de\ destruirse,\r\n\ \ \ \ \ \ \ \ aunque\ creo\ que\ no\ tendr\u00EDa\ mucho\ sentido.\r\n\ \ \ \ protected\ int\ eliminaCuadroPS(MostrarInfo\ infoPS,\ String\ texto,\ Actor\ objetoChoque,\ Actor\ objetoRaiz,\ \r\nWorld\ mundoActual,\ int\ puntosSalud,\ int\ da\u00F1o,\ int\ puntosNave)
+comment8.params=
+comment8.target=int\ getCordY()
+numComments=9

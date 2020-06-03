@@ -28,7 +28,7 @@ public class NaveAliada extends Nave
     private int direccion;
     private int puntosMenosAlMorir = -20;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
-    private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
+    // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
@@ -37,15 +37,7 @@ public class NaveAliada extends Nave
     public NaveAliada(int tipoDisparo, int diseñoNave){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         super(tipoDisparo, diseñoNave);//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
-        puntosSalud = 100; //Puntos de salud base son 100
-        diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
-        puntos = 0; //Reiniciar los puntos al morir.
-        setImage("Naves/Aliadas/NaveA"+ diseñoNave+ ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
-        /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
-            public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
-            //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
-        setImage(m.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
-        /*Hay que tener una condición para el diseño de la nave. Este se estableció con el super construcor.*/
+        
         if(diseñoNave ==0){ //La nave potente por ser la más poderosa que se podrá obtener
             //setImage("NavePotente.png");
             puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
@@ -55,11 +47,23 @@ public class NaveAliada extends Nave
         // else
             // if(Character.compare(diseñoNave, '1')==0)//Algún otro diseño y así sucesivamente
             // //vida+=50;//Cada que se modifique la nave aumentará la vida y cosas así
+        //public MostrarInfo(int puntosSalud, int tipoInfo, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
+        infoPS = new MostrarInfo(puntosSalud, 0, 15, Color.RED, Color.WHITE, null);
+        diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
+        puntos = 0; //Reiniciar los puntos al morir.
+        setImage("Naves/Aliadas/NaveA"+ diseñoNave+ ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
+        /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
+            public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
+            //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
+        setImage(m.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
+        /*Hay que tener una condición para el diseño de la nave. Este se estableció con el super construcor.*/
     }
     /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque 
      * esa se moverá con numeros generados de manera aleatoria. Si la podemos hacer más general, lo haremos.*/
     public void act() 
     {
+        //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
+        existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
         disparar();
         movimiento();
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
@@ -198,11 +202,20 @@ public class NaveAliada extends Nave
     /*Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
     /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/ 
     private void morirChoque(int daño){ //Aquí tomamos en cuenta que se hayan perdido todos los PS
-        if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0
-            || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){//&& Items.getTipoItem() != 2){//Que el item no sea el escudo.
+        /* -> Para eliminar el cuadro de texto al morir.
+         * protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque, 
+                                        Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave){*/
+        if(eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0
+            || eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){//&& Items.getTipoItem() != 2){//Que el item no sea el escudo.
                 Items.setItemActivoFalso(); //
                 vidas --;
                 //System.out.println("Vidas: "+ vidas);
+                /*Sería bueno detener el juego unos milisegundos después de morir.*/
+                // try{
+                    // Thread.sleep(3000);//Parar el sistema un momento.
+                // }catch(InterruptedException ie){
+                    // System.out.println("Interrupción sleep.");
+                // }
                 Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
         }
     }
@@ -229,9 +242,9 @@ public class NaveAliada extends Nave
         return puntos;
     }
     //Método estático para obtener los Puntos de Salud de la NaveAliada específicamente.
-    public static int getPuntosSalud(){
-        return puntosSalud;
-    }
+    // public int getPuntosSalud(){
+        // return puntosSalud;
+    // }
     /*Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
         se mandará un número negativo.*/
     public static void setPuntos(int puntosRecibidos){

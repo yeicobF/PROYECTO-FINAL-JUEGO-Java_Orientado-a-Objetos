@@ -40,7 +40,8 @@ public class MetodosGenerales
     /*Método que elimina un objeto si chocó con otro. Hay que mandarle los objetos que chocaron y su mundo.
      *  No necesita ser booleano porque no importa que sea true o false, sino, que se elimine o no dependiendo de la salud.
         El mundo actual es de tipo "World" porque es la mayor generalización. De ahí siguen los niveles que son class diferentes.*/
-    public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave){
+    public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, 
+                                                    int puntosSalud, int daño, int puntosNave){
         if(choqueActores(objetoChoque)){ //Para destruir la salud tiene que ser menor o igual a 0. No destruir en el choque inmediat0.
             mundoActual.removeObject(objetoChoque);//Se elimina el objeto con el que se chocó. Este siempre se elimina. Por ejemplo el disparo.
             puntosSalud -= daño; //Restar el daño al objeto

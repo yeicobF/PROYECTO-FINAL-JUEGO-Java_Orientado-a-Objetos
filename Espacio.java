@@ -40,7 +40,7 @@ public class Espacio extends World
         //public MostrarInfo(int tipoInfo, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
        addObject(new MostrarInfo(1, 30, Color.WHITE, Color.BLACK, null), 500, 50);//Vidas
        addObject(new MostrarInfo(2, 30, Color.WHITE, Color.BLACK, Color.RED), 500, 50+30);//Sumo 30 en y por el tamaño de la fuente anterior
-       addObject(new MostrarInfo(3, 20, Color.WHITE, Color.BLACK, null), 50, getHeight()-20);
+       // addObject(new MostrarInfo(3, 20, Color.WHITE, Color.BLACK, null), 50, getHeight()-20);
        // addObject(new MostrarInfo(4, 20, Color.RED, Color.BLACK, Color.WHITE), getWidth()-200, 20);
        // MostrarVidas v = new MostrarVidas(nave.getVidasJugador());
         //addObject(enemigo, super.getWidth()/2+200, super.getHeight()/2-200);
@@ -70,7 +70,7 @@ public class Espacio extends World
                 tipoItem = m.getRandomNumber(2, 2);
             else
                 tipoItem = m.getRandomNumber(1, 2);//Elegirá de manera random el item que se creará.
-            if(System.currentTimeMillis() - tiempoInicialMilis >= 60000){//Cada que pase 1 minuto, aumentará la velocidad del item.
+            if(System.currentTimeMillis() - tiempoInicialMilis >= 5000){//Cada que pase 1 minuto, aumentará la velocidad del item.
                 velocidadItem++;
                 tiempoInicialMilis = System.currentTimeMillis();//Reiniciar el contador para que ocurra cada minuto.
             }
