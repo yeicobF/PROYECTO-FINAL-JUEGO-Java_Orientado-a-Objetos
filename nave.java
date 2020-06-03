@@ -153,6 +153,13 @@ public abstract class Nave extends Actor
             mundoActual.removeObject(infoPS);
         return puntosSalud;
     }
+    /*Método que eliminará el cuadro de texto sin ninguna condición. Esto para al chocar una nave enemiga se elimine su cuadro de texto.*/
+    public void eliminaCuadroPS(MostrarInfo infoPS, World mundoActual){
+        mundoActual.removeObject(infoPS);
+    }
+    public MostrarInfo getMostrarInfo(){
+        return infoPS;
+    }
     /*Podría hacer un método igual al de eliminaCuadroPS, pero que mostrara el recuadro con los PS = 0 antes de destruirse,
         aunque creo que no tendría mucho sentido.
     protected int eliminaCuadroPS(MostrarInfo infoPS, String texto, Actor objetoChoque, Actor objetoRaiz, 

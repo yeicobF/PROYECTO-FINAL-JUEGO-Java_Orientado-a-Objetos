@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Esta es una subclase de la superclase Nave que tiene como función manejar las naves que controlará el jugador.
  * 
  * @author (Team Naves) 
- * @version (Viernes, 29 de mayo de 2020)
+ * @version (Martes, 2 de junio - Miércoles 3 de junio de 2020)
  */
 public class NaveAliada extends Nave
 {
@@ -205,8 +205,8 @@ public class NaveAliada extends Nave
         /* -> Para eliminar el cuadro de texto al morir.
          * protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque, 
                                         Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave){*/
-        if(eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0
-            || eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){//&& Items.getTipoItem() != 2){//Que el item no sea el escudo.
+        if(eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, Roca.class), this, getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0
+            || eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){//&& Items.getTipoItem() != 2){//Que el item no sea el escudo.
                 Items.setItemActivoFalso(); //
                 vidas --;
                 //System.out.println("Vidas: "+ vidas);

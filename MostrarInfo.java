@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Clase que mostrará la información en pantalla. Es decir, mostrará las vidas, puntos y más información de ser necesaria.
  *  Esta clase la hice a partir de la anterior clase MostrarVidas. Mejor lo convertiré en método.
  * @author (Jacob) 
- * @version (Viernes, 29 de mayo de 2020)
+ * @version (Martes, 2 de junio - Miércoles 3 de junio de 2020)
  */
 public class MostrarInfo extends NaveAliada
 {
@@ -80,7 +80,12 @@ public class MostrarInfo extends NaveAliada
         /*Si la información cambia, entonces volver a establecer la imagen, esto para que el proceso no se haga
             infinitas veces.*/
         switch(tipoInfo){
-            case 0: break; //Puntos de salud, llamaré al otro método.
+            case 0: 
+                // if(NaveAliada.class = null)
+                    
+                // if(isTouching(NaveAliada.class))
+                    // getWorld().removeObject(this);
+                break; //Puntos de salud, llamaré al otro método.
             case 1:
                 vidas = mostrarInformacion("Vidas: ", vidas, NaveAliada.getVidasJugador());
                 break;

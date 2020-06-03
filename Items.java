@@ -25,7 +25,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  *      - 9. Insta Kill. Igual como en COD, esta podría destruir a los enemigos de un disparo en lugar de varios, ya que
  *              los disparos quitarán puntos de salud (HP o PS).
  * @author (Team Naves) 
- * @version (Domingo, 17 de mayo - Lunes, 18 de mayo)
+ * @version (Martes, 2 de junio - Miércoles 3 de junio de 2020)
  */
 public class Items extends Actor
 {
@@ -41,17 +41,22 @@ public class Items extends Actor
     private static boolean itemActivo = false;//Variable que verá si ya existe un item o no. Será estático para que no se necesite instanciar.
     /*Medirá el tiempo en el que el item terminó su efecto. Inicializar con una cantidad para que no se genere un item luego luego.
             El item se inicializa tomando en cuenta el tiempo del sistema. Si no se hace así, sería impreciso con el tiempo.*/
-    private static long tiempoFinalItem = System.currentTimeMillis() + 1000;
+    private static long tiempoFinalItem;
     private static int tipoItemStatic = 0;//Para acceder al tipo sin instanciar.
     /*Variables para tener en cuenta el ancho y alto del item para que no se creen al tope de la pantalla y se corten.*/
     private static int anchoItem = 0;
     private static int altoItem = 0;
+    private static boolean tocoItem; //Indica si la imagen del item sigue en pantalla o no.
     private int velocidadItem = 0; //Variable que determinará la velocidad de caida del item.
     //private int tipoItem;//Esta variable definirá el tipo del item y su sprite.
     public Items(int tipoItem, int velocidadItem){
         this.velocidadItem = velocidadItem;
         tipoItemStatic = tipoItem;
         itemActivo = true;
+        tocoItem = false;
+        tiempoFinalItem = System.currentTimeMillis();
+        //Ya no es necesaria esta variable. Ya logré la condición que deseaba.
+        // existeImagenItem = true;//Esto para indicar que se creó la imagen del item.
         switch(tipoItem){ //Switch case para 
             case 1: // VIDA. Esta no requiere tiempoActivo, ya que sube un corazón.
                 setImage("Items/Item1Vida.png"); 
@@ -95,6 +100,8 @@ public class Items extends Actor
         if(getY() >= w.getHeight()-altoItem/2+1){//Si se mueve más abajo de los límites en lo mínimo en y, desaparecer.
             itemActivo = false; //Hacer el item inactivo si llega a los límites
             tiempoFinalItem = System.currentTimeMillis();//Guardar el tiempo final si no se tocó para que no se genere rápidamente.
+            tipoItemStatic = 0;
+            // existeImagenItem = false;//Porque desapareció el item.
             getWorld().removeObject(this);
         }
     }
@@ -102,6 +109,20 @@ public class Items extends Actor
     public static boolean isItemActivo(){
         return itemActivo;
     }
+    public static boolean isTocoItem(){
+        return tocoItem;
+    }
+    public static void setTocoItemTrue(){
+        tocoItem = true;
+    }
+    // /*Para indicar que se eliminó la imagen del item.*/
+    // public static void setImagenItemFalso(){
+        // existeImagenItem = false;
+    // }
+    // /*Verifica si la imagen del item aún existe.*/
+    // public static boolean isImagenItemActiva(){
+        // return existeImagenItem;
+    // }
     /*Método estático que cambiará ek estado del item. Esto pasará cuando termine su efecto. Se cambiará desde la clase NaveAliada.
         No es necesario que se cambie a activo porque esto ya pasa al instanciar. Sólo será necesario hacerlo falso.*/
     public static void setItemActivoFalso(){
@@ -118,7 +139,10 @@ public class Items extends Actor
     }
     /*Getter del tipo de item para definir la habilidad o efecto.*/
     public static int getTipoItem(){
-        return tipoItemStatic;
+        if(!tocoItem)//Si aún no se ha tocado el item, que el tipo sea 0
+            return 0;
+        else
+            return tipoItemStatic;//Si ya se tocó el item, ahora sí regresar su valor real
     }
     /*Setter del tipo de item para definir la habilidad o efecto. Aunque no es necesario porque si no existe pues no necesita ser 0.*/
     public static void setTipoItemCero(){

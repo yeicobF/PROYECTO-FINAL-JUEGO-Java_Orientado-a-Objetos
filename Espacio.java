@@ -5,7 +5,7 @@ import java.util.*;
  * Write a description of class Espacio here.
  * 
  * @author (Team Naves) 
- * @version (Viernes, 29 de mayo de 2020)
+ * @version (Martes, 2 de junio - Miércoles 3 de junio de 2020)
  */
 public class Espacio extends World
 {
@@ -79,7 +79,7 @@ public class Espacio extends World
     }
     /*Método que creará nuevas rocas si se han destruido y si ha pasado cierto tiempo.*/
     public void crearRocasTiempo(long tiempoMilis){ //Tiempo Milis es el último tiempo que se verificó desde la última roca creada.
-        if((System.currentTimeMillis() - tiempoMilis)>= 10000 && numRocasActual < numRocasMax){
+        if((System.currentTimeMillis() - tiempoMilis) >= 20000 && numRocasActual < numRocasMax){
             crearRocas(1); //Se crean las rocas indicadas.
             numRocasActual ++; //Como se creó una roca más, se aumenta al número de rocas actual.
             tiempoMilis = System.currentTimeMillis();//Se almacena el tiempo de la última roca creada.
