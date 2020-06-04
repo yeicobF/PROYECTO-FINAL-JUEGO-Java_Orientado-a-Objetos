@@ -64,7 +64,7 @@ public class NaveAliada extends Nave
     public void act()
     {
         //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
-        // existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
+        existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
         disparar();
         movimiento();
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.

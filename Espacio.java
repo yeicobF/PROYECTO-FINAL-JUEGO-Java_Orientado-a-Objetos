@@ -29,7 +29,6 @@ public class Espacio extends Niveles
         //System.out.println(" - SE AGREGO  NAVE");
         addObject(new NaveEnemiga(2, 2), super.getWidth()/2+40, super.getHeight()/2+40);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
         addObject(new NaveEnemiga(1, 2), super.getWidth()/2+40, super.getHeight()/2-40);
-        roca.crearRocas(Roca.getNumRocasMax(), this); //Crear las rocas primero. Luego que se vayan eliminando se crearán con el tiempo.
         //MostrarVidas cuadroVidas = new MostrarVidas();
         /*Agrega el objeto que muestra las vidas. Como la imagen de este serán las vidas que se actualizan constantemente,
            se agrega como objeto con las coordenadas deseadas.
