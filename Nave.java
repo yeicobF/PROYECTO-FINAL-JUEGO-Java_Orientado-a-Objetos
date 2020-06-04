@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Esta es la superclase que manejará a las clases relacionadas con naves.
  *
  * @author (Team Naves)
- * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
+ * @version (Jueves, 4 de junio de 2020)
  */
 public abstract class Nave extends Actor
 {
@@ -28,16 +28,17 @@ public abstract class Nave extends Actor
     protected boolean existeMostrarInfo;
     /*NO NECESITAMOS coordX ni coordY porque ya están getX() y getY()*/
     public Nave(){//Para clase nave que no necesitará especificar el tipo del disparo ni su diseño.
-        puntosSalud = 100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
-        existeMostrarInfo = false;
+      puntosSalud = 100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
+      existeMostrarInfo = false;
     }//Constructor vacío para no tener problemas en Disparo
     public Nave(int tipoDisparo, int diseñoNave){//char diseño para cuando tengamos más diseños
         //Los puntos de salud ahora serán implementados en cada clase por separado.
+
         this(); //Llamar al otro constructor para recibir los atributos.
         this.tipoDisparo = tipoDisparo;//Aquí condicionaremos para el diseño y eso pero en la clase Disparo.
         this.diseñoNave = diseñoNave; //De esto dependerá el diseño que tendrá la nave.
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
-    
+
     /*Clase que cambia la dirección dependiendo del parámetro que reciba. Además aquí mismo se ejecuta el movimiento.*/
     protected void setDireccion(int direccion){
         switch(direccion){

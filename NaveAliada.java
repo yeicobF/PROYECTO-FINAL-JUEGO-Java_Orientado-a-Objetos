@@ -32,14 +32,14 @@ public class NaveAliada extends Nave
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
-    private static int diseñoNaveAliada;  //Para la creación del nivel será necesario. 
+    private static int diseñoNaveAliada;  //Para la creación del nivel será necesario.
     private static int tipoDisparoAliada;
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
     public NaveAliada(){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         //super();//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
         System.out.println("PS NAVE: "+ puntosSalud);
-        if(diseñoNaveAliada ==0){ //La nave potente por ser la más poderosa que se podrá obtener
+        if(diseñoNaveAliada == 1){ //La nave potente por ser la más poderosa que se podrá obtener
             //setImage("NavePotente.png");
             puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
             //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
@@ -52,7 +52,7 @@ public class NaveAliada extends Nave
         infoPS = new MostrarInfo(puntosSalud, 0, 15, Color.RED, Color.WHITE, null);
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
         puntos = 0; //Reiniciar los puntos al morir.
-        setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada+ ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
+        setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada + ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
             //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
@@ -217,7 +217,7 @@ public class NaveAliada extends Nave
                 // }catch(InterruptedException ie){
                     // System.out.println("Interrupción sleep.");
                 // }
-                Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
+                Greenfoot.setWorld(new Espacio(this));//Este método crea el mundo de nuevo después de morir.
         }
     }
     //Desaparecer si ya perdimos todas las vidas.

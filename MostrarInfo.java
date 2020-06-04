@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (Jacob) 
  * @version (Martes, 2 de junio - Miércoles 3 de junio de 2020)
  */
-public class MostrarInfo extends NaveAliada
+public class MostrarInfo extends Actor
 {
     Etiqueta e;//Instanciar clase etiqueta para agregar el cuadro de texto.
     int tipoInfo; //Lo que se mostrará: 1. Vidas y puntos; 2. Puntos de Salud; 3. Nivel
@@ -92,8 +92,9 @@ public class MostrarInfo extends NaveAliada
             case 2:
                 puntos = mostrarInformacion("Puntos: ", puntos, NaveAliada.getPuntos());
                 break;
-            case 3:
+            case 3: //Este es un poco innecesario porque sólo cambiará al instanciar nivel, pero no hace tanto daño.
                 nivelActual = mostrarInformacion("Nivel: ", nivelActual, Niveles.getNivelActual());
+                break;
             default:
                 //getWorld().removeObject(this); //Quitar el cuadro de texto, aunque creo que no será necesario.
                 Greenfoot.stop();//Parar el mundo porque no se ingresó un tipo de Información válido.
