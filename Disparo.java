@@ -20,7 +20,7 @@ public class Disparo extends Actor
                                                 pero hay que ver cómo.*/
     private static int daño; //Estática para que puedan acceder desde fuera y restar el daño hecho.
     private int velocidadDisparo;
-
+    private int Bandera;
     public static final int UP=0;
     public static final int DOWN=1;
     public static final int LEFT=2;
@@ -37,6 +37,7 @@ public class Disparo extends Actor
         // this.cordX=cordX; //Antes Comentados por la herencia que intenté con nave
         // this.cordY=cordY;
         //this.direccion=direccion;//Para guardar la direccion del disparo. - Por ahora no se pudo hacer, pero lo comentaré.
+        Bandera=0;
         if(tipoDisparo == 0){//El disparo normal
             daño = 25; //daño inicial (que es bajo).
             velocidadDisparo = 5;
@@ -59,60 +60,39 @@ public class Disparo extends Actor
         /*ESTE MÉTODO LO TOMÉ DE setDireccion de la clase Nave, pero le quité las condiciones de más velocidad,
             para que así se dispare para la dirección a la que estemos apuntando.
             Por ahora no se pudo, así que se dejará como estaba pero con estas líneas comentadas.*/
-        switch(NaveAliada.GetDireccion())
+        if(Bandera==0)
         {
-         case UP:
-            turn(0);
-            // // setLocation(getX(),getY()-6);
-            // // cordY-=4;
-            break;
-         case DOWN:
-            // setRotation(180);
-            // // setLocation(getX(),getY()+4);
-            // // cordY+=2;
-            // break;
-          case LEFT:
-            turn(270);
-            // setLocation(getX()-4,getY());
-            // cordX-=4;
-            break;
-          case RIGHT:
-            turn(90);
-            // setLocation(getX()+4,getY());
-            // cordX+=4;
-            break;
-
-          case UP_RIGHT:
-            turn(45);
-            // setLocation(getX()+1,getY()-1);
-            // cordX+=1;
-            // cordY-=1;
-             break;
-
-        case UP_LEFT:
-            turn(315);
-            // setLocation(getX()-1,getY()-1);
-            // cordX-=1;
-            // cordY-=1;
-             break;
-
-        case DOWN_LEFT:
-            turn(225);
-            // setLocation(getX()-1,getY()+1);
-            // cordX-=1;
-            // cordY+=1;
-            break;
-
-        case DOWN_RIGHT:
-            turn(135);
-            // setLocation(getX()+1,getY()+1);
-            // cordX+=1;
-            // cordY+=1;
-
-            break;
-        }
+            switch(NaveAliada.GetDireccion())
+            {
+               case UP:
+                turn(0);
+                break;
+               case DOWN:
+                turn(180);
+                break;
+               case LEFT:
+                turn(270);
+                break;
+               case RIGHT:
+                turn(90);
+                break;
+               case UP_RIGHT:
+                turn(45);
+                break;
+               case UP_LEFT:
+                turn(315);
+                break;
+               case DOWN_LEFT:
+                turn(225);
+                break;
+               case DOWN_RIGHT:
+                turn(135);
+                break;
+            }
         move(velocidadDisparo);
-    }
+        Bandera=1;
+      }
+   }
     /*Método que desaparece a los objetos con los que impacta el disparo y a sí mismo.*/
     private void eliminarObjetosImpacto(){ //Por ahora Lunes, 11 de mayo me crasheaba, así que mejor lo implementaré en las otras clases.
         //public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual
