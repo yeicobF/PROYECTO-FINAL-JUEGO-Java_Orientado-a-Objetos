@@ -48,7 +48,7 @@ public class Espacio extends Niveles
           Greenfoot.stop();
           //public void crearRocasTiempo(World mundoActual)
         roca.crearRocasTiempo(this);
-        crearItemTiempo();
+        Items.crearItemTiempo(this);
         //System.out.println("Salud aliado: "+ NaveAliada.getPuntosSalud() +"Salud enemigo: "+ NaveEnemiga.getPuntosSalud()) ;
     }
 

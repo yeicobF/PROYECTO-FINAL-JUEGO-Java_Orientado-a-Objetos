@@ -41,19 +41,23 @@ public class Items extends Actor
     /*Medirá el tiempo en el que el item terminó su efecto. Inicializar con una cantidad para que no se genere un item luego luego.
             El item se inicializa tomando en cuenta el tiempo del sistema. Si no se hace así, sería impreciso con el tiempo.*/
     private static long tiempoFinalItem;
-    private static int tipoItemStatic = 0;//Para acceder al tipo sin instanciar.
+    private static int tipoItem = 0;//Para acceder al tipo sin instanciar.
     /*Variables para tener en cuenta el ancho y alto del item para que no se creen al tope de la pantalla y se corten.*/
     private static int anchoItem = 0;
     private static int altoItem = 0;
     private static boolean tocoItem; //Indica si la imagen del item sigue en pantalla o no.
+    //El tiempo inicial será estático para que se siga viendo la condición.
+    private static long tiempoInicialMilis;// = System.currentTimeMillis();//Tiempo en que inició el item.
     private int velocidadItem = 0; //Variable que determinará la velocidad de caida del item.
     //private int tipoItem;//Esta variable definirá el tipo del item y su sprite.
     public Items(int tipoItem, int velocidadItem){
         this.velocidadItem = velocidadItem;
-        tipoItemStatic = tipoItem;
+        tipoItem = tipoItem;
         itemActivo = true;
         tocoItem = false;
+        //Mejor recibirlo como parámetro en el método de crea. Aquí cada que se instancie se modificará y no creará más items.
         tiempoFinalItem = System.currentTimeMillis();
+        tiempoInicialMilis = System.currentTimeMillis();
         //Ya no es necesaria esta variable. Ya logré la condición que deseaba.
         // existeImagenItem = true;//Esto para indicar que se creó la imagen del item.
         switch(tipoItem){ //Switch case para
@@ -71,6 +75,8 @@ public class Items extends Actor
                 setImage("Items/Item2Escudo.png");
                 break;
         }
+        //Definir el tiempo del item tomando su duración y el tiempo actual.
+        //tiempoFinalItem = System.currentTimeMillis() + tiempoActividad;
         //public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divisor, int multiplicacion)
         //Reescalar los items a la mitad del tamaño del sprite.
         Imagen.modificarEscalaImagen(getImage(), 2, 1);
@@ -99,9 +105,35 @@ public class Items extends Actor
         if(getY() >= w.getHeight()-altoItem/2+1){//Si se mueve más abajo de los límites en lo mínimo en y, desaparecer.
             itemActivo = false; //Hacer el item inactivo si llega a los límites
             tiempoFinalItem = System.currentTimeMillis();//Guardar el tiempo final si no se tocó para que no se genere rápidamente.
-            tipoItemStatic = 0;
+            tipoItem = 0;
             // existeImagenItem = false;//Porque desapareció el item.
             getWorld().removeObject(this);
+        }
+    }
+
+    /*Método en el que se creará un item cada cierto tiempo dependiendo de la última vez que se creó y que
+     *  un tiempo generado aleatoriamente supere al tiempo mínimo en la coindición.*/
+    public static void crearItemTiempo(World mundoActual){ //El item se creará mínimo cada 30 segundos después de haber hecho efecto por última vez
+        int x, y, tipoItem;
+        int velocidadItem = 1;//Cuando inicia el nivel iniciarla así y cuandi avance el tiempo cambiarla
+        //Revisará que no exista el item para generar uno nuevo y que se respete el mínimo de tiempo. Se creará en un rango de 10 a 20 segundos.
+        if(!itemActivo && (System.currentTimeMillis() - tiempoFinalItem) >= Aleatorio.getNumeroAleatorio(1000, 2000)){
+            //Generar ancho y alto restándole su mitad a los límites para que no aparezca cortado en pantalla.
+            x = Aleatorio.getNumeroAleatorio(anchoItem/2, mundoActual.getWidth()-anchoItem/2);
+            //Recordar que y = 0 está en el centro de la pantalla
+            /*No están funcionando los límites. (CREO QUE YA, estaba considerando que y iba de -MinY hasta MaxY, pero
+             *      "y" es 0 hasta arriba del escenario y getHeight hasta abajo.)*/
+            y = Aleatorio.getNumeroAleatorio(altoItem, mundoActual.getHeight()-altoItem/2);
+            //System.out.println("x: "+ x+ "y: "+ y);
+            if(NaveAliada.getVidasJugador() == 5)//Generará todos los items menos el corazón, ya que tiene el máximo de vidas.
+                tipoItem = Aleatorio.getNumeroAleatorio(2, 2);
+            else
+                tipoItem = Aleatorio.getNumeroAleatorio(1, 2);//Elegirá de manera random el item que se creará.
+            if(System.currentTimeMillis() - tiempoInicialMilis >= 5000){//Cada que pase 1 minuto, aumentará la velocidad del item.
+                velocidadItem++;
+                tiempoInicialMilis = System.currentTimeMillis();//Reiniciar el contador para que ocurra cada minuto.
+            }
+            mundoActual.addObject(new Items(tipoItem, velocidadItem), x, y);
         }
     }
     /*Getter booleano estático siguiendo la convención: public boolean isAtributo(){ return atributo;}*/
@@ -126,7 +158,7 @@ public class Items extends Actor
         No es necesario que se cambie a activo porque esto ya pasa al instanciar. Sólo será necesario hacerlo falso.*/
     public static void setItemActivoFalso(){
         itemActivo = false;
-        tipoItemStatic = 0;
+        tipoItem = 0;
     }
     /*Getters y setters del último tiempo registrado del efecto del item. Es decir, que el item dejó de hacer efecto.*/
     public static long getTiempoFinalItem(){
@@ -141,11 +173,11 @@ public class Items extends Actor
         if(!tocoItem)//Si aún no se ha tocado el item, que el tipo sea 0
             return 0;
         else
-            return tipoItemStatic;//Si ya se tocó el item, ahora sí regresar su valor real
+            return tipoItem;//Si ya se tocó el item, ahora sí regresar su valor real
     }
     /*Setter del tipo de item para definir la habilidad o efecto. Aunque no es necesario porque si no existe pues no necesita ser 0.*/
     public static void setTipoItemCero(){
-        tipoItemStatic = 0;
+        tipoItem = 0;
     }
     /*Getters del ancho y alto del item.*/
     public static int getAnchoItem(){
