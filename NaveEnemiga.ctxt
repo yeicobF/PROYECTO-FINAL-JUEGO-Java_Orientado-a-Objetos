@@ -1,8 +1,14 @@
 #BlueJ class context
 comment0.target=NaveEnemiga
+<<<<<<< Updated upstream
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ NaveEnemiga\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=void\ act()
+=======
+comment0.text=\ Character.compare(char\ 'A',\ char\ 'B');\ Esto\ devuelve\ 0\ si\ al\ comparar\ los\ caracteres\ son\ iguales,\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ >0\ si\ el\ 1er\ valor\ es\ mayor\ que\ el\ segundo\r\n<0\ si\ el\ 1er\ valor\ es\ menor\ que\ el\ segundo
+comment1.params=tipoEnemigo\ tipoDisparo
+comment1.target=NaveEnemiga(int,\ int)
+>>>>>>> Stashed changes
 comment2.params=
 comment2.target=int\ Aleatorio()
 comment3.params=
