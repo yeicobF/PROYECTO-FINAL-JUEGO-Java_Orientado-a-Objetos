@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Disparo
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Disparo\ here.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Viernes,\ 29\ de\ mayo\ de\ 2020)\r\n
+comment1.params=tipoDisparo\ cordX\ cordY
+comment1.target=Disparo(int,\ int,\ int)
+comment1.text=En\ cuanto\ a\ la\ direccion\ del\ disparo,\ no\ pude\ implementarlo\ porque\ no\ sal\u00EDa\ como\ deber\u00EDa\ salir,\ as\u00ED\ que\ hay\ que\ revisarlo\r\nporque\ hay\ algo\ que\ falla.\ Por\ ahora\ solo\ comentar\u00E9\ las\ l\u00EDneas\ para\ despu\u00E9s\ implementar\ dicha\ funci\u00F3n.
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ eliminarObjetosImpacto()
+comment3.text=M\u00E9todo\ que\ desaparece\ a\ los\ objetos\ con\ los\ que\ impacta\ el\ disparo\ y\ a\ s\u00ED\ mismo.
+comment4.params=
+comment4.target=void\ limitePantalla()
+comment4.text=M\u00E9todo\ que\ revisa\ si\ el\ disparo\ est\u00E1\ dentro\ de\ los\ l\u00EDmites\ de\ la\ pantalla.
+comment5.params=
+comment5.target=int\ getCordX()
+comment6.params=
+comment6.target=int\ getCordY()
+comment7.params=
+comment7.target=int\ getDa\u00F1o()
+numComments=8

@@ -20,6 +20,7 @@ dependency1.from=Niveles
 dependency1.to=Items
 dependency1.type=UsesDependency
 dependency10.from=Nave
+<<<<<<< Updated upstream
 dependency10.to=MostrarInfo
 dependency10.type=UsesDependency
 dependency11.from=Nave
@@ -48,11 +49,42 @@ dependency18.to=Espacio
 dependency18.type=UsesDependency
 dependency19.from=NaveAliada
 dependency19.to=Imagen
+=======
+dependency10.to=Choques
+dependency10.type=UsesDependency
+dependency11.from=NaveEnemiga
+dependency11.to=MostrarInfo
+dependency11.type=UsesDependency
+dependency12.from=NaveEnemiga
+dependency12.to=Espacio
+dependency12.type=UsesDependency
+dependency13.from=NaveEnemiga
+dependency13.to=Imagen
+dependency13.type=UsesDependency
+dependency14.from=NaveEnemiga
+dependency14.to=Disparo
+dependency14.type=UsesDependency
+dependency15.from=NaveAliada
+dependency15.to=MostrarInfo
+dependency15.type=UsesDependency
+dependency16.from=NaveAliada
+dependency16.to=Disparo
+dependency16.type=UsesDependency
+dependency17.from=NaveAliada
+dependency17.to=Espacio
+dependency17.type=UsesDependency
+dependency18.from=NaveAliada
+dependency18.to=Imagen
+dependency18.type=UsesDependency
+dependency19.from=NaveAliada
+dependency19.to=Items
+>>>>>>> Stashed changes
 dependency19.type=UsesDependency
 dependency2.from=Niveles
 dependency2.to=Roca
 dependency2.type=UsesDependency
 dependency20.from=NaveAliada
+<<<<<<< Updated upstream
 dependency20.to=Items
 dependency20.type=UsesDependency
 dependency21.from=NaveAliada
@@ -81,11 +113,42 @@ dependency28.to=Etiqueta
 dependency28.type=UsesDependency
 dependency29.from=Items
 dependency29.to=Imagen
+=======
+dependency20.to=Choques
+dependency20.type=UsesDependency
+dependency21.from=NaveAliada
+dependency21.to=Roca
+dependency21.type=UsesDependency
+dependency22.from=NaveAliada
+dependency22.to=NaveEnemiga
+dependency22.type=UsesDependency
+dependency23.from=MostrarInfo
+dependency23.to=Etiqueta
+dependency23.type=UsesDependency
+dependency24.from=MostrarInfo
+dependency24.to=Niveles
+dependency24.type=UsesDependency
+dependency25.from=Archivo
+dependency25.to=Boton
+dependency25.type=UsesDependency
+dependency26.from=Archivo
+dependency26.to=Etiqueta
+dependency26.type=UsesDependency
+dependency27.from=Boton
+dependency27.to=Etiqueta
+dependency27.type=UsesDependency
+dependency28.from=Items
+dependency28.to=Imagen
+dependency28.type=UsesDependency
+dependency29.from=Roca
+dependency29.to=Espacio
+>>>>>>> Stashed changes
 dependency29.type=UsesDependency
 dependency3.from=Niveles
 dependency3.to=Aleatorio
 dependency3.type=UsesDependency
 dependency30.from=Roca
+<<<<<<< Updated upstream
 dependency30.to=Espacio
 dependency30.type=UsesDependency
 dependency31.from=Roca
@@ -109,6 +172,28 @@ dependency36.type=UsesDependency
 dependency37.from=Choques
 dependency37.to=NaveAliada
 dependency37.type=UsesDependency
+=======
+dependency30.to=Imagen
+dependency30.type=UsesDependency
+dependency31.from=Roca
+dependency31.to=Aleatorio
+dependency31.type=UsesDependency
+dependency32.from=Roca
+dependency32.to=Choques
+dependency32.type=UsesDependency
+dependency33.from=Roca
+dependency33.to=Disparo
+dependency33.type=UsesDependency
+dependency34.from=Choques
+dependency34.to=Disparo
+dependency34.type=UsesDependency
+dependency35.from=Choques
+dependency35.to=Items
+dependency35.type=UsesDependency
+dependency36.from=Choques
+dependency36.to=NaveAliada
+dependency36.type=UsesDependency
+>>>>>>> Stashed changes
 dependency4.from=Niveles
 dependency4.to=NaveAliada
 dependency4.type=UsesDependency
@@ -121,11 +206,20 @@ dependency6.type=UsesDependency
 dependency7.from=Espacio
 dependency7.to=MostrarInfo
 dependency7.type=UsesDependency
+<<<<<<< Updated upstream
 dependency8.from=Disparo
 dependency8.to=NaveAliada
 dependency8.type=UsesDependency
 dependency9.from=Nave
 dependency9.to=Disparo
+dependency9.type=UsesDependency
+>>>>>>> Stashed changes
+=======
+dependency8.from=Nave
+dependency8.to=Disparo
+dependency8.type=UsesDependency
+dependency9.from=Nave
+dependency9.to=MostrarInfo
 dependency9.type=UsesDependency
 >>>>>>> Stashed changes
 editor.fx.0.height=0
@@ -134,10 +228,15 @@ editor.fx.0.x=0
 editor.fx.0.y=0
 height=784
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 package.numDependencies=2
 package.numTargets=4
 =======
 package.numDependencies=37
+package.numTargets=16
+>>>>>>> Stashed changes
+=======
+package.numDependencies=36
 package.numTargets=16
 >>>>>>> Stashed changes
 project.charset=UTF-8
@@ -212,6 +311,9 @@ target16.type=ClassTarget
 target16.width=80
 target16.x=0
 target16.y=0
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 target2.height=50
 target2.name=Nave
