@@ -14,22 +14,58 @@ public abstract class Niveles extends World
      * Constructor for objects of class Niveles.
      *
      */
+    protected Roca roca; //Todos los nieles tendrán rocas (meteoros).
     private static int nivelActual = 0;//Indica el nivel en que nos encontramos
-    protected long tiempoMilis = 0; // Para hacer comparaciones de tiempo para creación de objetos.
-    protected long tiempoInicialMilis = System.currentTimeMillis(); //Tomar el tiempo en que el juego inició.
-    protected int numRocasMax; //Número máximo de rocas.
-    protected static int numRocasActual; //Para saber si las rocas actuales son menos que las máximas.
-    //Aquí utilizaremos el mostrarInfo(tipo = niveles) y los demás también podrían ser.
+    private static long tiempoDuracionJuego; //Definirá cuánto durará el nivel.
+    protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
+    protected long tiempoFinalJuego;
+    // private boolean nivelCreado;
+    
+    //Constructor para crear el mundo del juego.
+    // public Niveles(){
+        // super(1000, 600, 1);
+    // }
+    //Constructor que, dependiendo del nivel asignará los valores necesarios.
     public Niveles()
     {
         //Ancho, alto, tamaño de pixel.
         super(1000, 600, 1); //Todos los escenarios tendrán estas dimensiones.
+        //Establecer esto para que cada que se reinicie el nivel, se establezca de nuevo el tiempo en que la partida terminará
+        tiempoFinalJuego = System.currentTimeMillis() + tiempoDuracionJuego;
+        roca = new Roca(); //Inicializamos el número de rocas actual como el máximo
+        // nivelCreado = false;
+        
     }
+    public static void crearNivel(int numNivel){
+        //int numRocasMax;
+        switch(numNivel){
+            case 1: //Nivel 1
+                tiempoDuracionJuego = 30000;
+                //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
+                //Instanciar roca con las rocas máximas y su ratio de aparición.
+                //public Roca(int numRocasMax, int tiempoRegeneracion)
+                //Establecer el máximo de rocas
+                Roca.setNumRocasMax(15);
+                Roca.setTiempoRegeneracion(10000);
+                Greenfoot.setWorld(new Espacio(NaveAliada.getDiseñoNaveAliada()));
+                break;
+        }
+        // roca = new Roca(numRocasMax, 10000); //Esto no se puede porque después de instanciar el mundo no sale hasta moror.
+    }
+    
+    // public void act(){
+        // if(!nivelCreado){
+            // nivelCreado = true;
+            // Greenfoot.setWorld(new Espacio(System.currentTimeMillis() + 30000, 1, 10));
+        // }
+    // }
     //Método estático que devuelve el nivel actual
     public static int getNivelActual(){
         return nivelActual;
     }
-
+    public static long getTiempoDuracionJuego(){
+        return tiempoDuracionJuego;
+    }
     /* - MÉTODOS QUE PODRÁN UTILIZAR TODOS LOS NIVELES*/
 
     /*Método en el que se creará un item cada cierto tiempo dependiendo de la última vez que se creó y que
@@ -57,32 +93,7 @@ public abstract class Niveles extends World
             addObject(new Items(tipoItem, velocidadItem), x, y);
         }
     }
-    /*Método que creará nuevas rocas si se han destruido y si ha pasado cierto tiempo.*/
-    protected void crearRocasTiempo(long tiempoMilis){ //Tiempo Milis es el último tiempo que se verificó desde la última roca creada.
-        if((System.currentTimeMillis() - tiempoMilis) >= 20000 && numRocasActual < numRocasMax){
-            crearRocas(1); //Se crean las rocas indicadas.
-            numRocasActual ++; //Como se creó una roca más, se aumenta al número de rocas actual.
-            tiempoMilis = System.currentTimeMillis();//Se almacena el tiempo de la última roca creada.
-        }
-    }
-    /*Método para crear los meteoros en una posición random con un sprite random*/
-    protected void crearRocas(int numRocas){
-        Roca r;
-        int x, y, random;
-        for(int i=0; i<numRocas; i++){
-            random = Aleatorio.getNumeroAleatorio(1, 4);//Random para el sprite aleatorio del meteoro. Los sprites van del 1 al 4.
-            r = new Roca(random);//Este parámetro indicará qué tipo de meteoro se generará
-            x = Greenfoot.getRandomNumber(getWidth());//Ancho
-            y = Greenfoot.getRandomNumber(getHeight());//Alto
-            addObject(r, x, y);
-        }
-    }
-    /*Método para obtener el número actual de rocas. Es estático porque su implementación también lo es.*/
-    public static int getNumRocasActual(){
-        return numRocasActual;
-    }
-    /*Setter estático para ser accedido sin instanciar y cambiar el número actual de rocas.*/
-    public static void setNumRocasActual(int numRocasAct){
-        numRocasActual = numRocasAct; //No se puede utilizar this. porque no se instancia el objeto por ser estático.
-    }
+
+
+
 }

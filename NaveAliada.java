@@ -32,12 +32,13 @@ public class NaveAliada extends Nave
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
+    private static int diseñoNaveAliada;  //Para la creación del nivel será necesario. 
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
     public NaveAliada(){}//Constructor vacío para MostrarVidas.
     public NaveAliada(int tipoDisparo, int diseñoNave){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         super(tipoDisparo, diseñoNave);//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
-
+        diseñoNaveAliada = diseñoNave;
         if(diseñoNave ==0){ //La nave potente por ser la más poderosa que se podrá obtener
             //setImage("NavePotente.png");
             puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
@@ -216,7 +217,7 @@ public class NaveAliada extends Nave
                 // }catch(InterruptedException ie){
                     // System.out.println("Interrupción sleep.");
                 // }
-                Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
+                Greenfoot.setWorld(new Espacio(diseñoNave));//Este método crea el mundo de nuevo después de morir.
         }
     }
     //Desaparecer si ya perdimos todas las vidas.
@@ -228,6 +229,13 @@ public class NaveAliada extends Nave
             /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/
     }
 
+    //Getter y setter para el diseño de la nave. El setter para la selección de nave.
+    public static int getDiseñoNaveAliada(){
+        return diseñoNaveAliada;
+    }
+    public static void setDiseñoNaveAliada(int diseño){
+        diseñoNaveAliada = diseño;
+    }
     /*Método para obtener las vidas actuales del jugador.*/
     public static int getVidasJugador(){
         return vidas;
