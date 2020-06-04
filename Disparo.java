@@ -2,8 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Disparo here.
- * 
- * @author (Team Naves) 
+ *
+ * @author (Team Naves)
  * @version (Viernes, 29 de mayo de 2020)
  */
 public class Disparo extends Actor
@@ -15,13 +15,12 @@ public class Disparo extends Actor
      *  si se instancia nada más en las naves, pero no es necesario que herede de Nave.
      */
     World w;
-    MetodosGenerales m = new MetodosGenerales();//Instanciar la clase con los métodos generales.
     private int direccion; //Creo que no son necesarias las coordenadas por el getX() y getY()
     /* - EQUIVALENTES DE LAS DIRECCIONES - Sacadas de la clase Nave, por lo que se podrá hacer una generalización,
                                                 pero hay que ver cómo.*/
     private static int daño; //Estática para que puedan acceder desde fuera y restar el daño hecho.
     private int velocidadDisparo;
-    
+
     public static final int UP=0;
     public static final int DOWN=1;
     public static final int LEFT=2;
@@ -54,8 +53,8 @@ public class Disparo extends Actor
           eliminaremos el objeto.*/
         // if(getX() >= w.getWidth()-1)
             // getWorld().removeObject(this); //Así se elimina el disparo de pantalla
-        limitePantalla();    
-        
+        limitePantalla();
+
         //eliminarObjetosImpacto();//Método que eliminará al disparo y los objetos con los que impacta.
         /*ESTE MÉTODO LO TOMÉ DE setDireccion de la clase Nave, pero le quité las condiciones de más velocidad,
             para que así se dispare para la dirección a la que estemos apuntando.
@@ -81,34 +80,34 @@ public class Disparo extends Actor
             // setLocation(getX()+4,getY());
             // cordX+=4;
             // break;
-            
+
         // case UP_RIGHT:
             // setRotation(45);
             // setLocation(getX()+1,getY()-1);
             // cordX+=1;
             // cordY-=1;
             // break;
-            
+
             // case UP_LEFT:
             // setRotation(315);
             // setLocation(getX()-1,getY()-1);
             // cordX-=1;
             // cordY-=1;
             // break;
-            
+
             // case DOWN_LEFT:
             // setRotation(225);
             // setLocation(getX()-1,getY()+1);
             // cordX-=1;
             // cordY+=1;
             // break;
-            
+
             // case DOWN_RIGHT:
             // setRotation(135);
             // setLocation(getX()+1,getY()+1);
             // cordX+=1;
             // cordY+=1;
-            
+
             // break;
         // }
     }

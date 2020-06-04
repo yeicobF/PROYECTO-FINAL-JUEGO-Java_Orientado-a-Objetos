@@ -10,7 +10,6 @@ public class Roca extends Actor
 {
     //Roca[] r; <- Era para hacer un arreglo de rocas
     World w;
-    MetodosGenerales m = new MetodosGenerales(); //Instanciar clase en donde se encuentra el método de eliminación al chocar objetos.
     int x, y, i;
    public Roca(int tipoMeteoro){//CONSTRUCTOR
        int random;

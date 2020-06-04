@@ -14,7 +14,6 @@ public abstract class Niveles extends World
      * Constructor for objects of class Niveles.
      *
      */
-    protected MetodosGenerales m = new MetodosGenerales(); //Instanciar para tener los métodos no específicos.
     private static int nivelActual = 0;//Indica el nivel en que nos encontramos
     protected long tiempoMilis = 0; // Para hacer comparaciones de tiempo para creación de objetos.
     protected long tiempoInicialMilis = System.currentTimeMillis(); //Tomar el tiempo en que el juego inició.

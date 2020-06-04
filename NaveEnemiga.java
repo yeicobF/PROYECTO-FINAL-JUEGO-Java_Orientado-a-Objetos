@@ -24,7 +24,6 @@ public class NaveEnemiga extends Nave
     // private static int puntosSalud;
     //Ya existe un atributo protegido de Nave "existeMostrarInfo"
     //private boolean muestraPS; //Para ver que se haya creado MostrarInfo, ya que no se puede crear al instanciar.
-    MetodosGenerales m = new MetodosGenerales(); //No es necesario porque ya está en la superclase
     public NaveEnemiga(int tipoEnemigo, int tipoDisparo){//Tal vez haga falta un MINIBOSS
         super(tipoDisparo, tipoEnemigo);//public Nave(int tipoDisparo, int diseño)
         infoPS = new MostrarInfo(puntosSalud, 0, 20, Color.BLACK, Color.YELLOW, null);

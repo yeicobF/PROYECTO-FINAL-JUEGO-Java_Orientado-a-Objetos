@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=MetodosGenerales
-comment0.text=\r\n\ -\ El\ nombre\ o\ la\ implementaci\u00F3n\ podr\u00EDa\ cambiar\ en\ un\ futuro.\ -\r\n\ En\ esta\ clase\ estar\u00E1n\ m\u00E9todos\ m\u00E1s\ generales\ para\ que\ los\ pueda\ implementar\ cualquier\ clase.\r\n\ \ Por\ ejemplo\:\ Reescalar\ imagen\ o\ la\ destruccion\ de\ objetos\ al\ chocar.\r\n\ \ ->\ La\ clase\ es\ est\u00E1tica\ para\ que\ no\ haya\ necesidad\ de\ instanciarla\ en\ orden\ de\ trabajar\ con\ sus\ m\u00E9todos.\r\n\ \ \ \ \ \ Aunque\ de\ lo\ largo\ que\ es\ el\ nombre\ de\ la\ clase,\ tal\ vez\ s\u00ED\ conviene\ m\u00E1s\ instanciarlo\ para\ ahorrar\ caracteres.\r\n\ \ \ \ \ \ -\ As\u00ED\ que\ al\ final\ mejor\ no\ se\ hizo\ est\u00E1tica\ XD.\r\n\ \ Elimin\u00E9\ esta\ clase\ el\ jueves,\ 4\ de\ junio\ de\ 2020.\ Separ\u00E9\ todo\ en\ otras\ clases\ correspondientes.\ \ \ \ \r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
-comment1.params=
-comment1.target=MetodosGenerales()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ MetodosGenerales\r\n
-numComments=2

@@ -10,7 +10,6 @@ public abstract class Nave extends Actor
 {
     //Nave n; //Inicializar la nave para después instanciarla, aunque no es necesario porque esta clase no se utilizará
     protected Disparo disparo; //Porque las naves aliadas y enemigas lo necesitan
-    protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
     protected MostrarInfo infoPS; //Inicializar la clase MostrarInfo para el cuadro de texto de los PS
     public static final int UP=0;
     public static final int DOWN=1;

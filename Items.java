@@ -34,7 +34,6 @@ public class Items extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     World w; //Para métodos getHeight, ...
-    private MetodosGenerales m = new MetodosGenerales(); //Instanciar para acceder a los métodos generales.
     private long inicioDisparoMillis = 0;//Variable para comprobar hace cuánto se creó el último item.
     private static long tiempoActividad = 0; /*Variable que definirá el tiempo de vida del item y cuánto lleva activo.
         Tuve que hacerla estática para poder utilizarla con el setTiempoFinalItem.*/
