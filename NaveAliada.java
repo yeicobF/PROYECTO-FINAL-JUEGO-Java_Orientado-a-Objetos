@@ -182,8 +182,6 @@ public class NaveAliada extends Nave
                 //Switch case para ver el tipo de item y actuar.
                 switch(Items.getTipoItem()){
                     case 1: //Aumentar el número de vidas. Es lo único que hacemos, por lo que terminamos de inmediato.
-                      //Ya no es necesario darle el final al item desde aquí. Lo hace en su misma instanciación.
-                        /*Sí es necesario porque si no se hace desde aquí, el tiempo final se tomará desde la creación del item, pero debe ser desde que se toca.*/
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         Items.setItemActivoFalso();
                         vidas++;

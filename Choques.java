@@ -45,10 +45,7 @@ public abstract class Choques
             mundoActual.removeObject(objetoChoque);//Se elimina el objeto con el que se chocó. Este siempre se elimina. Por ejemplo el disparo.
             // Items.setImagenItemFalso();//Después de que entra cuando la imagen del item está activa, se indica que se desactivó.
             puntosSalud -= daño; //Restar el daño al objeto
-            if(NaveAliada.getPuntos() - puntosNave < 0) //No queremos que salgan puntos negativos.
-                NaveAliada.setPuntos(0);//Sumar los números que están por debajo para dejarlos en 0.
-            else //Si los puntos no serán menor a 0
-                NaveAliada.setPuntos(puntosNave);//Se le suman los puntos al jugador
+            NaveAliada.setPuntos(puntosNave);//Se le suman los puntos al jugador
             if(puntosSalud <=0){ //Si la salud del objeto actual es 0 o menos, entonces ahora sí eliminar el objeto actual
                 NaveAliada.setPuntos(puntosNave);//Como se destruyo el objeto se nos volverán a sumar los puntos.
                 mundoActual.removeObject(objetoRaiz);//Se elimina el objeto que chocó. El objeto que llama el método.
@@ -60,7 +57,8 @@ public abstract class Choques
             if(objetoChoque instanceof Items && !Items.isTocoItem()) //Si no ha tocado el item, ahora sí y habrá que indicarlo
                 Items.setTocoItemTrue();//Se tocó el item.
         }
-        
+        if(NaveAliada.getPuntos() < 0) //No queremos que salgan puntos negativos.
+            NaveAliada.setPuntos(0);//Sumar los números que están por debajo para dejarlos en 0.
         return puntosSalud;//Regresa los puntos de salud para que se siga evaluando el método.
     }//En el método de destruir nave habrá que bajar vidas si se eliminó.
     
