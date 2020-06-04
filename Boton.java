@@ -1,26 +1,28 @@
 import greenfoot.*;
 /**
- * Clase que funciona para crear botones en el escenario.
+ * Clase que funciona para crear botones en el escenario. Estos serán interactivos porque son actores.
  * 
  * @author (Team Naves) 
- * @version (Viernes, 29 de mayo de 2020)
+ * @version (Jueves, 4 de junio de 2020)
  */
 
 public class Boton extends Actor
 {
     // instance variables - replace the example below with your own
     World w;
-    
-    public Boton(){}
+    String texto; //El texto del botón
+    //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
+    public Boton(String texto, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente){
+        this.texto = texto;
+        Etiqueta e = new Etiqueta(tamañoFuente, colorFuente, colorFondo, bordeFuente);
+        setImage(e.crearCuadroTexto(texto)); //Crear el cuadro de texto y hacerlo como la imagen de aquí.
+        //No necesitamos el método crearBoton. Aquí ya se crea con la imagen del texto necesario.
+    }
 
-    //Crear un botón con los paarámetros que recibe.
-    // public Actor creaBoton(String s, int tamaño, int x, int y, Color primerPlano, Color fondo)
+    // //Crear un botón con los paarámetros que recibe. Regresa el botón para poder interactuar con él.
+    // public Actor creaBoton(String s, int tamaño, int x, int y)
     // {
-        // w = getWorld();
-        // //El 30 es el tamaño
-        // //public Etiqueta(String s, int tamaño, Color primerPlano, Color fondo)
-        // Actor boton = new Etiqueta(s, tamaño, primerPlano, fondo);
-        // w.addObject(boton, x, y);
+        // getWorld().addObject();
         // return boton;
     // }
 }
