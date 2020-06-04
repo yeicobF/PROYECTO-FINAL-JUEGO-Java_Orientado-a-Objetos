@@ -26,7 +26,7 @@ public class NaveAliada extends Nave
     private long inicioDisparoMillis=0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int direccion;
-    private int puntosMenosAlMorir = -20;
+    private int puntosMenosAlMorir = -10;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
     // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
