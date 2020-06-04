@@ -16,7 +16,7 @@ public abstract class Aleatorio
 
     /*MÉTODO PARA CALCULAR UN NÚMERO ALEATORIO EN UN RANGO DE NÚMEROS*/
     public static int getNumeroAleatorio(int numeroInicial, int numeroFinal){
-       int numeroAleatorio = Greenfoot.getRandomNumber(numeroInicial - numeroFinal +1);
+       int numeroAleatorio = Greenfoot.getRandomNumber(numeroFinal - numeroInicial +1);
        return numeroAleatorio + numeroInicial; //Regresa el número que se generó sumado con el inicial para mantener el rango.
     }
 }

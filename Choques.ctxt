@@ -6,6 +6,7 @@ comment1.target=Choques()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Choques\r\n
 comment2.params=objeto
 comment2.target=boolean\ choqueActores(greenfoot.Actor)
+comment2.text=M\u00E9todo\ que\ revisa\ si\ ocurri\u00F3\ un\ choque\ de\ un\ objeto\ con\ el\ que\ se\ manda\ de\ par\u00E1metro.\r\nSimplemente\ regresa\ verdadero\ o\ falso\ si\ choca\ o\ no.
 comment3.params=objetoChoque\ objetoRaiz\ mundoActual\ puntosSalud\ da\u00F1o\ puntosNave
 comment3.target=int\ eliminarObjetoChoque(greenfoot.Actor,\ greenfoot.Actor,\ greenfoot.World,\ int,\ int,\ int)
 comment3.text=M\u00E9todo\ que\ elimina\ un\ objeto\ si\ choc\u00F3\ con\ otro.\ Hay\ que\ mandarle\ los\ objetos\ que\ chocaron\ y\ su\ mundo.\r\n\ \ No\ necesita\ ser\ booleano\ porque\ no\ importa\ que\ sea\ true\ o\ false,\ sino,\ que\ se\ elimine\ o\ no\ dependiendo\ de\ la\ salud.\r\nEl\ mundo\ actual\ es\ de\ tipo\ "World"\ porque\ es\ la\ mayor\ generalizaci\u00F3n.\ De\ ah\u00ED\ siguen\ los\ niveles\ que\ son\ class\ diferentes.
