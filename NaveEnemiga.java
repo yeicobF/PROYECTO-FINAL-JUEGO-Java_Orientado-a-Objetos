@@ -2,12 +2,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
 * Clase que maneja a las naves enemigas y su comportamiento.
-* 
-* @author (Team Naves) 
+*
+* @author (Team Naves)
 * @version (Viernes, 29 de mayo de 2020)
 */
 
-/* Character.compare(char 'A', char 'B'); Esto devuelve 0 si al comparar los caracteres son iguales, 
+/* Character.compare(char 'A', char 'B'); Esto devuelve 0 si al comparar los caracteres son iguales,
                                  >0 si el 1er valor es mayor que el segundo
                                  <0 si el 1er valor es menor que el segundo*/
 public class NaveEnemiga extends Nave
@@ -35,7 +35,7 @@ public class NaveEnemiga extends Nave
         //NO SE PUEDE AGREGAR OBJETO EN EL CONSTRUCTOR
         // getWorld().addObject(infoPS, getX(), getY()-getImage().getHeight()/2);
         setImage("Naves/Enemigas/NaveE"+ tipoEnemigo+ ".png");
-        setImage(m.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
+        setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
         if(tipoEnemigo == 1){//BOSS == "0"
             puntosSalud+= 100;//Que las naves de BOSSES tengan más vida
             puntosPorDisparo = 50;
@@ -49,7 +49,7 @@ public class NaveEnemiga extends Nave
         setRotation(270);
     }
     public void act() //Este código lo reutilicé de la clase Roca, por lo que lo podría poner en una clase más general
-       {   /*Aquí con un random se verá la dirección en la que se moverá la nave. 
+       {   /*Aquí con un random se verá la dirección en la que se moverá la nave.
         Dependiendo del random (que será el ángulo de dirección), se moverá a una dirección.*/
         // Add your action code here.
         w = getWorld();
@@ -65,7 +65,7 @@ public class NaveEnemiga extends Nave
         // /*En este método se mandan las coordenadas en donde se quieren agregar los PS. Estos se actualizarán cuando cambien.*/
         // infoPS.mostrarPS("PS: ", puntosSalud, getX(), getY()-getImage().getHeight()/2);
         //Si el objeto alcanza los límites en x o y, se dará la vuelta. Las limitaremos a la mitad de la pantalla.
-        if(getX()>=w.getWidth()-5 || getX()<=w.getWidth()/2 || getY()>=w.getHeight()-5||getY()<=5){ 
+        if(getX()>=w.getWidth()-5 || getX()<=w.getWidth()/2 || getY()>=w.getHeight()-5||getY()<=5){
             turn(180);
             if(getX()<=w.getWidth()/2)
                 getImage().mirrorHorizontally();
@@ -80,7 +80,7 @@ public class NaveEnemiga extends Nave
         más general porque también será necesario en la clase NaveEnemiga*/
         /*Copié este método de la clase Roca, así que sí debería poder implementarse de manera más general, pero
            por ahora lo copio aquí también.*/
-        /*Se heredan todas las características, y se ponen como parámetros 0, 0 
+        /*Se heredan todas las características, y se ponen como parámetros 0, 0
         porque de esta manera vamos a saber que los objetos chocaron.
         -> Lo implementé en la clase Disparo para que quede ahí todo organizado.*/
         // Actor naveAliada = getOneObjectAtOffset(0, 0, NaveAliada.class);
@@ -102,16 +102,16 @@ public class NaveEnemiga extends Nave
         //Guardaremos la salud actual de la nave enemiga, ya que la regresa el método
         /* - Se hace la asignación de la salud y se verifica que sea igual a 0, si es 0
                 entonces se dan más puntos que si sólo se le dispara.*/
-        /*protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque, 
+        /*protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque,
                                     Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave){*/
         // if(getOneObjectAtOffset(0, 0, Disparo.class))
-            // getWorld().removeObject(infoPS);      
-        puntosSalud = eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, Disparo.class), 
+            // getWorld().removeObject(infoPS);
+        puntosSalud = eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, Disparo.class),
                     this, (Espacio)getWorld(), puntosSalud, Disparo.getDaño(), puntosPorDisparo);
                     //NaveAliada.setPuntos(puntosPorDisparo*2);//Los puntos obtenidos se multiplicarán por 2 al destruir la nave
                     //Ya está condición dentro del método
     }
-    
+
     //Método estático para obtener los Puntos de Salud de la NaveAliada específicamente.
     // public static int getPuntosSalud(){
         // return puntosSalud;

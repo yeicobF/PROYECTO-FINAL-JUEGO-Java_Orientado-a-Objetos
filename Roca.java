@@ -2,8 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Clase que maneja todo lo relacionado a los meteoros.
- * 
- * @author (Team Naves) 
+ *
+ * @author (Team Naves)
  * @version (Viernes, 29 de mayo de 2020)
  */
 public class Roca extends Actor
@@ -13,11 +13,11 @@ public class Roca extends Actor
     MetodosGenerales m = new MetodosGenerales(); //Instanciar clase en donde se encuentra el método de eliminación al chocar objetos.
     int x, y, i;
    public Roca(int tipoMeteoro){//CONSTRUCTOR
-       int random; 
+       int random;
        /*El código de abajo servirá para reescalar la imagen, ya que estaba muy grande*/
        setImage("Objetos/Meteoro"+ tipoMeteoro+ ".png");
        //Aquí modificamos el tamaño de los meteoros a una escala random para que tengan tamaños diferentes.
-       m.modificarEscalaImagen(getImage(), m.getRandomNumber(2,4), 1);
+       Imagen.modificarEscalaImagen(getImage(), Aleatorio.getNumeroAleatorio(2,4), 1);
        // if(tipoMeteoro==0){
             // setImage("pruebaMeteoro1.png");
             // GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
@@ -52,7 +52,7 @@ public class Roca extends Actor
         /*MÉTODO QUE VERIFICARÁ SI UNA ROCA CHOCÓ CON ALGO. Necesitamos ver si podemos implemementar esto de manera
             más general porque también será necesario en la clase NaveEnemiga.
                 Implementé este método más general en la clase "MétodosGenerales"*/
-        /*Se heredan todas las características, y se ponen como parámetros 0, 0 
+        /*Se heredan todas las características, y se ponen como parámetros 0, 0
            porque de esta manera vamos a saber que los objetos chocaron.*/
         // Actor naveAliada = getOneObjectAtOffset(0, 0, NaveAliada.class);
         // if(naveAliada != null){ //Aquí se va a revisar si chocó con nuestra nave
@@ -67,7 +67,7 @@ public class Roca extends Actor
             El "this" es el objeto actual.
          -> No se implementa aquí porque ya está en la clase "NaveAliada".*/
         //m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveAliada.class), this, (Espacio)getWorld());
-        
+
         // Actor disparoNave = getOneObjectAtOffset(0, 0, Disparo.class);
         // if(disparoNave != null){ //Aquí sevisamos el el disparo chocó con la roca
             // /*El único problema que veo es que cuando se elimina ni siquiera chocan los objetos. Hay que arreglar esto.*/
@@ -81,14 +81,14 @@ public class Roca extends Actor
             /*No tiene puntos de salud por lo que mandamos un 1 y el daño del disparo para que cumpla la condición de daño,
                así que cualquier disparo destruirá el meteorito, pero esto sirve para aumentar los puntos.*/
     //public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
-        if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this, 
+        if(Choques.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this,
                 (Espacio)getWorld(), 1, Disparo.getDaño(), 5) <= 0)
             Espacio.setNumRocasActual(Espacio.getNumRocasActual() - 1); //Como se destruyó la roca, restarla al total de estas.
             //NaveAliada.setPuntos(10);//Aumentar 10 puntos al jugador por destruir una roca.
             //Espacio.numRocasActual-= 1;
-    }    
-    
-    
+    }
+
+
     // public boolean chocanRocas(int x, int y){//Método que evaluará si dos rocas están chocando para eliminarlas
         // if(getX()>=x-5 && getX()<=x+5 && getY()>=y-5 && getY()<=y+5)//Comparar posición de roca parámetro con la actual
             // return true;

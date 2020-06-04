@@ -2,8 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Esta es una subclase de la superclase Nave que tiene como función manejar las naves que controlará el jugador.
- * 
- * @author (Team Naves) 
+ *
+ * @author (Team Naves)
  * @version (Martes, 2 de junio - Miércoles 3 de junio de 2020)
  */
 public class NaveAliada extends Nave
@@ -12,7 +12,7 @@ public class NaveAliada extends Nave
      * Act - do whatever the NaveAliada wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    
+
     protected World w;
     /*protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
         Se puede usar aquí porque es protected en la superclase Nave.*/
@@ -37,12 +37,12 @@ public class NaveAliada extends Nave
     public NaveAliada(int tipoDisparo, int diseñoNave){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         super(tipoDisparo, diseñoNave);//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
-        
+
         if(diseñoNave ==0){ //La nave potente por ser la más poderosa que se podrá obtener
             //setImage("NavePotente.png");
             puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
             //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
-            
+
         }//Si no, que se utilice la nave predeterminada que es la que establecimos con los diseños de Greenfoot
         // else
             // if(Character.compare(diseñoNave, '1')==0)//Algún otro diseño y así sucesivamente
@@ -55,12 +55,12 @@ public class NaveAliada extends Nave
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
             //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
-        setImage(m.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
+        setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
         /*Hay que tener una condición para el diseño de la nave. Este se estableció con el super construcor.*/
     }
-    /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque 
+    /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque
      * esa se moverá con numeros generados de manera aleatoria. Si la podemos hacer más general, lo haremos.*/
-    public void act() 
+    public void act()
     {
         //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
         existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
@@ -68,20 +68,20 @@ public class NaveAliada extends Nave
         movimiento();
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
         if(choqueItem() == 2 && System.currentTimeMillis() < Items.getTiempoFinalItem()){ //El item actual es el escudo.
-            /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás. 
+            /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás.
              *  O tal vez que simplemente no pase nada al chocar con algo más.*/
             morirChoque(0); //Mejor que no le pase nada al chocar con los objetos. Aunque necesito checarlo.
         }
         else
             if(!diseñoOriginalActivo){ //El item no es el 2 o excedió el tiempo
                 setImage("Naves/Aliadas/NaveA"+ diseñoNave+ ".png"); //Reestablecer el diseño original al terminar el efecto.
-                setImage(m.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
+                setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
                 diseñoOriginalActivo = true;
                 Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
                 // Mandar el tiempo en el que se terminó el item
                 // Items.setTiempoFinalItem(System.currentTimeMillis());
             }
-        // /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/ 
+        // /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
         // Ya implementé esto en un método
         morirChoque(puntosSalud);//Método que reinicia el juego si perdiste una vida
         perder(); //Método que detiene el juego
@@ -91,14 +91,14 @@ public class NaveAliada extends Nave
             // Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
             // /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/
         // }
-    }  
+    }
 
     /*Método que controlará el movimiento de nuestra nave.*/
     public void movimiento(){
         w = getWorld();
         //Checar que esté dentro de loslímites en x y y para que no se corte la nave. Limitaré con la altura para cuando estamos volteados.
         // if((getX() >= getImage().getHeight()) && (getX() <= (w.getWidth() - getImage().getHeight()))
-                // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){ 
+                // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){
             if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")){//ARRIBA
                super.setDireccion(UP); //super.act(direccion); //Se podría hacer así si recibiera esos parámetros el método act() de la superclse
                direccion = UP;
@@ -118,7 +118,7 @@ public class NaveAliada extends Nave
             /*Los métodos siguientes están así porque se revisan todas las posibilidades. Es decir, todas las combinaciones
                 de teclas que podrían causar un tipo de movimiento en diagonal. Porque esto se toma en cuenta para
                 modificar la posición de los sprites.*/
-            if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w")) 
+            if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w"))
                     || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("up"))){
                 super.setDireccion(UP_RIGHT); //ARRIBA_DERECHA
                 direccion = UP_RIGHT;
@@ -146,7 +146,7 @@ public class NaveAliada extends Nave
                 // case getImage().getHeight(): //Cuando estamos fuera del límite izquierdo
                     // setLocation(getX()+1, getY()); //Mover a la derecha
                     // break;
-                    
+
             // }
             // switch(getY()){
             // }
@@ -175,7 +175,7 @@ public class NaveAliada extends Nave
             Por ejemplo con el escudo, no se bajará la salud de la nave.*/
     private int choqueItem(){
     //eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
-        if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, (Espacio)getWorld(), puntosSalud, 1, 0)
+        if(Choques.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, (Espacio)getWorld(), puntosSalud, 1, 0)
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
                 //No necesitan bajarse los PS porque no se los asignamos
                 //Switch case para ver el tipo de item y actuar.
@@ -191,19 +191,19 @@ public class NaveAliada extends Nave
                         //Debería bajar la velocidad. Aunque creo que no se puede porque se utiliza el setDirection.
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         setImage("Naves/Aliadas/NaveA"+ diseñoNave+ "Escudo.png");
-                        setImage(m.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
+                        setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
                         diseñoOriginalActivo = false;//Ya que aquí el diseño cambia por el escudo.
                         break;
                 }
         }
-        return Items.getTipoItem(); //No hay item si regresa 0.  
+        return Items.getTipoItem(); //No hay item si regresa 0.
     }
-    
+
     /*Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
-    /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/ 
+    /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
     private void morirChoque(int daño){ //Aquí tomamos en cuenta que se hayan perdido todos los PS
         /* -> Para eliminar el cuadro de texto al morir.
-         * protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque, 
+         * protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque,
                                         Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave){*/
         if(eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, Roca.class), this, getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0
             || eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){//&& Items.getTipoItem() != 2){//Que el item no sea el escudo.
@@ -227,7 +227,7 @@ public class NaveAliada extends Nave
         //Tal vez así las vidas no se reiniciarán
             /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/
     }
-    
+
     /*Método para obtener las vidas actuales del jugador.*/
     public static int getVidasJugador(){
         return vidas;

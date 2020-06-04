@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Nave
-comment0.text=\r\n\ Esta\ es\ la\ superclase\ que\ manejar\u00E1\ a\ las\ clases\ relacionadas\ con\ naves.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Domingo,\ 17\ de\ mayo\ -\ Lunes,\ 18\ de\ mayo\ de\ 2020)\r\n
+comment0.text=\r\n\ Esta\ es\ la\ superclase\ que\ manejar\u00E1\ a\ las\ clases\ relacionadas\ con\ naves.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Domingo,\ 17\ de\ mayo\ -\ Lunes,\ 18\ de\ mayo\ de\ 2020)\r\n
 comment1.params=
 comment1.target=Nave()
 comment1.text=NO\ NECESITAMOS\ coordX\ ni\ coordY\ porque\ ya\ est\u00E1n\ getX()\ y\ getY()
@@ -26,5 +26,5 @@ comment8.params=
 comment8.target=MostrarInfo\ getMostrarInfo()
 comment9.params=
 comment9.target=int\ getCordX()
-comment9.text=Podr\u00EDa\ hacer\ un\ m\u00E9todo\ igual\ al\ de\ eliminaCuadroPS,\ pero\ que\ mostrara\ el\ recuadro\ con\ los\ PS\ \=\ 0\ antes\ de\ destruirse,\r\n\ \ \ \ \ \ \ \ aunque\ creo\ que\ no\ tendr\u00EDa\ mucho\ sentido.\r\n\ \ \ \ protected\ int\ eliminaCuadroPS(MostrarInfo\ infoPS,\ String\ texto,\ Actor\ objetoChoque,\ Actor\ objetoRaiz,\ \r\nWorld\ mundoActual,\ int\ puntosSalud,\ int\ da\u00F1o,\ int\ puntosNave)
+comment9.text=Podr\u00EDa\ hacer\ un\ m\u00E9todo\ igual\ al\ de\ eliminaCuadroPS,\ pero\ que\ mostrara\ el\ recuadro\ con\ los\ PS\ \=\ 0\ antes\ de\ destruirse,\r\n\ \ \ \ \ \ \ \ aunque\ creo\ que\ no\ tendr\u00EDa\ mucho\ sentido.\r\n\ \ \ \ protected\ int\ eliminaCuadroPS(MostrarInfo\ infoPS,\ String\ texto,\ Actor\ objetoChoque,\ Actor\ objetoRaiz,\r\nWorld\ mundoActual,\ int\ puntosSalud,\ int\ da\u00F1o,\ int\ puntosNave)
 numComments=11

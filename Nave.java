@@ -2,8 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Esta es la superclase que manejará a las clases relacionadas con naves.
- * 
- * @author (Team Naves) 
+ *
+ * @author (Team Naves)
  * @version (Domingo, 17 de mayo - Lunes, 18 de mayo de 2020)
  */
 public abstract class Nave extends Actor
@@ -20,7 +20,7 @@ public abstract class Nave extends Actor
     public static final int UP_LEFT=5;
     public static final int DOWN_LEFT=6;
     public static final int DOWN_RIGHT=7;
-    /*Los PS eran estáticos pero así valían lo mismo y cambiaban con todas las estancias. 
+    /*Los PS eran estáticos pero así valían lo mismo y cambiaban con todas las estancias.
      *  Cuando bajaba la salud de una nave enemiga, también bajaba la nuestra.*/
     protected int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
     protected int tipoDisparo; //Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
@@ -36,8 +36,8 @@ public abstract class Nave extends Actor
         puntosSalud=100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
         existeMostrarInfo = false;
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
-    public void act() //act(int direccion) 
-    {   
+    public void act() //act(int direccion)
+    {
     }
     /*Clase que cambia la dirección dependiendo del parámetro que reciba. Además aquí mismo se ejecuta el movimiento.*/
     protected void setDireccion(int direccion){
@@ -78,7 +78,7 @@ public abstract class Nave extends Actor
                     setLocation(getX()+4,getY());
                 }
                 break;
-                
+
             case UP_RIGHT:
                 setRotation(45);
                 if(Greenfoot.isKeyDown("space")){
@@ -88,7 +88,7 @@ public abstract class Nave extends Actor
                     setLocation(getX()+1,getY()-1);
                 }
                 break;
-                
+
                 case UP_LEFT:
                 setRotation(315);
                 if(Greenfoot.isKeyDown("space")){
@@ -98,7 +98,7 @@ public abstract class Nave extends Actor
                     setLocation(getX()-1,getY()-1);
                 }
                 break;
-                
+
                 case DOWN_LEFT:
                 setRotation(225);
                 if(Greenfoot.isKeyDown("space")){
@@ -108,7 +108,7 @@ public abstract class Nave extends Actor
                     setLocation(getX()-1,getY()+1);
                 }
                 break;
-                
+
                 case DOWN_RIGHT:
                 setRotation(135);
                 if(Greenfoot.isKeyDown("space")){
@@ -118,7 +118,7 @@ public abstract class Nave extends Actor
                     setLocation(getX()+1,getY()+1);
                 }
                 break;
-        }       
+        }
     }
     /*Método protegido para obtener los puntos de salud actuales de las naves. Protegido para que se pueda utilizar
         desde las subclases y static para que no se necesite una instancia del objeto.
@@ -140,16 +140,16 @@ public abstract class Nave extends Actor
             getWorld().addObject(infoPS, x, y);
         else
             /*En este método se mandan las coordenadas en donde se quieren agregar los PS. Estos se actualizarán cuando cambien.*/
-            infoPS.mostrarPS(texto, puntosSalud, x, y);    
+            infoPS.mostrarPS(texto, puntosSalud, x, y);
         return true; //hacer yaExistente = true, es decir, ya se creó
     }
     /*Método que elimina el cuadro de texto donde se mostrarán los PS cuando estos sean igual a 0. Este método es necesario
         porque cuando los PS == 0, el método eliminarObjetoChoque elimina el objeto directamente.
         En este método, seguirá eliminando el objeto pero también el cuadro de texto.*/
-    protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque, Actor objetoRaiz, 
+    protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque, Actor objetoRaiz,
                                 World mundoActual, int puntosSalud, int daño, int puntosNave){
         //Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave
-        if((puntosSalud = m.eliminarObjetoChoque(objetoChoque, objetoRaiz, mundoActual, puntosSalud, daño, puntosNave)) == 0)
+        if((puntosSalud = Choques.eliminarObjetoChoque(objetoChoque, objetoRaiz, mundoActual, puntosSalud, daño, puntosNave)) == 0)
             mundoActual.removeObject(infoPS);
         return puntosSalud;
     }
@@ -162,7 +162,7 @@ public abstract class Nave extends Actor
     }
     /*Podría hacer un método igual al de eliminaCuadroPS, pero que mostrara el recuadro con los PS = 0 antes de destruirse,
         aunque creo que no tendría mucho sentido.
-    protected int eliminaCuadroPS(MostrarInfo infoPS, String texto, Actor objetoChoque, Actor objetoRaiz, 
+    protected int eliminaCuadroPS(MostrarInfo infoPS, String texto, Actor objetoChoque, Actor objetoRaiz,
                                 World mundoActual, int puntosSalud, int daño, int puntosNave)*/
     public int getCordX(){
         return getX();
@@ -178,21 +178,21 @@ public abstract class Nave extends Actor
     // protected void setPS(int puntosSalud){//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
         // this.puntosSalud = puntosSalud;
     // }
-    
+
     // protected int getTipoDisparo(){//Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
         // return tipoDisparo;
     // }
     // protected void setTipoDisparo(int tipoDisparo){//Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
         // this.tipoDisparo = tipoDisparo;
     // }
-    
+
     // protected int getDiseñoNave(){//El diseño de la nave
         // return diseñoNave;
     // }
     // protected void setDiseñoNave(int diseño){//El diseño de la nave
         // this.diseñoNave = diseñoNave;
     // }
-    
+
     // protected int getTipoHabilidad(){//Esto serán los PowerUps.
         // return tipoHabilidad;
     // }

@@ -105,7 +105,7 @@ public class MostrarInfo extends NaveAliada
     private int mostrarInformacion(String textoInfo, int valorAntes, int valorNuevo){
         if(valorAntes != valorNuevo){
             setImage(e.crearCuadroTexto(textoInfo + valorNuevo));
-            System.out.println(textoInfo+ "-> Antes: "+ valorAntes +" ValorAhora: "+ valorNuevo);
+            //System.out.println(textoInfo+ "-> Antes: "+ valorAntes +" ValorAhora: "+ valorNuevo);
             return valorNuevo;
         }
         return valorAntes;
