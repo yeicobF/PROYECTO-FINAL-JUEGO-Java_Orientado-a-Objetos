@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Disparo
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Disparo\ here.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Viernes,\ 29\ de\ mayo\ de\ 2020)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Disparo\ here.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
 comment1.params=tipoDisparo\ cordX\ cordY
 comment1.target=Disparo(int,\ int,\ int)
 comment1.text=En\ cuanto\ a\ la\ direccion\ del\ disparo,\ no\ pude\ implementarlo\ porque\ no\ sal\u00EDa\ como\ deber\u00EDa\ salir,\ as\u00ED\ que\ hay\ que\ revisarlo\r\nporque\ hay\ algo\ que\ falla.\ Por\ ahora\ solo\ comentar\u00E9\ las\ l\u00EDneas\ para\ despu\u00E9s\ implementar\ dicha\ funci\u00F3n.

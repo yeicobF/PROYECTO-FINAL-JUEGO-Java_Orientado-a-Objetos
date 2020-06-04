@@ -11,18 +11,12 @@ public abstract class Nave extends Actor
     //Nave n; //Inicializar la nave para después instanciarla, aunque no es necesario porque esta clase no se utilizará
     protected Disparo disparo; //Porque las naves aliadas y enemigas lo necesitan
     protected MostrarInfo infoPS; //Inicializar la clase MostrarInfo para el cuadro de texto de los PS
-    public static final int UP=0;
-    public static final int DOWN=1;
-    public static final int LEFT=2;
-    public static final int RIGHT=3;
-    public static final int UP_RIGHT=4;
-    public static final int UP_LEFT=5;
-    public static final int DOWN_LEFT=6;
-    public static final int DOWN_RIGHT=7;
     /*Los PS eran estáticos pero así valían lo mismo y cambiaban con todas las estancias.
      *  Cuando bajaba la salud de una nave enemiga, también bajaba la nuestra.*/
     protected int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
     protected int tipoDisparo; //Dependiendo del tipo del disparo cambiará su sprite. Estos serán como las mejoras.
+    protected int direccion;
+    protected int anguloGiro; //Indicará a dónde apuntamos. Esto servirá para el disparo.
     protected int diseñoNave;//El diseño de la nave
     protected int tipoHabilidad;//Esto serán los PowerUps.
     protected boolean existeMostrarInfo;
@@ -38,40 +32,38 @@ public abstract class Nave extends Actor
         this.tipoDisparo = tipoDisparo;//Aquí condicionaremos para el diseño y eso pero en la clase Disparo.
         this.diseñoNave = diseñoNave; //De esto dependerá el diseño que tendrá la nave.
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
-
+    //Método abstracto de movimiento. Todas las naves lo tendrán pero su implementación será diferente.
+    protected abstract movimiento();
     /*Clase que cambia la dirección dependiendo del parámetro que reciba. Además aquí mismo se ejecuta el movimiento.*/
     protected void setDireccion(int direccion){
+        this.direccion = direccion; //Establecer nuestra direccion
+        int aumentaX = 0, aumentaY = 0; //Variables para ver cuánto se mueve dependiendo de la condición.
+        int[] aumenta = {aumentaX, aumentaY};//Arreglo que guardará los valores a aumentar. Sirve para el presionaShift.
         switch(direccion){
-            case UP:
-                setRotation(0);
-                if(Greenfoot.isKeyDown("space")){
-                    setLocation(getX(),getY()-8);
-                }
-                else{
-                    setLocation(getX(),getY()-6);
-                }
+            case Direccion.ARRIBA:
+                anguloGiro = Direccion.ANGULO_ARRIBA;
+                if(Greenfoot.isKeyDown("shift"))
+                    aumentaY = -8;
+                else
+                    aumentaY = -6;
                 break;
-            case DOWN:
-                setRotation(180);
-                if(Greenfoot.isKeyDown("space")){
-                    setLocation(getX(),getY()+6);
-                }
-                else{
-                    setLocation(getX(),getY()+4);
-                }
+            case Direccion.ABAJO:
+                anguloGiro = Direccion.ANGULO_ABAJO;
+                if(Greenfoot.isKeyDown("shift"))
+                    aumentaY = 6;
+                else
+                    aumentaY = 4;
                 break;
-            case LEFT:
-                setRotation(270);
-                if(Greenfoot.isKeyDown("space")){
-                    setLocation(getX()-6,getY());
-                }
-                else{
-                    setLocation(getX()-4,getY());
-                }
+            case Direccion.IZQUIERDA:
+                anguloGiro = Direccion.ANGULO_IZQUIERDA;
+                if(Greenfoot.isKeyDown("shift"))
+                  aumentaX = -6;
+                else
+                  aumentaX = -4;
                 break;
-            case RIGHT:
-                setRotation(90);
-                if(Greenfoot.isKeyDown("space")){
+            case Direccion.DERECHA:
+                anguloGiro = Direccion.ANGULO_DERECHA;
+                if(Greenfoot.isKeyDown("shift")){
                     setLocation(getX()+6,getY());
                 }
                 else{
@@ -79,9 +71,9 @@ public abstract class Nave extends Actor
                 }
                 break;
 
-            case UP_RIGHT:
-                setRotation(45);
-                if(Greenfoot.isKeyDown("space")){
+            case Direccion.ARRIBA_DERECHA:
+                anguloGiro = Direccion.ANGULO_ARRIBA_DERECHA;
+                if(Greenfoot.isKeyDown("shift")){
                     setLocation(getX()+2,getY()-2);
                 }
                 else{
@@ -89,9 +81,9 @@ public abstract class Nave extends Actor
                 }
                 break;
 
-                case UP_LEFT:
-                setRotation(315);
-                if(Greenfoot.isKeyDown("space")){
+                case Direccion.ARRIBA_IZQUIERDA:
+                anguloGiro = Direccion.ANGULO_ARRIBA_IZQUIERDA;
+                if(Greenfoot.isKeyDown("shift")){
                     setLocation(getX()-2,getY()-2);
                 }
                 else{
@@ -99,9 +91,9 @@ public abstract class Nave extends Actor
                 }
                 break;
 
-                case DOWN_LEFT:
-                setRotation(225);
-                if(Greenfoot.isKeyDown("space")){
+                case Direccion.ABAJO_IZQUIERDA:
+                anguloGiro = Direccion.ANGULO_ABAJO_IZQUIERDA;
+                if(Greenfoot.isKeyDown("shift")){
                     setLocation(getX()-2,getY()+2);
                 }
                 else{
@@ -109,17 +101,27 @@ public abstract class Nave extends Actor
                 }
                 break;
 
-                case DOWN_RIGHT:
-                setRotation(135);
-                if(Greenfoot.isKeyDown("space")){
-                    setLocation(getX()+2,getY()+2);
-                }
-                else{
+                case Direccion.ABAJO_DERECHA:
+                anguloGiro = Direccion.ANGULO_ABAJO_DERECHA;
+                if(Greenfoot.isKeyDown("shift"))
+                    setLocation(getX()+2,getY()+2
+                else
                     setLocation(getX()+1,getY()+1);
-                }
                 break;
         }
+        //Verificar en dónde se modificaron los valores para aumentarlos
+        if(Greenfoot.isKeyDown("shift"))
+          if(aumentaX > 0 && aumentaY < 0)//ARRIBA_DERECHA
+            aumentaY = aumentaX += 2;
+        setRotation(anguloGiro);
+        setLocation(getX() + aumentaX, getY() + aumentaY);
     }
+    /*Método que va a verificar si se presionó shift y además cambiará los valores
+      para que se vea con más velcidad en pantalla*/
+    private int presionoShift(int[] aumenta){
+      //aumenta[0] <- aumentaX; aumenta[1] = aumentaY;
+    }
+
     /*Método protegido para obtener los puntos de salud actuales de las naves. Protegido para que se pueda utilizar
         desde las subclases y static para que no se necesite una instancia del objeto.
         Sólo se necesitaba para MostrarInfo, pero como es subclase de NaveAliada, no se necesita

@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+Direccion.ARRIBAimport greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Esta es una subclase de la superclase Nave que tiene como función manejar las naves que controlará el jugador.
@@ -100,45 +100,30 @@ public class NaveAliada extends Nave
         //Checar que esté dentro de loslímites en x y y para que no se corte la nave. Limitaré con la altura para cuando estamos volteados.
         // if((getX() >= getImage().getHeight()) && (getX() <= (w.getWidth() - getImage().getHeight()))
                 // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){
-            if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")){//ARRIBA
-               super.setDireccion(UP); //super.act(direccion); //Se podría hacer así si recibiera esos parámetros el método act() de la superclse
-               direccion = UP;
-            }
-            if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")){
-                super.setDireccion(DOWN);//ABAJO
-                direccion = DOWN;
-            }
-            if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
-                super.setDireccion(LEFT);//IZQUIERDA
-                direccion = LEFT;
-            }
-            if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")){
-                super.setDireccion(RIGHT);//DERECHA
-                direccion = RIGHT;
-            }
+            if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w"))//ARRIBA
+               setDireccion(Direccion.ARRIBA); //super.act(direccion); //Se podría hacer así si recibiera esos parámetros el método act() de la superclse
+               direccion = Direccion.ARRIBA;
+            if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s"))
+                setDireccion(Direccion.ABAJO);//ABAJO
+            if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a"))
+                setDireccion(Direccion.IZQUIERDA);//IZQUIERDA
+            if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d"))
+                setDireccion(Direccion.DERECHA);//DERECHA
             /*Los métodos siguientes están así porque se revisan todas las posibilidades. Es decir, todas las combinaciones
                 de teclas que podrían causar un tipo de movimiento en diagonal. Porque esto se toma en cuenta para
                 modificar la posición de los sprites.*/
             if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w"))
-                    || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("up"))){
-                super.setDireccion(UP_RIGHT); //ARRIBA_DERECHA
-                direccion = UP_RIGHT;
-            }
+                    || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("up")))
+                setDireccion(Direccion.ARRIBA_DERECHA); //ARRIBA_DERECHA
             if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("up")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("w"))
-                    || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("up"))){
-                super.setDireccion(UP_LEFT);//ARRIBA_IZQUIERDA
-                direccion = UP_LEFT;
-            }
+                    || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("up")))
+                setDireccion(Direccion.ARRIBA_IZQUIERDA);//ARRIBA_IZQUIERDA
             if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("s"))
-                    || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("down"))){
-                super.setDireccion(DOWN_RIGHT);//ABAJO_DERECHA
-                direccion = DOWN_RIGHT;
-            }
+                    || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("down")))
+                setDireccion(Direccion.ARRIBA_DERECHA);//ABAJO_DERECHA
             if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("s"))
-                    || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("down"))){
-                super.setDireccion(DOWN_LEFT);//ABAJO_IZQUIERDA
-                direccion = DOWN_LEFT;
-            }
+                    || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("down")))
+                setDireccion(Direccion.ABAJO_IZQUIERDA);//ABAJO_IZQUIERD
         // }
         /*Cuando la nave sale de los límites ya no se puede mover, así que quiero hacer que dependiendo de en qué límite esté,
             la nave se regrese al área hábil. Aún no lo he podido implementar bien.*/
