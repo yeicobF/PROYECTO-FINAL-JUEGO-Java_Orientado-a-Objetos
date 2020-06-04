@@ -26,6 +26,7 @@ public class NaveEnemiga extends Nave
     //private boolean muestraPS; //Para ver que se haya creado MostrarInfo, ya que no se puede crear al instanciar.
     public NaveEnemiga(int tipoEnemigo, int tipoDisparo){//Tal vez haga falta un MINIBOSS
         super(tipoDisparo, tipoEnemigo);//public Nave(int tipoDisparo, int diseño)
+        System.out.println("Se creo un enemigo");
         infoPS = new MostrarInfo(puntosSalud, 0, 20, Color.BLACK, Color.YELLOW, null);
         // muestraPS = false; //Ya existe un atributo protegido de Nave "existeMostrarInfo"
         //Instanciar mostrarInfo para mostrar los PS de la nave enemiga encima de estas.

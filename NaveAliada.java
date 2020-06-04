@@ -33,13 +33,13 @@ public class NaveAliada extends Nave
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
     private static int diseñoNaveAliada;  //Para la creación del nivel será necesario. 
+    private static int tipoDisparoAliada;
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
-    public NaveAliada(){}//Constructor vacío para MostrarVidas.
-    public NaveAliada(int tipoDisparo, int diseñoNave){
+    public NaveAliada(){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
-        super(tipoDisparo, diseñoNave);//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
-        diseñoNaveAliada = diseñoNave;
-        if(diseñoNave ==0){ //La nave potente por ser la más poderosa que se podrá obtener
+        //super();//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
+        System.out.println("PS NAVE: "+ puntosSalud);
+        if(diseñoNaveAliada ==0){ //La nave potente por ser la más poderosa que se podrá obtener
             //setImage("NavePotente.png");
             puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
             //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
@@ -52,7 +52,7 @@ public class NaveAliada extends Nave
         infoPS = new MostrarInfo(puntosSalud, 0, 15, Color.RED, Color.WHITE, null);
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
         puntos = 0; //Reiniciar los puntos al morir.
-        setImage("Naves/Aliadas/NaveA"+ diseñoNave+ ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
+        setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada+ ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
             //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
@@ -64,7 +64,7 @@ public class NaveAliada extends Nave
     public void act()
     {
         //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
-        existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
+        // existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
         disparar();
         movimiento();
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
@@ -75,7 +75,7 @@ public class NaveAliada extends Nave
         }
         else
             if(!diseñoOriginalActivo){ //El item no es el 2 o excedió el tiempo
-                setImage("Naves/Aliadas/NaveA"+ diseñoNave+ ".png"); //Reestablecer el diseño original al terminar el efecto.
+                setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada +".png"); //Reestablecer el diseño original al terminar el efecto.
                 setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
                 diseñoOriginalActivo = true;
                 Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
@@ -164,7 +164,7 @@ public class NaveAliada extends Nave
         if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMillis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
             inicioDisparoMillis = System.currentTimeMillis();
             w = getWorld(); //Para agregar el objeto
-            disparo = new Disparo(0, getX(), getY());//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
+            disparo = new Disparo(tipoDisparoAliada, getX(), getY());//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
             //Tomar la imagen de la nave para tomarla en cuenta en la salida del disparo
             GreenfootImage image = getImage();
             //Aparecer el objeto en las coordenadas actuales, pero un poco a la derecha para no empalmar la nave.
@@ -191,7 +191,7 @@ public class NaveAliada extends Nave
                         //Mandar el tiempo en el que se tocó el item
                         //Debería bajar la velocidad. Aunque creo que no se puede porque se utiliza el setDirection.
                         Items.setTiempoFinalItem(System.currentTimeMillis());
-                        setImage("Naves/Aliadas/NaveA"+ diseñoNave+ "Escudo.png");
+                        setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada +"Escudo.png");
                         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
                         diseñoOriginalActivo = false;//Ya que aquí el diseño cambia por el escudo.
                         break;
@@ -217,7 +217,7 @@ public class NaveAliada extends Nave
                 // }catch(InterruptedException ie){
                     // System.out.println("Interrupción sleep.");
                 // }
-                Greenfoot.setWorld(new Espacio(diseñoNave));//Este método crea el mundo de nuevo después de morir.
+                Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
         }
     }
     //Desaparecer si ya perdimos todas las vidas.
@@ -235,6 +235,12 @@ public class NaveAliada extends Nave
     }
     public static void setDiseñoNaveAliada(int diseño){
         diseñoNaveAliada = diseño;
+    }
+    public static void setTipoDisparo(int tipoDisparo){
+        tipoDisparoAliada = tipoDisparo;
+    }
+    public static int getTipoDisparo(){
+        return tipoDisparoAliada;
     }
     /*Método para obtener las vidas actuales del jugador.*/
     public static int getVidasJugador(){

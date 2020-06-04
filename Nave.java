@@ -27,17 +27,17 @@ public abstract class Nave extends Actor
     protected int tipoHabilidad;//Esto serán los PowerUps.
     protected boolean existeMostrarInfo;
     /*NO NECESITAMOS coordX ni coordY porque ya están getX() y getY()*/
-    public Nave(){}//Constructor vacío para no tener problemas en Disparo
+    public Nave(){//Para clase nave que no necesitará especificar el tipo del disparo ni su diseño.
+        puntosSalud = 100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
+        existeMostrarInfo = false;
+    }//Constructor vacío para no tener problemas en Disparo
     public Nave(int tipoDisparo, int diseñoNave){//char diseño para cuando tengamos más diseños
         //Los puntos de salud ahora serán implementados en cada clase por separado.
+        this(); //Llamar al otro constructor para recibir los atributos.
         this.tipoDisparo = tipoDisparo;//Aquí condicionaremos para el diseño y eso pero en la clase Disparo.
         this.diseñoNave = diseñoNave; //De esto dependerá el diseño que tendrá la nave.
-        puntosSalud=100;//Puntos de salud estándar = 100. Cambiarán dependiendo del tipo de nave y su poder.
-        existeMostrarInfo = false;
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
-    public void act() //act(int direccion)
-    {
-    }
+    
     /*Clase que cambia la dirección dependiendo del parámetro que reciba. Además aquí mismo se ejecuta el movimiento.*/
     protected void setDireccion(int direccion){
         switch(direccion){

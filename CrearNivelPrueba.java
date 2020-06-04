@@ -13,6 +13,7 @@ public class CrearNivelPrueba
     public CrearNivelPrueba()
     {
         NaveAliada.setDiseñoNaveAliada(1);
+        NaveAliada.setTipoDisparo(0);
         Niveles.crearNivel(1);
     }
 

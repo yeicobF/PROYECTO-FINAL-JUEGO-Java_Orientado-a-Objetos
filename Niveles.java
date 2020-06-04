@@ -15,6 +15,7 @@ public abstract class Niveles extends World
      *
      */
     protected Roca roca; //Todos los nieles tendrán rocas (meteoros).
+    protected static NaveAliada nave; //Porque en todos los niveles estará la nave.
     private static int nivelActual = 0;//Indica el nivel en que nos encontramos
     private static long tiempoDuracionJuego; //Definirá cuánto durará el nivel.
     protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
@@ -33,6 +34,7 @@ public abstract class Niveles extends World
         //Establecer esto para que cada que se reinicie el nivel, se establezca de nuevo el tiempo en que la partida terminará
         tiempoFinalJuego = System.currentTimeMillis() + tiempoDuracionJuego;
         roca = new Roca(); //Inicializamos el número de rocas actual como el máximo
+        System.out.println(" - NIVELES -");
         // nivelCreado = false;
         
     }
@@ -47,7 +49,10 @@ public abstract class Niveles extends World
                 //Establecer el máximo de rocas
                 Roca.setNumRocasMax(15);
                 Roca.setTiempoRegeneracion(10000);
-                Greenfoot.setWorld(new Espacio(NaveAliada.getDiseñoNaveAliada()));
+                System.out.println(" - NIVELES 1-");
+                nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
+                System.out.println(" - NIVELES 2-");
+                Greenfoot.setWorld(new Espacio());
                 break;
         }
         // roca = new Roca(numRocasMax, 10000); //Esto no se puede porque después de instanciar el mundo no sale hasta moror.
