@@ -25,7 +25,7 @@ public class NaveAliada extends Nave
     private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
     private long inicioDisparoMillis=0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
-    private int direccion;
+    private static int direccion;
     private int puntosMenosAlMorir = -20;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
     // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
@@ -268,5 +268,9 @@ public class NaveAliada extends Nave
             return disparo.getCordY();
         else
             return w.getHeight()+10;//Si no existe, regresar un valor inexistente en el rango del área de juego.
+    }
+    public static int GetDireccion()
+    {
+        return direccion;
     }
 }

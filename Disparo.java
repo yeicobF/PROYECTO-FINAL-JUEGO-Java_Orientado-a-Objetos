@@ -48,7 +48,7 @@ public class Disparo extends Actor
     }
     public void act(){
         w = getWorld();
-        move(velocidadDisparo);
+        
         /*CUANDO EL OBJETO TOQUE EL LÍMITE DE PANTALLA (O a un enemigo en un futuro porque no lo hemos implementado)*
           eliminaremos el objeto.*/
         // if(getX() >= w.getWidth()-1)
@@ -59,57 +59,59 @@ public class Disparo extends Actor
         /*ESTE MÉTODO LO TOMÉ DE setDireccion de la clase Nave, pero le quité las condiciones de más velocidad,
             para que así se dispare para la dirección a la que estemos apuntando.
             Por ahora no se pudo, así que se dejará como estaba pero con estas líneas comentadas.*/
-        // switch(direccion){
-        // case UP:
-            // setRotation(0);
+        switch(NaveAliada.GetDireccion())
+        {
+         case UP:
+            turn(0);
             // // setLocation(getX(),getY()-6);
             // // cordY-=4;
-            // break;
-        // case DOWN:
+            break;
+         case DOWN:
             // setRotation(180);
             // // setLocation(getX(),getY()+4);
             // // cordY+=2;
             // break;
-        // case LEFT:
-            // setRotation(270);
+          case LEFT:
+            turn(270);
             // setLocation(getX()-4,getY());
             // cordX-=4;
-            // break;
-        // case RIGHT:
-            // setRotation(90);
+            break;
+          case RIGHT:
+            turn(90);
             // setLocation(getX()+4,getY());
             // cordX+=4;
-            // break;
+            break;
 
-        // case UP_RIGHT:
-            // setRotation(45);
+          case UP_RIGHT:
+            turn(45);
             // setLocation(getX()+1,getY()-1);
             // cordX+=1;
             // cordY-=1;
-            // break;
+             break;
 
-            // case UP_LEFT:
-            // setRotation(315);
+        case UP_LEFT:
+            turn(315);
             // setLocation(getX()-1,getY()-1);
             // cordX-=1;
             // cordY-=1;
-            // break;
+             break;
 
-            // case DOWN_LEFT:
-            // setRotation(225);
+        case DOWN_LEFT:
+            turn(225);
             // setLocation(getX()-1,getY()+1);
             // cordX-=1;
             // cordY+=1;
-            // break;
+            break;
 
-            // case DOWN_RIGHT:
-            // setRotation(135);
+        case DOWN_RIGHT:
+            turn(135);
             // setLocation(getX()+1,getY()+1);
             // cordX+=1;
             // cordY+=1;
 
-            // break;
-        // }
+            break;
+        }
+        move(velocidadDisparo);
     }
     /*Método que desaparece a los objetos con los que impacta el disparo y a sí mismo.*/
     private void eliminarObjetosImpacto(){ //Por ahora Lunes, 11 de mayo me crasheaba, así que mejor lo implementaré en las otras clases.
