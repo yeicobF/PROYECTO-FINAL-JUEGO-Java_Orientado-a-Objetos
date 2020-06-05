@@ -1,4 +1,4 @@
-Direccion.ARRIBAimport greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Esta es una subclase de la superclase Nave que tiene como función manejar las naves que controlará el jugador.
@@ -120,23 +120,10 @@ public class NaveAliada extends Nave
                 setDireccion(Direccion.ARRIBA_IZQUIERDA);//ARRIBA_IZQUIERDA
             if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("s"))
                     || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("down")))
-                setDireccion(Direccion.ARRIBA_DERECHA);//ABAJO_DERECHA
+                setDireccion(Direccion.ABAJO_DERECHA);//ABAJO_DERECHA
             if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("s"))
                     || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("down")))
                 setDireccion(Direccion.ABAJO_IZQUIERDA);//ABAJO_IZQUIERD
-        // }
-        /*Cuando la nave sale de los límites ya no se puede mover, así que quiero hacer que dependiendo de en qué límite esté,
-            la nave se regrese al área hábil. Aún no lo he podido implementar bien.*/
-        // else{
-            // switch(getX()){
-                // case getImage().getHeight(): //Cuando estamos fuera del límite izquierdo
-                    // setLocation(getX()+1, getY()); //Mover a la derecha
-                    // break;
-
-            // }
-            // switch(getY()){
-            // }
-        // }
     }
     /*Método que tendrá el control de los disparos del jugador.*/
     public void disparar(){
@@ -149,7 +136,7 @@ public class NaveAliada extends Nave
         if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMillis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
             inicioDisparoMillis = System.currentTimeMillis();
             w = getWorld(); //Para agregar el objeto
-            disparo = new Disparo(tipoDisparoAliada, getX(), getY());//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
+            disparo = new Disparo(tipoDisparoAliada, direccion, getX(), getY());//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
             //Tomar la imagen de la nave para tomarla en cuenta en la salida del disparo
             GreenfootImage image = getImage();
             //Aparecer el objeto en las coordenadas actuales, pero un poco a la derecha para no empalmar la nave.

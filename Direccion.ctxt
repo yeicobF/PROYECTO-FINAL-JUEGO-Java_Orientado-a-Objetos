@@ -1,4 +1,4 @@
 #BlueJ class context
 comment0.target=Direccion
-comment0.text=\r\n\ Clase\ en\ donde\ se\ manejar\u00E0n\ las\ constantes\ de\ las\ direcciones\:\ Arriba,\ abajo,\ ...\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ en\ donde\ se\ manejar\u00E0n\ las\ constantes\ de\ las\ direcciones\:\ Arriba,\ abajo,\ ...\r\n\ Tambi\u00E9n\ se\ manejar\u00E1n\ los\ \u00E1ngulos\ de\ giro.\r\n\ @author\ (Jacob)\r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
 numComments=1

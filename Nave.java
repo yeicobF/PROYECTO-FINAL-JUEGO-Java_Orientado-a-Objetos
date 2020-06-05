@@ -33,7 +33,7 @@ public abstract class Nave extends Actor
         this.diseñoNave = diseñoNave; //De esto dependerá el diseño que tendrá la nave.
     }//CONSTRUCTOR en el que se definirá si la nave es 0.- enemigo o 1.-Nosotros
     //Método abstracto de movimiento. Todas las naves lo tendrán pero su implementación será diferente.
-    protected abstract movimiento();
+    //protected abstract void movimiento();
     /*Clase que cambia la dirección dependiendo del parámetro que reciba. Además aquí mismo se ejecuta el movimiento.*/
     protected void setDireccion(int direccion){
         this.direccion = direccion; //Establecer nuestra direccion
@@ -42,7 +42,7 @@ public abstract class Nave extends Actor
         switch(direccion){
             case Direccion.ARRIBA:
                 anguloGiro = Direccion.ANGULO_ARRIBA;
-                aumentaY = -6;
+                aumentaY = -4;
                 break;
             case Direccion.ABAJO:
                 anguloGiro = Direccion.ANGULO_ABAJO;
@@ -56,31 +56,29 @@ public abstract class Nave extends Actor
                 anguloGiro = Direccion.ANGULO_DERECHA;
                 aumentaX = 4;
                 break;
+            /*A las diagonales no aumentarles valor, porque como ya actúan con la velocidad
+               de la combinación de los botones, al aumentar valor irá más rápida.
+               - Solo darles la dirección del ángulo para el disparo.*/
             case Direccion.ARRIBA_DERECHA:
                 anguloGiro = Direccion.ANGULO_ARRIBA_DERECHA;
-                aumentaX = 1;
-                aumentaY = -1;
                 break;
             case Direccion.ARRIBA_IZQUIERDA:
                 anguloGiro = Direccion.ANGULO_ARRIBA_IZQUIERDA;
-                aumentaX = aumentaY = -1;
                 break;
             case Direccion.ABAJO_IZQUIERDA:
                 anguloGiro = Direccion.ANGULO_ABAJO_IZQUIERDA;
-                aumentaX = -1;
-                aumentaY = 1;
                 break;
             case Direccion.ABAJO_DERECHA:
-              anguloGiro = Direccion.ANGULO_ABAJO_DERECHA;
-              aumentaX = aumentaY = 1;
+                anguloGiro = Direccion.ANGULO_ABAJO_DERECHA;
             break;
         }
+        setRotation(anguloGiro);
         //Asignar los valores al arreglo
         aumenta[0] = aumentaX;
         aumenta[1] = aumentaY;
         //private void presionoShift(int[] aumenta){
         presionoShift(aumenta);
-        setRotation(anguloGiro);
+        
         //Verificar en dónde se modificaron los valores para aumentarlos
         setLocation(getX() + aumenta[0], getY() + aumenta[1]);
     }
@@ -89,30 +87,37 @@ public abstract class Nave extends Actor
     private void presionoShift(int[] aumenta){ //Como es un arreglo, los valores se modifican
       //aumenta[0] <- aumentaX; aumenta[1] = aumentaY;
       // + 1 si es en diagonal, +2 si es recto
-      if(Greenfoot.isKeyDown("shift")){
+      /* - NO AUMENTAR EL VALOR A LAS DIAGONALES PORQUE IRÁN MÁS RÁPIDO, YA QUE DE BASE ACTÚAN CON LAS
+            VELOCIDADES DE LAS TECLAS COMBINADAS.*/
+      if(Greenfoot.isKeyDown("shift"))
         //En esta condición no puede haber un valor con 0
-          if(aumenta[1] != 0  && aumenta[0] != 0){//DIAGONALES
-            if(aumenta[1] < 0 )//ARRIBA
-              aumenta[1] -= 1;
-            else //ABAJO
-              aumenta[1] += 1;
-            if(aumenta[0] < 0)//IZQUIERDA
-              aumenta[0] -= 1;
-            else //DERECHA
-              aumenta[0] += 1;
-          }
-          else{//LÍNEAS RECTAS (ARRIBA, ABAJO, IZQUIERDA, DERECHA) Aumentan de 2 en 2
-            //X y Y no pueden ser diferentes a 0 al mismo tiempo
-            if(aumenta[1] < 0)//ARRIBA
-              aumenta[1] -= 2;
-            else //ABAJO
-              aumenta[1] += 2;
-            if(aumenta[0] < 0)//IZQUIERDA
-              aumenta[0] -= 2;
-            else //DERECHA
-              aumenta[0] += 0;
-          }
-      }
+          //LÍNEAS RECTAS (ARRIBA, ABAJO, IZQUIERDA, DERECHA) Aumentan de 2 en 2
+        //X y Y no pueden ser diferentes a 0 al mismo tiempo
+        /*En las diagonales va más rápido, habría que asignarles 1 en lugar de 2, pero por ahora así está bien.*/
+        switch(direccion){
+            case Direccion.ARRIBA:
+                aumenta[1] -= 2;
+                break;
+            case Direccion.ABAJO:
+                aumenta[1] += 2;
+                break;
+            case Direccion.IZQUIERDA:
+                aumenta[0] -= 2;
+                break;
+            case Direccion.DERECHA:
+                aumenta[0] += 2;
+                break;
+        }
+        // if(aumenta[1] != 0 && aumenta[0] == 0)//Hay que especificar que y se mueve y x no
+            // if(aumenta[1] < 0)//ARRIBA
+              // aumenta[1] -= 2;
+            // else //ABAJO
+              // aumenta[1] += 2;
+        // if(aumenta[0] != 0 && aumenta[1] == 0)
+            // if(aumenta[0] < 0)//IZQUIERDA
+              // aumenta[0] -= 2;
+            // else //DERECHA
+              // aumenta[0] += 2;
     }
 
     /*Método protegido para obtener los puntos de salud actuales de las naves. Protegido para que se pueda utilizar

@@ -14,7 +14,7 @@ public abstract class Direccion
     public static final int ARRIBA_DERECHA =4;
     public static final int ARRIBA_IZQUIERDA = 5;
     public static final int ABAJO_IZQUIERDA = 6;
-    public static final int ABAJO_DERECGA = 7;
+    public static final int ABAJO_DERECHA = 7;
     //ÁNGULOS
     public static final int ANGULO_ARRIBA = 0;
     public static final int ANGULO_ABAJO = 180;
