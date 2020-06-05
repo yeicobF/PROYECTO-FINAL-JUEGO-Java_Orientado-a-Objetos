@@ -248,9 +248,10 @@ public class NaveAliada extends Nave
                         mundo.removeObjects(getWorld().getObjects(NaveEnemiga.class));
                         mundo.removeObjects(getWorld().getObjects(MostrarInfo.class)); //Se borraría el nuestro también.
                         //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
-                        Etiqueta e = new Etiqueta(50, Color.WHITE, Color.RED, Color.YELLOW);
-                        e.crearCuadroTexto(" HAS DESTRUIDO A TODO SER VIVO ");
-                        mundo.addObject(e, mundo.getWidth()/2 + e.getImage().getWidth()/2, mundo.getHeight()/2 - e.getImage().getHeight()/2);
+                        // Etiqueta e = new Etiqueta(50, Color.WHITE, Color.RED, Color.YELLOW);
+                        // e.crearCuadroTexto(" HAS DESTRUIDO A TODO SER VIVO ");
+                        // mundo.addObject(e, mundo.getWidth()/2 + e.getImage().getWidth()/2, mundo.getHeight()/2 - e.getImage().getHeight()/2);
+                        //Archivo a = new Archivo("prueba.txt");
                         break;
                 }
         }

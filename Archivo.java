@@ -16,14 +16,20 @@ public class Archivo extends Actor
     Boton b; //Para crear botones.
     World w;
     String nombre;//Nombre del archivo.
+    private boolean textoLeido;
     /**
      * Constructor for objects of class Archivo
      */
     public Archivo(String nombre)
     {
         this.nombre = nombre; //Nombre edel archivo.
+        textoLeido = false;
     }
 
+    public void act(){
+        abrirMostrarCerrarArchivo();
+    }
+    
     /* Método que hará los 3 métodos mencionados sin tener que llamarlos manualmente cada uno.*/
     public void abrirMostrarCerrarArchivo(){
         abrirArchivo();
@@ -41,7 +47,7 @@ public class Archivo extends Actor
     public void mostrarArchivo(){
         w = getWorld();
         //numLineas cuenta las filas del archivo para escalarlo.
-        boolean primerLinea = true, textoLeido = false; //En la primer linea del texto indicaré el tamaño del archivo, es decir, sus filas para así centrarlo.
+        boolean primerLinea = true; //En la primer linea del texto indicaré el tamaño del archivo, es decir, sus filas para así centrarlo.
         /*numLineas indicará el total para reescalar y se irá restando para ir bajando en la pantalla.
            altura indica la altura actual del texto. Esta irá bajando dependiendo del número de línea actual.*/
         int numLineas = 0, altura = 0; 
@@ -74,11 +80,12 @@ public class Archivo extends Actor
             //Se agrega el objeto con el nuevo texto.
             w.addObject(e, w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
             //crearCuadroTexto(Etiqueta etiqueta, int x, int y)
-            
+            System.out.println(e.getTexto());
         }
         textoLeido = true; //Se recorrió todo el archivo. Esto por si se utiliza en un método act()
     }
     public void cerrarArchivo(){
         archivo.close();
+        getWorld().removeObject(this);
     }
 }
