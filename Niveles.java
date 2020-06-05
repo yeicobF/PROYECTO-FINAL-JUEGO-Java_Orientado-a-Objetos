@@ -15,11 +15,13 @@ public abstract class Niveles extends World
      *
      */
     protected Roca roca; //Todos los nieles tendrán rocas (meteoros).
+    protected NaveAliada nave;
     //protected NaveAliada nave; //Porque en todos los niveles estará la nave.
     private static int nivelActual = 0;//Indica el nivel en que nos encontramos
     private static long tiempoDuracionJuego; //Definirá cuánto durará el nivel.
     protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
     protected long tiempoFinalJuego;
+    private int tipoItem;
     // private boolean nivelCreado;
 
     //Constructor para crear el mundo del juego.
@@ -41,11 +43,12 @@ public abstract class Niveles extends World
        addObject(new MostrarInfo(3, 20, Color.WHITE, Color.BLACK, null), 50, getHeight()-20);
        //Crear las rocas que tendrá el nivel.
        roca.crearRocas(Roca.getNumRocasMax(), this); //Crear las rocas primero. Luego que se vayan eliminando se crearán con el tiempo.
+       nave = new NaveAliada();
        //System.out.println(" - NIVELES -");
         // nivelCreado = false;
 
     }
-    public static void crearNivel(int numNivel, NaveAliada nave){//, NaveAliada nave){
+    public static void crearNivel(int numNivel){//, NaveAliada nave){
         //int numRocasMax;
         //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
         switch(numNivel){
@@ -61,7 +64,7 @@ public abstract class Niveles extends World
                 // System.out.println(" - NIVELES 1-");
                 //
                 // System.out.println(" - NIVELES 2-");
-                Greenfoot.setWorld(new Espacio(nave));
+                Greenfoot.setWorld(new Espacio());
                 break;
         }
         // roca = new Roca(numRocasMax, 10000); //Esto no se puede porque después de instanciar el mundo no sale hasta moror.
@@ -84,8 +87,9 @@ public abstract class Niveles extends World
 
     /*Método en el que se creará un item cada cierto tiempo dependiendo de la última vez que se creó y que
      *  un tiempo generado aleatoriamente supere al tiempo mínimo en la coindición.*/
-    protected void crearItemTiempo(){ //El item se creará mínimo cada 30 segundos después de haber hecho efecto por última vez
-        int x, y, tipoItem, aleatorio;
+    protected void crearItemTiempo(NaveAliada nave){ //El item se creará mínimo cada 30 segundos después de haber hecho efecto por última vez
+        int x, y, aleatorio;
+        tipoItem = 0;
         int velocidadItem = 1;//Cuando inicia el nivel iniciarla así y cuandi avance el tiempo cambiarla
         //Revisará que no exista el item para generar uno nuevo y que se respete el mínimo de tiempo. Se creará en un rango de 10 a 20 segundos.
         if(!Items.isItemActivo() && (System.currentTimeMillis() - Items.getTiempoFinalItem()) >= Aleatorio.getNumeroAleatorio(1000, 2000)){

@@ -14,14 +14,17 @@ public class Disparo extends Actor
      *  heredando de la misma superclase. Lo había pensado porque no sabía cómo acceder a los atributos
      *  si se instancia nada más en las naves, pero no es necesario que herede de Nave.
      */
-    World w;
+    World mundo;
+    Pantalla pantalla;
     private boolean seAsignoDireccion;
     private int direccion; //Creo que no son necesarias las coordenadas por el getX() y getY()
     /* - EQUIVALENTES DE LAS DIRECCIONES - Sacadas de la clase Nave, por lo que se podrá hacer una generalización,
                                                 pero hay que ver cómo.*/
     private static int daño; //Estática para que puedan acceder desde fuera y restar el daño hecho.
+    private int tipoDisparo;
     private int velocidadDisparo;
     private int numAnimaciones; //Las animaciones del disparo.
+    private int animacionActual;
     /*Constructor para aparecer al disparo*/
     /*En cuanto a la direccion del disparo, no pude implementarlo porque no salía como debería salir, así que hay que revisarlo
         porque hay algo que falla. Por ahora solo comentaré las líneas para después implementar dicha función.*/
@@ -30,43 +33,50 @@ public class Disparo extends Actor
         // this.cordX=cordX; //Antes Comentados por la herencia que intenté con nave
         // this.cordY=cordY;
         this.direccion = direccion;//Para guardar la direccion del disparo. - Por ahora no se pudo hacer, pero lo comentaré.
+        this.tipoDisparo = tipoDisparo;
+        animacionActual = 1;
         setImage("Disparos/"+ tipoDisparo +"_"+ 1 +".png");
         seAsignoDireccion = false;
         switch(tipoDisparo){//El disparo normal
-            case: 1
+            case 1:
                 daño = 25; //daño inicial (que es bajo).
                 velocidadDisparo = 5;
                 numAnimaciones = 6;
                 break;
-            case: 2 //Menos daño pero más velocidad
+            case 2: //Menos daño pero más velocidad
                 daño = 15;
                 velocidadDisparo = 6;
                 numAnimaciones = 6;
                 break;
-            case: 3 //Más velocidad y daño
+            case 3: //Más velocidad y daño
                 daño = 35;
-                velocidadDisparo = 6;
+                velocidadDisparo = 7;
                 numAnimaciones = 6;
                 break;
         }
-        GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
-        image.scale(image.getWidth()/4, image.getHeight()/4);//Reescalar imagen a 1/5 de las medidas originales.
-        setImage(image);//Acomodar ahora sí la imagen modificada
+        //public static GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divisor, int multiplicacion)
+        setImage(Imagen.modificarEscalaImagen(getImage(), 1, 2));
         //Método que devuelve el ángulo dependiendo de nuestra direccion.
         turn(Direccion.getAnguloDireccion(direccion));
-        System.out.println("- ANGULO: "+ Direccion.getAnguloDireccion(direccion));
+        //System.out.println("- ANGULO: "+ Direccion.getAnguloDireccion(direccion));
         //System.out.println("- Direccion: "+ direccion);
+        pantalla = new Pantalla(this);
     }
     public void act(){
-        w = getWorld();
-        move(velocidadDisparo);
+        mundo = getWorld();
+        if(!pantalla.isObjetoLimite(mundo, getX(), getY())) //Si el disparo no está dentro de los límites.
+            mundo.removeObject(this);
         animaDisparo();
-        limitePantalla();
     }
     /*Método que anima el disparo*/
     private void animaDisparo(){
-        for(int i = 1; i <= numAnimaciones; i++)
-            setImage("Disparos/"+ tipoDisparo +"_"+ i +".png");
+        if(animacionActual < numAnimaciones)
+            animacionActual++;
+        else
+            animacionActual=1;
+        setImage("Disparos/"+ tipoDisparo +"_"+ animacionActual +".png");
+        setImage(Imagen.modificarEscalaImagen(getImage(), 1, 3));
+        move(velocidadDisparo);
     }
     /*Método que tendrá el control de los disparos del jugador.*/
     public static long disparar(World mundoActual, GreenfootImage imagenNave,
@@ -138,11 +148,11 @@ public class Disparo extends Actor
       // move(velocidadDisparo);
     // }
     /*Método que revisa si el disparo está dentro de los límites de la pantalla.*/
-    private void limitePantalla(){
-        if(getX() >= w.getWidth()-1 || getX() <= 1 //Límites en X
-            || getY() <= 1 || getY() >= w.getHeight()-1)//Límites en Y. Cuando y = 0 se encuentra en el centro de la pantalla.
-            getWorld().removeObject(this); //Así se elimina el disparo de pantalla
-    }
+    // private void limitePantalla(){
+        // if(getX() >= w.getWidth()-1 || getX() <= 1 //Límites en X
+            // || getY() <= 1 || getY() >= w.getHeight()-1)//Límites en Y. Cuando y = 0 se encuentra en el centro de la pantalla.
+            // getWorld().removeObject(this); //Así se elimina el disparo de pantalla
+    // }
     public int getCordX(){
         return getX();
     }
@@ -154,7 +164,7 @@ public class Disparo extends Actor
         return daño;
     }
     //Setter del daño para cuando cambiemos de disparo.
-    public int setDaño(int daño){
+    public void setDaño(int daño){
         daño = daño;
     }
 }

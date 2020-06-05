@@ -13,7 +13,7 @@ public class Espacio extends Niveles
      * Constructor for objects of class Espacio.
      *
      */
-    public Espacio(NaveAliada nave){
+    public Espacio(){
         //public Roca(int numRocasMax, int tiempoRegeneracion)
         // roca = new Roca(numRocasMax, 10000); //Inicializamos el número de rocas actual como el máximo
         //Nave nave = new Nave(50, 300);//El constructor creará las n rocas y no el método, para así manejar las rocas y compararlas.
@@ -25,6 +25,7 @@ public class Espacio extends Niveles
         //System.out.println(" - ENEMIGO 2");
         //NaveEnemiga boss = new NaveEnemiga(1, 2);//eL SPRITE 1 SERÁ EL BOSS
         // System.out.println(" - NO SE AGREGO  NAVE");
+        //this.nave = nave;
         addObject(nave, 300, 300);//Aparecer a la nave en el centro
         //System.out.println(" - SE AGREGO  NAVE");
         addObject(new NaveEnemiga(2, 2), super.getWidth()/2+40, super.getHeight()/2+40);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
@@ -48,7 +49,7 @@ public class Espacio extends Niveles
           Greenfoot.stop();
           //public void crearRocasTiempo(World mundoActual)
         roca.crearRocasTiempo(this);
-        crearItemTiempo();
+        crearItemTiempo(nave);
         //System.out.println("Salud aliado: "+ NaveAliada.getPuntosSalud() +"Salud enemigo: "+ NaveEnemiga.getPuntosSalud()) ;
     }
 

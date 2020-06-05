@@ -80,7 +80,7 @@ public abstract class Nave extends Actor
     protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque, Actor objetoRaiz,
                                 World mundoActual, int puntosSalud, int daño, int puntosNave){
         //Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave
-        if((puntosSalud = Choques.eliminarObjetoChoque(objetoChoque, objetoRaiz, mundoActual, puntosSalud, daño, puntosNave)) == 0)
+        if((puntosSalud = Choques.eliminarObjetoChoque(objetoChoque, objetoRaiz, mundoActual, puntosSalud, daño, puntosNave)) <= 0)
             mundoActual.removeObject(infoPS);
         return puntosSalud;
     }
@@ -103,9 +103,9 @@ public abstract class Nave extends Actor
     // }
     // NO NECESITO LOS SETTERS O GETTERS PORQUE LOS DECLARO PROTECTED PARA QUE SÓLO LAS SUBCLASES ACCEDAN
     //Getters Y setters protected para que sólo las subclases puedan acceder
-    // protected int getPS(){//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
-        // return puntosSalud;
-    // }
+    protected int getPuntosSalud(){//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
+        return puntosSalud;
+    }
     // protected void setPS(int puntosSalud){//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
         // this.puntosSalud = puntosSalud;
     // }

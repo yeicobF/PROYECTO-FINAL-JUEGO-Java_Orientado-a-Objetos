@@ -13,9 +13,9 @@ public class CrearNivelPrueba
     public CrearNivelPrueba()
     {
         //Niveles nivel = new Niveles();
-        NaveAliada.setDiseñoNaveAliada(1);
-        NaveAliada.setTipoDisparo(0);
-        Niveles.crearNivel(1, new NaveAliada());
+        NaveAliada.setDiseñoNaveAliada(3);
+        NaveAliada.setTipoDisparo(2);
+        Niveles.crearNivel(1);
     }
 
 }
