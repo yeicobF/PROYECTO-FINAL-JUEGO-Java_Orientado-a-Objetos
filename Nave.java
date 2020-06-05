@@ -63,12 +63,10 @@ public abstract class Nave extends Actor
                 break;
             case Direccion.DERECHA:
                 anguloGiro = Direccion.ANGULO_DERECHA;
-                if(Greenfoot.isKeyDown("shift")){
+                if(Greenfoot.isKeyDown("shift"))
                     setLocation(getX()+6,getY());
-                }
-                else{
-                    setLocation(getX()+4,getY());
-                }
+                else
+                  aumentaX = 4;
                 break;
 
             case Direccion.ARRIBA_DERECHA:
@@ -78,48 +76,77 @@ public abstract class Nave extends Actor
                 }
                 else{
                     setLocation(getX()+1,getY()-1);
+                    aumentaX = 1;
+                    aumentaY = -1;
                 }
                 break;
 
                 case Direccion.ARRIBA_IZQUIERDA:
-                anguloGiro = Direccion.ANGULO_ARRIBA_IZQUIERDA;
-                if(Greenfoot.isKeyDown("shift")){
-                    setLocation(getX()-2,getY()-2);
-                }
-                else{
-                    setLocation(getX()-1,getY()-1);
-                }
+                  anguloGiro = Direccion.ANGULO_ARRIBA_IZQUIERDA;
+                  if(Greenfoot.isKeyDown("shift")){
+                      setLocation(getX()-2,getY()-2);
+                  }
+                  else
+                      aumentaX = aumentaY = -1;
                 break;
 
                 case Direccion.ABAJO_IZQUIERDA:
-                anguloGiro = Direccion.ANGULO_ABAJO_IZQUIERDA;
-                if(Greenfoot.isKeyDown("shift")){
-                    setLocation(getX()-2,getY()+2);
-                }
-                else{
-                    setLocation(getX()-1,getY()+1);
-                }
+                  anguloGiro = Direccion.ANGULO_ABAJO_IZQUIERDA;
+                  if(Greenfoot.isKeyDown("shift")){
+                      setLocation(getX()-2,getY()+2);
+                  }
+                  else{
+                      aumentaX = -1;
+                      aumentaY = 1;
+                  }
                 break;
 
                 case Direccion.ABAJO_DERECHA:
-                anguloGiro = Direccion.ANGULO_ABAJO_DERECHA;
-                if(Greenfoot.isKeyDown("shift"))
-                    setLocation(getX()+2,getY()+2
-                else
-                    setLocation(getX()+1,getY()+1);
+                  anguloGiro = Direccion.ANGULO_ABAJO_DERECHA;
+                  if(Greenfoot.isKeyDown("shift"))
+                      setLocation(getX()+2,getY()+2);
+                  else
+                      aumentaX = aumentaY = 1;
                 break;
         }
-        //Verificar en dónde se modificaron los valores para aumentarlos
-        if(Greenfoot.isKeyDown("shift"))
-          if(aumentaX > 0 && aumentaY < 0)//ARRIBA_DERECHA
-            aumentaY = aumentaX += 2;
+        //Asignar los valores al arreglo
+        aumenta[0] = aumentaX;
+        aumenta[1] = aumentaY;
+        //private void presionoShift(int[] aumenta){
+        presionoShift(aumenta);
         setRotation(anguloGiro);
-        setLocation(getX() + aumentaX, getY() + aumentaY);
+        //Verificar en dónde se modificaron los valores para aumentarlos
+        setLocation(getX() + aumenta[0], getY() + aumenta[1]);
     }
     /*Método que va a verificar si se presionó shift y además cambiará los valores
       para que se vea con más velcidad en pantalla*/
-    private int presionoShift(int[] aumenta){
+    private void presionoShift(int[] aumenta){ //Como es un arreglo, los valores se modifican
       //aumenta[0] <- aumentaX; aumenta[1] = aumentaY;
+      // + 1 si es en diagonal, +2 si es recto
+      if(Greenfoot.isKeyDown("shift")){
+        //En esta condición no puede haber un valor con 0
+          if(aumenta[1] != 0  && aumenta[0] != 0){//DIAGONALES
+            if(aumenta[1] < 0 )//ARRIBA
+              aumenta[1] -= 1;
+            else //ABAJO
+              aumenta[1] += 1;
+            if(aumenta[0] < 0)//IZQUIERDA
+              aumenta[0] -= 1;
+            else //DERECHA
+              aumenta[0] += 1;
+          }
+          else{//LÍNEAS RECTAS (ARRIBA, ABAJO, IZQUIERDA, DERECHA) Aumentan de 2 en 2
+            //X y Y no pueden ser diferentes a 0 al mismo tiempo
+            if(aumenta[1] < 0)//ARRIBA
+              aumenta[1] -= 2;
+            else //ABAJO
+              aumenta[1] += 2;
+            if(aumenta[0] < 0)//IZQUIERDA
+              aumenta[0] -= 2;
+            else //DERECHA
+              aumenta[0] += 0;
+          }
+      }
     }
 
     /*Método protegido para obtener los puntos de salud actuales de las naves. Protegido para que se pueda utilizar
