@@ -59,7 +59,7 @@ public abstract class Niveles extends World
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public Roca(int numRocasMax, int tiempoRegeneracion)
                 //Establecer el máximo de rocas
-                Roca.setNumRocasMax(10);
+                Roca.setNumRocasMax(15);
                 Roca.setTiempoRegeneracion(10000);
                 // System.out.println(" - NIVELES 1-");
                 //

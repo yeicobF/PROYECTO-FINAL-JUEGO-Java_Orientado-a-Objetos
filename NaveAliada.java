@@ -60,7 +60,7 @@ public class NaveAliada extends Nave
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
             //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
-        setImage(Imagen.modificarEscalaImagen(getImage(), 6, 4));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
+        setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
         /*Hay que tener una condición para el diseño de la nave. Este se estableció con el super construcor.*/
         //public Pantalla(World mundoActual, Actor objeto)
             //Instanciamos después de establecer la imagen. La necesitamos.
@@ -248,12 +248,9 @@ public class NaveAliada extends Nave
                         mundo.removeObjects(getWorld().getObjects(NaveEnemiga.class));
                         mundo.removeObjects(getWorld().getObjects(MostrarInfo.class)); //Se borraría el nuestro también.
                         //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
-                        //public Archivo(String nombre, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
-                        Archivo a = new Archivo("prueba.txt", 50, Color.WHITE, Color.RED, Color.YELLOW);
-                        a.abrirMostrarCerrarArchivo(getWorld());
-                        // Etiqueta e = new Etiqueta(50, Color.WHITE, Color.RED, Color.YELLOW);
-                        // e.crearCuadroTexto(" HAS DESTRUIDO A TODO SER VIVO ");
-                        // mundo.addObject(e, mundo.getWidth()/2 - e.getImage().getWidth()/2, mundo.getHeight()/2 - e.getImage().getHeight()/2);
+                        Etiqueta e = new Etiqueta(50, Color.WHITE, Color.RED, Color.YELLOW);
+                        e.crearCuadroTexto(" HAS DESTRUIDO A TODO SER VIVO ");
+                        mundo.addObject(e, mundo.getWidth()/2 + e.getImage().getWidth()/2, mundo.getHeight()/2 - e.getImage().getHeight()/2);
                         break;
                 }
         }

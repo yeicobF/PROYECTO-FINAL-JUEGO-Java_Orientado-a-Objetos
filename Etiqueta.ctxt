@@ -6,6 +6,4 @@ comment1.target=Etiqueta(int,\ greenfoot.Color,\ greenfoot.Color,\ greenfoot.Col
 comment2.params=s
 comment2.target=greenfoot.GreenfootImage\ crearCuadroTexto(java.lang.String)
 comment2.text=Aqu\u00ED\ se\ crea\ la\ imagen\ con\ el\ texto\ deseado\ y\ se\ regresa\ esta,\ de\ esta\ manera\ el\ objeto\ la\ recibe\ y\ al\ \r\nagregar\ el\ objeto\ en\ el\ escenario,\ se\ pondr\u00E1\ la\ imagen\ con\ las\ coordenadas\ deseadas.
-comment3.params=
-comment3.target=int\ getTama\u00F1oFuente()
-numComments=4
+numComments=3
