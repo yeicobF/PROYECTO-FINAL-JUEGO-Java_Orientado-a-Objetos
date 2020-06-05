@@ -13,7 +13,7 @@ public class NaveAliada extends Nave
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
 
-    protected World w;
+    
     /*protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
         Se puede usar aquí porque es protected en la superclase Nave.*/
     //Medir el tiempo para no poder disparar de manera tan seguida, tener un delay entre disparo y disparo.
@@ -57,18 +57,29 @@ public class NaveAliada extends Nave
             //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
         /*Hay que tener una condición para el diseño de la nave. Este se estableció con el super construcor.*/
+        //public Pantalla(World mundoActual, Actor objeto)
+            //Instanciamos después de establecer la imagen. La necesitamos.
+            System.out.println(" -> Antes pantalla");
+        pantalla = new Pantalla(this);
+                    System.out.println(" -> Después pantalla");
     }
     /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque
      * esa se moverá con numeros generados de manera aleatoria. Si la podemos hacer más general, lo haremos.*/
     public void act()
     {
         //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
-        w = getWorld();
+        mundo = getWorld();
         existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
         /*public static long disparar(World mundoActual, GreenfootImage imagenNave, 
                         long inicioDisparoMilis, int tipoDisparo, int direccion, int x, int y)*/
-        inicioDisparoMilis = Disparo.disparar(w, getImage(), inicioDisparoMilis, tipoDisparoAliada, direccion, getX(), getY());
-        movimiento();
+        inicioDisparoMilis = Disparo.disparar(mundo, getImage(), inicioDisparoMilis, tipoDisparoAliada, direccion, getX(), getY());
+        //public static void manetenerObjetoLimite(World mundoActual, Actor objeto, int x, int y)
+        //Pantalla.manetenerObjetoLimite(w, this, getX(), getY());//Mantiene el objeto dentro de los límites.
+        //public void mantenerObjetoLimite(int x, int y)
+        if(pantalla.isObjetoLimite(mundo, getX(), getY()))    
+            movimiento(); //Si estamos dentro de los límites, movernos
+        else //Si nos salimos de los límites, regresar a estos.
+            pantalla.regresarObjetoLimite(mundo, getX(), getY());
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
         if(choqueItem() == 2 && System.currentTimeMillis() < Items.getTiempoFinalItem()){ //El item actual es el escudo.
             /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás.
@@ -236,6 +247,6 @@ public class NaveAliada extends Nave
         if(disparo.getWorld() != null)
             return disparo.getCordY();
         else
-            return w.getHeight()+10;//Si no existe, regresar un valor inexistente en el rango del área de juego.
+            return mundo.getHeight()+10;//Si no existe, regresar un valor inexistente en el rango del área de juego.
     }
 }

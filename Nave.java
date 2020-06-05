@@ -9,8 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public abstract class Nave extends Actor
 {
     //Nave n; //Inicializar la nave para después instanciarla, aunque no es necesario porque esta clase no se utilizará
+    protected World mundo;
     protected Disparo disparo; //Porque las naves aliadas y enemigas lo necesitan
     protected MostrarInfo infoPS; //Inicializar la clase MostrarInfo para el cuadro de texto de los PS
+    protected Pantalla pantalla; //Las naves deberán mantenerse dentro de loslímites.
     /*Los PS eran estáticos pero así valían lo mismo y cambiaban con todas las estancias.
      *  Cuando bajaba la salud de una nave enemiga, también bajaba la nuestra.*/
     protected int puntosSalud;//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.
