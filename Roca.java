@@ -100,7 +100,8 @@ public class Roca extends Actor
         if(Choques.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this,
                 (Espacio)getWorld(), 1, Disparo.getDaño(), 5) <= 0){
             numRocasActual--; //Como se destruyó la roca, restarla al total de estas.
-            System.out.println("Rocas ahora: "+ numRocasActual);
+            mundo.addObject(new Explosion(), getX(), getY());
+            //System.out.println("Rocas ahora: "+ numRocasActual);
         }
             //NaveAliada.setPuntos(10);//Aumentar 10 puntos al jugador por destruir una roca.
             //Espacio.numRocasActual-= 1;

@@ -18,6 +18,13 @@ public class Boton extends Actor
         setImage(e.crearCuadroTexto(texto)); //Crear el cuadro de texto y hacerlo como la imagen de aquí.
         //No necesitamos el método crearBoton. Aquí ya se crea con la imagen del texto necesario.
     }
+    public static Actor creaBoton(World mundoActual, String texto, int x, int y, 
+                    Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)
+    {
+        Actor boton = new Boton(texto, tamañoFuente, colorFuente, colorFondo, bordeFuente);
+        mundoActual.addObject(boton, x, y);
+        return boton;
+    }
 
     // //Crear un botón con los paarámetros que recibe. Regresa el botón para poder interactuar con él.
     // public Actor creaBoton(String s, int tamaño, int x, int y)

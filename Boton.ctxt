@@ -3,4 +3,6 @@ comment0.target=Boton
 comment0.text=\r\n\ Clase\ que\ funciona\ para\ crear\ botones\ en\ el\ escenario.\ Estos\ ser\u00E1n\ interactivos\ porque\ son\ actores.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
 comment1.params=texto\ tama\u00F1oFuente\ colorFuente\ colorFondo\ bordeFuente
 comment1.target=Boton(java.lang.String,\ int,\ greenfoot.Color,\ greenfoot.Color,\ greenfoot.Color)
-numComments=2
+comment2.params=mundoActual\ texto\ x\ y\ colorFuente\ colorFondo\ bordeFuente
+comment2.target=greenfoot.Actor\ creaBoton(greenfoot.World,\ java.lang.String,\ int,\ int,\ greenfoot.Color,\ greenfoot.Color,\ greenfoot.Color)
+numComments=3

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=NaveEnemiga
-comment0.text=\r\n\ Clase\ que\ maneja\ a\ las\ naves\ enemigas\ y\ su\ comportamiento.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Viernes,\ 5\ de\ junio\ de\ 2020)\r\n
+comment0.text=\ Character.compare(char\ 'A',\ char\ 'B');\ Esto\ devuelve\ 0\ si\ al\ comparar\ los\ caracteres\ son\ iguales,\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ >0\ si\ el\ 1er\ valor\ es\ mayor\ que\ el\ segundo\r\n<0\ si\ el\ 1er\ valor\ es\ menor\ que\ el\ segundo
 comment1.params=tipoEnemigo\ tipoDisparo
 comment1.target=NaveEnemiga(int,\ int)
 comment2.params=
