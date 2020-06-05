@@ -76,10 +76,7 @@ public class NaveAliada extends Nave
         //public static void manetenerObjetoLimite(World mundoActual, Actor objeto, int x, int y)
         //Pantalla.manetenerObjetoLimite(w, this, getX(), getY());//Mantiene el objeto dentro de los límites.
         //public void mantenerObjetoLimite(int x, int y)
-        if(pantalla.isObjetoLimite(mundo, getX(), getY()))    
-            movimiento(); //Si estamos dentro de los límites, movernos
-        else //Si nos salimos de los límites, regresar a estos.
-            pantalla.regresarObjetoLimite(mundo, getX(), getY());
+        movimientoLimites(mundo, getX(), getY());
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
         if(choqueItem() == 2 && System.currentTimeMillis() < Items.getTiempoFinalItem()){ //El item actual es el escudo.
             /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás.
@@ -108,7 +105,7 @@ public class NaveAliada extends Nave
     }
 
     /*Método que controlará el movimiento de nuestra nave.*/
-    public void movimiento(){
+    protected void movimiento(){
         //Checar que esté dentro de loslímites en x y y para que no se corte la nave. Limitaré con la altura para cuando estamos volteados.
         // if((getX() >= getImage().getHeight()) && (getX() <= (w.getWidth() - getImage().getHeight()))
                 // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){
@@ -234,6 +231,10 @@ public class NaveAliada extends Nave
     public static boolean isDiseñoOriginalActivo(){
         return diseñoOriginalActivo;
     }
+    // public static int getCordX(){
+        // int x = getX();
+        // return x;
+    // }
     /*Método para obtener la Coordenada en X del disparo. Pero para esto hay que verificar que el disparo exista.
         Si el disparo no existe, entonces devolver -1 en x porque no se puede acceder a esa coordenada.*/
     public int getCordXDisparo(){

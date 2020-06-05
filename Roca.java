@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Roca extends Actor
 {
-    World w;
+    private World mundo;
+    private Pantalla pantalla;
     //Estáticas para que todas las rocas tengan los mismos datos del número de estas.
     private static int numRocasMax; //Número máximo de rocas.
     private static int numRocasActual; //Para saber si las rocas actuales son menos que las máximas.
@@ -46,12 +47,13 @@ public class Roca extends Actor
             // image.scale(image.getWidth()/random, image.getHeight()/random);//Reescalar imagen a 2/8 de las medidas originales.
             // setImage(image);//Acomodar ahora sí la imagen modificada
         // }
+       pantalla = new Pantalla(this);
    }
    public void act(){
         // Add your action code here.
-        w = getWorld();
+        mundo = getWorld();
         move(3);//Método que mueve a cierta velocidad el objeto
-        if(getX()>=w.getWidth()-5||getX()<=5 || getY()>=w.getHeight()-5||getY()<=5){
+        if(!pantalla.isObjetoLimite(mundo, getX(), getY())){
             turn(180);
             if(Greenfoot.getRandomNumber(100)<90){
                 turn(Greenfoot.getRandomNumber(90-45));

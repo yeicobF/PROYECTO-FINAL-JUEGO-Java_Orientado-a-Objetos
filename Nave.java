@@ -37,6 +37,15 @@ public abstract class Nave extends Actor
     //Método abstracto de movimiento. Todas las naves lo tendrán pero su implementación será diferente.
     //protected abstract void movimiento();
     /*Clase que cambia la dirección dependiendo del parámetro que reciba. Además aquí mismo se ejecuta el movimiento.*/
+    /*Método abstracto de movimiento, ya que se implementará en las subclases de manera distinta.*/
+    protected abstract void movimiento();
+    /* Método que mantendrá a la nave dentro de los límites*/
+    protected void movimientoLimites(World mundoActual, int x, int y){
+        if(pantalla.isObjetoLimite(mundoActual, getX(), getY()))    
+            movimiento(); //Si estamos dentro de los límites, movernos
+        else //Si nos salimos de los límites, regresar a estos.
+            pantalla.regresarObjetoLimite(mundoActual, getX(), getY());
+    }
     protected void setDireccion(int direccion){
         this.direccion = direccion; //Establecer nuestra direccion
         int aumentaX = 0, aumentaY = 0; //Variables para ver cuánto se mueve dependiendo de la condición.
@@ -156,12 +165,12 @@ public abstract class Nave extends Actor
         aunque creo que no tendría mucho sentido.
     protected int eliminaCuadroPS(MostrarInfo infoPS, String texto, Actor objetoChoque, Actor objetoRaiz,
                                 World mundoActual, int puntosSalud, int daño, int puntosNave)*/
-    public int getCordX(){
-        return getX();
-    }
-    public int getCordY(){
-        return getY();
-    }
+    // public int getCordX(){
+        // return getX();
+    // }
+    // public int getCordY(){
+        // return getY();
+    // }
     // NO NECESITO LOS SETTERS O GETTERS PORQUE LOS DECLARO PROTECTED PARA QUE SÓLO LAS SUBCLASES ACCEDAN
     //Getters Y setters protected para que sólo las subclases puedan acceder
     // protected int getPS(){//Puntos de salud actuales. Al perder todos los puntos de salud se pierde una vida.

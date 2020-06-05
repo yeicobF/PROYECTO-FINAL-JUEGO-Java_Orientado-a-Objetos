@@ -33,7 +33,8 @@ public class Items extends Actor
      * Act - do whatever the Items wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    World w; //Para métodos getHeight, ...
+    private World mundo; //Para métodos getHeight, ...
+    protected Pantalla pantalla;
     private long inicioDisparoMillis = 0;//Variable para comprobar hace cuánto se creó el último item.
     private static long tiempoActividad = 0; /*Variable que definirá el tiempo de vida del item y cuánto lleva activo.
         Tuve que hacerla estática para poder utilizarla con el setTiempoFinalItem.*/
@@ -76,8 +77,11 @@ public class Items extends Actor
         Imagen.modificarEscalaImagen(getImage(), 2, 1);
         //Obtener ancho y alto del item después de modificar su escala.
         //Como volteé la imagen y quedó horizontal, entonces usaremos el getWidth (ancho, pero está volteada), que ahora es el alto.
-        anchoItem = getImage().getHeight(); //Obtener ancho de imagen.
-        altoItem = getImage().getWidth(); //Obtener alto, que como la imagen se volteó, es su ancho.
+        // anchoItem = getImage().getHeight(); //Obtener ancho de imagen.
+        // altoItem = getImage().getWidth(); //Obtener alto, que como la imagen se volteó, es su ancho.
+            /*Ahora mediremos los límites con los métodos de Pantalla.*/
+        //public Pantalla(Actor objeto)
+        pantalla = new Pantalla(this);
     }
     public void act()
     {
@@ -94,9 +98,9 @@ public class Items extends Actor
     }
     /*Método que verá los límites de -y para desaparecer el item.*/
     private void limitesItem(){
-        w = getWorld();
-        //No está sirviendo para limitar lo bajo en y
-        if(getY() >= w.getHeight()-altoItem/2+1){//Si se mueve más abajo de los límites en lo mínimo en y, desaparecer.
+        mundo = getWorld();
+        //public boolean isObjetoLimite(World mundoActual, int x, int y)
+        if(!pantalla.isObjetoLimite(mundo, getX(), getY())){//Si se mueve más abajo de los límites en lo mínimo en y, desaparecer.
             itemActivo = false; //Hacer el item inactivo si llega a los límites
             tiempoFinalItem = System.currentTimeMillis();//Guardar el tiempo final si no se tocó para que no se genere rápidamente.
             tipoItemStatic = 0;
