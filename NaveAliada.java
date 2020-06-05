@@ -23,7 +23,7 @@ public class NaveAliada extends Nave
        Por ejemplo, que no lo esté haciendo una y otra vez cuando se terminó el escudo, sino solo se haga una vez
         porque la bandera va a cambiar una vez cambie.*/
     private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
-    private long inicioDisparoMillis=0;
+    private long inicioDisparoMilis=0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int puntosMenosAlMorir = -10;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
@@ -65,7 +65,9 @@ public class NaveAliada extends Nave
         //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
         w = getWorld();
         existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
-        disparar();
+        /*public static long disparar(World mundoActual, GreenfootImage imagenNave, 
+                        long inicioDisparoMilis, int tipoDisparo, int direccion, int x, int y)*/
+        inicioDisparoMilis = Disparo.disparar(w, getImage(), inicioDisparoMilis, tipoDisparoAliada, direccion, getX(), getY());
         movimiento();
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
         if(choqueItem() == 2 && System.currentTimeMillis() < Items.getTiempoFinalItem()){ //El item actual es el escudo.
@@ -123,23 +125,7 @@ public class NaveAliada extends Nave
                     || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("down")))
                 setDireccion(Direccion.ABAJO_IZQUIERDA);//ABAJO_IZQUIERD
     }
-    /*Método que tendrá el control de los disparos del jugador.*/
-    public void disparar(){
-        /*Condición que revisará que se pulsó la tecla de disparo, pero habrá un delay de 1250 milisegundos
-            para no estar disparando todo el tiempo. Esto midiendo la hora del disparo y restando a la hora actual
-            en milisegundos.*/
-            /*Ahora guardaremos nuestra dirección para que sea la que siga el disparo*/
-            /*Por ahora, Martes, 5 de mayo de 2020, no se pudo hacer lo de la dirección del disparo,
-                pero ahí quedará la variable para cuando lo implementemos nos puede ser útil.*/
-        if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMillis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
-            inicioDisparoMillis = System.currentTimeMillis();
-            disparo = new Disparo(tipoDisparoAliada, direccion);//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
-            //Tomar la imagen de la nave para tomarla en cuenta en la salida del disparo
-            GreenfootImage image = getImage();
-            //Aparecer el objeto en las coordenadas actuales, pero un poco a la derecha para no empalmar la nave.
-            w.addObject(disparo, getX()+getImage().getWidth()/2, getY());
-        }
-    }
+    
     /*Método que determinará si chocamos con un item y le dará su habilidad o efecto a la nave.
         Regresará el tipo del item que servirá para condicionar los métodos que se ejectutan en act().
             Por ejemplo con el escudo, no se bajará la salud de la nave.*/

@@ -49,6 +49,59 @@ public class Disparo extends Actor
         move(velocidadDisparo);
         limitePantalla();
     }
+    /*Método que tendrá el control de los disparos del jugador.*/
+    public static long disparar(World mundoActual, GreenfootImage imagenNave, 
+                        long inicioDisparoMilis, int tipoDisparo, int direccion, int x, int y){
+        /*Condición que revisará que se pulsó la tecla de disparo, pero habrá un delay de 1250 milisegundos
+            para no estar disparando todo el tiempo. Esto midiendo la hora del disparo y restando a la hora actual
+            en milisegundos.*/
+            /*Ahora guardaremos nuestra dirección para que sea la que siga el disparo*/
+            /*Por ahora, Martes, 5 de mayo de 2020, no se pudo hacer lo de la dirección del disparo,
+                pero ahí quedará la variable para cuando lo implementemos nos puede ser útil.*/
+        if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMilis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
+            inicioDisparoMilis = System.currentTimeMillis();
+            //disparo = new Disparo(tipoDisparoAliada, direccion);//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
+            //Tomar la imagen de la nave para tomarla en cuenta en la salida del disparo
+            // GreenfootImage image = getImage();
+            //Aparecer el objeto en las coordenadas actuales, pero un poco a la derecha para no empalmar la nave.
+            //private void agregarDisparo(World mundoActual, GreenfootImage imagenNave, int tipoDisparo, int direccion, int x, int y)
+            agregarDisparo(mundoActual, imagenNave, tipoDisparo, direccion, x, y);
+        }
+        return inicioDisparoMilis;
+    }
+    /* Método que agregará el disparo en el frente de la nave, para esto deberá tomar la dirección.*/
+    private static void agregarDisparo(World mundoActual, GreenfootImage imagenNave, int tipoDisparo, int direccion, int x, int y){
+        switch(direccion){
+            case Direccion.DERECHA:
+                x += imagenNave.getWidth()/2;  //Mitad de la nave más la otra mitad.
+                break;
+            // case Direccion.ABAJO_DERECHA:
+                // x += imagenNave.getWidth()/2;
+                // y += imagenNave.getHeight()/2;
+                // break;
+            case Direccion.ABAJO:
+                y += imagenNave.getHeight()/2;
+                break;
+            // case Direccion.ABAJO_IZQUIERDA:
+                // x -= imagenNave.getWidth()/2;
+                // y += imagenNave.getHeight()/2;
+                // break;
+            case Direccion.IZQUIERDA:
+                x -= imagenNave.getWidth()/2;  //Mitad de la nave más la otra mitad.
+                break;
+            // case Direccion.ARRIBA_IZQUIERDA:
+                // x -= imagenNave.getWidth()/2;
+                // y -= imagenNave.getHeight()/2;
+            case Direccion.ARRIBA:
+                y -= imagenNave.getHeight()/2;
+                break;
+            // case Direccion.ARRIBA_DERECHA:
+                // x += imagenNave.getWidth()/2;
+                // y -= imagenNave.getHeight()/2;
+            default: break; //Que los disparos en diagonal sagan del centro de la nave mejor.
+        }
+        mundoActual.addObject(new Disparo(tipoDisparo, direccion), x, y);
+    }
     /*Método que desaparece a los objetos con los que impacta el disparo y a sí mismo.*/
     private void eliminarObjetosImpacto(){ //Por ahora Lunes, 11 de mayo me crasheaba, así que mejor lo implementaré en las otras clases.
         //public boolean eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual
@@ -67,8 +120,8 @@ public class Disparo extends Actor
     // }
     /*Método que revisa si el disparo está dentro de los límites de la pantalla.*/
     private void limitePantalla(){
-        if(getX() >= w.getWidth()-1 || getX() <= 0 //Límites en X
-            || getY() <= (-w.getHeight())+1 || getY() >= w.getHeight()-1)//Límites en Y. Cuando y = 0 se encuentra en el centro de la pantalla.
+        if(getX() >= w.getWidth()-1 || getX() <= 1 //Límites en X
+            || getY() <= 1 || getY() >= w.getHeight()-1)//Límites en Y. Cuando y = 0 se encuentra en el centro de la pantalla.
             getWorld().removeObject(this); //Así se elimina el disparo de pantalla
     }
     public int getCordX(){
