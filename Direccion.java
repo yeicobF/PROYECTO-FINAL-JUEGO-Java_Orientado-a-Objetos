@@ -6,24 +6,27 @@
  */
 public abstract class Direccion
 {
+    /* - Acomodé los valores conforme a la rotación del círculo en los ángulos.
+       Los ángulos recorren el círculo por debajo primero.*/
     //Constantes de las direcciones.
-    public static final int ARRIBA = 0;
-    public static final int ABAJO = 1;
-    public static final int IZQUIERDA = 2;
-    public static final int DERECHA = 3;
-    public static final int ARRIBA_DERECHA =4;
+    public static final int DERECHA = 0;
+    public static final int ABAJO_DERECHA = 1;
+    public static final int ABAJO = 2;
+    public static final int ABAJO_IZQUIERDA = 3;
+    public static final int IZQUIERDA = 4;
     public static final int ARRIBA_IZQUIERDA = 5;
-    public static final int ABAJO_IZQUIERDA = 6;
-    public static final int ABAJO_DERECHA = 7;
+    public static final int ARRIBA = 6;
+    public static final int ARRIBA_DERECHA =7;
     //ÁNGULOS
-    public static final int ANGULO_ARRIBA = 0;
-    public static final int ANGULO_ABAJO = 180;
-    public static final int ANGULO_IZQUIERDA = 270;
-    public static final int ANGULO_DERECHA = 90;
-    public static final int ANGULO_ARRIBA_DERECHA = 45;
-    public static final int ANGULO_ARRIBA_IZQUIERDA = 315;
-    public static final int ANGULO_ABAJO_IZQUIERDA = 225;
-    public static final int ANGULO_ABAJO_DERECHA = 135;
+    public static final int ANGULO_DERECHA = 0;
+    public static final int ANGULO_ABAJO_DERECHA = 45;
+    public static final int ANGULO_ABAJO = 90;
+    public static final int ANGULO_ABAJO_IZQUIERDA = 135;
+    public static final int ANGULO_IZQUIERDA = 180;
+    public static final int ANGULO_ARRIBA_IZQUIERDA = 225;
+    public static final int ANGULO_ARRIBA = 270;
+    public static final int ANGULO_ARRIBA_DERECHA = 315;
+    
     //Para devolver en el método
     private static int angulo;
 

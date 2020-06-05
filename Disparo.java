@@ -15,6 +15,7 @@ public class Disparo extends Actor
      *  si se instancia nada más en las naves, pero no es necesario que herede de Nave.
      */
     World w;
+    private boolean seAsignoDireccion;
     private int direccion; //Creo que no son necesarias las coordenadas por el getX() y getY()
     /* - EQUIVALENTES DE LAS DIRECCIONES - Sacadas de la clase Nave, por lo que se podrá hacer una generalización,
                                                 pero hay que ver cómo.*/
@@ -29,6 +30,7 @@ public class Disparo extends Actor
         // this.cordX=cordX; //Antes Comentados por la herencia que intenté con nave
         // this.cordY=cordY;
         this.direccion = direccion;//Para guardar la direccion del disparo. - Por ahora no se pudo hacer, pero lo comentaré.
+        seAsignoDireccion = false;
         if(tipoDisparo == 0){//El disparo normal
             daño = 25; //daño inicial (que es bajo).
             velocidadDisparo = 5;
@@ -37,11 +39,14 @@ public class Disparo extends Actor
             image.scale(image.getWidth()/4, image.getHeight()/4);//Reescalar imagen a 1/5 de las medidas originales.
             setImage(image);//Acomodar ahora sí la imagen modificada
         }
-        System.out.println("- Direccion: "+ direccion);
+        //Método que devuelve el ángulo dependiendo de nuestra direccion.
+        turn(Direccion.getAnguloDireccion(direccion));
+        System.out.println("- ANGULO: "+ Direccion.getAnguloDireccion(direccion));
+        //System.out.println("- Direccion: "+ direccion);
     }
     public void act(){
         w = getWorld();
-        movimiento();
+        move(velocidadDisparo);
         limitePantalla();
     }
     /*Método que desaparece a los objetos con los que impacta el disparo y a sí mismo.*/
@@ -51,12 +56,15 @@ public class Disparo extends Actor
         // m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld());
         // m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld());
     }
-    private void movimiento(){
-      //Método que devuelve el ángulo dependiendo de nuestra direccion.
-      System.out.println("- ANGULO: "+ Direccion.getAnguloDireccion(direccion));
-      turn(Direccion.getAnguloDireccion(direccion));
-      move(velocidadDisparo);
-    }
+    // private void movimiento(){
+      // //Método que devuelve el ángulo dependiendo de nuestra direccion.
+      // //System.out.println("- ANGULO: "+ Direccion.getAnguloDireccion(direccion));
+      // // if(!seAsignoDireccion){ //Si aún no se asigna dirección, hay que hacerlo y voltear la nave.
+        // // turn(Direccion.getAnguloDireccion(direccion - 90));
+        // // seAsignoDireccion = true;
+    // // }
+      // move(velocidadDisparo);
+    // }
     /*Método que revisa si el disparo está dentro de los límites de la pantalla.*/
     private void limitePantalla(){
         if(getX() >= w.getWidth()-1 || getX() <= 0 //Límites en X

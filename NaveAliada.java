@@ -63,6 +63,7 @@ public class NaveAliada extends Nave
     public void act()
     {
         //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
+        w = getWorld();
         existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
         disparar();
         movimiento();
@@ -95,7 +96,6 @@ public class NaveAliada extends Nave
 
     /*Método que controlará el movimiento de nuestra nave.*/
     public void movimiento(){
-        w = getWorld();
         //Checar que esté dentro de loslímites en x y y para que no se corte la nave. Limitaré con la altura para cuando estamos volteados.
         // if((getX() >= getImage().getHeight()) && (getX() <= (w.getWidth() - getImage().getHeight()))
                 // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){
@@ -133,7 +133,6 @@ public class NaveAliada extends Nave
                 pero ahí quedará la variable para cuando lo implementemos nos puede ser útil.*/
         if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMillis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
             inicioDisparoMillis = System.currentTimeMillis();
-            w = getWorld(); //Para agregar el objeto
             disparo = new Disparo(tipoDisparoAliada, direccion);//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
             //Tomar la imagen de la nave para tomarla en cuenta en la salida del disparo
             GreenfootImage image = getImage();
