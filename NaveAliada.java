@@ -23,6 +23,7 @@ public class NaveAliada extends Nave
        Por ejemplo, que no lo esté haciendo una y otra vez cuando se terminó el escudo, sino solo se haga una vez
         porque la bandera va a cambiar una vez cambie.*/
     private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
+    private static int x, y; //Para obtener las coordenadas desde las naves enemigas.
     private long inicioDisparoMilis=0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int puntosMenosAlMorir = -10;
@@ -69,6 +70,9 @@ public class NaveAliada extends Nave
     {
         //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
         mundo = getWorld();
+        //Tomar las coordenadas para dárselas a las naves enemigas.
+        x = getX();
+        y = getY();
         existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
         /*public static long disparar(World mundoActual, GreenfootImage imagenNave, 
                         long inicioDisparoMilis, int tipoDisparo, int direccion, int x, int y)*/
@@ -133,7 +137,80 @@ public class NaveAliada extends Nave
                     || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("down")))
                 setDireccion(Direccion.ABAJO_IZQUIERDA);//ABAJO_IZQUIERD
     }
-    
+    protected void setDireccion(int direccion){
+        this.direccion = direccion; //Establecer nuestra direccion
+        int aumentaX = 0, aumentaY = 0; //Variables para ver cuánto se mueve dependiendo de la condición.
+        int[] aumenta = {aumentaX, aumentaY};//Arreglo que guardará los valores a aumentar. Sirve para el presionaShift.
+        switch(direccion){
+            case Direccion.ARRIBA:
+                anguloGiro = Direccion.ANGULO_ARRIBA;
+                aumentaY = -4;
+                break;
+            case Direccion.ABAJO:
+                anguloGiro = Direccion.ANGULO_ABAJO;
+                aumentaY = 4;
+                break;
+            case Direccion.IZQUIERDA:
+                anguloGiro = Direccion.ANGULO_IZQUIERDA;
+                aumentaX = -4;
+                break;
+            case Direccion.DERECHA:
+                anguloGiro = Direccion.ANGULO_DERECHA;
+                aumentaX = 4;
+                break;
+            /*A las diagonales no aumentarles valor, porque como ya actúan con la velocidad
+               de la combinación de los botones, al aumentar valor irá más rápida.
+               - Solo darles la dirección del ángulo para el disparo.*/
+            case Direccion.ARRIBA_DERECHA:
+                anguloGiro = Direccion.ANGULO_ARRIBA_DERECHA;
+                break;
+            case Direccion.ARRIBA_IZQUIERDA:
+                anguloGiro = Direccion.ANGULO_ARRIBA_IZQUIERDA;
+                break;
+            case Direccion.ABAJO_IZQUIERDA:
+                anguloGiro = Direccion.ANGULO_ABAJO_IZQUIERDA;
+                break;
+            case Direccion.ABAJO_DERECHA:
+                anguloGiro = Direccion.ANGULO_ABAJO_DERECHA;
+            break;
+        }
+        setRotation(anguloGiro);
+        //Asignar los valores al arreglo
+        aumenta[0] = aumentaX;
+        aumenta[1] = aumentaY;
+        //private void presionoShift(int[] aumenta){
+        presionoShift(aumenta);
+
+        //Verificar en dónde se modificaron los valores para aumentarlos
+        setLocation(getX() + aumenta[0], getY() + aumenta[1]);
+    }
+    /*Método que va a verificar si se presionó shift y además cambiará los valores
+      para que se vea con más velcidad en pantalla*/
+    private void presionoShift(int[] aumenta){ //Como es un arreglo, los valores se modifican
+      //aumenta[0] <- aumentaX; aumenta[1] = aumentaY;
+      // + 1 si es en diagonal, +2 si es recto
+      /* - NO AUMENTAR EL VALOR A LAS DIAGONALES PORQUE IRÁN MÁS RÁPIDO, YA QUE DE BASE ACTÚAN CON LAS
+            VELOCIDADES DE LAS TECLAS COMBINADAS.*/
+      if(Greenfoot.isKeyDown("shift"))
+        //En esta condición no puede haber un valor con 0
+          //LÍNEAS RECTAS (ARRIBA, ABAJO, IZQUIERDA, DERECHA) Aumentan de 2 en 2
+        //X y Y no pueden ser diferentes a 0 al mismo tiempo
+        /*En las diagonales va más rápido, habría que asignarles 1 en lugar de 2, pero por ahora así está bien.*/
+        switch(direccion){
+            case Direccion.ARRIBA:
+                aumenta[1] -= 2;
+                break;
+            case Direccion.ABAJO:
+                aumenta[1] += 2;
+                break;
+            case Direccion.IZQUIERDA:
+                aumenta[0] -= 2;
+                break;
+            case Direccion.DERECHA:
+                aumenta[0] += 2;
+                break;
+        }
+    }
     /*Método que determinará si chocamos con un item y le dará su habilidad o efecto a la nave.
         Regresará el tipo del item que servirá para condicionar los métodos que se ejectutan en act().
             Por ejemplo con el escudo, no se bajará la salud de la nave.*/
@@ -192,6 +269,13 @@ public class NaveAliada extends Nave
             /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/
     }
 
+    /*Getters estáticos de coordenadas para NaveEnemiga.*/
+    public static int getCordX(){
+        return x;
+    }
+    public static int getCordY(){
+        return y;
+    }
     //Getter y setter para el diseño de la nave. El setter para la selección de nave.
     public static int getDiseñoNaveAliada(){
         return diseñoNaveAliada;
