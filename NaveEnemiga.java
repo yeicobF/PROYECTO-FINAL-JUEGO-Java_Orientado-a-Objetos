@@ -6,12 +6,9 @@ import java.util.ArrayList;
 * Clase que maneja a las naves enemigas y su comportamiento.
 *
 * @author (Team Naves)
-* @version (Viernes, 29 de mayo de 2020)
+* @version (Viernes, 5 de junio de 2020)
 */
 
-/* Character.compare(char 'A', char 'B'); Esto devuelve 0 si al comparar los caracteres son iguales,
-                                 >0 si el 1er valor es mayor que el segundo
-                                 <0 si el 1er valor es menor que el segundo*/
 public class NaveEnemiga extends Nave
 {
     /**
@@ -46,7 +43,7 @@ public class NaveEnemiga extends Nave
         //NO SE PUEDE AGREGAR OBJETO EN EL CONSTRUCTOR
         // getWorld().addObject(infoPS, getX(), getY()-getImage().getHeight()/2);
         setImage("Naves/Enemigas/NaveE"+ tipoEnemigo+ ".png");
-        setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
+        setImage(Imagen.modificarEscalaImagen(getImage(), 6, 4));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
         anchoImagen = getImage().getWidth();
         altoImagen = getImage().getHeight();
         if(tipoEnemigo == 1){//BOSS == "0"
@@ -91,7 +88,7 @@ public class NaveEnemiga extends Nave
     protected void movimiento(){
         //Si el objeto alcanza los límites en x o y, se dará la vuelta. Las limitaremos a la mitad de la pantalla.
         limiteChoqueNavesEnemigas();
-        limiteChoqueNaveAliada(200);
+        limiteChoqueNaveAliada(500);
         move(2);//Método que mueve a cierta velocidad el objeto
         turnTowards(NaveAliada.getCordX(), NaveAliada.getCordY());
         
@@ -116,13 +113,13 @@ public class NaveEnemiga extends Nave
     }
     /*Método que pondrá un límite para no chocar con la nave aliada (nosotros).*/
     private void limiteChoqueNaveAliada(int distanciaAlejamiento){
-        if(getX() + anchoImagen >= NaveAliada.getCordX() - NaveAliada.getAnchoImagen()/2 - distanciaAlejamiento) //Ver que no sobrepase por la izquierda.
+        if(getX() + anchoImagen/2 >= NaveAliada.getCordX() - NaveAliada.getAnchoImagen()/2 - distanciaAlejamiento) //Ver que no sobrepase por la izquierda.
             setLocation(getX()-200, getY());
-        if(getX() - anchoImagen <= NaveAliada.getCordX() + NaveAliada.getAnchoImagen()/2 + distanciaAlejamiento) //Ver que no sobrepase por la derecha.
+        if(getX() - anchoImagen/2 <= NaveAliada.getCordX() + NaveAliada.getAnchoImagen()/2 + distanciaAlejamiento) //Ver que no sobrepase por la derecha.
             setLocation(getX()+200, getY());
-        if(getY() + altoImagen >= NaveAliada.getCordY() - NaveAliada.getAltoImagen()/2 - distanciaAlejamiento)//Ver que no sobrepase por encima.
+        if(getY() + altoImagen/2 >= NaveAliada.getCordY() - NaveAliada.getAltoImagen()/2 - distanciaAlejamiento)//Ver que no sobrepase por encima.
             setLocation(getX(), getY()-200);
-        if(getY() - altoImagen <= NaveAliada.getCordY() + NaveAliada.getAltoImagen()/2 + distanciaAlejamiento)//Ver que no sobrepase por debajo.
+        if(getY() - altoImagen/2 - distanciaAlejamiento <= NaveAliada.getCordY() + NaveAliada.getAltoImagen()/2)//Ver que no sobrepase por debajo.
             setLocation(getX(), getY()+200);
     }
     //Métodos que regresan el tamaño de la imagen de la nave.

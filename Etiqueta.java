@@ -19,12 +19,20 @@ public class Etiqueta extends Actor
         this.bordeFuente = bordeFuente;
     }
     //Crear un cuadro de texto con la misma etiqueta ya inicializada.
+    // public void crearCuadroTexto(World mundoActual, String s){
+        // crearCuadroTexto("hola");
+        // mundoActual.addObject(this, mundoActual.getWidth()/2 - getImage().getWidth()/2,mundoActual.getHeight()/2+getImage().getHeight()/2);
+    // }
     /*Aquí se crea la imagen con el texto deseado y se regresa esta, de esta manera el objeto la recibe y al 
        agregar el objeto en el escenario, se pondrá la imagen con las coordenadas deseadas.*/
     public GreenfootImage crearCuadroTexto(String s){//, int x, int y){
         mensaje = new GreenfootImage(s, tamañoFuente, colorFuente, colorFondo, bordeFuente);
         setImage(mensaje);
+        System.out.println("MENSAJE ETIQUETA: "+ s);
         //w.addObject(etiqueta, x, y);
         return getImage();
+    }
+    public int getTamañoFuente(){
+        return tamañoFuente;
     }
 }
