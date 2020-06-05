@@ -73,18 +73,17 @@ public class Items extends Actor
                 break;
             case 3: //SUBIR PS
                 setImage("Items/Item3SubirPS.png");
+                setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));
                 tiempoActividad = 0;
                 break;
             case 4: //Cambiar el tipo del disparo. Hará más daño.
-                tiempoActividad = 7500;
+                tiempoActividad = 10000;
                 //El constructor ya aumenta el daño
                 //Disparo.setDaño(Disparo.getDaño()*2); //Que haga el doble de daño.
                 setImage("Items/Item4CambiarDisparo.png");
                 break;
             case 5: //NUCLEAR. Destruirá todo lo que hay en el mapa.
                 tiempoActividad = 0;
-                getWorld().removeObjects(getWorld().getObjects(Roca.class));
-                getWorld().removeObjects(getWorld().getObjects(NaveEnemiga.class));
                 setImage("Items/Item5Nuclear.png");
         }
         //public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divisor, int multiplicacion)

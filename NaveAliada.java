@@ -35,6 +35,7 @@ public class NaveAliada extends Nave
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
     private static int diseñoNaveAliada;  //Para la creación del nivel será necesario.
     private static int tipoDisparoAliada;
+    private int tipoDisparoInicial;
     private static int anchoImagen;
     private static int altoImagen;
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
@@ -86,20 +87,8 @@ public class NaveAliada extends Nave
         //public void mantenerObjetoLimite(int x, int y)
         movimientoLimites(mundo, getX(), getY());
         //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
-        if(choqueItem() == 2 && System.currentTimeMillis() < Items.getTiempoFinalItem()){ //El item actual es el escudo.
-            /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás.
-             *  O tal vez que simplemente no pase nada al chocar con algo más.*/
-            morirChoque(0); //Mejor que no le pase nada al chocar con los objetos. Aunque necesito checarlo.
-        }
-        else
-            if(!diseñoOriginalActivo){ //El item no es el 2 o excedió el tiempo
-                setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada +".png"); //Reestablecer el diseño original al terminar el efecto.
-                setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
-                diseñoOriginalActivo = true;
-                Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
-                // Mandar el tiempo en el que se terminó el item
-                // Items.setTiempoFinalItem(System.currentTimeMillis());
-            }
+        efectosItem();
+            
         // /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
         // Ya implementé esto en un método
         morirChoque(puntosSalud);//Método que reinicia el juego si perdiste una vida
@@ -247,14 +236,47 @@ public class NaveAliada extends Nave
                             puntosSalud = puntosSaludIniciales; //Poner los máximos
                         break;
                     case 4: //Cambiar el tipo de disparo.
+                        int auxiliarTipo;
                         Items.setTiempoFinalItem(System.currentTimeMillis());
-
+                        tipoDisparoInicial = tipoDisparoAliada;
+                        while((auxiliarTipo = Aleatorio.getNumeroAleatorio(1, 3)) == tipoDisparoInicial){}//Que el tipo sea diferente.
+                        tipoDisparoAliada = auxiliarTipo;
+                        break;
+                    case 5:
+                        Items.setTiempoFinalItem(System.currentTimeMillis());
+                        mundo.removeObjects(getWorld().getObjects(Roca.class));
+                        mundo.removeObjects(getWorld().getObjects(NaveEnemiga.class));
+                        mundo.removeObjects(getWorld().getObjects(MostrarInfo.class)); //Se borraría el nuestro también.
+                        //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
+                        Etiqueta e = new Etiqueta(50, Color.WHITE, Color.RED, Color.YELLOW);
+                        e.crearCuadroTexto(" HAS DESTRUIDO A TODO SER VIVO ");
+                        mundo.addObject(e, mundo.getWidth()/2 + e.getImage().getWidth()/2, mundo.getHeight()/2 - e.getImage().getHeight()/2);
                         break;
                 }
         }
         return Items.getTipoItem(); //No hay item si regresa 0.
     }
-
+    /* Clase que controlará los efectos de los items.*/
+    private void efectosItem(){
+        if(choqueItem() == 2 && System.currentTimeMillis() < Items.getTiempoFinalItem()){ //El item actual es el escudo.
+            /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás.
+             *  O tal vez que simplemente no pase nada al chocar con algo más.*/
+            morirChoque(0); //Mejor que no le pase nada al chocar con los objetos. Aunque necesito checarlo.
+        }
+        else
+            if(!diseñoOriginalActivo){ //El item no es el 2 o excedió el tiempo
+                setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada +".png"); //Reestablecer el diseño original al terminar el efecto.
+                setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
+                diseñoOriginalActivo = true;
+                Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
+                // Mandar el tiempo en el que se terminó el item
+                // Items.setTiempoFinalItem(System.currentTimeMillis());
+            }
+        if(choqueItem() == 4 && System.currentTimeMillis() >= Items.getTiempoFinalItem()){ //Se acabó el efecto del disparo.
+            tipoDisparoAliada = tipoDisparoInicial;
+            Items.setItemActivoFalso();
+        }
+    }
     /*Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
     /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
     private void morirChoque(int daño){ //Aquí tomamos en cuenta que se hayan perdido todos los PS

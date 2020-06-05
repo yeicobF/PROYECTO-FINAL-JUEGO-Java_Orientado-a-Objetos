@@ -54,7 +54,7 @@ public abstract class Niveles extends World
         switch(numNivel){
             case 1: //Nivel 1
                 nivelActual = numNivel; //Indicar el nivel actual.
-                tiempoDuracionJuego = 40000;
+                tiempoDuracionJuego = 60000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public Roca(int numRocasMax, int tiempoRegeneracion)
@@ -98,14 +98,15 @@ public abstract class Niveles extends World
             //Recordar que y = 0 está en el centro de la pantalla
             /*No están funcionando los límites. (CREO QUE YA, estaba considerando que y iba de -MinY hasta MaxY, pero
              *      "y" es 0 hasta arriba del escenario y getHeight hasta abajo.)*/
-            y = Aleatorio.getNumeroAleatorio(Items.getAltoItem(), super.getHeight()-Items.getAltoItem()/2);
+            y = Aleatorio.getNumeroAleatorio(Items.getAltoItem(), super.getHeight()/2-Items.getAltoItem()/2);
             //System.out.println("x: "+ x+ "y: "+ y);
             if(NaveAliada.getVidasJugador() == 5)//Generará todos los items menos el corazón, ya que tiene el máximo de vidas.
                 tipoItem = Aleatorio.getNumeroAleatorio(2, 5);
             else
-                if(nave.getPuntosSalud() >= nave.getPuntosSaludIniciales())
-                    while((aleatorio = Aleatorio.getNumeroAleatorio(1, 5)) == 3)//Mientras se cree el de PS seguir ciclando
-                        tipoItem = aleatorio; //Ya no salió el 3
+                if(nave.getPuntosSalud() >= nave.getPuntosSaludIniciales()){
+                    while((aleatorio = Aleatorio.getNumeroAleatorio(1, 5)) == 3){}//Mientras se cree el de PS seguir ciclando
+                    tipoItem = aleatorio; //Salió del ciclo. Ya no salió el 3.
+                }
                 else
                     tipoItem = Aleatorio.getNumeroAleatorio(1, 5);//Elegirá de manera random el item que se creará.
             if(System.currentTimeMillis() - tiempoInicialMilis >= 5000){//Cada que pase 1 minuto, aumentará la velocidad del item.
