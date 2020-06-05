@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math; //La utilizaremos para sacar el ángulo con la nave aliada.
+import java.util.ArrayList;
 
 /**
 * Clase que maneja a las naves enemigas y su comportamiento.
@@ -19,15 +20,24 @@ public class NaveEnemiga extends Nave
     */
     //La vida siempre será 100 por el constructor de la superclase
     /*Este constructor dará vida y tipo de disparo (aún no implementado) dependiendo del tipo de enemigo sea*/
+    /*ArrayList estático con las naves enemigas para ver que no choquen y así.*/
+    private static ArrayList<NaveEnemiga> navesAL; //Estático para que sea igual para todas las instancias.
+    private boolean arrayListCreado = false;
     private int random;//Quisiera que las naves enemigas apuntaran hacia nosotros y si no al menos que apuntaran hacia la izquierda.
     private int puntosPorDisparo; //Variable que define cuántos puntos obtendremos cuando se dispare a la nave.
+    private int anchoImagen;
+    private int altoImagen;
     //private int anguloApuntado;
     // private static int puntosSalud;
     //Ya existe un atributo protegido de Nave "existeMostrarInfo"
     //private boolean muestraPS; //Para ver que se haya creado MostrarInfo, ya que no se puede crear al instanciar.
     public NaveEnemiga(int tipoEnemigo, int tipoDisparo){//Tal vez haga falta un MINIBOSS
         super(tipoDisparo, tipoEnemigo);//public Nave(int tipoDisparo, int diseño)
-        System.out.println("Se creo un enemigo");
+        if(!arrayListCreado){ //Crear ArrayList si no se ha creado
+             navesAL = new ArrayList<NaveEnemiga>();
+             arrayListCreado = true;
+        }
+        //System.out.println("Se creo un enemigo");
         infoPS = new MostrarInfo(puntosSalud, 0, 20, Color.BLACK, Color.YELLOW, null);
         // muestraPS = false; //Ya existe un atributo protegido de Nave "existeMostrarInfo"
         //Instanciar mostrarInfo para mostrar los PS de la nave enemiga encima de estas.
@@ -37,6 +47,8 @@ public class NaveEnemiga extends Nave
         // getWorld().addObject(infoPS, getX(), getY()-getImage().getHeight()/2);
         setImage("Naves/Enemigas/NaveE"+ tipoEnemigo+ ".png");
         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
+        anchoImagen = getImage().getWidth();
+        altoImagen = getImage().getHeight();
         if(tipoEnemigo == 1){//BOSS == "0"
             puntosSalud+= 100;//Que las naves de BOSSES tengan más vida
             puntosPorDisparo = 50;
@@ -50,6 +62,7 @@ public class NaveEnemiga extends Nave
         anguloGiro = 0;
         //setRotation(270);
         pantalla = new Pantalla(this);
+        navesAL.add(this);//Agregar el objeto al arrayList una vez creado.
     }
     public void act() //Este código lo reutilicé de la clase Roca, por lo que lo podría poner en una clase más general
        {   /*Aquí con un random se verá la dirección en la que se moverá la nave.
@@ -77,52 +90,47 @@ public class NaveEnemiga extends Nave
     }
     protected void movimiento(){
         //Si el objeto alcanza los límites en x o y, se dará la vuelta. Las limitaremos a la mitad de la pantalla.
-        move(1);//Método que mueve a cierta velocidad el objeto
-        setDireccion(1);
-        // if(getX()>=mundo.getWidth()-5 || getX()<=mundo.getWidth()/2 || getY()>=mundo.getHeight()-5||getY()<=5){
-            // turn(180);
-            // if(getX()<=mundo.getWidth()/2)
-                // getImage().mirrorHorizontally();
-            // random = Greenfoot.getRandomNumber(100);
-            // if(random < 90){//Cambia el ángulo del cómo se ven los sprites.
-                // random = Greenfoot.getRandomNumber(90-45);
-                // turn(random);
-            // }
-            // //setRotation(270);//Quiero que se mueva para todos lados pero siempre volteando a ver nuestra nave.
-        // }
-    }
-    //protected void setDireccion(int direccion)
-    /* Método que apuntará las naves enemigas hacia donde estamos nosotros.
-        Se definió abstracto en la clase Nave*/
-    protected void setDireccion(int direccion){
-        this.direccion = direccion; //Se generará random.
-        int catetoAdyacente = NaveAliada.getCordX() - getX();
-        int catetoOpuesto = NaveAliada.getCordY() - getY();
-        double anguloAuxiliar;
-        int anguloAnterior = 0; //Ya que el turn se va acumulando todo el valor dado. Esto para restarlo y volver a la posición original.
-        /*Para sacar el ángulo entre las naves enemigas y la aliada hay que utilizar funciones trigonométricas.
-           Recordemos que: tan(angulo) = co/ca
-            -> Entonces: angulo = tanInversa(co/ca)
-            Para esto tomaremos de referencia {x, y} de la nave enemiga y la aliada.
-            La nave enemiga será el centro de la circunferencia, entonces habrá que tomar en cuenta el cuadrante
-                para determinar el ángulo:
-                    - ABAJO_DERECHA (0-90 grados): angulo = angulo
-                    - ABAJO_IZQUIERDA (90-180 grados): 180 - angulo
-                    - ARRIBA_IZQUIERDA (180-270 grados): 180 + angulo
-                    - ARRIBA_DERECHA (270-360): 360-angulo
-                Esto tomando siempre x como el cateto adyacente.
-            Fuente del método: https://stackoverflow.com/questions/3449826/how-do-i-find-the-inverse-tangent-of-a-line*/
-        //Devuelve ángulo negativo si yAliada < yEnemiga y positiva y yAliada >= yEnemiga    
-        anguloAuxiliar = Math.toDegrees(Math.atan2(catetoOpuesto, catetoAdyacente));
-        System.out.println("- ANGULO DOUBLE: "+ anguloAuxiliar);
-        anguloGiro = (int)anguloAuxiliar;
-        System.out.println("- ANGULO INT: "+ anguloGiro);
-        if(NaveAliada.getCordY() > getY())
-            anguloGiro += 360;
-        turn(anguloAnterior-anguloGiro);
+        limiteChoqueNavesEnemigas();
+        limiteChoqueNaveAliada(200);
+        move(2);//Método que mueve a cierta velocidad el objeto
+        turnTowards(NaveAliada.getCordX(), NaveAliada.getCordY());
         
-        //turn(0); //El turn es acumulativo.
-        anguloAnterior = anguloGiro;
+        //setLocation(getX()+1, getY()+1);
+    }
+    /*Método que marcará un límite entre las mismas naves enemigas y 
+       nuestra nave para que no choquen.*/
+    private void limiteChoqueNavesEnemigas(){
+        //Recorrer las demás naves para ver que no choque
+        for(NaveEnemiga nave : navesAL){
+            //(System.out.println("Entro al ciclo");
+            if((getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)) //Ver que no sobrepase por la izquierda.
+                //System.out.println("(getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)");    
+                setLocation(getX()-100, getY());
+            if((getX() - anchoImagen/2) <= (nave.getX() + nave.getAnchoImagen()/2)) //Ver que no sobrepase por la derecha.
+                setLocation(getX()+100, getY());
+            if((getY() + altoImagen/2) >= (nave.getY() - nave.getAltoImagen()/2))//Ver que no sobrepase por encima.
+                setLocation(getX(), getY()-100);
+            if((getY() - altoImagen/2) <= (nave.getY() + nave.getAltoImagen()/2))//Ver que no sobrepase por debajo.
+                setLocation(getX(), getY()+100);
+        }
+    }
+    /*Método que pondrá un límite para no chocar con la nave aliada (nosotros).*/
+    private void limiteChoqueNaveAliada(int distanciaAlejamiento){
+        if(getX() + anchoImagen >= NaveAliada.getCordX() - NaveAliada.getAnchoImagen()/2 - distanciaAlejamiento) //Ver que no sobrepase por la izquierda.
+            setLocation(getX()-200, getY());
+        if(getX() - anchoImagen <= NaveAliada.getCordX() + NaveAliada.getAnchoImagen()/2 + distanciaAlejamiento) //Ver que no sobrepase por la derecha.
+            setLocation(getX()+200, getY());
+        if(getY() + altoImagen >= NaveAliada.getCordY() - NaveAliada.getAltoImagen()/2 - distanciaAlejamiento)//Ver que no sobrepase por encima.
+            setLocation(getX(), getY()-200);
+        if(getY() - altoImagen <= NaveAliada.getCordY() + NaveAliada.getAltoImagen()/2 + distanciaAlejamiento)//Ver que no sobrepase por debajo.
+            setLocation(getX(), getY()+200);
+    }
+    //Métodos que regresan el tamaño de la imagen de la nave.
+    private int getAnchoImagen(){
+        return getImage().getWidth();
+    }
+    private int getAltoImagen(){
+        return getImage().getWidth();
     }
     public int getCordX(){
         return getX();

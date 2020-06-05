@@ -34,11 +34,13 @@ public class NaveAliada extends Nave
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
     private static int diseñoNaveAliada;  //Para la creación del nivel será necesario.
     private static int tipoDisparoAliada;
+    private static int anchoImagen;
+    private static int altoImagen;
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
     public NaveAliada(){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         //super();//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
-        System.out.println("PS NAVE: "+ puntosSalud);
+        //System.out.println("PS NAVE: "+ puntosSalud);
         if(diseñoNaveAliada == 1){ //La nave potente por ser la más poderosa que se podrá obtener
             //setImage("NavePotente.png");
             puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
@@ -60,9 +62,9 @@ public class NaveAliada extends Nave
         /*Hay que tener una condición para el diseño de la nave. Este se estableció con el super construcor.*/
         //public Pantalla(World mundoActual, Actor objeto)
             //Instanciamos después de establecer la imagen. La necesitamos.
-            System.out.println(" -> Antes pantalla");
+        anchoImagen = getImage().getWidth();
+        altoImagen = getImage().getHeight();
         pantalla = new Pantalla(this);
-                    System.out.println(" -> Después pantalla");
     }
     /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque
      * esa se moverá con numeros generados de manera aleatoria. Si la podemos hacer más general, lo haremos.*/
@@ -319,6 +321,13 @@ public class NaveAliada extends Nave
         // int x = getX();
         // return x;
     // }
+    /*Getters de dimensiones de la imagen de la nave.*/
+    public static int getAnchoImagen(){
+        return anchoImagen;
+    }
+    public static int getAltoImagen(){
+        return altoImagen;
+    }
     /*Método para obtener la Coordenada en X del disparo. Pero para esto hay que verificar que el disparo exista.
         Si el disparo no existe, entonces devolver -1 en x porque no se puede acceder a esa coordenada.*/
     public int getCordXDisparo(){

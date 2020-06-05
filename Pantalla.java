@@ -20,7 +20,7 @@ public class Pantalla
             tamañoImagenMax = objeto.getImage().getWidth();
         else
             tamañoImagenMax = objeto.getImage().getHeight();
-        System.out.println("- Pantalla: "+ tamañoImagenMax);
+        //System.out.println("- Pantalla: "+ tamañoImagenMax);
     }
     public boolean isObjetoLimite(World mundoActual, int x, int y){
       //Comparar límite de la pantalla con el objeto dentro, es decir, se toma en cuenta la mitad de su imagen.

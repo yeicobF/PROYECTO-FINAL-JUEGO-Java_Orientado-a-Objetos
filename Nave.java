@@ -47,8 +47,9 @@ public abstract class Nave extends Actor
             pantalla.regresarObjetoLimite(mundoActual, getX(), getY());
     }
     /*Método abstracto que se implementará de maneras distintas en las subclases
-       para proporcionar hacia donde se moverá y apuntará la nave.*/
-    protected abstract void setDireccion(int direccion);
+       para proporcionar hacia donde se moverá y apuntará la nave.
+       Ya no es necesario aquí*/
+    //protected abstract void setDireccion(int direccion);
 
     /*Método protegido para obtener los puntos de salud actuales de las naves. Protegido para que se pueda utilizar
         desde las subclases y static para que no se necesite una instancia del objeto.
