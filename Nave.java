@@ -42,72 +42,38 @@ public abstract class Nave extends Actor
         switch(direccion){
             case Direccion.ARRIBA:
                 anguloGiro = Direccion.ANGULO_ARRIBA;
-                if(Greenfoot.isKeyDown("shift"))
-                    aumentaY = -8;
-                else
-                    aumentaY = -6;
+                aumentaY = -6;
                 break;
             case Direccion.ABAJO:
                 anguloGiro = Direccion.ANGULO_ABAJO;
-                if(Greenfoot.isKeyDown("shift"))
-                    aumentaY = 6;
-                else
-                    aumentaY = 4;
+                aumentaY = 4;
                 break;
             case Direccion.IZQUIERDA:
                 anguloGiro = Direccion.ANGULO_IZQUIERDA;
-                if(Greenfoot.isKeyDown("shift"))
-                  aumentaX = -6;
-                else
-                  aumentaX = -4;
+                aumentaX = -4;
                 break;
             case Direccion.DERECHA:
                 anguloGiro = Direccion.ANGULO_DERECHA;
-                if(Greenfoot.isKeyDown("shift"))
-                    setLocation(getX()+6,getY());
-                else
-                  aumentaX = 4;
+                aumentaX = 4;
                 break;
-
             case Direccion.ARRIBA_DERECHA:
                 anguloGiro = Direccion.ANGULO_ARRIBA_DERECHA;
-                if(Greenfoot.isKeyDown("shift")){
-                    setLocation(getX()+2,getY()-2);
-                }
-                else{
-                    setLocation(getX()+1,getY()-1);
-                    aumentaX = 1;
-                    aumentaY = -1;
-                }
+                aumentaX = 1;
+                aumentaY = -1;
                 break;
-
-                case Direccion.ARRIBA_IZQUIERDA:
-                  anguloGiro = Direccion.ANGULO_ARRIBA_IZQUIERDA;
-                  if(Greenfoot.isKeyDown("shift")){
-                      setLocation(getX()-2,getY()-2);
-                  }
-                  else
-                      aumentaX = aumentaY = -1;
+            case Direccion.ARRIBA_IZQUIERDA:
+                anguloGiro = Direccion.ANGULO_ARRIBA_IZQUIERDA;
+                aumentaX = aumentaY = -1;
                 break;
-
-                case Direccion.ABAJO_IZQUIERDA:
-                  anguloGiro = Direccion.ANGULO_ABAJO_IZQUIERDA;
-                  if(Greenfoot.isKeyDown("shift")){
-                      setLocation(getX()-2,getY()+2);
-                  }
-                  else{
-                      aumentaX = -1;
-                      aumentaY = 1;
-                  }
+            case Direccion.ABAJO_IZQUIERDA:
+                anguloGiro = Direccion.ANGULO_ABAJO_IZQUIERDA;
+                aumentaX = -1;
+                aumentaY = 1;
                 break;
-
-                case Direccion.ABAJO_DERECHA:
-                  anguloGiro = Direccion.ANGULO_ABAJO_DERECHA;
-                  if(Greenfoot.isKeyDown("shift"))
-                      setLocation(getX()+2,getY()+2);
-                  else
-                      aumentaX = aumentaY = 1;
-                break;
+            case Direccion.ABAJO_DERECHA:
+              anguloGiro = Direccion.ANGULO_ABAJO_DERECHA;
+              aumentaX = aumentaY = 1;
+            break;
         }
         //Asignar los valores al arreglo
         aumenta[0] = aumentaX;
