@@ -78,7 +78,7 @@ public abstract class Nave extends Actor
         aumenta[1] = aumentaY;
         //private void presionoShift(int[] aumenta){
         presionoShift(aumenta);
-        
+
         //Verificar en dónde se modificaron los valores para aumentarlos
         setLocation(getX() + aumenta[0], getY() + aumenta[1]);
     }
@@ -108,16 +108,6 @@ public abstract class Nave extends Actor
                 aumenta[0] += 2;
                 break;
         }
-        // if(aumenta[1] != 0 && aumenta[0] == 0)//Hay que especificar que y se mueve y x no
-            // if(aumenta[1] < 0)//ARRIBA
-              // aumenta[1] -= 2;
-            // else //ABAJO
-              // aumenta[1] += 2;
-        // if(aumenta[0] != 0 && aumenta[1] == 0)
-            // if(aumenta[0] < 0)//IZQUIERDA
-              // aumenta[0] -= 2;
-            // else //DERECHA
-              // aumenta[0] += 2;
     }
 
     /*Método protegido para obtener los puntos de salud actuales de las naves. Protegido para que se pueda utilizar

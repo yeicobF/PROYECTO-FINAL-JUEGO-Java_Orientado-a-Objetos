@@ -24,4 +24,37 @@ public abstract class Direccion
     public static final int ANGULO_ARRIBA_IZQUIERDA = 315;
     public static final int ANGULO_ABAJO_IZQUIERDA = 225;
     public static final int ANGULO_ABAJO_DERECHA = 135;
+    //Para devolver en el método
+    private static int angulo;
+
+    /*Método para obtener el ángulo dependiendo de la dirección dada*/
+    public static int getAnguloDireccion(int direccion){
+      switch(direccion){
+        case ARRIBA:
+          angulo = ANGULO_ARRIBA;
+          break;
+        case ABAJO:
+          angulo = ANGULO_ABAJO;
+          break;
+        case IZQUIERDA:
+          angulo = ANGULO_IZQUIERDA;
+          break;
+        case DERECHA:
+          angulo = ANGULO_DERECHA;
+          break;
+        case ARRIBA_IZQUIERDA:
+          angulo = ANGULO_ARRIBA_IZQUIERDA;
+          break;
+        case ARRIBA_DERECHA:
+          angulo = ANGULO_ARRIBA_DERECHA;
+          break;
+        case ABAJO_IZQUIERDA:
+          angulo = ANGULO_ABAJO_IZQUIERDA;
+          break;
+        case ABAJO_DERECHA:
+          angulo = ANGULO_ABAJO_DERECHA;
+          break;
+      }
+      return angulo;
+    }
 }

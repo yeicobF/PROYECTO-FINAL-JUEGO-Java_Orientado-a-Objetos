@@ -25,7 +25,6 @@ public class NaveAliada extends Nave
     private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
     private long inicioDisparoMillis=0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
-    private int direccion;
     private int puntosMenosAlMorir = -10;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
     // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
@@ -102,7 +101,6 @@ public class NaveAliada extends Nave
                 // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){
             if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w"))//ARRIBA
                setDireccion(Direccion.ARRIBA); //super.act(direccion); //Se podría hacer así si recibiera esos parámetros el método act() de la superclse
-               direccion = Direccion.ARRIBA;
             if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s"))
                 setDireccion(Direccion.ABAJO);//ABAJO
             if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a"))
@@ -136,7 +134,7 @@ public class NaveAliada extends Nave
         if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMillis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
             inicioDisparoMillis = System.currentTimeMillis();
             w = getWorld(); //Para agregar el objeto
-            disparo = new Disparo(tipoDisparoAliada, direccion, getX(), getY());//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
+            disparo = new Disparo(tipoDisparoAliada, direccion);//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
             //Tomar la imagen de la nave para tomarla en cuenta en la salida del disparo
             GreenfootImage image = getImage();
             //Aparecer el objeto en las coordenadas actuales, pero un poco a la derecha para no empalmar la nave.

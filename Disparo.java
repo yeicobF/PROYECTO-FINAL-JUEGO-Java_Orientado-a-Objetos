@@ -24,7 +24,7 @@ public class Disparo extends Actor
     /*Constructor para aparecer al disparo*/
     /*En cuanto a la direccion del disparo, no pude implementarlo porque no salía como debería salir, así que hay que revisarlo
         porque hay algo que falla. Por ahora solo comentaré las líneas para después implementar dicha función.*/
-    public Disparo(int tipoDisparo, int direccion, int cordX, int cordY){//, int direccion){//Recibirá las coordenadas de la nave para aparecer.
+    public Disparo(int tipoDisparo, int direccion){//, int direccion){//Recibirá las coordenadas de la nave para aparecer.
         //super(cordX, cordY);//[LO TENÍA ASÍ] Ya que hereda de Nave y lo requiere, pero le dará 100 de vida al disparo,cosa que es innecesaria, pero ya veremos qué podemos cambiar.
         // this.cordX=cordX; //Antes Comentados por la herencia que intenté con nave
         // this.cordY=cordY;
@@ -37,10 +37,11 @@ public class Disparo extends Actor
             image.scale(image.getWidth()/4, image.getHeight()/4);//Reescalar imagen a 1/5 de las medidas originales.
             setImage(image);//Acomodar ahora sí la imagen modificada
         }
+        System.out.println("- Direccion: "+ direccion);
     }
     public void act(){
         w = getWorld();
-        move(velocidadDisparo);
+        movimiento();
         limitePantalla();
     }
     /*Método que desaparece a los objetos con los que impacta el disparo y a sí mismo.*/
@@ -49,6 +50,12 @@ public class Disparo extends Actor
         //public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño)
         // m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this, (Espacio)getWorld());
         // m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, (Espacio)getWorld());
+    }
+    private void movimiento(){
+      //Método que devuelve el ángulo dependiendo de nuestra direccion.
+      System.out.println("- ANGULO: "+ Direccion.getAnguloDireccion(direccion));
+      turn(Direccion.getAnguloDireccion(direccion));
+      move(velocidadDisparo);
     }
     /*Método que revisa si el disparo está dentro de los límites de la pantalla.*/
     private void limitePantalla(){
