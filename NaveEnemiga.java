@@ -77,19 +77,19 @@ public class NaveEnemiga extends Nave
     }
     protected void movimiento(){
         //Si el objeto alcanza los límites en x o y, se dará la vuelta. Las limitaremos a la mitad de la pantalla.
-        move(3);//Método que mueve a cierta velocidad el objeto
+        move(1);//Método que mueve a cierta velocidad el objeto
         setDireccion(1);
-        if(getX()>=mundo.getWidth()-5 || getX()<=mundo.getWidth()/2 || getY()>=mundo.getHeight()-5||getY()<=5){
-            turn(180);
-            if(getX()<=mundo.getWidth()/2)
-                getImage().mirrorHorizontally();
-            random = Greenfoot.getRandomNumber(100);
-            if(random < 90){//Cambia el ángulo del cómo se ven los sprites.
-                random = Greenfoot.getRandomNumber(90-45);
-                turn(random);
-            }
-            //setRotation(270);//Quiero que se mueva para todos lados pero siempre volteando a ver nuestra nave.
-        }
+        // if(getX()>=mundo.getWidth()-5 || getX()<=mundo.getWidth()/2 || getY()>=mundo.getHeight()-5||getY()<=5){
+            // turn(180);
+            // if(getX()<=mundo.getWidth()/2)
+                // getImage().mirrorHorizontally();
+            // random = Greenfoot.getRandomNumber(100);
+            // if(random < 90){//Cambia el ángulo del cómo se ven los sprites.
+                // random = Greenfoot.getRandomNumber(90-45);
+                // turn(random);
+            // }
+            // //setRotation(270);//Quiero que se mueva para todos lados pero siempre volteando a ver nuestra nave.
+        // }
     }
     //protected void setDireccion(int direccion)
     /* Método que apuntará las naves enemigas hacia donde estamos nosotros.
@@ -99,7 +99,7 @@ public class NaveEnemiga extends Nave
         int catetoAdyacente = NaveAliada.getCordX() - getX();
         int catetoOpuesto = NaveAliada.getCordY() - getY();
         double anguloAuxiliar;
-        int sumaAngulos = 0; //Ya que el turn se va acumulando todo el valor dado. Esto para restarlo y volver a la posición original.
+        int anguloAnterior = 0; //Ya que el turn se va acumulando todo el valor dado. Esto para restarlo y volver a la posición original.
         /*Para sacar el ángulo entre las naves enemigas y la aliada hay que utilizar funciones trigonométricas.
            Recordemos que: tan(angulo) = co/ca
             -> Entonces: angulo = tanInversa(co/ca)
@@ -112,28 +112,17 @@ public class NaveEnemiga extends Nave
                     - ARRIBA_DERECHA (270-360): 360-angulo
                 Esto tomando siempre x como el cateto adyacente.
             Fuente del método: https://stackoverflow.com/questions/3449826/how-do-i-find-the-inverse-tangent-of-a-line*/
-        anguloAuxiliar = Math.toDegrees(Math.atan(catetoOpuesto/catetoAdyacente));
+        //Devuelve ángulo negativo si yAliada < yEnemiga y positiva y yAliada >= yEnemiga    
+        anguloAuxiliar = Math.toDegrees(Math.atan2(catetoOpuesto, catetoAdyacente));
         System.out.println("- ANGULO DOUBLE: "+ anguloAuxiliar);
         anguloGiro = (int)anguloAuxiliar;
         System.out.println("- ANGULO INT: "+ anguloGiro);
         if(NaveAliada.getCordY() > getY())
-            if(NaveAliada.getCordX() > getX())
-                turn(360 - anguloGiro); //Ahora sí voltear la nave. Restar el nuevo ángulo al anterior, ya que se acumula el valor.
-            else
-                if(NaveAliada.getCordX() < getX())
-                    turn(180 + anguloGiro);
-                else //x = 0 (ARRIBA)
-                    turn(Direccion.ARRIBA);
-        else
-            if(NaveAliada.getCordY() < getY())
-                if(NaveAliada.getCordX() > getX())
-                    turn(anguloGiro);
-                else
-                    if(NaveAliada.getCordX() < getX())
-                        turn(180 - anguloGiro);
-                    else
-                        turn(Direccion.ABAJO);
-        turn(0); //El turn es acumulativo.
+            anguloGiro += 360;
+        turn(anguloAnterior-anguloGiro);
+        
+        //turn(0); //El turn es acumulativo.
+        anguloAnterior = anguloGiro;
     }
     public int getCordX(){
         return getX();
