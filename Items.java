@@ -71,6 +71,21 @@ public class Items extends Actor
                 //tiempoFinalItem = System.currentTimeMillis() + tiempoActividad;
                 setImage("Items/Item2Escudo.png");
                 break;
+            case 3: //SUBIR PS
+                setImage("Item3SubirPS.png");
+                tiempoActividad = 0;
+                break;
+            case 4: //Cambiar el tipo del disparo. Hará más daño.
+                tiempoActividad = 7500;
+                //El constructor ya aumenta el daño
+                //Disparo.setDaño(Disparo.getDaño()*2); //Que haga el doble de daño.
+                setImage("Item4CambiarDisparo.png");
+                break;
+            case 5: //NUCLEAR. Destruirá todo lo que hay en el mapa.
+                tiempoActividad = 0;
+                getWorld().removeObjects(getWorld().getObjects(Roca.class));
+                getWorld().removeObjects(getWorld().getObjects(NaveEnemiga.class));
+                setImage("Item5Nuclear.png");
         }
         //public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divisor, int multiplicacion)
         //Reescalar los items a la mitad del tamaño del sprite.
@@ -86,6 +101,8 @@ public class Items extends Actor
     public void act()
     {
         //Hay que implementar que se mueva para abajo el item y cuando toque el piso desaparezca.
+        if(tipoItem == 3 o tipoItem == 4)
+            turn(90); //Si es el de cambiar disparo o nuclear, hacerlos girar
         movimientoItem(velocidadItem);
         limitesItem();
     }

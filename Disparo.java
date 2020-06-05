@@ -21,7 +21,7 @@ public class Disparo extends Actor
                                                 pero hay que ver cómo.*/
     private static int daño; //Estática para que puedan acceder desde fuera y restar el daño hecho.
     private int velocidadDisparo;
-
+    private int numAnimaciones; //Las animaciones del disparo.
     /*Constructor para aparecer al disparo*/
     /*En cuanto a la direccion del disparo, no pude implementarlo porque no salía como debería salir, así que hay que revisarlo
         porque hay algo que falla. Por ahora solo comentaré las líneas para después implementar dicha función.*/
@@ -30,15 +30,28 @@ public class Disparo extends Actor
         // this.cordX=cordX; //Antes Comentados por la herencia que intenté con nave
         // this.cordY=cordY;
         this.direccion = direccion;//Para guardar la direccion del disparo. - Por ahora no se pudo hacer, pero lo comentaré.
+        setImage("Disparos/"+ tipoDisparo +"_"+ 1 +".png");
         seAsignoDireccion = false;
-        if(tipoDisparo == 0){//El disparo normal
-            daño = 25; //daño inicial (que es bajo).
-            velocidadDisparo = 5;
-            setImage("pruebaLaserShot.png");
-            GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
-            image.scale(image.getWidth()/4, image.getHeight()/4);//Reescalar imagen a 1/5 de las medidas originales.
-            setImage(image);//Acomodar ahora sí la imagen modificada
+        switch(tipoDisparo){//El disparo normal
+            case: 1
+                daño = 25; //daño inicial (que es bajo).
+                velocidadDisparo = 5;
+                numAnimaciones = 6;
+                break;
+            case: 2 //Menos daño pero más velocidad
+                daño = 15;
+                velocidadDisparo = 6;
+                numAnimaciones = 6;
+                break;
+            case: 3 //Más velocidad y daño
+                daño = 35;
+                velocidadDisparo = 6;
+                numAnimaciones = 6;
+                break;
         }
+        GreenfootImage image = getImage(); //Tomar la imagen que modificaremos
+        image.scale(image.getWidth()/4, image.getHeight()/4);//Reescalar imagen a 1/5 de las medidas originales.
+        setImage(image);//Acomodar ahora sí la imagen modificada
         //Método que devuelve el ángulo dependiendo de nuestra direccion.
         turn(Direccion.getAnguloDireccion(direccion));
         System.out.println("- ANGULO: "+ Direccion.getAnguloDireccion(direccion));
@@ -47,10 +60,16 @@ public class Disparo extends Actor
     public void act(){
         w = getWorld();
         move(velocidadDisparo);
+        animaDisparo();
         limitePantalla();
     }
+    /*Método que anima el disparo*/
+    private void animaDisparo(){
+        for(int i = 1; i <= numAnimaciones; i++)
+            setImage("Disparos/"+ tipoDisparo +"_"+ i +".png");
+    }
     /*Método que tendrá el control de los disparos del jugador.*/
-    public static long disparar(World mundoActual, GreenfootImage imagenNave, 
+    public static long disparar(World mundoActual, GreenfootImage imagenNave,
                         long inicioDisparoMilis, int tipoDisparo, int direccion, int x, int y){
         /*Condición que revisará que se pulsó la tecla de disparo, pero habrá un delay de 1250 milisegundos
             para no estar disparando todo el tiempo. Esto midiendo la hora del disparo y restando a la hora actual
@@ -133,5 +152,9 @@ public class Disparo extends Actor
     //Método que devuelve el daño actual del disparo
     public static int getDaño(){
         return daño;
+    }
+    //Setter del daño para cuando cambiemos de disparo.
+    public int setDaño(int daño){
+        daño = daño;
     }
 }

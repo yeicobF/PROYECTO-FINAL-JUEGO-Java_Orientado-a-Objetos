@@ -85,7 +85,7 @@ public abstract class Niveles extends World
     /*Método en el que se creará un item cada cierto tiempo dependiendo de la última vez que se creó y que
      *  un tiempo generado aleatoriamente supere al tiempo mínimo en la coindición.*/
     protected void crearItemTiempo(){ //El item se creará mínimo cada 30 segundos después de haber hecho efecto por última vez
-        int x, y, tipoItem;
+        int x, y, tipoItem, aleatorio;
         int velocidadItem = 1;//Cuando inicia el nivel iniciarla así y cuandi avance el tiempo cambiarla
         //Revisará que no exista el item para generar uno nuevo y que se respete el mínimo de tiempo. Se creará en un rango de 10 a 20 segundos.
         if(!Items.isItemActivo() && (System.currentTimeMillis() - Items.getTiempoFinalItem()) >= Aleatorio.getNumeroAleatorio(1000, 2000)){
@@ -97,9 +97,13 @@ public abstract class Niveles extends World
             y = Aleatorio.getNumeroAleatorio(Items.getAltoItem(), super.getHeight()-Items.getAltoItem()/2);
             //System.out.println("x: "+ x+ "y: "+ y);
             if(NaveAliada.getVidasJugador() == 5)//Generará todos los items menos el corazón, ya que tiene el máximo de vidas.
-                tipoItem = Aleatorio.getNumeroAleatorio(2, 2);
+                tipoItem = Aleatorio.getNumeroAleatorio(2, 5);
             else
-                tipoItem = Aleatorio.getNumeroAleatorio(1, 2);//Elegirá de manera random el item que se creará.
+                if(nave.getPuntosSalud() >= nave.getPuntosSaludIniciales())
+                    while((aleatorio = Aleatorio.getNumeroAleatorio(1, 5)) == 3)//Mientras se cree el de PS seguir ciclando
+                        tipoItem = aleatorio; //Ya no salió el 3
+                else
+                    tipoItem = Aleatorio.getNumeroAleatorio(1, 5);//Elegirá de manera random el item que se creará.
             if(System.currentTimeMillis() - tiempoInicialMilis >= 5000){//Cada que pase 1 minuto, aumentará la velocidad del item.
                 velocidadItem++;
                 tiempoInicialMilis = System.currentTimeMillis();//Reiniciar el contador para que ocurra cada minuto.

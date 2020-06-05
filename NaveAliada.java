@@ -13,7 +13,7 @@ public class NaveAliada extends Nave
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
 
-    
+
     /*protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
         Se puede usar aquí porque es protected en la superclase Nave.*/
     //Medir el tiempo para no poder disparar de manera tan seguida, tener un delay entre disparo y disparo.
@@ -24,6 +24,7 @@ public class NaveAliada extends Nave
         porque la bandera va a cambiar una vez cambie.*/
     private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
     private static int x, y; //Para obtener las coordenadas desde las naves enemigas.
+    private int puntosSaludIniciales;
     private long inicioDisparoMilis=0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int puntosMenosAlMorir = -10;
@@ -64,6 +65,7 @@ public class NaveAliada extends Nave
             //Instanciamos después de establecer la imagen. La necesitamos.
         anchoImagen = getImage().getWidth();
         altoImagen = getImage().getHeight();
+        puntosSaludIniciales = puntosSalud;
         pantalla = new Pantalla(this);
     }
     /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque
@@ -76,7 +78,7 @@ public class NaveAliada extends Nave
         x = getX();
         y = getY();
         existeMostrarInfo = muestraPuntosSalud(infoPS, existeMostrarInfo, "", puntosSalud, getX(), getY()-getImage().getHeight()/2);
-        /*public static long disparar(World mundoActual, GreenfootImage imagenNave, 
+        /*public static long disparar(World mundoActual, GreenfootImage imagenNave,
                         long inicioDisparoMilis, int tipoDisparo, int direccion, int x, int y)*/
         inicioDisparoMilis = Disparo.disparar(mundo, getImage(), inicioDisparoMilis, tipoDisparoAliada, direccion, getX(), getY());
         //public static void manetenerObjetoLimite(World mundoActual, Actor objeto, int x, int y)
@@ -237,6 +239,17 @@ public class NaveAliada extends Nave
                         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
                         diseñoOriginalActivo = false;//Ya que aquí el diseño cambia por el escudo.
                         break;
+                    case 3: //Aimenta los PS. Sólo aparece si están más bajos de los iniciales-
+                        Items.setTiempoFinalItem(System.currentTimeMillis());
+                        if(puntosSalud < puntosSaludIniciales)
+                            puntosSalud += 25;
+                        if(puntosSalud > puntosSaludIniciales)//Si al sumar superaron el límite
+                            puntosSalud = puntosSaludIniciales; //Poner los máximos
+                        break;
+                    case 4: //Cambiar el tipo de disparo.
+                        Items.setTiempoFinalItem(System.currentTimeMillis());
+
+                        break;
                 }
         }
         return Items.getTipoItem(); //No hay item si regresa 0.
@@ -312,6 +325,10 @@ public class NaveAliada extends Nave
         se mandará un número negativo.*/
     public static void setPuntos(int puntosRecibidos){
         puntos += puntosRecibidos;
+    }
+    //Regresa los PS máximos (con lo que inciamos)
+    public int getPuntosSaludIniciales(){
+        return puntosSaludIniciales;
     }
     /*Getter booleano para ver si el escudo está activo en métodos generales.*/
     public static boolean isDiseñoOriginalActivo(){
