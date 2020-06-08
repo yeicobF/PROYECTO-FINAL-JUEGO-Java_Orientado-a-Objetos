@@ -91,9 +91,9 @@ public class NaveEnemiga extends Nave
     }
     protected void movimiento(){
         //Si el objeto alcanza los límites en x o y, se dará la vuelta. Las limitaremos a la mitad de la pantalla.
-        limiteChoqueNavesEnemigas();
-        limiteChoqueNaveAliada(200);
-        move(2);//Método que mueve a cierta velocidad el objeto
+        //limiteChoqueNavesEnemigas();
+        //limiteChoqueNaveAliada(200);
+        move(1);//Método que mueve a cierta velocidad el objeto
         turnTowards(NaveAliada.getCordX(), NaveAliada.getCordY());
         
         //setLocation(getX()+1, getY()+1);
@@ -106,13 +106,13 @@ public class NaveEnemiga extends Nave
             //(System.out.println("Entro al ciclo");
             if((getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)) //Ver que no sobrepase por la izquierda.
                 //System.out.println("(getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)");    
-                setLocation(getX()-100, getY());
+                setLocation(getX()-1, getY());
             if((getX() - anchoImagen/2) <= (nave.getX() + nave.getAnchoImagen()/2)) //Ver que no sobrepase por la derecha.
-                setLocation(getX()+100, getY());
+                setLocation(getX()+1, getY());
             if((getY() + altoImagen/2) >= (nave.getY() - nave.getAltoImagen()/2))//Ver que no sobrepase por encima.
-                setLocation(getX(), getY()-100);
+                setLocation(getX(), getY()-1);
             if((getY() - altoImagen/2) <= (nave.getY() + nave.getAltoImagen()/2))//Ver que no sobrepase por debajo.
-                setLocation(getX(), getY()+100);
+                setLocation(getX(), getY()+1);
         }
     }
     /*Método que pondrá un límite para no chocar con la nave aliada (nosotros).*/

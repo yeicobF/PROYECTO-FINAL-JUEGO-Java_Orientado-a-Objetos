@@ -251,7 +251,7 @@ public class NaveAliada extends Nave
                         // Etiqueta e = new Etiqueta(50, Color.WHITE, Color.RED, Color.YELLOW);
                         // e.crearCuadroTexto(" HAS DESTRUIDO A TODO SER VIVO ");
                         // mundo.addObject(e, mundo.getWidth()/2 + e.getImage().getWidth()/2, mundo.getHeight()/2 - e.getImage().getHeight()/2);
-                        //Archivo a = new Archivo("prueba.txt");
+                        Archivo a = new Archivo("prueba.txt");
                         break;
                 }
         }
@@ -290,11 +290,11 @@ public class NaveAliada extends Nave
                 vidas --;
                 //System.out.println("Vidas: "+ vidas);
                 /*Sería bueno detener el juego unos milisegundos después de morir.*/
-                // try{
-                    // Thread.sleep(3000);//Parar el sistema un momento.
-                // }catch(InterruptedException ie){
-                    // System.out.println("Interrupción sleep.");
-                // }
+                try{
+                    Thread.sleep(500);//Parar el sistema un momento.
+                }catch(InterruptedException ie){
+                    System.out.println("Interrupción sleep.");
+                }
                 Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
         }
     }

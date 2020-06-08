@@ -54,12 +54,12 @@ public abstract class Niveles extends World
         switch(numNivel){
             case 1: //Nivel 1
                 nivelActual = numNivel; //Indicar el nivel actual.
-                tiempoDuracionJuego = 60000;
+                tiempoDuracionJuego = 600000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public Roca(int numRocasMax, int tiempoRegeneracion)
                 //Establecer el máximo de rocas
-                Roca.setNumRocasMax(15);
+                Roca.setNumRocasMax(5);
                 Roca.setTiempoRegeneracion(10000);
                 // System.out.println(" - NIVELES 1-");
                 //
@@ -92,7 +92,7 @@ public abstract class Niveles extends World
         tipoItem = 0;
         int velocidadItem = 1;//Cuando inicia el nivel iniciarla así y cuandi avance el tiempo cambiarla
         //Revisará que no exista el item para generar uno nuevo y que se respete el mínimo de tiempo. Se creará en un rango de 10 a 20 segundos.
-        if(!Items.isItemActivo() && (System.currentTimeMillis() - Items.getTiempoFinalItem()) >= Aleatorio.getNumeroAleatorio(7000, 15000)){
+        if(!Items.isItemActivo() && (System.currentTimeMillis() - Items.getTiempoFinalItem()) >= Aleatorio.getNumeroAleatorio(1000, 2000)){
             //Generar ancho y alto restándole su mitad a los límites para que no aparezca cortado en pantalla.
             x = Aleatorio.getNumeroAleatorio(Items.getAnchoItem()/2, super.getWidth()-Items.getAnchoItem()/2);
             //Recordar que y = 0 está en el centro de la pantalla
@@ -116,7 +116,4 @@ public abstract class Niveles extends World
             addObject(new Items(tipoItem, velocidadItem), x, y);
         }
     }
-
-
-
 }
