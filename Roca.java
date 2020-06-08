@@ -42,6 +42,8 @@ public class Roca extends Actor
                 turn(Greenfoot.getRandomNumber(90-45));
             }
         }
+        turn(1);
+        
         // if(getY()>=w.getHeight()-5||getY()<=5){ //Estas líneas de más se pueden evitar.
             // turn(180);
             // if(Greenfoot.getRandomNumber(100)<90){
