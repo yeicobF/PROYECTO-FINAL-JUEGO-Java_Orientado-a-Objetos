@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Pausa
+comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ el\ men\u00FA\ de\ pausa\ y\ cuando\ se\ le\ da\ click.\r\n\ \ Cuado\ se\ pause\ el\ juego\ se\ mostrar\u00E1n\ las\ opciones\:\r\n\ \ 1\ -\ Reanudar.\r\n\ \ 2\ -\ Salir.\r\n\ \ \ \ \ \ 2.1\ -\ Guardar\ cambios\r\n\ \ \ \ \ \ \ \ \ \ 2.1.1\ -\ S\u00ED\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ 2.1.1.1\ -\ Ingresa\ tu\ nombre\r\n\ \ \ \ \ \ \ \ \ \ 2.1.2\ -\ No\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ 2.1.2.1\ -\ \u00BFEst\u00E1s\ seguro?\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2.1.2.1.1\ -\ S\u00ED\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2.1.2.1.2\ -\ No\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\ Ir\ al\ punto\ 2.1.1.1,\ ya\ que\ s\u00ED\ se\ guardar\u00E1n\ cambios.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Martes,\ 9\ de\ junio\ de\ 2020)\r\n
+comment1.params=mundoAntesDePausa
+comment1.target=Pausa(greenfoot.World)
+comment2.params=
+comment2.target=boolean\ isPausa()
+comment2.text=M\u00E9todo\ que\ regresa\ true\ si\ el\ bot\u00F3n\ de\ pausa\ ha\ sido\ tocado\ con\ el\ mouse\r\no\ activado\ con\ las\ teclas\ "p"\ o\ "esc".
+comment3.params=mundoActual\ x\ y
+comment3.target=void\ creaBotonPausa(greenfoot.World,\ int,\ int)
+comment3.text=Crear\ bot\u00F3n\ de\ pausa
+numComments=4

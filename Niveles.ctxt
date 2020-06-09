@@ -1,15 +1,17 @@
 #BlueJ class context
 comment0.target=Niveles
 comment0.text=\r\n\ Superclase\ que\ tendr\u00E1\ como\ subclases\ a\ cada\ uno\ de\ los\ niveles.\r\n\ \ La\ clase\ ser\u00E1\ abstracta\ porque\ no\ \ necesitar\u00E1\ instanciarse.\r\n\r\n\ @author\ (Jacob)\r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
-comment1.params=
-comment1.target=Niveles()
-comment2.params=numNivel\ nave
-comment2.target=void\ crearNivel(int,\ NaveAliada)
-comment3.params=
-comment3.target=int\ getNivelActual()
+comment1.params=numNivel
+comment1.target=Niveles(int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=numNivel
+comment3.target=void\ crearNivel(int)
 comment4.params=
-comment4.target=long\ getTiempoDuracionJuego()
+comment4.target=int\ getNivelActual()
 comment5.params=
-comment5.target=void\ crearItemTiempo()
-comment5.text=M\u00E9todo\ en\ el\ que\ se\ crear\u00E1\ un\ item\ cada\ cierto\ tiempo\ dependiendo\ de\ la\ \u00FAltima\ vez\ que\ se\ cre\u00F3\ y\ que\r\nun\ tiempo\ generado\ aleatoriamente\ supere\ al\ tiempo\ m\u00EDnimo\ en\ la\ coindici\u00F3n.
-numComments=6
+comment5.target=long\ getTiempoDuracionJuego()
+comment6.params=nave
+comment6.target=void\ crearItemTiempo(NaveAliada)
+comment6.text=M\u00E9todo\ en\ el\ que\ se\ crear\u00E1\ un\ item\ cada\ cierto\ tiempo\ dependiendo\ de\ la\ \u00FAltima\ vez\ que\ se\ cre\u00F3\ y\ que\r\nun\ tiempo\ generado\ aleatoriamente\ supere\ al\ tiempo\ m\u00EDnimo\ en\ la\ coindici\u00F3n.
+numComments=7

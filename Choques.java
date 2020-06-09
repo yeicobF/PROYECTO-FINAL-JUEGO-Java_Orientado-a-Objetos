@@ -3,13 +3,13 @@ import greenfoot.Actor;
 import greenfoot.World;
 
 /**
- * Clase que manejará los métodos que revisan si objetos chocan. 
+ * Clase que manejará los métodos que revisan si objetos chocan.
  *  Todos estos métodos serán estáticos, por lo que no será necesario instanciar la clase.
- * 
- * @author (Jacob) 
+ *
+ * @author (Jacob)
  * @version (Jueves, 4 de junio de 2020)
  */
-public abstract class Choques  
+public abstract class Choques
 {
     // instance variables - replace the example below with your own
     private int x;
@@ -28,7 +28,7 @@ public abstract class Choques
     /*Método que elimina un objeto si chocó con otro. Hay que mandarle los objetos que chocaron y su mundo.
      *  No necesita ser booleano porque no importa que sea true o false, sino, que se elimine o no dependiendo de la salud.
         El mundo actual es de tipo "World" porque es la mayor generalización. De ahí siguen los niveles que son class diferentes.*/
-    public static int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, 
+    public static int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual,
                                                     int puntosSalud, int daño, int puntosNave){
         /*if(choqueActores(objetoChoque) && (objetoChoque instanceof Items || (Items.getTipoItem() != 2 && Items.getTipoItem() != 0)))
            -> Esta condición quiere decir que para que se elimine el objeto deberá haber un choque de objetos,
@@ -36,12 +36,12 @@ public abstract class Choques
                 tengamos el escudo. También el que puede tener efectos es el disparo, así que hay que considerarlo.*/
         /* - La condición cambió a: if(choqueActores(objetoChoque)  && !Items.isTocoItem())
                 Esto significa que para eliminar a un objeto, no habrá que haber tocado un item.
-                Por ahora esto funciona para el escudo, pero cuando se implementen otros items que no 
+                Por ahora esto funciona para el escudo, pero cuando se implementen otros items que no
                 implementen la inmunidad podría traer problemas.
             Al tener el escudo tendremos inmunidad. Los disparos siempre pueden destruir.*/
         if(choqueActores(objetoChoque) && Items.getTipoItem() != 2 || objetoChoque instanceof Disparo){ //Para destruir, la salud tiene que ser menor o igual a 0. No destruir en el choque inmediat0.
             // if(objetoChoque instanceof NaveEnemiga)
-                // objetoChoque.eliminaCuadroPS(NaveEnemiga.getMostrarInfo(), mundoActual); 
+                // objetoChoque.eliminaCuadroPS(NaveEnemiga.getMostrarInfo(), mundoActual);
             mundoActual.removeObject(objetoChoque);//Se elimina el objeto con el que se chocó. Este siempre se elimina. Por ejemplo el disparo.
             // Items.setImagenItemFalso();//Después de que entra cuando la imagen del item está activa, se indica que se desactivó.
             puntosSalud -= daño; //Restar el daño al objeto
@@ -51,9 +51,12 @@ public abstract class Choques
                 pero hay que revisar que los que perdieron toda la salud no
                 somos nosotros, porque si no nos quitará el doble de puntos
                 de los que indicamos que nos debería de quitar al morir.*/
-            if(puntosSalud <=0 && !(objetoRaiz instanceof NaveAliada)){ //Si la salud del objeto actual es 0 o menos, entonces ahora sí eliminar el objeto actual
-                NaveAliada.setPuntos(puntosNave);//Como se destruyo el objeto se nos volverán a sumar los puntos.
+            if(puntosSalud <=0){ //Si la salud del objeto actual es 0 o menos, entonces ahora sí eliminar el objeto actual
+                //Antes de destruir el objeto, tomar sus coordenadas y aparecer la explosión.
+                mundoActual.addObject(new Explosion(objetoRaiz.getImage()), objetoRaiz.getX(), objetoRaiz.getY()); 
                 mundoActual.removeObject(objetoRaiz);//Se elimina el objeto que chocó. El objeto que llama el método.
+                if(!(objetoRaiz instanceof NaveAliada)) //Si el objeto no somos nosotros, sumarnos los puntos.
+                    NaveAliada.setPuntos(puntosNave);//Como se destruyo el objeto se nos volverán a sumar los puntos.
             }
                 //return true;//Regresar verdadero si se hizo el procedimiento anterior. Es decir, se eliminó el objeto.
             // if(objetoRaiz instanceof Roca) //Tal vez podría ponerlo en la misma roca, pero como ya no existiría después del return, no haría efecto.
@@ -66,5 +69,5 @@ public abstract class Choques
             NaveAliada.setPuntos(-NaveAliada.getPuntos());//Sumar los números que están por debajo para dejarlos en 0.
         return puntosSalud;//Regresa los puntos de salud para que se siga evaluando el método.
     }//En el método de destruir nave habrá que bajar vidas si se eliminó.
-    
+
 }

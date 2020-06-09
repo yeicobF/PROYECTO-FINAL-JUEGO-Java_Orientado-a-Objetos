@@ -33,7 +33,8 @@ public class Items extends Actor
      * Act - do whatever the Items wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    World w; //Para métodos getHeight, ...
+    private World mundo; //Para métodos getHeight, ...
+    protected Pantalla pantalla;
     private long inicioDisparoMillis = 0;//Variable para comprobar hace cuánto se creó el último item.
     private static long tiempoActividad = 0; /*Variable que definirá el tiempo de vida del item y cuánto lleva activo.
         Tuve que hacerla estática para poder utilizarla con el setTiempoFinalItem.*/
@@ -70,18 +71,37 @@ public class Items extends Actor
                 //tiempoFinalItem = System.currentTimeMillis() + tiempoActividad;
                 setImage("Items/Item2Escudo.png");
                 break;
+            case 3: //SUBIR PS
+                setImage("Items/Item3SubirPS.png");
+                setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));
+                tiempoActividad = 0;
+                break;
+            case 4: //Cambiar el tipo del disparo. Hará más daño.
+                tiempoActividad = 10000;
+                //El constructor ya aumenta el daño
+                //Disparo.setDaño(Disparo.getDaño()*2); //Que haga el doble de daño.
+                setImage("Items/Item4CambiarDisparo.png");
+                break;
+            case 5: //NUCLEAR. Destruirá todo lo que hay en el mapa.
+                tiempoActividad = 0;
+                setImage("Items/Item5Nuclear.png");
         }
         //public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divisor, int multiplicacion)
         //Reescalar los items a la mitad del tamaño del sprite.
         Imagen.modificarEscalaImagen(getImage(), 2, 1);
         //Obtener ancho y alto del item después de modificar su escala.
         //Como volteé la imagen y quedó horizontal, entonces usaremos el getWidth (ancho, pero está volteada), que ahora es el alto.
-        anchoItem = getImage().getHeight(); //Obtener ancho de imagen.
-        altoItem = getImage().getWidth(); //Obtener alto, que como la imagen se volteó, es su ancho.
+        // anchoItem = getImage().getHeight(); //Obtener ancho de imagen.
+        // altoItem = getImage().getWidth(); //Obtener alto, que como la imagen se volteó, es su ancho.
+            /*Ahora mediremos los límites con los métodos de Pantalla.*/
+        //public Pantalla(Actor objeto)
+        pantalla = new Pantalla(this);
     }
     public void act()
     {
         //Hay que implementar que se mueva para abajo el item y cuando toque el piso desaparezca.
+        if(tipoItemStatic == 3 || tipoItemStatic == 4)
+            turn(90); //Si es el de cambiar disparo o nuclear, hacerlos girar
         movimientoItem(velocidadItem);
         limitesItem();
     }
@@ -94,9 +114,9 @@ public class Items extends Actor
     }
     /*Método que verá los límites de -y para desaparecer el item.*/
     private void limitesItem(){
-        w = getWorld();
-        //No está sirviendo para limitar lo bajo en y
-        if(getY() >= w.getHeight()-altoItem/2+1){//Si se mueve más abajo de los límites en lo mínimo en y, desaparecer.
+        mundo = getWorld();
+        //public boolean isObjetoLimite(World mundoActual, int x, int y)
+        if(!pantalla.isObjetoLimite(mundo, getX(), getY())){//Si se mueve más abajo de los límites en lo mínimo en y, desaparecer.
             itemActivo = false; //Hacer el item inactivo si llega a los límites
             tiempoFinalItem = System.currentTimeMillis();//Guardar el tiempo final si no se tocó para que no se genere rápidamente.
             tipoItemStatic = 0;
