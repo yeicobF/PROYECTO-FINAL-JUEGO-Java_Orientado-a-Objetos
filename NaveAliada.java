@@ -209,7 +209,7 @@ public class NaveAliada extends Nave
             Por ejemplo con el escudo, no se bajará la salud de la nave.*/
     private int choqueItem(){
     //eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
-        if(Choques.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, (Espacio)getWorld(), puntosSalud, 1, 0)
+        if(Choques.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, getWorld(), puntosSalud, 1, 0)
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
                 //No necesitan bajarse los PS porque no se los asignamos
                 //Switch case para ver el tipo de item y actuar.

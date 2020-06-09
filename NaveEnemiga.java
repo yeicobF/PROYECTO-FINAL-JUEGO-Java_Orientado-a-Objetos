@@ -84,7 +84,7 @@ public class NaveEnemiga extends Nave
         /*MÉTODO QUE VERIFICARÁ SI UNA ROCA CHOCÓ CON ALGO. Necesitamos ver si podemos implemementar esto de manera
         más general porque también será necesario en la clase NaveEnemiga*/
         puntosSalud = eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, Disparo.class),
-                    this, (Espacio)getWorld(), puntosSalud, Disparo.getDaño(), puntosPorDisparo);
+                    this, getWorld(), puntosSalud, Disparo.getDaño(), puntosPorDisparo);
 
                     //NaveAliada.setPuntos(puntosPorDisparo*2);//Los puntos obtenidos se multiplicarán por 2 al destruir la nave
                     //Ya está condición dentro del método

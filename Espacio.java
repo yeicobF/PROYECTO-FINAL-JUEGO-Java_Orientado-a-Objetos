@@ -14,6 +14,7 @@ public class Espacio extends Niveles
      *
      */
     public Espacio(){
+        super(1);
         addObject(nave, getWidth()/2-NaveAliada.getAnchoImagen()/2, getHeight()/2+NaveAliada.getAltoImagen()/2);//Aparecer a la nave en el centro
         //public NaveEnemiga(int tipoEnemigo, int tipoDisparo)
         addObject(new NaveEnemiga(2, 2), getWidth()/2+getWidth()/4, getHeight()/2-getHeight()/4);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos

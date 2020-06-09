@@ -1,3 +1,4 @@
+import greenfoot.*;
 /**
  * Write a description of class CrearNivelPrueba here.
  * 
@@ -15,7 +16,7 @@ public class CrearNivelPrueba
         //Niveles nivel = new Niveles();
         NaveAliada.setDiseñoNaveAliada(3);
         NaveAliada.setTipoDisparo(3);
-        Niveles.crearNivel(1);
+        Greenfoot.setWorld(new Niveles(1));
     }
 
 }

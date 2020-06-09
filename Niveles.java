@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (Jacob)
  * @version (Jueves, 4 de junio de 2020)
  */
-public abstract class Niveles extends World
+public class Niveles extends World
 {
 
     /**
@@ -29,10 +29,14 @@ public abstract class Niveles extends World
         // super(1000, 600, 1);
     // }
     //Constructor que, dependiendo del nivel asignará los valores necesarios.
-    public Niveles()
+    public Niveles(int numNivel)
     {
         //Ancho, alto, tamaño de pixel.
         super(1000, 600, 1); //Todos los escenarios tendrán estas dimensiones.
+        // nivelActual = numNivel;
+        //getBackground().setImage("Escenarios/Escenario1.png");
+        nave = new NaveAliada();
+        crearNivel(numNivel);
         Pausa.creaBotonPausa(this, getWidth(), 0); //Crear el botón de pausa en el escenario.
         //Establecer esto para que cada que se reinicie el nivel, se establezca de nuevo el tiempo en que la partida terminará
         tiempoFinalJuego = System.currentTimeMillis() + tiempoDuracionJuego;
@@ -44,22 +48,29 @@ public abstract class Niveles extends World
        addObject(new MostrarInfo(3, 20, Color.WHITE, Color.BLACK, null), 50, getHeight()-20);
        //Crear las rocas que tendrá el nivel.
        roca.crearRocas(Roca.getNumRocasMax(), this); //Crear las rocas primero. Luego que se vayan eliminando se crearán con el tiempo.
-       nave = new NaveAliada();
        //System.out.println(" - NIVELES -");
         // nivelCreado = false;
 
     }
-    // public void act(){
-        // /*Pausa: Este método revisa si se activó la pausa.*/
-        // if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
-            // Greenfoot.stop();
-    // }
-    public static void crearNivel(int numNivel){//, NaveAliada nave){
+    public void act(){
+        /*Pausa: Este método revisa si se activó la pausa.*/
+        if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
+            Greenfoot.stop();
+        //Condición para saber cuándo se pasó el tiempo del juego
+          
+        if(System.currentTimeMillis() - tiempoFinalJuego >= 0)
+          Greenfoot.stop();
+          //public void crearRocasTiempo(World mundoActual)
+        roca.crearRocasTiempo(this);
+        crearItemTiempo(nave);
+    }
+    public void crearNivel(int numNivel){//, NaveAliada nave){
         //int numRocasMax;
         //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
         nivelActual = numNivel; //Indicar el nivel actual.
         switch(numNivel){
             case 1: //Nivel 1
+                setBackground(new GreenfootImage("Escenarios/Espacio1.jpeg"));
                 tiempoDuracionJuego = 60000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
@@ -70,17 +81,33 @@ public abstract class Niveles extends World
                 // System.out.println(" - NIVELES 1-");
                 //
                 // System.out.println(" - NIVELES 2-");
-                Greenfoot.setWorld(new Espacio());
+                addObject(nave, getWidth()/2-NaveAliada.getAnchoImagen()/2, getHeight()/2+NaveAliada.getAltoImagen()/2);//Aparecer a la nave en el centro
+                //public NaveEnemiga(int tipoEnemigo, int tipoDisparo)
+                addObject(new NaveEnemiga(2, 2), getWidth()/2+getWidth()/4, getHeight()/2-getHeight()/4);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
+                addObject(new NaveEnemiga(1, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
+                addObject(new NaveEnemiga(3, 1), getWidth()/2-getWidth()/4, getHeight()/2+getHeight()/4);
+                //Greenfoot.setWorld(new Espacio());
                 break;
         }
         // roca = new Roca(numRocasMax, 10000); //Esto no se puede porque después de instanciar el mundo no sale hasta moror.
     }
-
+    
     // public void act(){
         // if(!nivelCreado){
             // nivelCreado = true;
             // Greenfoot.setWorld(new Espacio(System.currentTimeMillis() + 30000, 1, 10));
         // }
+        // /* - */
+        // Condición para saber cuándo se pasó el tiempo del juego
+      // /*Aquí en lugar de que pare podríamos sacar al boss y al matarlo ahora sí pasar de nivel.*/
+      // /*Pausa: Este método revisa si se activó la pausa.*/
+        // if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
+            // Greenfoot.stop();
+      // if(System.currentTimeMillis() - tiempoFinalJuego >= 0)
+          // Greenfoot.stop();
+          // public void crearRocasTiempo(World mundoActual)
+        // roca.crearRocasTiempo(this);
+        // crearItemTiempo(nave);
     // }
     //Método estático que devuelve el nivel actual
     public static int getNivelActual(){
