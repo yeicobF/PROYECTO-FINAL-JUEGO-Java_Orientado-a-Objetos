@@ -33,7 +33,7 @@ public abstract class Niveles extends World
     {
         //Ancho, alto, tamaño de pixel.
         super(1000, 600, 1); //Todos los escenarios tendrán estas dimensiones.
-        Pausa.creaBotonPausa(this, getWidth()/2, getHeight()/2); //Crear el botón de pausa en el escenario.
+        Pausa.creaBotonPausa(this, getWidth(), 0); //Crear el botón de pausa en el escenario.
         //Establecer esto para que cada que se reinicie el nivel, se establezca de nuevo el tiempo en que la partida terminará
         tiempoFinalJuego = System.currentTimeMillis() + tiempoDuracionJuego;
         roca = new Roca(); //Inicializamos el número de rocas actual como el máximo
