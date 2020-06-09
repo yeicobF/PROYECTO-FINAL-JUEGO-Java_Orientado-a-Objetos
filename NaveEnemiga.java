@@ -80,11 +80,11 @@ public class NaveEnemiga extends Nave
         // }
         // /*En este método se mandan las coordenadas en donde se quieren agregar los PS. Estos se actualizarán cuando cambien.*/
         // infoPS.mostrarPS("PS: ", puntosSalud, getX(), getY()-getImage().getHeight()/2);
-        
+
         /*MÉTODO QUE VERIFICARÁ SI UNA ROCA CHOCÓ CON ALGO. Necesitamos ver si podemos implemementar esto de manera
         más general porque también será necesario en la clase NaveEnemiga*/
         if((puntosSalud = eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, Disparo.class),
-                    this, (Espacio)getWorld(), puntosSalud, Disparo.getDaño(), puntosPorDisparo)) == 0)
+                    this, (Espacio)getWorld(), puntosSalud, Disparo.getDaño(), puntosPorDisparo)) == 25)
                     mundo.addObject(new Explosion(), getX(), getY());
                     //NaveAliada.setPuntos(puntosPorDisparo*2);//Los puntos obtenidos se multiplicarán por 2 al destruir la nave
                     //Ya está condición dentro del método
@@ -95,17 +95,17 @@ public class NaveEnemiga extends Nave
         //limiteChoqueNaveAliada(200);
         move(1);//Método que mueve a cierta velocidad el objeto
         turnTowards(NaveAliada.getCordX(), NaveAliada.getCordY());
-        
+
         //setLocation(getX()+1, getY()+1);
     }
-    /*Método que marcará un límite entre las mismas naves enemigas y 
+    /*Método que marcará un límite entre las mismas naves enemigas y
        nuestra nave para que no choquen.*/
     private void limiteChoqueNavesEnemigas(){
         //Recorrer las demás naves para ver que no choque
         for(NaveEnemiga nave : navesAL){
             //(System.out.println("Entro al ciclo");
             if((getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)) //Ver que no sobrepase por la izquierda.
-                //System.out.println("(getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)");    
+                //System.out.println("(getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)");
                 setLocation(getX()-1, getY());
             if((getX() - anchoImagen/2) <= (nave.getX() + nave.getAnchoImagen()/2)) //Ver que no sobrepase por la derecha.
                 setLocation(getX()+1, getY());

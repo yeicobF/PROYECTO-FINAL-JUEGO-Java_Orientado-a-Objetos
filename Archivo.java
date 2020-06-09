@@ -76,9 +76,10 @@ public class Archivo extends Actor
             
             //public GreenfootImage crearCuadroTexto(String s)
             //Se crea el cuadro de texto en el objeto Etiqueta. Se hace su setImage.
-            e.crearCuadroTexto(archivo.nextLine());
+            // e.crearCuadroTexto(archivo.nextLine());
             //Se agrega el objeto con el nuevo texto.
-            w.addObject(e, w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
+            // w.addObject(e, w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
+            getImage().drawImage(e.crearCuadroTexto(archivo.nextLine()), w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
             //crearCuadroTexto(Etiqueta etiqueta, int x, int y)
             System.out.println(e.getTexto());
         }

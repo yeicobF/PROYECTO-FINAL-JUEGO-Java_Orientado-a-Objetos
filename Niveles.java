@@ -51,10 +51,10 @@ public abstract class Niveles extends World
     public static void crearNivel(int numNivel){//, NaveAliada nave){
         //int numRocasMax;
         //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
+        nivelActual = numNivel; //Indicar el nivel actual.
         switch(numNivel){
             case 1: //Nivel 1
-                nivelActual = numNivel; //Indicar el nivel actual.
-                tiempoDuracionJuego = 600000;
+                tiempoDuracionJuego = 60000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public Roca(int numRocasMax, int tiempoRegeneracion)
