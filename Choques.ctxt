@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Choques
-comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ los\ m\u00E9todos\ que\ revisan\ si\ objetos\ chocan.\ \r\n\ \ Todos\ estos\ m\u00E9todos\ ser\u00E1n\ est\u00E1ticos,\ por\ lo\ que\ no\ ser\u00E1\ necesario\ instanciar\ la\ clase.\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ los\ m\u00E9todos\ que\ revisan\ si\ objetos\ chocan.\r\n\ \ Todos\ estos\ m\u00E9todos\ ser\u00E1n\ est\u00E1ticos,\ por\ lo\ que\ no\ ser\u00E1\ necesario\ instanciar\ la\ clase.\r\n\r\n\ @author\ (Jacob)\r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
 comment1.params=
 comment1.target=Choques()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Choques\r\n

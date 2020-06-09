@@ -97,12 +97,9 @@ public class Roca extends Actor
             /*No tiene puntos de salud por lo que mandamos un 1 y el daño del disparo para que cumpla la condición de daño,
                así que cualquier disparo destruirá el meteorito, pero esto sirve para aumentar los puntos.*/
     //public int eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
-        if(Choques.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this,
-                (Espacio)getWorld(), 1, Disparo.getDaño(), 5) <= 0){
+        if(Choques.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Disparo.class), this, getWorld(), 1, Disparo.getDaño(), 5) == 0)
             numRocasActual--; //Como se destruyó la roca, restarla al total de estas.
-            mundo.addObject(new Explosion(), getX(), getY());
             //System.out.println("Rocas ahora: "+ numRocasActual);
-        }
             //NaveAliada.setPuntos(10);//Aumentar 10 puntos al jugador por destruir una roca.
             //Espacio.numRocasActual-= 1;
     }
