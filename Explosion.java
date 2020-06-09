@@ -24,27 +24,34 @@ public class Explosion extends Actor
         tiempoDiferencia = System.currentTimeMillis();
         //System.out.println(" - EXPLOSIÓN - ");
         /*Aquí se hará la imagen lo más pequeña posible.*/
-        Imagen.modificarEscalaImagen(getImage(), divisorImagen, 1);
+        imagen.modificaImagenAnchoAltoMin(1, 1); //Se pondrá la imagen con el tamaño mínimo.
     }
 
     public void act(){
-        
+        // if(animarExplosion())
+            // getWorld().removeObject(this);
            
         // else //if( ! Imagen.isEscalaModificable(getImage(), divisorImagen, 1))
             // getWorld().removeObject(this);
     }
     /*Método que hará que la explosión empiece siendo pequeña, crezca y luego se vuelva a hacer pequeña.*/
-    private void animarExplosion(){
+    private boolean animarExplosion(){
+        boolean fin = false;
         //public static boolean isEscalaModificable(GreenfootImage imagen, int divisor, int multiplicacion)
             /* Si la imagen se puede modificar (sus dimensiones != 0), entonces modficarla.*/
-        if(Imagen.isEscalaModificable(getImage(), divisorImagen, 1)) //Cuando el modificador de imagen sea 0, destruir.
-            /*Pongo el primer if por separado para que sólo se destruya cuando no cumpla con la escala y no cuando
-                el tiempo no cumpla su condición también.*/  
-            if(System.currentTimeMillis() - tiempoDiferencia >= tiempoCambioTamaño){
-                //Ir haciendo crecer la imagen poco a poco.
-              tiempoDiferencia = System.currentTimeMillis();
-              divisorImagen ++; //Aumentar el tamaño de la escala.
-              Imagen.modificarEscalaImagen(getImage(), divisorImagen, 1);
-            }
+        if(System.currentTimeMillis() - tiempoDiferencia >= tiempoCambioTamaño){
+          //Ir haciendo crecer la imagen poco a poco.
+          tiempoDiferencia = System.currentTimeMillis();
+          if(divisorImagen > 1){//Esto es para cuando la imagen va de lo más grande a lo más pequeña.    
+            divisorImagen --; //Al disminuir el multiplicador, se regresa a su tamaño original.
+            Imagen.modificarEscalaImagen(getImage(), 1, divisorImagen); //Aquí se multiplica hasta llegar al tamaño original.
+          }
+          if(divisorImagen < imagen.getDivisorImagenMaximo()){ //Para voler a hacerse pequeña
+              divisorImagen ++; //Al aumentar el divisor, se regresa al tamaño más pequeño
+              Imagen.modificarEscalaImagen(getImage(), divisorImagen, 1); //Aquí se multiplica hasta llegar al tamaño original.
+          }
+          fin = true;; //Terminar la animación después de cumplir con lo anterior para luego destruir la explosión.
+        }
+        return fin;
     }
 }

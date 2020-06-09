@@ -9,11 +9,16 @@ import greenfoot.GreenfootImage; //Sólo importar el paquete de imágenes.
 public class Imagen  
 {
     private GreenfootImage imagen;
-    private int divisorImagenMax; //Es el divisor máximo al que puede disminuirse la imagen. Se definirá en un método. 
+    private int divisorImagenMax; //Es el divisor máximo al que puede disminuirse la imagen. Se definirá en un método.
+    private final int anchoImagen, altoImagen;
+    private int anchoMin, altoMin; //ancho y alto mínimos.
     //Constructor para utilizar los métodos de modiicación de imagen dinámica.
     public Imagen(GreenfootImage imagen){
         this.imagen = imagen;
-        determinaDivisorImagenMaximo(imagen); //Determinar el máximo divisor de imagen.
+        anchoImagen = imagen.getWidth();
+        altoImagen = imagen.getHeight();
+        determinaDivisorImagenMaximo(); //Determinar el máximo divisor de imagen.
+        determinaAnchoAltoMin(); //Determina los valores mínimos del ancho y alto de la imagen.
     }
 
     /*Método para reescalar una imagen de acuerdo a los parámetros y regresarla modificada.
@@ -28,18 +33,30 @@ public class Imagen
         imagen.scale(imagen.getWidth()/divisor*multiplicacion, imagen.getHeight()/divisor*multiplicacion);
         return imagen;
     }
+    /*Método que modificará la imagen a partir de los ancho y alto mínimos con los modificadores que le demos.*/
+    public GreenfootImage modificaImagenAnchoAltoMin(int divisor, int multiplicacion){
+        imagen.scale(anchoMin/divisor*multiplicacion, altoMin/divisor*multiplicacion);
+        return imagen;
+    }
+    /*Método que determinará el ancho y alto mínimo de la imagen.*/
+    private void determinaAnchoAltoMin(){
+        anchoMin /= divisorImagenMax;
+        altoMin /= divisorImagenMax;
+    }
+    
     /*Método que verifica si las dimensiones de la imagen son diferentes a 0 al modificar.*/
-    public boolean isEscalaModificable(GreenfootImage imagen, int divisor, int multiplicacion){
-        if(imagen.getWidth()/divisor*multiplicacion > 0 && imagen.getHeight()/divisor*multiplicacion > 0)
+    public boolean isEscalaModificable(int divisor, int multiplicacion){
+        if(anchoImagen/divisor*multiplicacion > 0 && altoImagen/divisor*multiplicacion > 0)
             return true;
         return false; //Si las dimensiones modificadas dan 0, regresar false.
     }
     /*Método que determina el divisor máximo de una imagen. No se le puede reducir a un número mayor que el determinado. 7
      * El multiplicador será 1.*/
-     private void determinaDivisorImagenMaximo(GreenfootImage imagen){
-        divisorImagenMax = 0;
-        while(isEscalaModificable(imagen, divisorImagenMax, 1))
+     private void determinaDivisorImagenMaximo(){
+        divisorImagenMax = 1;
+        while(isEscalaModificable(divisorImagenMax, 1))
             divisorImagenMax ++; //Aumentar el divisor.
+        divisorImagenMax --;//Disminuir el valor en 1 porque como inicializamos en 1 porque no se puede dividir entre 0, el valor será mayor.
     }
     /*Método que devuelve el divisor máximo del tamaño de la imagen.*/
     public int getDivisorImagenMaximo(){

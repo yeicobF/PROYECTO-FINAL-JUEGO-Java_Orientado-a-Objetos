@@ -6,6 +6,6 @@ comment1.target=Explosion()
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
-comment3.target=void\ animarExplosion()
+comment3.target=boolean\ animarExplosion()
 comment3.text=M\u00E9todo\ que\ har\u00E1\ que\ la\ explosi\u00F3n\ empiece\ siendo\ peque\u00F1a,\ crezca\ y\ luego\ se\ vuelva\ a\ hacer\ peque\u00F1a.
 numComments=4
