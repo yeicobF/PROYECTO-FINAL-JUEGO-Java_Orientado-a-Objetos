@@ -6,17 +6,14 @@ import greenfoot.GreenfootImage; //Sólo importar el paquete de imágenes.
  * @author (Jacob) 
  * @version (Martes, 9 de junio de 2020)
  */
-public class Imagen  
+public class Imagen
 {
     private GreenfootImage imagen;
     private int divisorImagenMax; //Es el divisor máximo al que puede disminuirse la imagen. Se definirá en un método.
-    private final int anchoImagen, altoImagen;
     private int anchoMin, altoMin; //ancho y alto mínimos.
     //Constructor para utilizar los métodos de modiicación de imagen dinámica.
     public Imagen(GreenfootImage imagen){
         this.imagen = imagen;
-        anchoImagen = imagen.getWidth();
-        altoImagen = imagen.getHeight();
         determinaDivisorImagenMaximo(); //Determinar el máximo divisor de imagen.
         determinaAnchoAltoMin(); //Determina los valores mínimos del ancho y alto de la imagen.
     }
@@ -34,21 +31,21 @@ public class Imagen
         return imagen;
     }
     /*Método que modificará la imagen a partir de los ancho y alto mínimos con los modificadores que le demos.*/
-    public GreenfootImage modificaImagenAnchoAltoMin(int divisor, int multiplicacion){
+    public GreenfootImage modificaImagenAnchoAltoMin(GreenfootImage imagen, int divisor, int multiplicacion){
         //System.out.println("Modifica imagen: Ancho: "+ anchoMin/divisor*multiplicacion +", Alto"+ altoMin/divisor*multiplicacion);
         imagen.scale(anchoMin/divisor*multiplicacion, altoMin/divisor*multiplicacion);
         return imagen;
     }
     /*Método que determinará el ancho y alto mínimo de la imagen.*/
     private void determinaAnchoAltoMin(){
-        System.out.println("Determina ancho, alto min: Ancho: "+ anchoImagen / divisorImagenMax +", Alto"+  altoImagen / divisorImagenMax);
-        anchoMin = anchoImagen / divisorImagenMax;
-        altoMin = altoImagen / divisorImagenMax;
+        //System.out.println("Determina ancho, alto min: Ancho: "+ anchoImagen / divisorImagenMax +", Alto"+  altoImagen / divisorImagenMax);
+        anchoMin = imagen.getWidth() / divisorImagenMax;
+        altoMin = imagen.getHeight() / divisorImagenMax;
     }
     
     /*Método que verifica si las dimensiones de la imagen son diferentes a 0 al modificar.*/
     public boolean isEscalaModificable(int divisor, int multiplicacion){
-        if(anchoImagen/divisor*multiplicacion > 0 && altoImagen/divisor*multiplicacion > 0){
+        if(imagen.getWidth()/divisor*multiplicacion > 0 && imagen.getHeight()/divisor*multiplicacion > 0){
             //System.out.println("Ancho: "+ anchoImagen/divisor*multiplicacion +", Alto"+ altoImagen/divisor*multiplicacion);
             return true;
         }
