@@ -15,11 +15,16 @@ public class Explosion extends Actor
      */
     Imagen imagen;
     private int modificadorImagen; //Para cambiar el tamaño de la imagen.
-    private final long tiempoCambioTamaño = 0;//El tiempo con el que cambie de tamaño la explosión.
+    private final long tiempoCambioTamaño = 15;//El tiempo con el que cambie de tamaño la explosión.
     private long tiempoDiferencia; //Es el tiempo que tendrá que pasar para que cambie de tamaño la explosión.
     boolean crecio, decrecio; //Booleano que indicará si ya creció y decreció a explosión.
-    public Explosion(){
+    /*Recibir la imagen del objeto que explotó para que la explosión mida el mismo tamaño.*/
+    public Explosion(GreenfootImage imagenObjeto){
         setImage("Explosion.png");
+        /*Reescalar la imagen al tamaño del objeto que explotó.
+         * El tamaño de la explosión será equivalente al tamaño del objeto que explotó, pero medirá
+            1/2 tamaño más que la original para que quede un poco más grande la explosión.*/
+        getImage().scale(imagenObjeto.getWidth()*3/2, imagenObjeto.getHeight()*3/2);
         imagen = new Imagen(getImage());
         modificadorImagen = 0; //Hacer que la imagen aparezca pequeña para que vaya creciendo.
         tiempoDiferencia = System.currentTimeMillis();
@@ -32,9 +37,6 @@ public class Explosion extends Actor
     public void act(){
         if(animarExplosion())
             getWorld().removeObject(this);
-           
-        // else //if( ! Imagen.isEscalaModificable(getImage(), modificadorImagen, 1))
-            // getWorld().removeObject(this);
     }
     /*Método que hará que la explosión empiece siendo pequeña, crezca y luego se vuelva a hacer pequeña.*/
     private boolean animarExplosion(){

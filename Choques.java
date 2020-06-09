@@ -53,7 +53,7 @@ public abstract class Choques
                 de los que indicamos que nos debería de quitar al morir.*/
             if(puntosSalud <=0){ //Si la salud del objeto actual es 0 o menos, entonces ahora sí eliminar el objeto actual
                 //Antes de destruir el objeto, tomar sus coordenadas y aparecer la explosión.
-                mundoActual.addObject(new Explosion(), objetoRaiz.getX(), objetoRaiz.getY()); 
+                mundoActual.addObject(new Explosion(objetoRaiz.getImage()), objetoRaiz.getX(), objetoRaiz.getY()); 
                 mundoActual.removeObject(objetoRaiz);//Se elimina el objeto que chocó. El objeto que llama el método.
                 if(!(objetoRaiz instanceof NaveAliada)) //Si el objeto no somos nosotros, sumarnos los puntos.
                     NaveAliada.setPuntos(puntosNave);//Como se destruyo el objeto se nos volverán a sumar los puntos.
