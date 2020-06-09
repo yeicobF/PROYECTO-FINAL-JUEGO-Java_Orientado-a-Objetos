@@ -33,6 +33,7 @@ public abstract class Niveles extends World
     {
         //Ancho, alto, tamaño de pixel.
         super(1000, 600, 1); //Todos los escenarios tendrán estas dimensiones.
+        Pausa.creaBotonPausa(this, getWidth()/2, getHeight()/2); //Crear el botón de pausa en el escenario.
         //Establecer esto para que cada que se reinicie el nivel, se establezca de nuevo el tiempo en que la partida terminará
         tiempoFinalJuego = System.currentTimeMillis() + tiempoDuracionJuego;
         roca = new Roca(); //Inicializamos el número de rocas actual como el máximo
@@ -48,6 +49,11 @@ public abstract class Niveles extends World
         // nivelCreado = false;
 
     }
+    // public void act(){
+        // /*Pausa: Este método revisa si se activó la pausa.*/
+        // if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
+            // Greenfoot.stop();
+    // }
     public static void crearNivel(int numNivel){//, NaveAliada nave){
         //int numRocasMax;
         //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección

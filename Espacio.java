@@ -25,6 +25,9 @@ public class Espacio extends Niveles
     public void act(){
       //Condición para saber cuándo se pasó el tiempo del juego
       /*Aquí en lugar de que pare podríamos sacar al boss y al matarlo ahora sí pasar de nivel.*/
+      /*Pausa: Este método revisa si se activó la pausa.*/
+        if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
+            Greenfoot.stop();
       if(System.currentTimeMillis() - tiempoFinalJuego >= 0)
           Greenfoot.stop();
           //public void crearRocasTiempo(World mundoActual)
