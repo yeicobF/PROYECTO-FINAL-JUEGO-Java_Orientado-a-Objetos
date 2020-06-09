@@ -15,43 +15,50 @@ public class Explosion extends Actor
      */
     Imagen imagen;
     private int divisorImagen; //Para cambiar el tamaño de la imagen.
-    private final long tiempoCambioTamaño = 1000;//El tiempo con el que cambie de tamaño la explosión.
+    private final long tiempoCambioTamaño = 0;//El tiempo con el que cambie de tamaño la explosión.
     private long tiempoDiferencia; //Es el tiempo que tendrá que pasar para que cambie de tamaño la explosión.
+    boolean crecio, decrecio;
     public Explosion(){
         setImage("Explosion.png");
         imagen = new Imagen(getImage());
-        divisorImagen = imagen.getDivisorImagenMaximo(); //Hacer que la imagen aparezca pequeña para que vaya creciendo.
+        divisorImagen = 0; //Hacer que la imagen aparezca pequeña para que vaya creciendo.
         tiempoDiferencia = System.currentTimeMillis();
         //System.out.println(" - EXPLOSIÓN - ");
         /*Aquí se hará la imagen lo más pequeña posible.*/
-        imagen.modificaImagenAnchoAltoMin(1, 1); //Se pondrá la imagen con el tamaño mínimo.
+        setImage(imagen.modificaImagenAnchoAltoMin(1, 1)); //Se pondrá la imagen con el tamaño mínimo.
+        crecio = decrecio = false; //Inicializar para las condiciones de imagen.
     }
 
     public void act(){
-        // if(animarExplosion())
-            // getWorld().removeObject(this);
+        if(animarExplosion())
+            getWorld().removeObject(this);
            
         // else //if( ! Imagen.isEscalaModificable(getImage(), divisorImagen, 1))
             // getWorld().removeObject(this);
     }
     /*Método que hará que la explosión empiece siendo pequeña, crezca y luego se vuelva a hacer pequeña.*/
     private boolean animarExplosion(){
-        boolean fin = false;
         //public static boolean isEscalaModificable(GreenfootImage imagen, int divisor, int multiplicacion)
             /* Si la imagen se puede modificar (sus dimensiones != 0), entonces modficarla.*/
-        if(System.currentTimeMillis() - tiempoDiferencia >= tiempoCambioTamaño){
+        if(System.currentTimeMillis() - tiempoDiferencia >= tiempoCambioTamaño && (!crecio || !decrecio)){
+            /*(!crecio || !decrecio) <- Dejará de hacerlo cuando ya haya crecido y decrecido*/
           //Ir haciendo crecer la imagen poco a poco.
           tiempoDiferencia = System.currentTimeMillis();
-          if(divisorImagen > 1){//Esto es para cuando la imagen va de lo más grande a lo más pequeña.    
-            divisorImagen --; //Al disminuir el multiplicador, se regresa a su tamaño original.
-            Imagen.modificarEscalaImagen(getImage(), 1, divisorImagen); //Aquí se multiplica hasta llegar al tamaño original.
+          /*Si la imagen aún no crece.*/
+          if(divisorImagen < imagen.getDivisorImagenMaximo() && !crecio){//Esto es para cuando la imagen va de lo más grande a lo más pequeña.    
+            divisorImagen ++; //Al disminuir el multiplicador, se regresa a su tamaño original.
+            if(divisorImagen == imagen.getDivisorImagenMaximo())
+                crecio = true; //Indicar que ya creció el sprite.
           }
-          if(divisorImagen < imagen.getDivisorImagenMaximo()){ //Para voler a hacerse pequeña
-              divisorImagen ++; //Al aumentar el divisor, se regresa al tamaño más pequeño
-              Imagen.modificarEscalaImagen(getImage(), divisorImagen, 1); //Aquí se multiplica hasta llegar al tamaño original.
+          /*Mientras la imagen ya haya crecido y no decrecido.
+                Mayor a 2, ya que al disminuir por última vez valdrá 1 y será divisible.*/
+          if(divisorImagen > 2 && crecio && !decrecio){ //Para voler a hacerse pequeña
+                divisorImagen --; //Al aumentar el divisor, se regresa al tamaño más pequeño
+                if(divisorImagen == 1)
+                    decrecio = true; //Indicar que ya decreció la imagen.
           }
-          fin = true;; //Terminar la animación después de cumplir con lo anterior para luego destruir la explosión.
+          setImage(imagen.modificaImagenAnchoAltoMin(1, divisorImagen));
         }
-        return fin;
+        return crecio && decrecio; //Devuelve true si terminó su proceso.
     }
 }

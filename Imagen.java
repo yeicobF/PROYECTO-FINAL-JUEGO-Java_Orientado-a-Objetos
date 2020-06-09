@@ -35,19 +35,23 @@ public class Imagen
     }
     /*Método que modificará la imagen a partir de los ancho y alto mínimos con los modificadores que le demos.*/
     public GreenfootImage modificaImagenAnchoAltoMin(int divisor, int multiplicacion){
+        //System.out.println("Modifica imagen: Ancho: "+ anchoMin/divisor*multiplicacion +", Alto"+ altoMin/divisor*multiplicacion);
         imagen.scale(anchoMin/divisor*multiplicacion, altoMin/divisor*multiplicacion);
         return imagen;
     }
     /*Método que determinará el ancho y alto mínimo de la imagen.*/
     private void determinaAnchoAltoMin(){
-        anchoMin /= divisorImagenMax;
-        altoMin /= divisorImagenMax;
+        System.out.println("Determina ancho, alto min: Ancho: "+ anchoImagen / divisorImagenMax +", Alto"+  altoImagen / divisorImagenMax);
+        anchoMin = anchoImagen / divisorImagenMax;
+        altoMin = altoImagen / divisorImagenMax;
     }
     
     /*Método que verifica si las dimensiones de la imagen son diferentes a 0 al modificar.*/
     public boolean isEscalaModificable(int divisor, int multiplicacion){
-        if(anchoImagen/divisor*multiplicacion > 0 && altoImagen/divisor*multiplicacion > 0)
+        if(anchoImagen/divisor*multiplicacion > 0 && altoImagen/divisor*multiplicacion > 0){
+            //System.out.println("Ancho: "+ anchoImagen/divisor*multiplicacion +", Alto"+ altoImagen/divisor*multiplicacion);
             return true;
+        }
         return false; //Si las dimensiones modificadas dan 0, regresar false.
     }
     /*Método que determina el divisor máximo de una imagen. No se le puede reducir a un número mayor que el determinado. 7

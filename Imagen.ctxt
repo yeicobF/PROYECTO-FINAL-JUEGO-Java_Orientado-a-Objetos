@@ -7,7 +7,7 @@ comment2.params=imagen\ divisor\ multiplicacion
 comment2.target=greenfoot.GreenfootImage\ modificarEscalaImagen(greenfoot.GreenfootImage,\ int,\ int)
 comment2.text=M\u00E9todo\ para\ reescalar\ una\ imagen\ de\ acuerdo\ a\ los\ par\u00E1metros\ y\ regresarla\ modificada.\r\n\ -\ Recibe\ la\ imagen\ del\ tipo\ GreenfootImage,\ que\ es\ como\ Greenfoot\ las\ maneja.\r\n\ \ \ \ \ \ \ \ Lo\ que\ hace\ es\ dividir\ el\ ancho\ de\ la\ imagen\ recibida\ entre\ "division"\ y\ luego\ multiplicarlo\ por\ "multiplicacion",\r\n\ \ \ \ \ \ \ \ \ \ \ \ as\u00ED\ obtendremos\ una\ imagen\ de\ esa\ proporcion.\r\n\ \ \ \ \ \ \ \ Ancho\ Imagen\ final\ \=\ Ancho/divisor\ *\ multiplicaci\u00F3n\r\nAlto\ Imagen\ final\ \=\ Alto/divisor\ *\ multiplicaci\u00F3n
 comment3.params=divisor\ multiplicacion
-comment3.target=void\ modificaImagenAnchoAltoMin(int,\ int)
+comment3.target=greenfoot.GreenfootImage\ modificaImagenAnchoAltoMin(int,\ int)
 comment3.text=M\u00E9todo\ que\ modificar\u00E1\ la\ imagen\ a\ partir\ de\ los\ ancho\ y\ alto\ m\u00EDnimos\ con\ los\ modificadores\ que\ le\ demos.
 comment4.params=
 comment4.target=void\ determinaAnchoAltoMin()
