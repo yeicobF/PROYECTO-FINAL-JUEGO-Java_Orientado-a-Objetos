@@ -15,10 +15,20 @@ public class Boton extends Actor
     String texto; //El texto del botón
     private Etiqueta e;
     /*Constructor para cuando el botón creado es una imagen.*/
-    private Boton(GreenfootImage imagen){
-        setImage(imagen); //Establece la imagen del botón.
-        imagenOriginal =  imagenAuxiliar = imagen;
-        imagenGrande = Imagen.modificarEscalaImagen(imagenAuxiliar, 4, 5);
+    private Boton(GreenfootImage imagen, String nombreImagen){
+        /*Aquí el proceso lo hice diferente. En lugar de que la imagen original sea la que recibimos
+           y la grande crezca en proporcion de esta, la imagen original será la que recibimos
+           pero más chica, y la grande será la que recibimos. Así no se verá tanto la pérdida de
+           calidad al hacer la imagen más grande.*/
+        imagenGrande = imagen;
+        //Como se asignan por separado, no estarán conectadas.
+        imagenOriginal = new GreenfootImage(nombreImagen);
+        // //Se modifica la imagen grande. No requiere auxiliar.
+        // /*El proceso de modificación lo hice manual, pero tengo que hacerlo automático. Esto es
+            // para el botón de pausa específicamente. Necesito cambiar el tamaño del botón de pausa
+            // a 1024/20.*/
+        // Imagen.modificarEscalaImagen(imagenGrande, 20, 1);
+        Imagen.modificarEscalaImagen(imagenOriginal, 4, 3);
     }
     //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
     private Boton(String texto, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente){
@@ -63,8 +73,8 @@ public class Boton extends Actor
         return boton;
     }
     /*Método que crea un botón a partir de una imagen dada, sus dimensiones y sus coordenadas.*/
-    public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, int x, int y){
-        Boton boton = new Boton(imagen); //Recibe el botón con su imagen.
+    public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, String nombreImagen, int x, int y){
+        Boton boton = new Boton(imagen, nombreImagen); //Recibe el botón con su imagen.
         mundoActual.addObject(boton, x, y); //Agrega el botón.
         return boton;
     }

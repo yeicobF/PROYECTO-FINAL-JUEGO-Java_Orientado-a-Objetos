@@ -49,8 +49,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
      /* Crear botón de pausa*/
      public static void creaBotonPausa(World mundoActual, int x, int y){
          GreenfootImage imagen = new GreenfootImage("Elementos/Pausa.png");
-         imagen.scale(imagen.getWidth()/20, imagen.getHeight()/20);
-         pausa = Boton.creaBotonImagen(mundoActual, imagen, x - imagen.getWidth()/2, y + imagen.getHeight()/2); //Establecer el botón de pausa.
+         pausa = Boton.creaBotonImagen(mundoActual, imagen, "Elementos/Pausa.png", 
+                                        x - imagen.getWidth()/2, y + imagen.getHeight()/2); //Establecer el botón de pausa.
      }
      
  }
