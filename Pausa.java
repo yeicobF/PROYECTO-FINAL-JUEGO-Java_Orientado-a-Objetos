@@ -38,8 +38,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
          //public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, int x, int y)
          //Se restan 30 por el tamaño de la fuente
          reanudar = Boton.creaBoton(this, "Reanudar", getWidth()/2, getHeight()/2 - 50, Color.WHITE, Color.GRAY, null, 50);
-         salir = Boton.creaBoton(this, "Salir", getWidth()/2, getHeight()/2 + 50, Color.WHITE, Color.GRAY, null, 50);
-         reiniciar = Boton.creaBoton(this, "Reiniciar nivel", getWidth()/2, getHeight()/2 + 100, Color.WHITE, Color.GRAY, null, 50);
+         reiniciar = Boton.creaBoton(this, "Reiniciar nivel", getWidth()/2, getHeight()/2 + 50, Color.WHITE, Color.GRAY, null, 50);
+         salir = Boton.creaBoton(this, "Salir", getWidth()/2, getHeight()/2 + 150, Color.WHITE, Color.GRAY, null, 50);
      }
      
      
