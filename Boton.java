@@ -72,12 +72,26 @@ public class Boton extends Actor
         //System.out.println(x - boton.e.getLargoTexto()/2 + "\n");
         return boton;
     }
+    /*Crea un botón con un texto de sombra debajo.*/
+    public static Boton creaBotonSombra(World mundoActual, String textoBoton, Etiqueta texto, int x, int y,
+                    Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente, int divisorLargo){
+        // botonIniciar = Boton.creaBoton(this, "Iniciar", getWidth()/2, getHeight() * 1/3, Color.WHITE, null, null, 50);
+        // getBackground().drawImage(texto.crearCuadroTexto("Iniciar"), getWidth()/2 - texto.getXSombra(), getHeight() * 1/3 - 13);
+        Boton boton = new Boton(textoBoton, tamañoFuente, colorFuente, colorFondo, bordeFuente);
+        mundoActual.addObject(boton, x - boton.e.getLargoTexto()/2, y);
+        //Sombra del botón
+        mundoActual.getBackground().drawImage(texto.crearCuadroTexto(textoBoton), 
+                        x - texto.getXSombra(divisorLargo), y - tamañoFuente/2 + tamañoFuente/25);
+                        //y - tamañoFuente/2 + tamañoFuente/25 para que en y quede bien.
+        return boton;
+    }
     /*Método que crea un botón a partir de una imagen dada, sus dimensiones y sus coordenadas.*/
     public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, String nombreImagen, int x, int y){
         Boton boton = new Boton(imagen, nombreImagen); //Recibe el botón con su imagen.
         mundoActual.addObject(boton, x, y); //Agrega el botón.
         return boton;
     }
+    
     // //Crear un botón con los paarámetros que recibe. Regresa el botón para poder interactuar con él.
     // public Actor creaBoton(String s, int tamaño, int x, int y)
     // {
