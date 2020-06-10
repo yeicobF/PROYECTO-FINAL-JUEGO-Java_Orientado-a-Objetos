@@ -3,7 +3,7 @@ import greenfoot.*;
  * Clase que funciona para crear botones en el escenario. Estos serán interactivos porque son actores.
  *
  * @author (Team Naves)
- * @version (Jueves, 4 de junio de 2020)
+ * @version (Miércoles, 10 de junio de 2020)
  */
 
 public class Boton extends Actor
