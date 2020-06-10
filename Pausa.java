@@ -23,6 +23,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
      private static Boton pausa; //Se creará y si lo tocamos se para el juego.
      private Boton reanudar; //Botón que reanudará la partida.
      private Boton salir; //Botón que saldrá del juego.
+     private Boton reiniciar;
      private Etiqueta texto; //Para crear cuadro de texto.
      /*Crear menú de pausa con los botones de reanudar y salir.*/
      public Pausa(World mundoAntesDePausa, GreenfootImage fondoPausa){
@@ -38,14 +39,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
          //Se restan 30 por el tamaño de la fuente
          reanudar = Boton.creaBoton(this, "Reanudar", getWidth()/2, getHeight()/2 - 50, Color.WHITE, Color.GRAY, null, 50);
          salir = Boton.creaBoton(this, "Salir", getWidth()/2, getHeight()/2 + 50, Color.WHITE, Color.GRAY, null, 50);
+         reiniciar = Boton.creaBoton(this, "Reiniciar nivel", getWidth()/2, getHeight()/2 + 100, Color.WHITE, Color.GRAY, null, 50);
      }
      
      
      public void act(){
-         if(isReanudar())
+         if(isReanudar()){
+            //texto.getImagen().clear(); //Borrar cuadro de texto. No funciona porque el que lo dibuja es el drawImage().
             Greenfoot.setWorld(mundoAntesDePausa);
-         if(isSalir())//Aquí se preguntará si se quieren guardar cambios antes de salir o no. Por ahora sólo saldremos a portada.
+        }
+        if(isSalir())//Aquí se preguntará si se quieren guardar cambios antes de salir o no. Por ahora sólo saldremos a portada.
             Greenfoot.setWorld(new Portada());
+        if(isReiniciar())
+            Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));
      }
      
      /*Método que regresa true si el botón de pausa ha sido tocado con el mouse
@@ -62,6 +68,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
      }
      private boolean isSalir(){
          if(Greenfoot.mouseClicked(salir))// || si presionamos con las flechitas.
+            return true;
+         return false;
+     }
+     private boolean isReiniciar(){
+         if(Greenfoot.mouseClicked(reiniciar))// || si presionamos con las flechitas.
             return true;
          return false;
      }
