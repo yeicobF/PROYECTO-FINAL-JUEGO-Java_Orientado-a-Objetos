@@ -22,16 +22,16 @@ public class Portada extends World
         texto = new Etiqueta(30, Color.GRAY, null, null); //Inicializar cuadro de texto que simulará la sombra de los botones.
 
         botonIniciar = Boton.creaBoton(this, "Iniciar", getWidth()/2, getHeight() * 1/3, Color.WHITE, null, null, 30);
-        getBackground().drawImage(texto.crearCuadroTexto("Iniciar"), getWidth()/2 - texto.getProporcionTextoImagen()/2, getHeight() * 1/3 + 3); //Sombra de botón Iniciar
+        getBackground().drawImage(texto.crearCuadroTexto("Iniciar"), getWidth()/2 - texto.getXSombra(), getHeight() * 1/3 ); //Sombra de botón Iniciar
 
         botonComoJugar = Boton.creaBoton(this, "¿Cómo jugar?", getWidth()/2, (getHeight() * 1/3) + 50, Color.WHITE, null, null, 30);
-        getBackground().drawImage(texto.crearCuadroTexto("¿Cómo jugar?"), getWidth()/2 - 2, getHeight() * 1/3 + 53); //Sombra de botón Iniciar
+        getBackground().drawImage(texto.crearCuadroTexto("¿Cómo jugar?"), getWidth()/2 - texto.getXSombra(), getHeight() * 1/3 + 53); //Sombra de botón Iniciar
 
         botonAcercaDe = Boton.creaBoton(this, "Acerca de", getWidth()/2, (getHeight() * 1/3) + 100, Color.WHITE, null, null, 30);
-        getBackground().drawImage(texto.crearCuadroTexto("Acerca de"), getWidth()/2, (getHeight() * 1/3) + 103); //Sombra de botón Iniciar
+        getBackground().drawImage(texto.crearCuadroTexto("Acerca de"), getWidth()/2 - texto.getXSombra(), (getHeight() * 1/3) + 103); //Sombra de botón Iniciar
 
         botonCreditos = Boton.creaBoton(this, "Créditos", getWidth()/2 - 2, getHeight() * 1/3 + 150, Color.WHITE, null, null, 30);
-        getBackground().drawImage(texto.crearCuadroTexto("Créditos"), getWidth()/2 - 2, getHeight() * 1/3 + 153); //Sombra de botón Iniciar.
+        getBackground().drawImage(texto.crearCuadroTexto("Créditos"), getWidth()/2 - texto.getXSombra(), getHeight() * 1/3 + 153); //Sombra de botón Iniciar.
 
         if(bkgMusic != null)
             bkgMusic.stop();

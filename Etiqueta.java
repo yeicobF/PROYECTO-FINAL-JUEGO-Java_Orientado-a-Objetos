@@ -64,4 +64,11 @@ public class Etiqueta// extends Actor
         else //El número de letras es par, centrar normal.
             return (mensaje.getWidth()/texto.length())*(texto.length()/2);
     }
+    /* Método que devolverá x para la sombra de un texto. La sombra está a la izquierda.*/
+    public int getXSombra(){
+        /*Para esto hay que restarle media letra a la coordenada para que se vea la sombra.*/
+        //mensaje.getWidth()/texto.length()*2 devuelve la mitad de una letra.
+        //Se suma a la coordenada centrada porque es lo que se va a restar desde el medio de la imagen.
+        return getXCentrada() + mensaje.getWidth()/texto.length()/2;
+    }
 }
