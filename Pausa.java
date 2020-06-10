@@ -32,7 +32,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
          //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
          texto = new Etiqueta(50, Color.WHITE, Color.BLACK, Color.YELLOW);
          //Crear texto que indique la Pausa
-         getBackground().drawImage(texto.crearCuadroTexto("Pausa"), getWidth()/2 - texto.getLargoTexto()/2*30, 10);
+         getBackground().drawImage(texto.crearCuadroTexto("Pausa"), getWidth()/2 - texto.getXCentrada(), 10);
          System.out.println(" - MITAD FONDO: 500, X CALCULADA DEBERÍA SER: 497, ES: "+ (getWidth()/2 - texto.getLargoTexto()/2*30));
          //public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, int x, int y)
          //Se restan 30 por el tamaño de la fuente

@@ -51,4 +51,17 @@ public class Etiqueta// extends Actor
       //System.out.println(texto + texto.length() * 8);
       return texto.length() * 8; //1 pixel -> 0.125 char
     }
+    /*Getter de la imagen creada con el texto*/
+    public GreenfootImage getImagen(){
+        return mensaje;
+    }
+    /*Método que regresa la x en donnde el texto estará centrado
+        en el método drawImage(), ya que en las coordenadas hay
+        que tomar el tamaño de la letra para centrarlo.*/
+    public int getXCentrada(){
+        if(texto.length()%2 == 1) //El texto tiene letras impares, centrar más a la izquierda.
+            return (mensaje.getWidth()/texto.length())*(texto.length()/2 + 1);
+        else //El número de letras es par, centrar normal.
+            return (mensaje.getWidth()/texto.length())*(texto.length()/2);
+    }
 }
