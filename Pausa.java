@@ -39,10 +39,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
          reanudar = Boton.creaBoton(this, "Reanudar", getWidth()/2, getHeight()/2 - 50, Color.WHITE, Color.GRAY, null, 50);
          salir = Boton.creaBoton(this, "Salir", getWidth()/2, getHeight()/2 + 50, Color.WHITE, Color.GRAY, null, 50);
      }
+     
+     
+     public void act(){
+         if(isReanudar())
+            Greenfoot.setWorld(mundoAntesDePausa);
+         if(isSalir())//Aquí se preguntará si se quieren guardar cambios antes de salir o no. Por ahora sólo saldremos a portada.
+            Greenfoot.setWorld(new Portada());
+     }
+     
      /*Método que regresa true si el botón de pausa ha sido tocado con el mouse
         o activado con las teclas "p" o "esc".*/
      public static boolean isPausa(){
          if(Greenfoot.mouseClicked(pausa) || Greenfoot.isKeyDown("p") || Greenfoot.isKeyDown("escape"))
+            return true;
+         return false;
+     }
+     private boolean isReanudar(){
+         if(Greenfoot.mouseClicked(reanudar) || Greenfoot.isKeyDown("r"))// || si presionamos con las flechitas.
+            return true;
+         return false;
+     }
+     private boolean isSalir(){
+         if(Greenfoot.mouseClicked(salir))// || si presionamos con las flechitas.
             return true;
          return false;
      }
