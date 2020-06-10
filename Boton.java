@@ -39,7 +39,6 @@ public class Boton extends Actor
         mundoActual.addObject(boton, x, y); //Agrega el botón.
         return boton;
     }
-
     // //Crear un botón con los paarámetros que recibe. Regresa el botón para poder interactuar con él.
     // public Actor creaBoton(String s, int tamaño, int x, int y)
     // {

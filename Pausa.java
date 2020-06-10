@@ -21,9 +21,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  public class Pausa extends World {
      private World mundoAntesDePausa;
      private static Boton pausa; //Se creará y si lo tocamos se para el juego.
-     public Pausa(World mundoAntesDePausa){
-         super(300, 200, 1); //Dimensiones del cuadro de pausa. Aquí se mostrarán las opciones.
+     private Boton reanudar; //Botón que reanudará la partida.
+     private Boton salir; //Botón que saldrá del juego.
+     private Etiqueta texto; //Para crear cuadro de texto.
+     /*Crear menú de pausa con los botones de reanudar y salir.*/
+     public Pausa(World mundoAntesDePausa, GreenfootImage fondoPausa){
+         super(1000, 600, 1); //Dimensiones del cuadro de pausa. Aquí se mostrarán las opciones.
+         setBackground(fondoPausa); //Que el fondo sea el fondo del nivel actual.
          this.mundoAntesDePausa = mundoAntesDePausa;
+         //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
+         texto = new Etiqueta(50, Color.WHITE, Color.BLACK, Color.YELLOW);
+         //Crear texto que indique la Pausa
+         getBackground().drawImage(texto.crearCuadroTexto("Pausa"), getWidth()/2 - texto.getLargoTexto()/2*30, 10);
+         System.out.println(" - MITAD FONDO: 500, X CALCULADA DEBERÍA SER: 497, ES: "+ (getWidth()/2 - texto.getLargoTexto()/2*30));
+         //public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, int x, int y)
+         //Se restan 30 por el tamaño de la fuente
+         reanudar = Boton.creaBoton(this, "Reanudar", getWidth()/2, getHeight()/2 - 50, Color.WHITE, Color.GRAY, null, 50);
+         salir = Boton.creaBoton(this, "Salir", getWidth()/2, getHeight()/2 + 50, Color.WHITE, Color.GRAY, null, 50);
      }
      /*Método que regresa true si el botón de pausa ha sido tocado con el mouse
         o activado con las teclas "p" o "esc".*/
@@ -38,4 +52,5 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
          imagen.scale(imagen.getWidth()/20, imagen.getHeight()/20);
          pausa = Boton.creaBotonImagen(mundoActual, imagen, x - imagen.getWidth()/2, y + imagen.getHeight()/2); //Establecer el botón de pausa.
      }
+     
  }

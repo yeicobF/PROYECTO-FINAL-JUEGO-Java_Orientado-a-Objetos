@@ -22,6 +22,7 @@ public class Niveles extends World
     protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
     protected long tiempoFinalJuego;
     private int tipoItem;
+    //Pausa pausa; //Para instanciar el menú de pausa.
     // private boolean nivelCreado;
 
     //Constructor para crear el mundo del juego.
@@ -55,7 +56,10 @@ public class Niveles extends World
     public void act(){
         /*Pausa: Este método revisa si se activó la pausa.*/
         if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
-            Greenfoot.stop();
+            //public Pausa(World mundoAntesDePausa)
+            Greenfoot.setWorld(new Pausa(this, getBackground()));
+            // Greenfoot.setWorld(new Pausa(this));
+            // Greenfoot.stop();
         //Condición para saber cuándo se pasó el tiempo del juego
           
         if(System.currentTimeMillis() - tiempoFinalJuego >= 0)
