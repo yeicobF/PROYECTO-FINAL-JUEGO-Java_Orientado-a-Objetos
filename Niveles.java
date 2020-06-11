@@ -38,6 +38,8 @@ public class Niveles extends World
         //getBackground().setImage("Escenarios/Escenario1.png");
         nave = new NaveAliada();
         crearNivel(numNivel);
+        tiempoInicialMilis = System.currentTimeMillis();
+        Items.setItemActivoFalso();
         Pausa.creaBotonPausa(this, getWidth(), 0); //Crear el botón de pausa en el escenario.
         //Establecer esto para que cada que se reinicie el nivel, se establezca de nuevo el tiempo en que la partida terminará
         tiempoFinalJuego = System.currentTimeMillis() + tiempoDuracionJuego;
@@ -75,6 +77,7 @@ public class Niveles extends World
         switch(numNivel){
             case 1: //Nivel 1
                 setBackground(new GreenfootImage("Escenarios/Espacio1.jpeg"));
+                nave.setVidas(3);
                 tiempoDuracionJuego = 60000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.

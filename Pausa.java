@@ -21,7 +21,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  public class Pausa extends World {
      private World mundoAntesDePausa;
      private GreenfootImage fondoPausa; //Para cuando se reanude el juego se borre el texto de "Pausa".
-     private GreenfootImage pausaTexto; //Para crear el cuadro de texto y luego borrarlo.
+     private Actor pausaTexto; //Para crear el cuadro de texto y luego borrarlo.
      private static Boton pausa; //Se creará y si lo tocamos se para el juego.
      private Boton reanudar; //Botón que reanudará la partida.
      private Boton salir; //Botón que saldrá del juego.
@@ -34,12 +34,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
          this.mundoAntesDePausa = mundoAntesDePausa;
          this.fondoPausa = fondoPausa;
          //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
-         texto = new Etiqueta(50, Color.WHITE, Color.BLACK, Color.YELLOW);
+         //texto = new Etiqueta(50, Color.WHITE, Color.BLACK, Color.YELLOW);
          //Crear texto que indique la Pausa
-         pausaTexto = new GreenfootImage(texto.crearCuadroTexto("Pausa"));
-         pausaTexto.drawImage(texto.getImagen(), getWidth()/2 - texto.getXCentrada(), 10);
-         fondoPausa.drawImage(pausaTexto, getWidth()/2 - texto.getXCentrada(), 10);
-         
+         // pausaTexto = new GreenfootImage(texto.crearCuadroTexto("Pausa"));
+         // pausaTexto.drawImage(texto.getImagen(), getWidth()/2 - texto.getXCentrada(), 10);
+         // fondoPausa.drawImage(pausaTexto, getWidth()/2 - texto.getXCentrada(), 10);
+         pausaTexto = Boton.creaBoton(this, "Pausa", getWidth()/2, getHeight()/8, Color.WHITE, Color.BLACK, Color.YELLOW, 50);
          //System.out.println(" - MITAD FONDO: 500, X CALCULADA DEBERÍA SER: 497, ES: "+ (getWidth()/2 - texto.getLargoTexto()/2*30));
          //public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, int x, int y)
          //Se restan 30 por el tamaño de la fuente
@@ -55,7 +55,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
             // texto = new Etiqueta(50, Color.BLACK, Color.BLACK, null);
             // getBackground().drawImage(texto.crearCuadroTexto("Pausa"), getWidth()/2 - texto.getXCentrada(), 10);
             //getBackground().drawImage(fondoPausa, 0, 0);
-            pausaTexto.clear();
+            // pausaTexto.clear();
             Greenfoot.setWorld(mundoAntesDePausa);
         }
         if(isSalir())//Aquí se preguntará si se quieren guardar cambios antes de salir o no. Por ahora sólo saldremos a portada.

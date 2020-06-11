@@ -344,6 +344,10 @@ public class NaveAliada extends Nave
     // public int getPuntosSalud(){
         // return puntosSalud;
     // }
+    /*Setter para las vidas para cuando se reinicie el nivel*/
+    public void setVidas(int vidas){
+        vidas = vidas;
+    }
     /*Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
         se mandará un número negativo.*/
     public static void setPuntos(int puntosRecibidos){
