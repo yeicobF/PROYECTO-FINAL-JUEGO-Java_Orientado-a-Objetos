@@ -61,9 +61,11 @@ public class ArchivoPrueba
             else{
                 //Crea un botón de acuerdo al tamaño del texto
                 if(numLineaActual <= numLineasArchivo/2) //Si se encuentra arriba de la mitad, empezar desde arriba
-                    altura = mundo.getHeight()/2-(tamañoFuente+10) + numLineaActual * tamañoFuente; //La altura de cada línea de texto será de 30
+                    altura = mundo.getHeight()/numLineasArchivo - tamañoFuente - 10 + numLineaActual*tamañoFuente;
+                    //altura = mundo.getHeight()/2+tamañoFuente+10 - numLineaActual * tamañoFuente;
                 else//Si se encuentra debajo de la mitad, ir disminuyendo.
-                    altura = mundo.getHeight()/2+tamañoFuente+10 - numLineaActual * tamañoFuente;
+                    altura = mundo.getHeight()/numLineasArchivo + tamañoFuente + 10 + numLineaActual*tamañoFuente;
+                    // altura = mundo.getHeight()/2-(tamañoFuente+10) + numLineaActual * tamañoFuente;
                 // System.out.println("Altura actual: "+ altura);
                 // System.out.println("NÚMERO DE LÍNEAS ACTUAL: "+ numLineaActual + archivo.nextLine());
                 //mundo.showText(archivo.nextLine(), mundo.getWidth()/2, altura);
