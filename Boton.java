@@ -80,6 +80,7 @@ public class Boton extends Actor
         Boton boton = new Boton(textoBoton, tamañoFuente, colorFuente, colorFondo, bordeFuente);
         mundoActual.addObject(boton, x - boton.e.getLargoTexto()/2, y);
         //Sombra del botón
+        //texto.setImagen(Imagen.modificarEscalaImagen(texto.getImagen(), 6, 4));
         mundoActual.getBackground().drawImage(texto.crearCuadroTexto(textoBoton), 
                         x - texto.getXSombra(divisorLargo), y - tamañoFuente/2 + tamañoFuente/25);
                         //y - tamañoFuente/2 + tamañoFuente/25 para que en y quede bien.

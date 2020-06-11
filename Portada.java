@@ -22,19 +22,10 @@ public class Portada extends World
         /*public static Boton creaBotonSombra(World mundoActual, String textoBoton, Etiqueta texto, int x, int y,
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente, int divisorLargo)*/
         botonIniciar = Boton.creaBotonSombra(this, "Iniciar", texto, getWidth()/2, getHeight()/8, Color.WHITE, null, null, 50, 20);
-                    
-        // botonIniciar = Boton.creaBoton(this, "Iniciar", getWidth()/2, getHeight() * 1/3, Color.WHITE, null, null, 50);
-        // getBackground().drawImage(texto.crearCuadroTexto("Iniciar"), getWidth()/2 - texto.getXSombra(), getHeight() * 1/3 - 13); //Sombra de botón Iniciar
         botonComoJugar = Boton.creaBotonSombra(this, "¿Cómo Jugar?", texto, getWidth()/2, getHeight()/8*3, Color.WHITE, null, null, 50, 6);
-        // botonComoJugar = Boton.creaBoton(this, "¿Cómo jugar?", getWidth()/2, (getHeight() * 1/3) + 50, Color.WHITE, null, null, 50);
-        // getBackground().drawImage(texto.crearCuadroTexto("¿Cómo jugar?"), getWidth()/2 - texto.getXSombra(5), getHeight() * 1/3 + 37); //Sombra de botón Iniciar
         botonAcercaDe = Boton.creaBotonSombra(this, "Acerca de", texto, getWidth()/2, getHeight()/8*5, Color.WHITE, null, null, 50, 20);
-        // botonAcercaDe = Boton.creaBoton(this, "Acerca de", getWidth()/2, (getHeight() * 1/3) + 100, Color.WHITE, null, null, 50);
-        // getBackground().drawImage(texto.crearCuadroTexto("Acerca de"), getWidth()/2 - texto.getXSombra(6), (getHeight() * 1/3) + 87); //Sombra de botón Iniciar
         botonCreditos = Boton.creaBotonSombra(this, "Créditos", texto, getWidth()/2, getHeight()/8*7, Color.WHITE, null, null, 50, 5);
-        // botonCreditos = Boton.creaBoton(this, "Créditos", getWidth()/2 - 2, getHeight() * 1/3 + 150, Color.WHITE, null, null, 50);
-        // getBackground().drawImage(texto.crearCuadroTexto("Créditos"), getWidth()/2 - texto.getXSombra(6), getHeight() * 1/3 + 137); //Sombra de botón Iniciar.
-
+        
         if(bkgMusic != null)
             bkgMusic.stop();
 

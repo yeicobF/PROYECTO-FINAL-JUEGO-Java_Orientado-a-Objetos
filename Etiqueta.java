@@ -55,6 +55,9 @@ public class Etiqueta// extends Actor
     public GreenfootImage getImagen(){
         return mensaje;
     }
+    public void setImagen(GreenfootImage imagen){
+        mensaje = imagen;
+    }
     /*Método que regresa la x en donnde el texto estará centrado
         en el método drawImage(), ya que en las coordenadas hay
         que tomar el tamaño de la letra para centrarlo.*/

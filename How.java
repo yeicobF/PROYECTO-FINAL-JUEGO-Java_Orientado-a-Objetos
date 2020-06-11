@@ -6,7 +6,7 @@ public class How extends World
     private Actor exit;
     public How()
     {
-        super(800, 600, 1);
+        super(1000, 600, 1);
         setBackground("images/espacio5.jpg");
         a1 = Boton.creaBoton(this, "Para moverte necesitaras las teclas WASD: W (Arriba), A (Izquierda),", getWidth()/2, getHeight() * 1/4-50,Color.WHITE, null, null, 30);
         a2 = Boton.creaBoton(this, "S (Abajo) y D (Derecha). Usaras la barra de espacio para disparar.", getWidth()/2 -16, getHeight() * 1/4-20,Color.WHITE, null, null, 30);
