@@ -295,7 +295,7 @@ public class NaveAliada extends Nave
                 }catch(InterruptedException ie){
                     System.out.println("Interrupción sleep.");
                 }
-                Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
+                Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));//Este método crea el mundo de nuevo después de morir.
         }
     }
     //Desaparecer si ya perdimos todas las vidas.

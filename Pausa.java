@@ -52,18 +52,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
      
      
      public void act(){
-         if(isReanudar()){
+        // if(isReanudar() || isSalir() || isReiniciar()){
+            // removeObject(pausaTexto);
+            // removeObject(reanudar);
+            // removeObject(reiniciar);
+            // removeObject(salir);
+            if(isReanudar()){
             //texto.getImagen().clear(); //Borrar cuadro de texto. No funciona porque el que lo dibuja es el drawImage().
             // texto = new Etiqueta(50, Color.BLACK, Color.BLACK, null);
             // getBackground().drawImage(texto.crearCuadroTexto("Pausa"), getWidth()/2 - texto.getXCentrada(), 10);
             //getBackground().drawImage(fondoPausa, 0, 0);
             // pausaTexto.clear();
             Greenfoot.setWorld(mundoAntesDePausa);
-        }
-        if(isSalir())//Aquí se preguntará si se quieren guardar cambios antes de salir o no. Por ahora sólo saldremos a portada.
-            Greenfoot.setWorld(new Portada());
-        if(isReiniciar())
-            Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));
+            }
+            if(isSalir())//Aquí se preguntará si se quieren guardar cambios antes de salir o no. Por ahora sólo saldremos a portada.
+                Greenfoot.setWorld(new Portada());
+            if(isReiniciar())
+                Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));
+            //removeObject(pausa);
+        // }
      }
      
      /*Método que regresa true si el botón de pausa ha sido tocado con el mouse
