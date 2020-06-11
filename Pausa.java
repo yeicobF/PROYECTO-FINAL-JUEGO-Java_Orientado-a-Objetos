@@ -27,12 +27,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
      private Boton salir; //Botón que saldrá del juego.
      private Boton reiniciar;
      private Etiqueta texto; //Para crear cuadro de texto.
+     private static boolean reinicio; //Bandera que indica que se reinició el nivel.
      /*Crear menú de pausa con los botones de reanudar y salir.*/
      public Pausa(World mundoAntesDePausa, GreenfootImage fondoPausa){
          super(1000, 600, 1); //Dimensiones del cuadro de pausa. Aquí se mostrarán las opciones.
          setBackground(fondoPausa); //Que el fondo sea el fondo del nivel actual.
          this.mundoAntesDePausa = mundoAntesDePausa;
          this.fondoPausa = fondoPausa;
+         reinicio = false;
          //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
          //texto = new Etiqueta(50, Color.WHITE, Color.BLACK, Color.YELLOW);
          //Crear texto que indique la Pausa
@@ -73,7 +75,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
      }
      private boolean isReanudar(){
          if(Greenfoot.mouseClicked(reanudar) || Greenfoot.isKeyDown("r"))// || si presionamos con las flechitas.
-            return true;
+             return true;
          return false;
      }
      private boolean isSalir(){
@@ -81,10 +83,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
             return true;
          return false;
      }
-     private boolean isReiniciar(){
+     public boolean isReiniciar(){
          if(Greenfoot.mouseClicked(reiniciar))// || si presionamos con las flechitas.
-            return true;
-         return false;
+            reinicio = true;
+         return reinicio;
+     }
+     /*Método que verifica si el juego fue reiniciado para establecer las vidas a las base.*/
+     public static boolean isJuegoReinicio(){
+         return reinicio;
+     }
+     public static void setReinicioFalse(){
+         reinicio = false;
      }
      /* Crear botón de pausa*/
      public static void creaBotonPausa(World mundoActual, int x, int y){

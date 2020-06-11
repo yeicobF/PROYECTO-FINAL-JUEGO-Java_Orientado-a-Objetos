@@ -77,7 +77,10 @@ public class Niveles extends World
         switch(numNivel){
             case 1: //Nivel 1
                 setBackground(new GreenfootImage("Escenarios/Espacio1.jpeg"));
-                nave.setVidas(3);
+                if(Pausa.isJuegoReinicio()){
+                    Pausa.setReinicioFalse();
+                    nave.setVidas(3);
+                }
                 tiempoDuracionJuego = 60000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
