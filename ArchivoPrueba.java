@@ -24,7 +24,8 @@ public class ArchivoPrueba
     {
         this.nombre = nombreArchivo;
         this.tamañoFuente = tamañoFuente;
-        numLineasArchivo = numLineaActual = 0; //Inicializar el número de lineas del archivo.
+        numLineasArchivo =  0; //Inicializar el número de lineas del archivo.
+        numLineaActual = 1;
         texto = new Etiqueta(tamañoFuente, colorFuente, null, null);
         abrirArchivo();
         mostrarArchivo(mundoActual);
