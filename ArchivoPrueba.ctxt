@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ArchivoPrueba
+comment0.text=\r\n\ Clase\ de\ prueba\ para\ ver\ que\ la\ lectura\ de\ archivos\ funciona.\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Jueves,\ 11\ de\ junio\ de\ 2020)\r\n
+comment1.params=mundoActual\ nombreArchivo\ tama\u00F1oFuente\ colorFuente
+comment1.target=ArchivoPrueba(greenfoot.World,\ java.lang.String,\ int,\ greenfoot.Color)
+comment1.text=\r\nConstructor\ for\ objects\ of\ class\ ArchivoPrueba
+comment2.params=
+comment2.target=void\ abrirArchivo()
+comment3.params=mundo
+comment3.target=void\ mostrarArchivo(greenfoot.World)
+comment4.params=
+comment4.target=void\ cerrarArchivo()
+numComments=5

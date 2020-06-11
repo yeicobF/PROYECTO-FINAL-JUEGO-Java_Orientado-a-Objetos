@@ -22,18 +22,18 @@ public class Archivo extends Actor
      */
     public Archivo(String nombre)
     {
-        this.nombre = nombre; //Nombre edel archivo.
+        this.nombre = nombre; //Nombre del archivo.
         textoLeido = false;
     }
 
-    public void act(){
-        abrirMostrarCerrarArchivo();
-    }
+    // public void act(){
+        // abrirMostrarCerrarArchivo();
+    // }
     
     /* Método que hará los 3 métodos mencionados sin tener que llamarlos manualmente cada uno.*/
-    public void abrirMostrarCerrarArchivo(){
+    public void abrirMostrarCerrarArchivo(World mundoActual){
         abrirArchivo();
-        mostrarArchivo();
+        mostrarArchivo(mundoActual);
         cerrarArchivo();
     }
     public void abrirArchivo(){
@@ -44,8 +44,8 @@ public class Archivo extends Actor
         }
     }
     //Mostrar el archivo utilizando el addButton.
-    public void mostrarArchivo(){
-        w = getWorld();
+    public void mostrarArchivo(World w){
+        //w = getWorld();
         //numLineas cuenta las filas del archivo para escalarlo.
         boolean primerLinea = true; //En la primer linea del texto indicaré el tamaño del archivo, es decir, sus filas para así centrarlo.
         /*numLineas indicará el total para reescalar y se irá restando para ir bajando en la pantalla.
@@ -79,7 +79,7 @@ public class Archivo extends Actor
             // e.crearCuadroTexto(archivo.nextLine());
             //Se agrega el objeto con el nuevo texto.
             // w.addObject(e, w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
-            getImage().drawImage(e.crearCuadroTexto(archivo.nextLine()), w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
+            //w.getBackground().drawImage(e.crearCuadroTexto(archivo.nextLine()), w.getWidth()/2-archivo.nextLine().toString().length()/2, altura);
             //crearCuadroTexto(Etiqueta etiqueta, int x, int y)
             System.out.println(e.getTexto());
         }
