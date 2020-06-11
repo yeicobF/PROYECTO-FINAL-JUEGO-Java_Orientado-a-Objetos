@@ -24,7 +24,7 @@ public class ArchivoPrueba
     {
         this.nombre = nombreArchivo;
         this.tamañoFuente = tamañoFuente;
-        numLineasArchivo = 0; //Inicializar el número de lineas del archivo.
+        numLineasArchivo = numLineaActual = 0; //Inicializar el número de lineas del archivo.
         texto = new Etiqueta(tamañoFuente, colorFuente, null, null);
         abrirArchivo();
         mostrarArchivo(mundoActual);
@@ -51,7 +51,7 @@ public class ArchivoPrueba
             if(primerLinea){//La primer línea del .txt dirá el número de filas. Esto para centrar el texto.
                 primerLinea = false;
                 try {
-                       numLineaActual = numLineasArchivo = Integer.parseInt(archivo.nextLine());
+                       numLineasArchivo = Integer.parseInt(archivo.nextLine());
                        System.out.println("Entró a número de líneas: "+ numLineasArchivo);
                     }catch (NumberFormatException nfe){
                        System.out.println("No se indicó el número de líneas en el archivo.");
@@ -59,14 +59,14 @@ public class ArchivoPrueba
             }
             else{
                 //Crea un botón de acuerdo al tamaño del texto
-                if(numLineaActual >= numLineasArchivo/2) //Si se encuentra arriba de la mitad, empezar desde arriba
+                if(numLineaActual <= numLineasArchivo/2) //Si se encuentra arriba de la mitad, empezar desde arriba
                     altura = mundo.getHeight()/2-(tamañoFuente+10) + numLineaActual * tamañoFuente; //La altura de cada línea de texto será de 30
                 else//Si se encuentra debajo de la mitad, ir disminuyendo.
                     altura = mundo.getHeight()/2+tamañoFuente+10 - numLineaActual * tamañoFuente;
                 // System.out.println("Altura actual: "+ altura);
                 // System.out.println("NÚMERO DE LÍNEAS ACTUAL: "+ numLineaActual + archivo.nextLine());
-                
-                numLineaActual --;//Disminuir el número de línea actual.
+                mundo.showText(archivo.nextLine(), mundo.getWidth()/2, altura);
+                numLineaActual ++;//Disminuir el número de línea actual.
             }
         }
     }
