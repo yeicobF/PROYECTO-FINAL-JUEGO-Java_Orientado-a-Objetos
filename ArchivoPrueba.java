@@ -65,7 +65,8 @@ public class ArchivoPrueba
                     altura = mundo.getHeight()/2+tamañoFuente+10 - numLineaActual * tamañoFuente;
                 // System.out.println("Altura actual: "+ altura);
                 // System.out.println("NÚMERO DE LÍNEAS ACTUAL: "+ numLineaActual + archivo.nextLine());
-                mundo.showText(archivo.nextLine(), mundo.getWidth()/2, altura);
+                //mundo.showText(archivo.nextLine(), mundo.getWidth()/2, altura);
+                mundo.getBackground().drawImage(texto.crearCuadroTexto(archivo.nextLine()), mundo.getWidth()/2 - texto.getXCentrada(), altura);
                 numLineaActual ++;//Disminuir el número de línea actual.
             }
         }
