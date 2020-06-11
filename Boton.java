@@ -9,7 +9,7 @@ import greenfoot.*;
 public class Boton extends Actor
 {
     // instance variables - replace the example below with your own
-    GreenfootImage imagenOriginal; //Guardará la imagen original para no reescalarla y que no sepierda la calidad.
+    GreenfootImage imagenChica; //Guardará la imagen original para no reescalarla y que no sepierda la calidad.
     GreenfootImage imagenGrande; //Guardará la imagen reescalada para cuando pase el mouse por encima.
     GreenfootImage imagenAuxiliar; //Cuando se use imagenGrande y se modifique a partir de la original, se necesita auxiliar para que la original no cambie.
     String texto; //El texto del botón
@@ -22,21 +22,21 @@ public class Boton extends Actor
            calidad al hacer la imagen más grande.*/
         imagenGrande = imagen;
         //Como se asignan por separado, no estarán conectadas.
-        imagenOriginal = new GreenfootImage(nombreImagen);
+        imagenChica = new GreenfootImage(nombreImagen);
         // //Se modifica la imagen grande. No requiere auxiliar.
         // /*El proceso de modificación lo hice manual, pero tengo que hacerlo automático. Esto es
             // para el botón de pausa específicamente. Necesito cambiar el tamaño del botón de pausa
             // a 1024/20.*/
         // Imagen.modificarEscalaImagen(imagenGrande, 20, 1);
-        Imagen.modificarEscalaImagen(imagenOriginal, 4, 3);
+        Imagen.modificarEscalaImagen(imagenChica, 4, 3);
     }
     //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
     private Boton(String texto, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente){
         this.texto = texto;
         e = new Etiqueta(tamañoFuente, colorFuente, colorFondo, bordeFuente);
-        imagenOriginal = e.crearCuadroTexto(texto);
+        imagenChica = e.crearCuadroTexto(texto);
         
-        setImage(imagenOriginal); //Crear el cuadro de texto y hacerlo como la imagen de aquí.
+        setImage(imagenChica); //Crear el cuadro de texto y hacerlo como la imagen de aquí.
         //No necesitamos el método crearBoton. Aquí ya se crea con la imagen del texto necesario.
         //imagenAuxiliar = getImage();
         //Cambiar el tamaño del fondo de la imagen que cambiará al pasa el mouse por encima. Esto si tenía fondo anteriormente.
@@ -49,7 +49,7 @@ public class Boton extends Actor
             De esta forma ya trabajan de forma independiente.*/
             imagenAuxiliar = e.crearCuadroTexto(texto);
         /*En la instrucción de abajo hay un problema, se modifica la imagen pero se pone esa en lugar de la original.*/
-        imagenGrande = Imagen.modificarEscalaImagen(imagenAuxiliar, 4, 5);
+        imagenGrande = Imagen.modificarEscalaImagen(imagenAuxiliar, 10, 10);
         //setImage(imagenOriginal);
     }
     
@@ -58,7 +58,7 @@ public class Boton extends Actor
             setImage(imagenGrande);    
             // setImage(Imagen.modificarEscalaImagen(imagenAuxiliar, 4, 5));
         if (Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this)) //Si el mouse no se pasa por encima.
-            setImage(imagenOriginal);
+            setImage(imagenChica);
     }
     
     public static Boton creaBoton(World mundoActual, String texto, int x, int y,
