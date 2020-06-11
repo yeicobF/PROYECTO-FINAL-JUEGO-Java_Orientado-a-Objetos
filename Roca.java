@@ -10,6 +10,8 @@ public class Roca extends Actor
 {
     private World mundo;
     private Pantalla pantalla;
+    private int Velocidad;//Atributo que guarda la velocidad del meteoro.
+    private int Angulo;//Funcion que determinada el movimiento de cada meteoro.
     //Estáticas para que todas las rocas tengan los mismos datos del número de estas.
     private static int numRocasMax; //Número máximo de rocas.
     private static int numRocasActual; //Para saber si las rocas actuales son menos que las máximas.
@@ -25,6 +27,7 @@ public class Roca extends Actor
       // this.numRocasActual = numRocasMax = numRocasMax; //Inicializar las rocas
       // this.tiempoRegeneracion  = tiempoRegeneracion;
       // //crearRocasIniciales = false; //Aún no se crean las rocas iniciales.
+
       tiempoCreacion = System.currentTimeMillis();//Inicializar el tiempo de la condición de creación de rocas
     }
     /*Constructor para crear las rocas como tal para el mundo*/
@@ -47,18 +50,36 @@ public class Roca extends Actor
             // image.scale(image.getWidth()/random, image.getHeight()/random);//Reescalar imagen a 2/8 de las medidas originales.
             // setImage(image);//Acomodar ahora sí la imagen modificada
         // }
+      Velocidad = Aleatorio.getNumeroAleatorio(2, 5);//Determina una velocidad.
+      Angulo = Aleatorio.getNumeroAleatorio(0, 4);//Se crea un aleatorio de 5 opciones posibles.
+      switch(Angulo) //En esta parte del codigo entra el numero aleatorio y se escoje para determinar un eje rotacion.
+      {
+      case 0: //No se genera rotacion.
+          break;
+      case 1: //Rota derecha.
+        break;
+      case 2:
+        break;
+      case 3: //Rota izquierda.
+        Angulo=-1;
+        break;
+      case 4:
+        Angulo=-2;
+        break;
+      }
        pantalla = new Pantalla(this);
    }
    public void act(){
         // Add your action code here.
         mundo = getWorld();
-        move(3);//Método que mueve a cierta velocidad el objeto
+        move(this.Velocidad);//Método que mueve a cierta velocidad el objeto
         if(!pantalla.isObjetoLimite(mundo, getX(), getY())){
             turn(180);
             if(Greenfoot.getRandomNumber(100)<90){
                 turn(Greenfoot.getRandomNumber(90-45));
             }
         }
+        turn(this.Angulo);//Aqui se ejecuta la rotacion de cada meteoro.
         // if(getY()>=w.getHeight()-5||getY()<=5){ //Estas líneas de más se pueden evitar.
             // turn(180);
             // if(Greenfoot.getRandomNumber(100)<90){
