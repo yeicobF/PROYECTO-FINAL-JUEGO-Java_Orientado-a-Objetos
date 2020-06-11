@@ -15,15 +15,16 @@ public class ArchivoPrueba
     private Scanner archivo;
     private Etiqueta texto;
     private String nombre; //Nombre del archivo.
-    private int tamañoFuente;
-    private int numLineas;
+    private int tamañoFuente; //Tamaño de la fuente del texto del archivo.
+    private int numLineasArchivo; //Número de líneas totales del archivo.
+    private int numLineaActual; //Para indicar en el número de línea que nos encontramos en el archivo y calcular altura del texto.
     /**
        * Constructor for objects of class ArchivoPrueba */
     public ArchivoPrueba(World mundoActual, String nombreArchivo, int tamañoFuente, Color colorFuente)
     {
         this.nombre = nombreArchivo;
         this.tamañoFuente = tamañoFuente;
-        numLineas = 0; //Inicializar el número de lineas del archivo.
+        numLineasArchivo = 0; //Inicializar el número de lineas del archivo.
         texto = new Etiqueta(tamañoFuente, colorFuente, null, null);
         abrirArchivo();
         mostrarArchivo(mundoActual);
@@ -50,20 +51,22 @@ public class ArchivoPrueba
             if(primerLinea){//La primer línea del .txt dirá el número de filas. Esto para centrar el texto.
                 primerLinea = false;
                 try {
-                       numLineas = Integer.parseInt(archivo.nextLine());
-                       System.out.println("Entró a número de líneas: "+ numLineas);
+                       numLineaActual = numLineasArchivo = Integer.parseInt(archivo.nextLine());
+                       System.out.println("Entró a número de líneas: "+ numLineasArchivo);
                     }catch (NumberFormatException nfe){
                        System.out.println("No se indicó el número de líneas en el archivo.");
                     }
             }
             else{
                 //Crea un botón de acuerdo al tamaño del texto
-                if(numLineas >= numLineas/2) //Si se encuentra arriba de la mitad, empezar desde arriba
-                    altura = mundo.getHeight()/2-(tamañoFuente+10) + numLineas * tamañoFuente; //La altura de cada línea de texto será de 30
+                if(numLineaActual >= numLineasArchivo/2) //Si se encuentra arriba de la mitad, empezar desde arriba
+                    altura = mundo.getHeight()/2-(tamañoFuente+10) + numLineaActual * tamañoFuente; //La altura de cada línea de texto será de 30
                 else//Si se encuentra debajo de la mitad, ir disminuyendo.
-                    altura = mundo.getHeight()/2+tamañoFuente+10 - numLineas * tamañoFuente;
-                //numLineas --;//Disminuir el número de línea actual.
-                System.out.println("NÚMERO DE LÍNEAS: "+ numLineas + archivo.nextLine());
+                    altura = mundo.getHeight()/2+tamañoFuente+10 - numLineaActual * tamañoFuente;
+                // System.out.println("Altura actual: "+ altura);
+                // System.out.println("NÚMERO DE LÍNEAS ACTUAL: "+ numLineaActual + archivo.nextLine());
+                
+                numLineaActual --;//Disminuir el número de línea actual.
             }
         }
     }
