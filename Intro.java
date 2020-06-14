@@ -35,5 +35,6 @@ public class Intro extends World
              this.contador++;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
             }
         }while(this.contador<=7);
+        Greenfoot.setWorld(new Niveles(1));//Al terminar ya llama al juego.
     }
 }
