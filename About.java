@@ -2,7 +2,7 @@ import greenfoot.*;
 
 public class About extends World
 {
-    private ArchivoPrueba archivo;
+    private Archivo archivo;
     private Actor exit, next;
     private Actor a1,a2;
     public About()
@@ -10,7 +10,7 @@ public class About extends World
         super(800, 600, 1); 
         setBackground("images/espacio5.jpg");
         //public ArchivoPrueba(World mundoActual, String nombreArchivo, int tamañoFuente, Color colorFuente)
-        archivo = new ArchivoPrueba(this, "prueba.txt", 30, Color.WHITE);
+        archivo = new Archivo(this, "prueba.txt", 30, Color.WHITE);
         
         /*public static Actor creaBoton(World mundoActual, String texto, int x, int y, 
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)*/
