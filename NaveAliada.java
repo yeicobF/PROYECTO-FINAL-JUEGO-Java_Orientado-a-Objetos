@@ -251,7 +251,7 @@ public class NaveAliada extends Nave
                         // Etiqueta e = new Etiqueta(50, Color.WHITE, Color.RED, Color.YELLOW);
                         // e.crearCuadroTexto(" HAS DESTRUIDO A TODO SER VIVO ");
                         // mundo.addObject(e, mundo.getWidth()/2 + e.getImage().getWidth()/2, mundo.getHeight()/2 - e.getImage().getHeight()/2);
-                        Archivo a = new Archivo("prueba.txt");
+                        //Archivo a = new Archivo("prueba.txt");
                         break;
                 }
         }
