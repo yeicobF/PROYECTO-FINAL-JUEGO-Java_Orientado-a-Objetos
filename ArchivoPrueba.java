@@ -53,7 +53,7 @@ public class ArchivoPrueba
                 primerLinea = false;
                 try {
                        numLineasArchivo = Integer.parseInt(archivo.nextLine());
-                       //System.out.println("Entró a número de líneas: "+ numLineasArchivo);
+                       System.out.println("Entró a número de líneas: "+ numLineasArchivo);
                     }catch (NumberFormatException nfe){
                        System.out.println("No se indicó el número de líneas en el archivo.");
                     }
