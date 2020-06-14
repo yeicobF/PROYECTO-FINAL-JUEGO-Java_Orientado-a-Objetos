@@ -1,5 +1,5 @@
 4
-hola, me llamo
-Jacob
-Flores
-Rodríguez
+Hola,
+lectura
+de
+archivo
