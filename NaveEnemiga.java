@@ -29,6 +29,7 @@ public class NaveEnemiga extends Nave
     private int puntosPorDisparo; //Variable que define cuántos puntos obtendremos cuando se dispare a la nave.
     private int anchoImagen;
     private int altoImagen;
+    private int radio; //El radio de la imagen (tomando en cuenta la medida más grande).
     //private int anguloApuntado;
     // private static int puntosSalud;
     //Ya existe un atributo protegido de Nave "existeMostrarInfo"
@@ -51,6 +52,9 @@ public class NaveEnemiga extends Nave
         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
         anchoImagen = getImage().getWidth();
         altoImagen = getImage().getHeight();
+        //Revisa cuál medida es mayor para tomar el radio.
+        radio = (getImage().getWidth() >= getImage().getHeight()) ? getImage().getWidth() : getImage().getHeight();
+        System.out.println("Ancho total: "+ anchoImagen +"Alto total: "+ altoImagen +"Radio: "+ radio);
         if(tipoEnemigo == 1){//BOSS == "0"
             puntosSalud+= 100;//Que las naves de BOSSES tengan más vida
             puntosPorDisparo = 50;
@@ -96,35 +100,36 @@ public class NaveEnemiga extends Nave
         //Revisar si alguna nave chocó con nosotros.
         /*Martes, 16 de junio de 2020. Intentaré hacer lo de los límite con getNeighbours o creo que sería mejor
            getObjectsInRange.*/
-        int radio, izqNave, derNave, arrNave, abNave; //Para guardar las coordenadas de las naves.
-        radio = izqNave = derNave = arrNave = abNave = 0;
+        int izqNave, derNave, arrNave, abNave; //Para guardar las coordenadas de las naves.
+        izqNave = derNave = arrNave = abNave = 0;
         //Establecer el radio de la medida más grande.
-        radio = (getImage().getWidth()/2 >= getImage().getHeight()/2) ? getImage().getWidth()/2 : getImage().getHeight()/2;
         //Hacer una lista de naves enemigas con las que se choca.
         List<NaveEnemiga> navesEnemigas = getObjectsInRange(radio, NaveEnemiga.class);
         //Si el tamaño es mayor a 0, automáticamente se obtendrá la nave con la que se choca.
         if(navesEnemigas.size() > 0){
             for(int i = 0; i < navesEnemigas.size(); i++)
                 naveLimites = navesEnemigas.get(i); //Asignar la nave que chocó a una variable auxiliar para revisar los límites.
+                //System.out.println("Entró al ciclo por choques enemigos:"+ navesEnemigas.size());
                 //Establecer las coordenadas de las orillas de la imagen de las naves con las que chocamos.
-                arrNave = naveLimites.getY() - naveLimites.getAltoImagen()/2;
-                abNave = naveLimites.getY() + naveLimites.getAltoImagen()/2;
-                izqNave = naveLimites.getX() - naveLimites.getAnchoImagen()/2;
-                derNave = naveLimites.getX() + naveLimites.getAnchoImagen()/2;
+                arrNave = naveLimites.getY() - naveLimites.getAltoImagen();
+                abNave = naveLimites.getY() + naveLimites.getAltoImagen();
+                izqNave = naveLimites.getX() - naveLimites.getAnchoImagen();
+                derNave = naveLimites.getX() + naveLimites.getAnchoImagen();
                 //Ahora revisar los líites para salir de estos.
-                if(izqNave < getX() + radio && naveLimites.getY() >= getY() - radio && naveLimites.getY() <= getY() + radio){ //Se pasó por la derecha a la izquierda.
-                    naveLimites.setLocation(naveLimites.getX() + 1, naveLimites.getY());
-                    setLocation(getX() - 1, getY()); //Acomodar también la nave origen.
+                if(getX() - radio <= derNave && getY() >= arrNave && getY() <= abNave){
+                // if(izqNave <= getX() + radio && naveLimites.getY() >= getY() - radio && naveLimites.getY() <= getY() + radio){ //Se pasó por la derecha a la izquierda.
+                    naveLimites.setLocation(naveLimites.getX() - 1, naveLimites.getY());
+                    setLocation(getX() + 1, getY()); //Acomodar también la nave origen.
                 }
                 if(derNave >= getX() - radio && naveLimites.getY() >= getY() - radio && naveLimites.getY() <= getY() + radio){ //Se pasó por la izquierda a la derecha.
                     naveLimites.setLocation(naveLimites.getX() - 1, naveLimites.getY());
                     setLocation(getX() + 1, getY());
                 }
-                if(abNave > getY() - radio && naveLimites.getX() >= getX() - radio && naveLimites.getX() <= getX() + radio){
+                if(abNave >= getY() - radio && naveLimites.getX() >= getX() - radio && naveLimites.getX() <= getX() + radio){
                     naveLimites.setLocation(naveLimites.getX(), naveLimites.getY() - 1);
                     setLocation(getX(), getY() + 1);
                 }
-                if(arrNave < getY() + radio && naveLimites.getX() >= getX() - radio && naveLimites.getX() <= getX() + radio){ //Se pasó por abajo hacia arriba.
+                if(arrNave <= getY() + radio && naveLimites.getX() >= getX() - radio && naveLimites.getX() <= getX() + radio){ //Se pasó por abajo hacia arriba.
                     naveLimites.setLocation(naveLimites.getX(), naveLimites.getY() + 1);
                     setLocation(getX(), getY() - 1);
                 }
