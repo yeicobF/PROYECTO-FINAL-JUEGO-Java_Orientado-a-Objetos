@@ -116,20 +116,35 @@ public class NaveEnemiga extends Nave
                 izqNave = naveLimites.getX() - naveLimites.getAnchoImagen();
                 derNave = naveLimites.getX() + naveLimites.getAnchoImagen();
                 //Ahora revisar los líites para salir de estos.
-                if(getX() - radio <= derNave && getY() >= arrNave && getY() <= abNave){
+                
+                
+                
+                //Pasó por límite derecho.
+                if(getX() - radio <= derNave && getX() - radio > naveLimites.getX() && getY() >= arrNave && getY() <= abNave){
                 // if(izqNave <= getX() + radio && naveLimites.getY() >= getY() - radio && naveLimites.getY() <= getY() + radio){ //Se pasó por la derecha a la izquierda.
+                    System.out.println("1. getX() - radio <= derNave && getY() >= arrNave && getY() <= abNave\n\t"+
+                                    (getX() - radio) +" <= "+ derNave +" && "+ getY() +" >= "+ arrNave +" && "+ getY() + "<="+ abNave);
                     naveLimites.setLocation(naveLimites.getX() - 1, naveLimites.getY());
                     setLocation(getX() + 1, getY()); //Acomodar también la nave origen.
                 }
-                if(derNave >= getX() - radio && naveLimites.getY() >= getY() - radio && naveLimites.getY() <= getY() + radio){ //Se pasó por la izquierda a la derecha.
-                    naveLimites.setLocation(naveLimites.getX() - 1, naveLimites.getY());
-                    setLocation(getX() + 1, getY());
+                if(getX() + radio >= izqNave && getX() + radio < naveLimites.getX() && getY() >= arrNave && getY() <= abNave){
+                // if(derNave >= getX() - radio && naveLimites.getY() >= getY() - radio && naveLimites.getY() <= getY() + radio){ //Se pasó por la izquierda a la derecha.
+                    System.out.println("2. getX() + radio >= izqNave && getY() >= arrNave && getY() <= abNave\n\t"+
+                                    (getX() + radio) +" >= "+ izqNave +" && "+ getY() +" >= "+ arrNave +" && "+ getY() + "<="+ abNave);
+                    naveLimites.setLocation(naveLimites.getX() + 1, naveLimites.getY());
+                    setLocation(getX() - 1, getY());
                 }
-                if(abNave >= getY() - radio && naveLimites.getX() >= getX() - radio && naveLimites.getX() <= getX() + radio){
+                if(getY() - radio <= abNave && getY() - radio > naveLimites.getY() && getX() >= izqNave && getX() <= derNave){
+                // if(abNave >= getY() - radio && naveLimites.getX() >= getX() - radio && naveLimites.getX() <= getX() + radio){
+                    System.out.println("3. getY() - radio <= abNave && getX() >= izqNave && getX() <= derNave\n\t"+
+                                    (getY() - radio) +" <= "+ abNave +" && "+ getX() +" >= "+ izqNave +" && "+ getX() + "<="+ derNave);
                     naveLimites.setLocation(naveLimites.getX(), naveLimites.getY() - 1);
                     setLocation(getX(), getY() + 1);
                 }
-                if(arrNave <= getY() + radio && naveLimites.getX() >= getX() - radio && naveLimites.getX() <= getX() + radio){ //Se pasó por abajo hacia arriba.
+                if(getY() + radio >= arrNave && getY() + radio < naveLimites.getY() && getX() >= izqNave && getX() <= derNave){
+                // if(arrNave <= getY() + radio && naveLimites.getX() >= getX() - radio && naveLimites.getX() <= getX() + radio){ //Se pasó por abajo hacia arriba.
+                    System.out.println("4. getY() + radio >= arrNave && getX() >= izqNave && getX() <= derNave\n\t"+
+                                    (getY() + radio) +" >= "+ arrNave +" && "+ getX() +" >= "+ izqNave +" && "+ getX() + "<="+ derNave);
                     naveLimites.setLocation(naveLimites.getX(), naveLimites.getY() + 1);
                     setLocation(getX(), getY() - 1);
                 }
