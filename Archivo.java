@@ -18,7 +18,7 @@ public class Archivo
     private String nombre; //Nombre del archivo.
     private int tamañoFuente; //Tamaño de la fuente del texto del archivo.
     private int numLineasArchivo; //Número de líneas totales del archivo.
-    private int numLineaActual; //Para indicar en el número de línea que nos encontramos en el archivo y calcular altura del texto.
+    // private int numLineaActual; //Para indicar en el número de línea que nos encontramos en el archivo y calcular altura del texto.
     /**
        * Constructor for objects of class ArchivoPrueba */
     public Archivo(World mundoActual, String nombreArchivo, int tamañoFuente, Color colorFuente)
@@ -26,7 +26,7 @@ public class Archivo
         this.nombre = nombreArchivo;
         this.tamañoFuente = tamañoFuente;
         numLineasArchivo =  0; //Inicializar el número de lineas del archivo.
-        numLineaActual = 1;
+        // numLineaActual = 1;
         texto = new Etiqueta(tamañoFuente, colorFuente, null, null);
         abrirArchivo();
         mostrarArchivo(mundoActual);
@@ -46,6 +46,7 @@ public class Archivo
         boolean primerLinea = true; //En la primer linea del texto indicaré el tamaño del archivo, es decir, sus filas para así centrarlo.
         /*numLineas indicará el total para reescalar y se irá restando para ir bajando en la pantalla.
            altura indica la altura actual del texto. Esta irá bajando dependiendo del número de línea actual.*/
+        
         int altura = 0; 
         
         //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
@@ -58,20 +59,24 @@ public class Archivo
                     }catch (NumberFormatException nfe){
                        System.out.println("No se indicó el número de líneas en el archivo.");
                     }
+                    //La primer línea de texto irá en lo más alto.
+                    //Se divide el alto entre 2 y se le resta la mitad de las palabras dependiendo de su tamaño.
+                        //Se resta una palabra más por si hay un botón debajo, no lo sobreponga.
+                altura = mundo.getHeight()/2 - tamañoFuente*(numLineasArchivo/2) - tamañoFuente;
             }
             else{
-                //Crea un botón de acuerdo al tamaño del texto
-                if(numLineaActual <= numLineasArchivo/2) //Si se encuentra arriba de la mitad, empezar desde arriba
-                    altura = mundo.getHeight()/numLineasArchivo - tamañoFuente - 10 + numLineaActual*tamañoFuente;
-                    //altura = mundo.getHeight()/2+tamañoFuente+10 - numLineaActual * tamañoFuente;
-                else//Si se encuentra debajo de la mitad, ir disminuyendo.
-                    altura = mundo.getHeight()/numLineasArchivo + tamañoFuente + 10 + numLineaActual*tamañoFuente;
-                    // altura = mundo.getHeight()/2-(tamañoFuente+10) + numLineaActual * tamañoFuente;
+                // //Crea un botón de acuerdo al tamaño del texto
+                // if(numLineaActual <= numLineasArchivo/2) //Si se encuentra arriba de la mitad, empezar desde arriba
+                    // altura = mundo.getHeight()/numLineasArchivo - tamañoFuente - 10 + numLineaActual*tamañoFuente;
+                    // //altura = mundo.getHeight()/2+tamañoFuente+10 - numLineaActual * tamañoFuente;
+                // else//Si se encuentra debajo de la mitad, ir disminuyendo.
+                    // altura = mundo.getHeight()/numLineasArchivo + tamañoFuente + 10 + numLineaActual*tamañoFuente;
+                    // // altura = mundo.getHeight()/2-(tamañoFuente+10) + numLineaActual * tamañoFuente;
                 // System.out.println("Altura actual: "+ altura);
                 // System.out.println("NÚMERO DE LÍNEAS ACTUAL: "+ numLineaActual + archivo.nextLine());
                 //mundo.showText(archivo.nextLine(), mundo.getWidth()/2, altura);
                 mundo.getBackground().drawImage(texto.crearCuadroTexto(archivo.nextLine()), mundo.getWidth()/2 - texto.getXCentrada(), altura);
-                numLineaActual ++;//Disminuir el número de línea actual.
+                altura += tamañoFuente; //Ir bajando conforme el tamaño de la fuente;
             }
         }
     }

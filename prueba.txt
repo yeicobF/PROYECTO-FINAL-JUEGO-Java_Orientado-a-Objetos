@@ -1,5 +1,15 @@
-4
-Hola,
-lectura
-de
-archivo
+14
+Prueba de
+texto de archivo
+centrado
+en
+y.
+No sé qué 
+más
+escribir.
+9
+10
+11
+12
+13
+14
