@@ -31,8 +31,8 @@ public class Intro extends World
         {
             if(Greenfoot.isKeyDown("enter"))//Checa si se presiono alguna tecla
             {
-             Cuadro.actualizar(contador);//Actualiza el objeto al siguiente cuadro de texto.
-             this.contador++;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
+                 Cuadro.actualizar(contador);//Actualiza el objeto al siguiente cuadro de texto.
+                 this.contador++;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
             }
         }while(this.contador<=7);
         Greenfoot.setWorld(new Niveles(1));//Al terminar ya llama al juego.

@@ -41,8 +41,8 @@ public class Portada extends World
             //Niveles nivel = new Niveles();
             NaveAliada.setDiseñoNaveAliada(1);
             NaveAliada.setTipoDisparo(1);
-            Greenfoot.setWorld(new Intro());
-            
+            // Greenfoot.setWorld(new Intro());
+            Greenfoot.setWorld(new Niveles(1));
         }
         else if( Greenfoot.mouseClicked(botonCreditos))
         {

@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math; //La utilizaremos para sacar el ángulo con la nave aliada.
 import java.util.ArrayList;
+import java.util.List;
 
 /**
 * Clase que maneja a las naves enemigas y su comportamiento.
@@ -22,6 +23,7 @@ public class NaveEnemiga extends Nave
     /*Este constructor dará vida y tipo de disparo (aún no implementado) dependiendo del tipo de enemigo sea*/
     /*ArrayList estático con las naves enemigas para ver que no choquen y así.*/
     private static ArrayList<NaveEnemiga> navesAL; //Estático para que sea igual para todas las instancias.
+    NaveEnemiga naveLimites; //Así se revisarán los límites de las naves..
     private boolean arrayListCreado = false;
     private int random;//Quisiera que las naves enemigas apuntaran hacia nosotros y si no al menos que apuntaran hacia la izquierda.
     private int puntosPorDisparo; //Variable que define cuántos puntos obtendremos cuando se dispare a la nave.
@@ -95,25 +97,47 @@ public class NaveEnemiga extends Nave
         //limiteChoqueNaveAliada(200);
         move(1);//Método que mueve a cierta velocidad el objeto
         turnTowards(NaveAliada.getCordX(), NaveAliada.getCordY());
-
+        limiteChoqueNavesEnemigas();
         //setLocation(getX()+1, getY()+1);
     }
     /*Método que marcará un límite entre las mismas naves enemigas y
        nuestra nave para que no choquen.*/
     private void limiteChoqueNavesEnemigas(){
-        //Recorrer las demás naves para ver que no choque
-        for(NaveEnemiga nave : navesAL){
-            //(System.out.println("Entro al ciclo");
-            if((getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)) //Ver que no sobrepase por la izquierda.
-                //System.out.println("(getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)");
-                setLocation(getX()-1, getY());
-            if((getX() - anchoImagen/2) <= (nave.getX() + nave.getAnchoImagen()/2)) //Ver que no sobrepase por la derecha.
-                setLocation(getX()+1, getY());
-            if((getY() + altoImagen/2) >= (nave.getY() - nave.getAltoImagen()/2))//Ver que no sobrepase por encima.
-                setLocation(getX(), getY()-1);
-            if((getY() - altoImagen/2) <= (nave.getY() + nave.getAltoImagen()/2))//Ver que no sobrepase por debajo.
-                setLocation(getX(), getY()+1);
+        // //Recorrer las demás naves para ver que no choque
+        // for(NaveEnemiga nave : navesAL){
+            // //(System.out.println("Entro al ciclo");
+            // if((getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)) //Ver que no sobrepase por la izquierda.
+                // //System.out.println("(getX() + anchoImagen/2) >= (nave.getX() - nave.getAnchoImagen()/2)");
+                // setLocation(getX()-1, getY());
+            // if((getX() - anchoImagen/2) <= (nave.getX() + nave.getAnchoImagen()/2)) //Ver que no sobrepase por la derecha.
+                // setLocation(getX()+1, getY());
+            // if((getY() + altoImagen/2) >= (nave.getY() - nave.getAltoImagen()/2))//Ver que no sobrepase por encima.
+                // setLocation(getX(), getY()-1);
+            // if((getY() - altoImagen/2) <= (nave.getY() + nave.getAltoImagen()/2))//Ver que no sobrepase por debajo.
+                // setLocation(getX(), getY()+1);
+        // }
+        /*Martes, 16 de junio de 2020. Intentaré hacer lo de los límite con getNeighbours o creo que sería mejor
+           getObjectsInRange.*/
+        int radio = 0;
+        //Establecer el radio de la medida más grande.
+        radio = (getImage().getWidth()/2 >= getImage().getHeight()/2) ? getImage().getWidth()/2 : getImage().getHeight()/2;
+        //Hacer una lista de naves enemigas con las que se choca.
+        List<NaveEnemiga> navesEnemigas = getObjectsInRange(radio, NaveEnemiga.class);
+        //Si el tamaño es mayor a 0, automáticamente se obtendrá la nave con la que se choca.
+        if(navesEnemigas.size() > 0){
+            for(int i = 0; i < navesEnemigas.size(); i++)
+                naveLimites = navesEnemigas.get(i); //Asignar la nave que chocó a una variable auxiliar para revisar los límites.
+                //Ahora revisar los líites para salir de estos.
+                if(naveLimites.getX() - naveLimites.getAnchoImagen() < getX() + radio) //Se pasó por la derecha a la izquierda.
+                    naveLimites.setLocation(naveLimites.getX() + 1, naveLimites.getY());
+                if(naveLimites.getX() + naveLimites.getAnchoImagen() > getX() - radio) //Se pasó por la izquierda a la derecha.
+                    naveLimites.setLocation(naveLimites.getX() - 1, naveLimites.getY());
+                if(naveLimites.getY() + naveLimites.getAltoImagen() > getY() - radio) //Se pasó por arriba hacia abajo.
+                    naveLimites.setLocation(naveLimites.getX(), naveLimites.getY() - 1);
+                if(naveLimites.getY() - naveLimites.getAltoImagen() < getY() + radio) //Se pasó por abajo hacia arriba.
+                    naveLimites.setLocation(naveLimites.getX() - 1, naveLimites.getY());
         }
+            // getWorld().removeObjects(navesEnemigas); //Elimina las naves con las que choca.
     }
     /*Método que pondrá un límite para no chocar con la nave aliada (nosotros).*/
     private void limiteChoqueNaveAliada(int distanciaAlejamiento){
