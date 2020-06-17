@@ -14,17 +14,8 @@ public class Fecha{
     private DateTimeFormatter formatoFecha  = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     //Aquí se obtendrá la fecha local actual.
     private LocalDateTime fechaActual;
-    public Fecha(){
-        //System.out.println(getFecha());
-    }
+    public Fecha(){} //Constructor vacío.
     public String getFecha(){
-       // LocalDateTime fecha = LocalDateTime.now();
-       // DateTimeFormatter formatoTiempo = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-       // String texto = fecha.format(formatoTiempo);
-       // LocalDate fechaOrdenada = LocalDate.parse(texto, formatoTiempo);
-       // //System.out.println(dtf.format(now));
-       // now= LocalDateTime.now();  
-       // System.out.println(dtf.format(now));now = LocalDateTime.now();  
        fechaActual = LocalDateTime.now(); //Obtener la fecha actual.
        //System.out.println(formatoFecha.format(fechaActual));  
        return formatoFecha.format(fechaActual); //Regresar la fecha actual con el formato que le dimos.
