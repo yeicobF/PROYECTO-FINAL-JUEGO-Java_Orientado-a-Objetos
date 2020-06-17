@@ -10,8 +10,8 @@ public class About extends World
         super(800, 600, 1); 
         setBackground("images/espacio5.jpg");
         //public ArchivoPrueba(World mundoActual, String nombreArchivo, int tamañoFuente, Color colorFuente)
-        archivo = new Archivo(this, "prueba.txt", 30, Color.WHITE);
-        
+        archivo = new Archivo("prueba.txt", 30, Color.WHITE);
+        archivo.mostrarArchivo(this);
         /*public static Actor creaBoton(World mundoActual, String texto, int x, int y, 
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)*/
         a1 = Boton.creaBoton(this, "Siguiente", (getWidth()/2) -2, (getHeight()*2/3)+143, Color.GRAY, null, null, 30);

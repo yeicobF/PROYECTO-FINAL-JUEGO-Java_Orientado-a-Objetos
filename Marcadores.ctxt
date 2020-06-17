@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Marcadores
+comment0.text=\r\n\ Clase\ en\ la\ que\ se\ manejar\u00E1n\ los\ marcadores.\ Se\ agregar\u00E1n\ las\ nuevas\ puntuaciones\r\n\ \ y\ se\ mostrar\u00E1n\ las\ que\ ya\ hay.\ Se\ podr\u00EDan\ mostrar\ hasta\ un\ l\u00EDmite.\r\n\ \ Para\ esto\ se\ utilizar\u00E1\ el\ manejo\ de\ archivos\ de\ dicha\ clase.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Mi\u00E9rcoles,\ 17\ de\ junio\ de\ 2020)\r\n
+comment1.params=
+comment1.target=Marcadores()
+numComments=2

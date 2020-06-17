@@ -21,16 +21,13 @@ public class Archivo
     // private int numLineaActual; //Para indicar en el número de línea que nos encontramos en el archivo y calcular altura del texto.
     /**
        * Constructor for objects of class ArchivoPrueba */
-    public Archivo(World mundoActual, String nombreArchivo, int tamañoFuente, Color colorFuente)
-    {
+    public Archivo(String nombreArchivo, int tamañoFuente, Color colorFuente){
         this.nombreArchivo = nombreArchivo;
         this.tamañoFuente = tamañoFuente;
         numLineasArchivo =  0; //Inicializar el número de lineas del archivo.
         texto = new Etiqueta(tamañoFuente, colorFuente, null, null);
         /* Hacer todo el procedimiento de lectura y muestra de archivo.*/
-        abrirArchivo();
-        mostrarArchivo(mundoActual);
-        cerrarArchivo();
+        abrirArchivo();//Se abre el archivo y luego se llamarán los métodos que se vayan a utilizar.
     }
     public void abrirArchivo(){
         try{
@@ -64,6 +61,8 @@ public class Archivo
                 altura += tamañoFuente; //Ir bajando conforme el tamaño de la fuente;
             }
         }
+        //Después de haber mostrado el archivo, cerrarlo.
+        cerrarArchivo();
     }
     public void cerrarArchivo(){
         archivo.close();

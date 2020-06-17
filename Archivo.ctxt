@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Archivo
 comment0.text=\r\n\ Clase\ de\ prueba\ para\ ver\ que\ la\ lectura\ de\ archivos\ funciona.\r\n\ Jueves,\ 11/06\ 1\:01\ PM\ funcion\u00F3\ para\ mostrar\ el\ archivo\ en\ terminal.\r\n\ ->\ Esta\ clase\ era\ diferente,\ pero\ la\ sustitu\u00ED\ por\ la\ clase\ de\ ArchivoPrueba.\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Domingo,\ 14\ de\ junio\ de\ 2020)\r\n
-comment1.params=mundoActual\ nombreArchivo\ tama\u00F1oFuente\ colorFuente
-comment1.target=Archivo(greenfoot.World,\ java.lang.String,\ int,\ greenfoot.Color)
+comment1.params=nombreArchivo\ tama\u00F1oFuente\ colorFuente
+comment1.target=Archivo(java.lang.String,\ int,\ greenfoot.Color)
 comment1.text=\r\nConstructor\ for\ objects\ of\ class\ ArchivoPrueba
 comment2.params=
 comment2.target=void\ abrirArchivo()

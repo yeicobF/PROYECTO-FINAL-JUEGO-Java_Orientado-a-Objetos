@@ -95,6 +95,16 @@ public class NaveEnemiga extends Nave
                     //NaveAliada.setPuntos(puntosPorDisparo*2);//Los puntos obtenidos se multiplicarán por 2 al destruir la nave
                     //Ya está condición dentro del método
     }
+    protected void movimiento(){
+        //Si el objeto alcanza los límites en x o y, se dará la vuelta. Las limitaremos a la mitad de la pantalla.
+        //limiteChoqueNavesEnemigas();
+        //limiteChoqueNaveAliada(200);
+        move(1);//Método que mueve a cierta velocidad el objeto
+        turnTowards(NaveAliada.getCordX(), NaveAliada.getCordY());
+        puedeMoverse();
+        // limiteChoqueNavesEnemigas();
+        //setLocation(getX()+1, getY()+1);
+    }
     /**Métdodo que verifica si la nave puede moverse.*/
     private void puedeMoverse(){
         //Revisar si alguna nave chocó con nosotros.
@@ -150,16 +160,6 @@ public class NaveEnemiga extends Nave
                 }
         }
         // if(getOneObjectAtOffset(getX() + anchoImagen/2, getY(), _cls_))
-    }
-    protected void movimiento(){
-        //Si el objeto alcanza los límites en x o y, se dará la vuelta. Las limitaremos a la mitad de la pantalla.
-        //limiteChoqueNavesEnemigas();
-        //limiteChoqueNaveAliada(200);
-        move(1);//Método que mueve a cierta velocidad el objeto
-        turnTowards(NaveAliada.getCordX(), NaveAliada.getCordY());
-        puedeMoverse();
-        // limiteChoqueNavesEnemigas();
-        //setLocation(getX()+1, getY()+1);
     }
     /*Método que marcará un límite entre las mismas naves enemigas y
        nuestra nave para que no choquen.*/
