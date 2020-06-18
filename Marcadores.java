@@ -35,31 +35,32 @@ public class Marcadores
          */
     private void pedirNombreUsuario(){  
         int confirmacion = 1, maxCaracteres = 10;
-        Object[] opcionesPosiblesInput = {"Aceptar"};
-        Object inputDialog;
         while(confirmacion == 1){// 0 = Sí está seguro del nombre, 1 = No está seguro del nombre.
-            try{/*public static Object showInputDialog​(Component parentComponent, Object message, String title, int messageType, Icon icon, 
-                            Object[] selectionValues, Object initialSelectionValue) throws HeadlessException*/
-                inputDialog = JOptionPane.showInputDialog(null, "Ingresa tu nombre (Máximo de caracteres = "+ maxCaracteres +"):",
-                                                        "NOMBRE", JOptionPane.PLAIN_MESSAGE, null, opcionesPosiblesInput, "NOMBRE");
-                nombreJugador = inputDialog.toString(); //Convertir el objeto (ya que es lo que regresa el método)
+            try{/*public static String showInputDialog​(Component parentComponent, Object message,
+                                                        String title, int messageType) throws HeadlessException*/
+                nombreJugador = JOptionPane.showInputDialog(null, "Ingresa tu nombre (Máximo de caracteres = "+ maxCaracteres +"):",
+                                                        "NOMBRE", JOptionPane.PLAIN_MESSAGE);
                 }catch(HeadlessException he){
                     //https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()
                     //true if this environment cannot support a display, keyboard, and mouse
                     System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
                 }
-            if(nombreJugador.length() > maxCaracteres) //Máximo de caracteres = 10.
-                //Se pasó el máximo de caracteres. Ingresará de nuevo su nombre.
+            if(nombreJugador.length() > maxCaracteres){ //Máximo de caracteres = 10.
+                //Volver a llamar al método, pero primero mostrar otro cuadro de texto diciendo que pasó el límite.
                 confirmacion = JOptionPane.showConfirmDialog(null, 
                                                 "Superaste el número de caracteres ("+ maxCaracteres +").\nVuelve a ingresar tu nombre.", 
                                                          "ERROR EN NOMBRE JUGADOR", 
-                                                         JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                                                         JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);                                    
+            }
             else //No se superó el número de caracteres.
                 //Mostrar cuadro de confirmación con SÍ y NO como opciones.
                 confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro del nombre?", 
                                                              "CONFIRMACIÓN NOMBRE JUGADOR", 
                                                              JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); // 0=yes, 1=no
         }
+        // //static void showInternalMessageDialog​(Component parentComponent, Object message, String title, int messageType)
+        // JOptionPane.showConfirmDialog(null, "Nombre guardado con éxito.", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        
         try{/*//public static void showMessageDialog​(Component parentComponent, Object message,
                                                       String title, int messageType) throws HeadlessException*/
             JOptionPane.showMessageDialog(null, "Nombre guardado con éxito.", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
@@ -68,6 +69,10 @@ public class Marcadores
                 //true if this environment cannot support a display, keyboard, and mouse
                 System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
             }
+             // if(confirmacion == 1)
+            // pedirNombreUsuario(); //Volver a pedir el nombre de usuario.
+        //Establecer un máximo de caracteres para que no se ingresen demasiados y saturen la pantalla.
+        
     }
     
     private class arrayListMarcadores{
