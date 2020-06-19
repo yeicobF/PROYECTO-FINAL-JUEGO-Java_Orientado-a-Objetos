@@ -10,8 +10,8 @@ import greenfoot.Color;
             Nombre  Puntuación   Nivel   Fecha
             ------ ------------  -----  -------
  * 
- * @author (Team Naves) 
- * @version (Jueves, 18 de junio de 2020)
+ * @author (Jacob) 
+ * @version (Viernes, 19 de junio de 2020)
  */
 public class Marcadores extends World
 {
@@ -39,9 +39,16 @@ public class Marcadores extends World
         textos[3].setImage(texto.crearCuadroTexto("FECHA"));
         calculaEspacioEntreTextos();
         agregaCuadrosTexto();
-        mostrarMarcadores();
+        agregaJugadorMarcadores();
+        //mostrarMarcadores();
     }
-    public static void mostrarMarcadores(){
+    /** Método que agregará al jugador al archivo de los marcadores.*/
+    private void agregaJugadorMarcadores(){
+        Archivo a = new Archivo("archivos/marcadoresSinOrdenar.txt");
+        /* Escribir al final del archivo de los marcadores el jugador que se ha recibido.*/
+        a.escribirAlFinalArchivo(jugador.getInformacion());
+    }
+    public void mostrarMarcadores(){
         //Abrir el archivo .txt con los marcadores y mostrar cierto número de puntuaciones.
     }
     /*Método que calcula el espacio entre cuadro de texto y cuadro de texto para que queden bien repartidos.*/

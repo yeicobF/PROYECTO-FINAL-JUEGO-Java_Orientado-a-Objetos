@@ -35,12 +35,20 @@ public class Archivo
         /* Hacer todo el procedimiento de lectura y muestra de archivo.*/
         abrirArchivo();//Se abre el archivo y luego se llamarán los métodos que se vayan a utilizar.
     }
-    /** Constructor para cuando se quiere escribir en el archivo. Esto con el arrayList.*/
-    public Archivo(String nombreArchivo){
+    /** Constructor para cuando se quiere escribir en el archivo. Esto con el arrayList.
+        Recibirá el archivo base y el archivo en el que se escribirá.*/
+    public Archivo(String nombreArchivo, String nombreArchivoEscribir){
         arrListJugador = new ArrayListJugador();
         this.nombreArchivo = nombreArchivo;
+        //nombreArchivo = "archivos/marcadoresSinOrdenar.txt"
+        //nombreArchivoEscribir = "archivos/marcadores.txt"
         //guardarArchivoArrayList(); //Para probar que funcione.
-        escribirEnArchivo(); //Escribirá (por ahora) los valores ordenados en un archivo de prueba.
+        escribirEnArchivo(nombreArchivoEscribir); //Escribirá los valores ordenados en el archivo marcadores.txt.
+    }
+    /** Constructor para escribir al final del archivo.*/
+    public Archivo(String nombreArchivo){//, String texto){
+        this.nombreArchivo = nombreArchivo;
+        //escribirAlFinalArchivo(nombreArchivo, texto);
     }
     public void abrirArchivo(){
         try{
@@ -49,24 +57,39 @@ public class Archivo
             System.out.println("El archivo no se encontró.");
         }
     }
+    /*Método que escribirá el texto ingresado al final de un archivo.*/
+    public void escribirAlFinalArchivo(String texto){
+        abrirArchivo();
+        try{ /*boolean append es para escribir al final  si es true o al inicio con false.*/
+            escritor = new FileWriter(nombreArchivo, true);
+            escritor.write(texto); //Escribir al final del archivo el texto dado.
+            escritor.close();
+        }catch(IOException e){
+            /*  if the named file exists but is a directory rather than a regular file, 
+             *      does not exist but cannot be created, or cannot be opened for any other reason*/
+            System.out.println("Ocurrió un error con el archivo.");
+        }
+        cerrarArchivo();
+    }
     /*Método estático para escribir en un archivo. Es estático ya que no se requiere
        instanciar la clase.
         boolean escribirAlFinal = true si quieres escribir al final del archivo. False si al principio.
         - Esto solo lo necesitará usar la clase de marcadores.
         - Insertaremos de mayor puntuación a menor. Así que si el archivo ya tiene información,
             habrá que ir comparando y cambiando los valores.*/
-    public void escribirEnArchivo(){ 
+    public void escribirEnArchivo(String nombreArchivoEscribir){ 
         /*public FileWriter(String fileName,
           boolean append)
            throws IOException*/
         /*La idea es ir comparando la puntuación actual con las demás y si encuentra una menor, ir haciendo
            los cambios con bubbleSort (lento pero fácil de implementar) y así sobreescribir el archivo.
            Habría que leer todo el archivo, guardar los valores ordenados en un arrayList y luego
-           sobreescribir el archivo.*/
+           sobreescribir el archivo.
+           -> Hice esto pero no con un bubblesort, sino con Compare.sort() en el arrayList.*/
         guardarArchivoArrayList(); //Aquí se guardarán los valores del archivo en un arrayList.
         arrListJugador.ordenarArrayList(); //Ordenar el arrayList para sobreescribirlo en orden.
-        try{
-           escritor = new FileWriter("archivos/marcadores.txt");//, false); //boolean append es para escribir al final  si es true o al inicio con false (sobreescribir).
+        try{ //nombreArchivoEscribir = "archivos/marcadores.txt"
+           escritor = new FileWriter(nombreArchivoEscribir);//, false); //boolean append es para escribir al final  si es true o al inicio con false (sobreescribir).
            /*Fuente: https://www.youtube.com/watch?v=lHFlAYaNfdo&t=279s*/
            //arrListJugador.guardarEnCadena();
            //System.out.println(arrListJugador.guardarEnCadena());

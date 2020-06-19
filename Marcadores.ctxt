@@ -1,15 +1,18 @@
 #BlueJ class context
 comment0.target=Marcadores
-comment0.text=\r\n\ Clase\ en\ la\ que\ se\ manejar\u00E1n\ los\ marcadores.\ Se\ agregar\u00E1n\ las\ nuevas\ puntuaciones\r\n\ \ y\ se\ mostrar\u00E1n\ las\ que\ ya\ hay.\ Se\ podr\u00EDan\ mostrar\ hasta\ un\ l\u00EDmite\ de\ n\ puntuaciones.\r\n\ \ Para\ esto\ se\ utilizar\u00E1\ el\ manejo\ de\ archivos\ de\ dicha\ clase.\r\n\ \r\n\ \ \ \ \ \ Se\ mostrar\u00E1n\ los\ marcadores\ como\:\r\n\ \ \ \ \ \ \ \ \ \ \ \ Nombre\ \ Puntuaci\u00F3n\ \ \ Nivel\ \ \ Fecha\r\n\ \ \ \ \ \ \ \ \ \ \ \ ------\ ------------\ \ -----\ \ -------\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Jueves,\ 18\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ en\ la\ que\ se\ manejar\u00E1n\ los\ marcadores.\ Se\ agregar\u00E1n\ las\ nuevas\ puntuaciones\r\n\ \ y\ se\ mostrar\u00E1n\ las\ que\ ya\ hay.\ Se\ podr\u00EDan\ mostrar\ hasta\ un\ l\u00EDmite\ de\ n\ puntuaciones.\r\n\ \ Para\ esto\ se\ utilizar\u00E1\ el\ manejo\ de\ archivos\ de\ dicha\ clase.\r\n\ \r\n\ \ \ \ \ \ Se\ mostrar\u00E1n\ los\ marcadores\ como\:\r\n\ \ \ \ \ \ \ \ \ \ \ \ Nombre\ \ Puntuaci\u00F3n\ \ \ Nivel\ \ \ Fecha\r\n\ \ \ \ \ \ \ \ \ \ \ \ ------\ ------------\ \ -----\ \ -------\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Viernes,\ 19\ de\ junio\ de\ 2020)\r\n
 comment1.params=jugador
 comment1.target=Marcadores(Jugador)
 comment1.text=\ 0\ -\ Nombre\r\n\ \ \ \ \ \ \ 1\ -\ Puntos\r\n\ \ \ \ \ \ \ 2\ -\ Nivel\r\n3\ -\ Fecha
 comment2.params=
-comment2.target=void\ mostrarMarcadores()
+comment2.target=void\ agregaJugadorMarcadores()
+comment2.text=M\u00E9todo\ que\ agregar\u00E1\ al\ jugador\ al\ archivo\ de\ los\ marcadores.
 comment3.params=
-comment3.target=void\ calculaEspacioEntreTextos()
-comment3.text=M\u00E9todo\ que\ calcula\ el\ espacio\ entre\ cuadro\ de\ texto\ y\ cuadro\ de\ texto\ para\ que\ queden\ bien\ repartidos.
+comment3.target=void\ mostrarMarcadores()
 comment4.params=
-comment4.target=void\ agregaCuadrosTexto()
-comment4.text=M\u00E9todo\ que\ agregar\u00E1\ los\ cuadros\ de\ texto\ de\ acuerdo\ al\ espacio\ entre\ estos.
-numComments=5
+comment4.target=void\ calculaEspacioEntreTextos()
+comment4.text=M\u00E9todo\ que\ calcula\ el\ espacio\ entre\ cuadro\ de\ texto\ y\ cuadro\ de\ texto\ para\ que\ queden\ bien\ repartidos.
+comment5.params=
+comment5.target=void\ agregaCuadrosTexto()
+comment5.text=M\u00E9todo\ que\ agregar\u00E1\ los\ cuadros\ de\ texto\ de\ acuerdo\ al\ espacio\ entre\ estos.
+numComments=6

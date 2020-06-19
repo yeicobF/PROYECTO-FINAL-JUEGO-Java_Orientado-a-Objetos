@@ -24,12 +24,9 @@ public class ArrayListJugador extends Jugador
     }
     /** Método que guardará el arrayList en una cadena para luego escribirla en el archivo.*/
     public String guardarEnCadena(){
-        System.out.println("-> Entro arrListJugador.guardarEnCadena()");
-        //imprimirArrayList();
-        for(Jugador j : arrayListJugador){/*Escribir cada línea separando los valores con espacios y al final un salto de línea.*/
-            textoArchivo = textoArchivo.concat(j.getNombreJugador() +" "+ j.getPuntos() +" "+ j.getNivel() +" "+ j.getFecha() +"\n");
-            System.out.println(j.getNombreJugador() +" "+ j.getPuntos() +" "+ j.getNivel() +" "+ j.getFecha() +"\n");
-        }
+        for(Jugador j : arrayListJugador)/*Escribir cada línea separando los valores con espacios y al final un salto de línea.*/
+            //textoArchivo = textoArchivo.concat(j.getNombreJugador() +" "+ j.getPuntos() +" "+ j.getNivel() +" "+ j.getFecha() +"\n");
+            textoArchivo = textoArchivo.concat(j.getInformacion());
         return textoArchivo; //Regresa el texto ordenado.
     }
     public void imprimirArrayList(){

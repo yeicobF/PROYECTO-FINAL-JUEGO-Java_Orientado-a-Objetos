@@ -21,7 +21,7 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
     private int puntos;
     private int nivel; //El nivel en que se quedó el jugador.
     /*Constructor para la clase del arrayList.*/
-    public Jugador(){}
+    protected Jugador(){}
     public Jugador(int puntos){
         this.puntos = puntos; //Antes de morir, se mandarán los puntos para no recibirlos reiniciados.
         fechaActual = Fecha.getFecha(); //Obtener la hora actual.
@@ -29,8 +29,8 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
         pedirNombreJugador();
         Greenfoot.setWorld(new Marcadores(this)); //Ahora llamar a los marcadores con este objeto.
     }
-    /*Método para guardar los valores desde el arrayList*/
-    public Jugador(String nombreJugador, int puntos, int nivel, String fechaActual){
+    /*Método para guardar los valores desde el arrayList. Protected porque solo lo usará el arrayList.*/
+    protected Jugador(String nombreJugador, int puntos, int nivel, String fechaActual){
         this.nombreJugador = nombreJugador;
         this.puntos = puntos;
         this.nivel = nivel;
@@ -136,6 +136,10 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
     }
     public String getFecha(){
         return fechaActual;
+    }
+    /** Método que regresa una cadena con toda la información del jugador.*/
+    public String getInformacion(){
+        return nombreJugador +" "+ puntos +" "+ nivel +" "+ fechaActual +"\n";
     }
     /*https://beginnersbook.com/2013/12/java-arraylist-of-object-sort-example-comparable-and-comparator/*/
     @Override
