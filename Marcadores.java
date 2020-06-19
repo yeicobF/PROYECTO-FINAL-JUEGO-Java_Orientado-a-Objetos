@@ -15,6 +15,7 @@ import greenfoot.Color;
  */
 public class Marcadores extends World
 {
+    private Archivo marcadores; //Aquí se hará todo el proceso de ordenar los marcadores.
     private Jugador jugador;
     private Etiqueta texto;
     private ActorAuxiliar[] textos; //Cuadros de texto como actor para colocarlos con facilidad.
@@ -40,6 +41,9 @@ public class Marcadores extends World
         calculaEspacioEntreTextos();
         agregaCuadrosTexto();
         agregaJugadorMarcadores();
+        //public Archivo(String nombreArchivo, String nombreArchivoEscribir)
+            //Se ordena el archivo de marcadores con el nuevo que ingresamos.
+        marcadores = new Archivo("archivos/marcadoresSinOrdenar.txt", "archivos/marcadores.txt");
         //mostrarMarcadores();
     }
     /** Método que agregará al jugador al archivo de los marcadores.*/
