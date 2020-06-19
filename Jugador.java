@@ -1,5 +1,6 @@
 import javax.swing.JOptionPane; //Para el pop-up que pedirá el nombre del jugador. Que tenga un límite de caracteres.
 import java.awt.HeadlessException; //Excepción de input de JOption.
+import greenfoot.Greenfoot; //Para detener el juego si ocurre una excepción. Aunque podríamos guardar en el archivo de recuperación y no terminar la ejecución.
 /**
  * En esta clase se manejará todo lo que respecta al jugador:
  *  - Nombre
@@ -34,78 +35,59 @@ public class Jugador{
      */
     private void pedirNombreJugador(){  
         int confirmacion = 1, maxCaracteres = 10;
-        while(confirmacion == 1){// 0 = Sí está seguro del nombre, 1 = No está seguro del nombre.
-            try{/*public static String showInputDialog​(Component parentComponent, Object message,
-                                                        String title, int messageType) throws HeadlessException*/
+        try{ //Ya que puede haber una HeadlessException
+            while(confirmacion == 1){// 0 = Sí está seguro del nombre, 1 = No está seguro del nombre.
+                /*public static String showInputDialog​(Component parentComponent, Object message,
+                                                            String title, int messageType) throws HeadlessException*/
                 nombreJugador = JOptionPane.showInputDialog(null, "Ingresa tu nombre (Máximo de caracteres = "+ maxCaracteres +"):",
                                                         "NOMBRE", JOptionPane.PLAIN_MESSAGE);
                 if(nombreJugador == null) //Si se presionó el botón cancelar, volver a pedir el nombre.
                     continue;
-                }catch(HeadlessException he){
-                    //https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()
-                    //true if this environment cannot support a display, keyboard, and mouse
-                    System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
-                }
-            if(nombreJugador.length() > maxCaracteres || nombreJugador.isEmpty() 
-                    || isCadenaEspacios(nombreJugador) || hayEspaciosEnBlanco(nombreJugador)) //Máximo de caracteres = 10.
-                
-                //Se pasó el máximo de caracteres o no ingresó nada o ingresó solo espacios. Ingresará de nuevo su nombre.
-                // confirmacion = JOptionPane.showConfirmDialog(null, 
-                                                // "Superaste el número de caracteres ("+ maxCaracteres +").\nVuelve a ingresar tu nombre.", 
-                                                         // "ERROR EN NOMBRE JUGADOR", 
-                                                         // JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
-                try{/*//public static void showMessageDialog​(Component parentComponent, Object message,
-                                                      String title, int messageType) throws HeadlessException*/
-                    if(nombreJugador.length() > maxCaracteres)
-                        JOptionPane.showMessageDialog(null, "Error:\n"
-                                +"Superaste el número de caracteres ("+ maxCaracteres +").\n\nVuelve a ingresar tu nombre.", 
-                                                         "ERROR EN NOMBRE DE JUGADOR", JOptionPane.ERROR_MESSAGE);
-                    else{ //Si se superaron los caracteres, no mostrar otro error.
-                        if(nombreJugador.isEmpty())
-                            /*   StringUtils.isEmpty(null)      = true
-                                 StringUtils.isEmpty("")        = true  
-                                 StringUtils.isEmpty(" ")       = false  
-                                 StringUtils.isEmpty("bob")     = false  
-                                 StringUtils.isEmpty("  bob  ") = false */
+                if(nombreJugador.length() > maxCaracteres || nombreJugador.isEmpty() 
+                        || isCadenaEspacios(nombreJugador) || hayEspaciosEnBlanco(nombreJugador))/*//public static void showMessageDialog​(Component parentComponent, Object message,
+                                                          String title, int messageType) throws HeadlessException*/
+                        if(nombreJugador.length() > maxCaracteres)
                             JOptionPane.showMessageDialog(null, "Error:\n"
-                                    +"No ingresaste nada.\n\nVuelve a ingresar tu nombre.", 
+                                    +"Superaste el número de caracteres ("+ maxCaracteres +").\n\nVuelve a ingresar tu nombre.", 
                                                              "ERROR EN NOMBRE DE JUGADOR", JOptionPane.ERROR_MESSAGE);
-                        if(isCadenaEspacios(nombreJugador)) //Método implementado en esta clase. Verifica que la cadena sea solo espacios en blanco.
-                            JOptionPane.showMessageDialog(null, "Error:\n"
-                                    +"Ingresaste solo espacios en blanco.\n\nVuelve a ingresar tu nombre.", 
-                                                             "ERROR EN NOMBRE JUGADOR", JOptionPane.ERROR_MESSAGE);
-                        else //La cadena no está solo compuesta de espacios en blanco. Puede tener espacios entre caracteres.
-                            if(hayEspaciosEnBlanco(nombreJugador))
+                        else{ //Si se superaron los caracteres, no mostrar otro error.
+                            if(nombreJugador.isEmpty())
+                                /*   StringUtils.isEmpty(null)      = true
+                                     StringUtils.isEmpty("")        = true  
+                                     StringUtils.isEmpty(" ")       = false  
+                                     StringUtils.isEmpty("bob")     = false  
+                                     StringUtils.isEmpty("  bob  ") = false */
                                 JOptionPane.showMessageDialog(null, "Error:\n"
-                                    +"Hay espacios en blanco en la cadena (Entre letras, al inicio o al final).\n\nVuelve a ingresar tu nombre.", 
-                                                             "ERROR EN NOMBRE JUGADOR", JOptionPane.ERROR_MESSAGE);
-                            
-                    }
-                    // JOptionPane.showMessageDialog(null, "Error:\n"
-                                // +"Superaste el número de caracteres ("+ maxCaracteres +"), o"
-                                // +"\nno ingresaste nada, o"
-                                // +"\ningresaste solo espacios en blanco.\n\nVuelve a ingresar tu nombre.", 
-                                                         // "ERROR EN NOMBRE JUGADOR", JOptionPane.ERROR_MESSAGE);
-                    }catch(HeadlessException he){
-                        //https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()
-                        //true if this environment cannot support a display, keyboard, and mouse
-                        System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
-                    }
-            else //No se superó el número de caracteres.
-                //Mostrar cuadro de confirmación con SÍ y NO como opciones.
-                confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro del nombre?", 
-                                                             "CONFIRMACIÓN NOMBRE JUGADOR", 
-                                                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); // 0=yes, 1=no
-        }
-        try{/*//public static void showMessageDialog​(Component parentComponent, Object message,
+                                        +"No ingresaste nada.\n\nVuelve a ingresar tu nombre.", 
+                                                                 "ERROR EN NOMBRE DE JUGADOR", JOptionPane.ERROR_MESSAGE);
+                            if(isCadenaEspacios(nombreJugador)) //Método implementado en esta clase. Verifica que la cadena sea solo espacios en blanco.
+                                JOptionPane.showMessageDialog(null, "Error:\n"
+                                        +"Ingresaste solo espacios en blanco.\n\nVuelve a ingresar tu nombre.", 
+                                                                 "ERROR EN NOMBRE JUGADOR", JOptionPane.ERROR_MESSAGE);
+                            else //La cadena no está solo compuesta de espacios en blanco. Puede tener espacios entre caracteres.
+                                if(hayEspaciosEnBlanco(nombreJugador))
+                                    JOptionPane.showMessageDialog(null, "Error:\n"
+                                        +"Hay espacios en blanco en la cadena (Entre letras, al inicio o al final).\n\nVuelve a ingresar tu nombre.", 
+                                                                 "ERROR EN NOMBRE JUGADOR", JOptionPane.ERROR_MESSAGE);
+                        }
+                else //No hubo ningún error al ingresar el nombre.
+                    //Mostrar cuadro de confirmación con SÍ y NO como opciones.
+                    confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro del nombre?", 
+                                                                 "CONFIRMACIÓN NOMBRE JUGADOR", 
+                                                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); // 0=yes, 1=no
+            }
+            /*//public static void showMessageDialog​(Component parentComponent, Object message,
                                                       String title, int messageType) throws HeadlessException*/
             JOptionPane.showMessageDialog(null, "Nombre guardado con éxito.", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
-            }catch(HeadlessException he){
-                //https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()
-                //true if this environment cannot support a display, keyboard, and mouse
-                System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
-                Greenfoot.stop();
-            }
+        }catch(HeadlessException he){
+            //https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()
+            //true if this environment cannot support a display, keyboard, and mouse
+            System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
+            /*Aquí habrá que guardar la información en un archivo de texto de emergencia por si ocurre
+             *  algún error, que la información no se pierda.*/
+             
+            //Greenfoot.stop(); //Se detendrá el juego por la excepción. Aunque podríamos no hacer esto.
+        }
         // return nombreJugador; //Regresa el nombre del jugador.
     }
     /*Método que revisa si lo que tiene la cadena son solo espacios en blanco.*/

@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Jugador
 comment0.text=Clase\ que\ maneja\ m\u00E9todos\ relacionados\ con\ el\ nombre\ del\ jugador.
-comment1.params=
-comment1.target=Jugador()
+comment1.params=puntos
+comment1.target=Jugador(int)
 comment2.params=
 comment2.target=void\ pedirNombreJugador()
 comment2.text=\ Fuentes\:\ \r\n\ \ \ \ \ -\ https\://www.greenfoot.org/topics/3583\r\n\ \ \ \ \ -\ https\://mkyong.com/swing/java-swing-how-to-make-a-confirmation-dialog/\r\n

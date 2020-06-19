@@ -42,15 +42,16 @@ public class Etiqueta// extends Actor
     public int getLargoTexto(){
       return texto.length();
     }
-    /*Método que devuelve el equivalente del largo del texto
-        al tamaño en que mide la fuente como imagen en el juego.
-        Esto porque teniendo los caracteres miden pixeles,
-          pero multiplicando por el tamaño de la fuente se
-          convierte en "tamaño real."*/
-    public int getProporcionTextoImagen(){
-      //System.out.println(texto + texto.length() * 8);
-      return texto.length() * 8; //1 pixel -> 0.125 char
-    }
+    // /*Método que devuelve el equivalente del largo del texto
+        // al tamaño en que mide la fuente como imagen en el juego.
+        // Esto porque teniendo los caracteres miden pixeles,
+          // pero multiplicando por el tamaño de la fuente se
+          // convierte en "tamaño real."
+          // NO ES NECESARIO*/
+    // public int getProporcionTextoImagen(){
+      // //System.out.println(texto + texto.length() * 8);
+      // return texto.length() * 8; //1 pixel -> 0.125 char
+    // }
     /*Getter de la imagen creada con el texto*/
     public GreenfootImage getImagen(){
         return mensaje;
@@ -58,7 +59,7 @@ public class Etiqueta// extends Actor
     public void setImagen(GreenfootImage imagen){
         mensaje = imagen;
     }
-    /*Método que regresa la x en donnde el texto estará centrado
+    /*Método que regresa la x en donde el texto estará centrado
         en el método drawImage(), ya que en las coordenadas hay
         que tomar el tamaño de la letra para centrarlo.*/
     public int getXCentrada(){
