@@ -106,6 +106,7 @@ public class Archivo
     private void guardarArchivoArrayList(){
         //Variables auxiliares para guardar los valores
         String nombreJugador;
+        nombreJugador = fecha = "";
         int puntos, nivel;
         abrirArchivo();
         /*Guardar cada valor del archivo en el arrayList de jugador.*/
@@ -121,10 +122,18 @@ public class Archivo
             arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
         }
         cerrarArchivo(); //Ya no necesitaremos el archivo abierto.
-        // arrListJugador.imprimirArrayList();
-        // System.out.println("\nArrayList Ordenado:");
-        // arrListJugador.ordenarArrayList();
-        // arrListJugador.imprimirArrayList();
+        // //Variables auxiliares para guardar los valores
+        // String nombreJugador, fecha;
+        // int puntos, nivel;
+        // abrirArchivo();
+        // /*Guardar cada valor del archivo en el arrayList de jugador.*/
+        // while(archivo.hasNext()){ //Recorrerá cada cadena.
+            // nombreJugador = archivo.next();
+            // puntos = archivo.nextInt();
+            // nivel = archivo.nextInt();
+            // fecha = archivo.next();
+            // arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
+        // }
     }
     //Mostrar el archivo de texto abierto.
     public void mostrarArchivo(World mundo){

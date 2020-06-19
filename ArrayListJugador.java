@@ -17,6 +17,7 @@ public class ArrayListJugador extends Jugador
         textoArchivo = "";
     }
     public void addJugador(String nombre, int puntos, int nivel, String fecha){
+        System.out.println("Entró a crear jugador.");
         arrayListJugador.add(new Jugador(nombre, puntos, nivel, fecha));
     }
     public void ordenarArrayList(){
