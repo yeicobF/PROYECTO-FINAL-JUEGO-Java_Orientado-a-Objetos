@@ -6,7 +6,7 @@ comment1.target=Archivo(java.lang.String,\ int,\ greenfoot.Color)
 comment1.text=Constructor\ para\ cuando\ se\ quiere\ mostrar\ el\ archivo\ centrado\ en\ x\ y\ y\ directamente.
 comment2.params=nombreArchivo
 comment2.target=Archivo(java.lang.String)
-comment2.text=Constructor\ para\ cuando\ se\ quiere\ escribir\ en\ el\ archivo.
+comment2.text=Constructor\ para\ cuando\ se\ quiere\ escribir\ en\ el\ archivo.\ Esto\ con\ el\ arrayList.
 comment3.params=
 comment3.target=void\ abrirArchivo()
 comment4.params=jugador
@@ -14,6 +14,7 @@ comment4.target=void\ escribirEnArchivo(Jugador)
 comment4.text=M\u00E9todo\ est\u00E1tico\ para\ escribir\ en\ un\ archivo.\ Es\ est\u00E1tico\ ya\ que\ no\ se\ requiere\r\n\ \ \ \ \ \ \ instanciar\ la\ clase.\r\n\ \ \ \ \ \ \ \ boolean\ escribirAlFinal\ \=\ true\ si\ quieres\ escribir\ al\ final\ del\ archivo.\ False\ si\ al\ principio.\r\n\ \ \ \ \ \ \ \ -\ Esto\ solo\ lo\ necesitar\u00E1\ usar\ la\ clase\ de\ marcadores.\r\n\ \ \ \ \ \ \ \ -\ Insertaremos\ de\ mayor\ puntuaci\u00F3n\ a\ menor.\ As\u00ED\ que\ si\ el\ archivo\ ya\ tiene\ informaci\u00F3n,\r\nhabr\u00E1\ que\ ir\ comparando\ y\ cambiando\ los\ valores.
 comment5.params=
 comment5.target=void\ guardarArchivoArrayList()
+comment5.text=Se\ recorrer\u00E1\ el\ archivo\ guardando\ los\ valores\ en\ el\ arrayList\ para\ luego\ reordenar\ el\ archivo.
 comment6.params=mundo
 comment6.target=void\ mostrarArchivo(greenfoot.World)
 comment7.params=

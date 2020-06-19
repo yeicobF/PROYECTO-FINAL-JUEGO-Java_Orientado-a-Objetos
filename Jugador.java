@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import javax.swing.JOptionPane; //Para el pop-up que pedirá el nombre del jugador. Que tenga un límite de caracteres.
 import java.awt.HeadlessException; //Excepción de input de JOption.
 import greenfoot.Greenfoot; //Para detener el juego si ocurre una excepción. Aunque podríamos guardar en el archivo de recuperación y no terminar la ejecución.
@@ -21,6 +20,8 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
     private String fechaActual;
     private int puntos;
     private int nivel; //El nivel en que se quedó el jugador.
+    /*Constructor para la clase del arrayList.*/
+    public Jugador(){}
     public Jugador(int puntos){
         this.puntos = puntos; //Antes de morir, se mandarán los puntos para no recibirlos reiniciados.
         fechaActual = Fecha.getFecha(); //Obtener la hora actual.
@@ -154,10 +155,6 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
     @Override
     public String toString() {
         return "Nombre: "+ nombreJugador + ", Puntos: "+ puntos +", Nivel: "+ nivel +", Fecha: "+ fechaActual;
-    }
-    /** Clase que manejará un arrayList de jugador.*/
-    private  class arrayListJugador{
-        
     }
 }
 

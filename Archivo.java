@@ -18,6 +18,7 @@ import java.io.FileWriter; //Para escribir en los archivos.
  */
 public class Archivo
 {
+    private ArrayListJugador arrListJugador; //ArrayList para guardar los valores, ordenarlos y sobreescribir el archivo.
     private Scanner archivo;
     private FileWriter escritor; //Se usará para escribir en el archivo.
     private Etiqueta texto;
@@ -34,9 +35,11 @@ public class Archivo
         /* Hacer todo el procedimiento de lectura y muestra de archivo.*/
         abrirArchivo();//Se abre el archivo y luego se llamarán los métodos que se vayan a utilizar.
     }
-    /** Constructor para cuando se quiere escribir en el archivo.*/
+    /** Constructor para cuando se quiere escribir en el archivo. Esto con el arrayList.*/
     public Archivo(String nombreArchivo){
+        arrListJugador = new ArrayListJugador();
         this.nombreArchivo = nombreArchivo;
+        guardarArchivoArrayList(); //Para probar que funcione.
     }
     public void abrirArchivo(){
         try{
@@ -59,7 +62,7 @@ public class Archivo
            los cambios con bubbleSort (lento pero fácil de implementar) y así sobreescribir el archivo.
            Habría que leer todo el archivo, guardar los valores ordenados en un arrayList y luego
            sobreescribir el archivo.*/
-        
+        guardarArchivoArrayList(); //Aquí se guardarán los valores del archivo en un arrayList.
         try{
            escritor = new FileWriter(nombreArchivo, false); //boolean append es para escribir al final  si es true o al inicio con false (sobreescribir).
         }catch(IOException e){
@@ -68,9 +71,21 @@ public class Archivo
             System.out.println("Ocurrió un error con el archivo.");
         }
     }
+    /*Se recorrerá el archivo guardando los valores en el arrayList para luego reordenar el archivo.*/
     private void guardarArchivoArrayList(){
+        //Variables auxiliares para guardar los valores
+        String nombreJugador, fecha;
+        int puntos, nivel;
         abrirArchivo();
         /*Guardar cada valor del archivo en el arrayList de jugador.*/
+        while(archivo.hasNext()){ //Recorrerá cada cadena.
+            nombreJugador = archivo.next();
+            puntos = archivo.nextInt();
+            nivel = archivo.nextInt();
+            fecha = archivo.next();
+            arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
+        }
+        arrListJugador.imprimirArrayList();
     }
     //Mostrar el archivo de texto abierto.
     public void mostrarArchivo(World mundo){

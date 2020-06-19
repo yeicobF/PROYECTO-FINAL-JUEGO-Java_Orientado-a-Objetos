@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ArrayListJugador
+comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ un\ arrayList\ de\ Jugador\ y\ lo\ podr\u00E1\ ordenar\ dependiendo\ de\ los\ puntos.\r\n\ -\ https\://beginnersbook.com/2013/12/java-arraylist-of-object-sort-example-comparable-and-comparator/\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Viernes,\ 19\ de\ junio\ de\ 2020)\r\n
+comment1.params=
+comment1.target=ArrayListJugador()
+comment2.params=nombre\ puntos\ nivel\ fecha
+comment2.target=void\ addJugador(java.lang.String,\ int,\ int,\ java.lang.String)
+comment3.params=
+comment3.target=void\ ordenarArrayList()
+comment4.params=
+comment4.target=void\ imprimirArrayList()
+numComments=5
