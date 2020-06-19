@@ -2,11 +2,11 @@ import greenfoot.*;
 public class Portada extends World
 {
     private Etiqueta texto; //Para crear los cuadros de texto.
-    private Actor botonIniciar;
-    private Actor botonCreditos;
-    private Actor botonAcercaDe;
-    private Actor botonComoJugar;
-
+    private Boton botonIniciar;
+    private Boton botonCreditos;
+    private Boton botonAcercaDe;
+    private Boton botonComoJugar;
+    private Boton botonMarcadores;
     private GreenfootSound bkgMusic;
 
     public Portada()

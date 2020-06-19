@@ -27,9 +27,10 @@ public class Marcadores extends World
        3 - Fecha*/
     public Marcadores(Jugador jugador){
         super(1000, 600, 1); //Construir la pantalla de marcadores.
+        setBackground("images/espacio5.jpg");
         this.jugador = jugador; //Se recibe el objeto con su información para agregarla a los marcadores.
         //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
-        texto = new Etiqueta(20, Color.WHITE, null, Color.YELLOW);
+        texto = new Etiqueta(30, Color.WHITE, null, null);
         //https://stackoverflow.com/questions/5364278/creating-an-array-of-objects-in-java
         textos = new ActorAuxiliar[] {new ActorAuxiliar(), new ActorAuxiliar(), new ActorAuxiliar(), new ActorAuxiliar()}; //Crear el arreglo de los textos.
         //Darles sus respectivas imágenes.
@@ -48,16 +49,17 @@ public class Marcadores extends World
         int sumaTamTextos; //Es auxiliar nada más.
         sumaTamTextos = espacioEntreTextos = 0;
         for(int i = 0; i < 4; i++)
-            sumaTamTextos += textos[i].getImage().getWidth()*2; //El getWidth devuelve el ancho desde la mitad de la imagen.
+            sumaTamTextos += textos[i].getImage().getWidth(); //El getWidth devuelve el ancho desde la mitad de la imagen.
         espacioEntreTextos = (getWidth() - sumaTamTextos)/5; //Calcular el espacio entre cada texto dividiendo lo sobrante de la pantalla entre 5.
+        System.out.println("SumaTamTextos = "+ sumaTamTextos +", Espacio entre textos: "+ espacioEntreTextos +", getWidth(): "+ getWidth());
     }
     /* Método que agregará los cuadros de texto de acuerdo al espacio entre estos.*/
     private void agregaCuadrosTexto(){
         int xActual = espacioEntreTextos; //Auxiliar para ver en dónde va la x para colocar los cuadros.
         for(int i = 0; i < 4; i++){
-            addObject(textos[i], xActual, 10);
+            addObject(textos[i], xActual, 20);
             //Esto se hace así porque se sumará la orilla derecha del cuadro de texto + el espacio entre los textos.
-            xActual += espacioEntreTextos + textos[i].getImage().getWidth()*2;
+            xActual += espacioEntreTextos + textos[i].getImage().getWidth();
         }
     }
     

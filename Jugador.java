@@ -14,7 +14,7 @@ import greenfoot.Greenfoot; //Para detener el juego si ocurre una excepción. Au
  */
 /*Clase que maneja métodos relacionados con el nombre del jugador.*/
 public class Jugador{
-    private Marcadores marcadores;
+    //private Marcadores marcadores;
     private Archivo archivo; //El archivo en donde estarán los marcadores.
     protected String nombreJugador; //Este se ingresará.
     private String fechaActual;
@@ -25,7 +25,7 @@ public class Jugador{
         fechaActual = Fecha.getFecha(); //Obtener la hora actual.
         nivel = Niveles.getNivelActual(); //Obtener el nivel en el que nos quedamos.
         pedirNombreJugador();
-        marcadores = new Marcadores(this); //Ahora llamar a los marcadores con este objeto.
+        Greenfoot.setWorld(new Marcadores(this)); //Ahora llamar a los marcadores con este objeto.
     }
     
     //Método que pedirá el nombre de usuario del jugador que será añadido a los marcadores.
