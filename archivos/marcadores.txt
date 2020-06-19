@@ -1,2 +1,4 @@
 JACOB 150 1 19/06/19
 hola 20 2 19/06/19
+OrdenarPrimerValor 160 3 19/06/20
+OrdenarCuartoValor 10 1 19/06/20

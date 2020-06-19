@@ -86,6 +86,9 @@ public class Archivo
             arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
         }
         arrListJugador.imprimirArrayList();
+        System.out.println("\nArrayList Ordenado:");
+        arrListJugador.ordenarArrayList();
+        arrListJugador.imprimirArrayList();
     }
     //Mostrar el archivo de texto abierto.
     public void mostrarArchivo(World mundo){
