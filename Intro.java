@@ -25,16 +25,17 @@ public class Intro extends World
         addObject(Introduccion,500,560);//Coloca la instruccion
         addObject(Cuadro,500,200);//Coloca el cuadro de texto
     }
-    public void act() 
-    {
-        do
-        {
+    public void act(){
+        
+        //do
+        //{
             if(Greenfoot.isKeyDown("enter"))//Checa si se presiono alguna tecla
             {
-             Cuadro.actualizar(contador);//Actualiza el objeto al siguiente cuadro de texto.
-             this.contador++;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
+             //Cuadro.actualizar(contador);//Actualiza el objeto al siguiente cuadro de texto.
+             this.contador=2;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
             }
-        }while(this.contador<=7);
-        Greenfoot.setWorld(new Niveles(1));//Al terminar ya llama al juego.
+        //}while(this.contador<=7);
+        if(contador==2)
+         Greenfoot.setWorld(new Niveles(1));//Al terminar ya llama al juego.
     }
 }
