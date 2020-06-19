@@ -65,5 +65,5 @@ comment8.params=da\u00F1o
 comment8.target=void\ morirChoque(int)
 comment8.text=M\u00E9todo\ que\ baja\ una\ vida\ al\ jugador\ si\ choca\ con\ una\ roca,\ con\ una\ nave\ enemiga\ o\ con\ un\ disparo\ enemigo\ (a\u00FAn\ no\ implementado).
 comment9.params=
-comment9.target=void\ perder()
+comment9.target=boolean\ perder()
 numComments=26

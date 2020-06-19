@@ -54,7 +54,7 @@ public class NaveEnemiga extends Nave
         altoImagen = getImage().getHeight();
         //Revisa cuál medida es mayor para tomar el radio.
         radio = (getImage().getWidth() >= getImage().getHeight()) ? getImage().getWidth() : getImage().getHeight();
-        System.out.println("Ancho total: "+ anchoImagen +"Alto total: "+ altoImagen +"Radio: "+ radio);
+        // System.out.println("Ancho total: "+ anchoImagen +"Alto total: "+ altoImagen +"Radio: "+ radio);
         if(tipoEnemigo == 1){//BOSS == "0"
             puntosSalud+= 100;//Que las naves de BOSSES tengan más vida
             puntosPorDisparo = 50;
