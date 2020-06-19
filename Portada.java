@@ -21,10 +21,11 @@ public class Portada extends World
         texto = new Etiqueta(50, Color.GRAY, null, null); //Inicializar cuadro de texto que simulará la sombra de los botones.
         /*public static Boton creaBotonSombra(World mundoActual, String textoBoton, Etiqueta texto, int x, int y,
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente, int divisorLargo)*/
-        botonIniciar = Boton.creaBotonSombra(this, "Iniciar", texto, getWidth()/2, getHeight()/8, Color.WHITE, null, null, 50, 20);
-        botonComoJugar = Boton.creaBotonSombra(this, "¿Cómo Jugar?", texto, getWidth()/2, getHeight()/8*3, Color.WHITE, null, null, 50, 6);
-        botonAcercaDe = Boton.creaBotonSombra(this, "Acerca de", texto, getWidth()/2, getHeight()/8*5, Color.WHITE, null, null, 50, 20);
-        botonCreditos = Boton.creaBotonSombra(this, "Créditos", texto, getWidth()/2, getHeight()/8*7, Color.WHITE, null, null, 50, 5);
+        botonIniciar = Boton.creaBotonSombra(this, "Iniciar", texto, getWidth()/2, getHeight()/10, Color.WHITE, null, null, 50, 20);
+        botonComoJugar = Boton.creaBotonSombra(this, "¿Cómo Jugar?", texto, getWidth()/2, getHeight()/10*3, Color.WHITE, null, null, 50, 6);
+        botonAcercaDe = Boton.creaBotonSombra(this, "Acerca de", texto, getWidth()/2, getHeight()/10*5, Color.WHITE, null, null, 50, 20);
+        botonMarcadores = Boton.creaBotonSombra(this, "Marcadores", texto, getWidth()/2, getHeight()/10*7, Color.WHITE, null, null, 50, 20);
+        botonCreditos = Boton.creaBotonSombra(this, "Créditos", texto, getWidth()/2, getHeight()/10*9, Color.WHITE, null, null, 50, 5);
         
         if(bkgMusic != null)
             bkgMusic.stop();
@@ -34,8 +35,7 @@ public class Portada extends World
 
     public void act()
     {
-        if(Greenfoot.mouseClicked(botonIniciar))
-        {
+        if(Greenfoot.mouseClicked(botonIniciar)){
             bkgMusic.stop();
             //Mode world = new Mode();
             //Niveles nivel = new Niveles();
@@ -44,22 +44,14 @@ public class Portada extends World
             // Greenfoot.setWorld(new Intro());
             Greenfoot.setWorld(new Niveles(1));
         }
-        else if( Greenfoot.mouseClicked(botonCreditos))
-        {
-            Credits world = new Credits();
-            Greenfoot.setWorld(world);
-        }
-        else if(Greenfoot.mouseClicked(botonAcercaDe))
-        {
-            About world = new About();
-            Greenfoot.setWorld(world);
-        }
-        else if(Greenfoot.mouseClicked(botonComoJugar))
-        {
-            How world = new How();
-            Greenfoot.setWorld(world);
-        }
-
+        if( Greenfoot.mouseClicked(botonCreditos))
+            Greenfoot.setWorld(new Credits());
+        if(Greenfoot.mouseClicked(botonAcercaDe))
+            Greenfoot.setWorld(new About());
+        if(Greenfoot.mouseClicked(botonComoJugar))
+            Greenfoot.setWorld(new How());
+        if(Greenfoot.mouseClicked(botonMarcadores))
+            Greenfoot.setWorld(new Marcadores());
     }
 
     @Override

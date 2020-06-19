@@ -167,4 +167,7 @@ public class Archivo
     public void cerrarArchivo(){
         archivo.close();
     }
+    public Scanner getArchivo(){
+        return archivo;
+    }
 }

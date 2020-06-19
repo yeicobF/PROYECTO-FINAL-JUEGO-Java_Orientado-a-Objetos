@@ -292,7 +292,7 @@ public class NaveAliada extends Nave
                 }
                 if(perder()) //Si perdimos, pedir información para marcadores.
                     jugador = new Jugador(puntos);
-                else
+                else //Si aún no perdemos, seguir reiniciando el nivel.
                     Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));//Este método crea el mundo de nuevo después de morir.
         }
     }
