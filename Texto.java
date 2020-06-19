@@ -35,14 +35,15 @@ public class Texto extends Actor
     }
     public void actualizarIntro() 
     {
-        do
+        while(contador<=6)
         {
             if(Greenfoot.isKeyDown("enter"))//Checa si se presiono alguna tecla
             {
-              setImage("Intro"+ contador +".png");
               contador++;
-              Greenfoot.delay(10);
+              setImage("Intro"+ contador +".png");
+              
+              Greenfoot.delay(15);
             }
-       }while(contador<=7);
+       }
     }    
 }
