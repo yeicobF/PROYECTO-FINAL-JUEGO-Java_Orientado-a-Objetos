@@ -23,6 +23,7 @@ public class Archivo
     private FileWriter escritor; //Se usará para escribir en el archivo.
     private Etiqueta texto;
     private String nombreArchivo; //Nombre del archivo.
+    private String fecha; //Para concatenar la fecha y hora del jugador.
     private int tamañoFuente; //Tamaño de la fuente del texto del archivo.
     private int numLineasArchivo; //Número de líneas totales del archivo.
     // private int numLineaActual; //Para indicar en el número de línea que nos encontramos en el archivo y calcular altura del texto.
@@ -104,15 +105,19 @@ public class Archivo
     /*Se recorrerá el archivo guardando los valores en el arrayList para luego reordenar el archivo.*/
     private void guardarArchivoArrayList(){
         //Variables auxiliares para guardar los valores
-        String nombreJugador, fecha;
+        String nombreJugador;
         int puntos, nivel;
         abrirArchivo();
         /*Guardar cada valor del archivo en el arrayList de jugador.*/
         while(archivo.hasNext()){ //Recorrerá cada cadena.
             nombreJugador = archivo.next();
+            /*nextInt() guarda los valores encontrados como enteros.*/
             puntos = archivo.nextInt();
             nivel = archivo.nextInt();
-            fecha = archivo.next();
+            /*Concatena la fecha y la hora.*/
+            // System.out.println(archivo.next() + archivo.next());
+            fecha = fecha.concat(archivo.next() +" "+ archivo.next());
+            /*Viernes, 19 de junio de 2020 <- Aquí hay un error.*/
             arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
         }
         cerrarArchivo(); //Ya no necesitaremos el archivo abierto.
