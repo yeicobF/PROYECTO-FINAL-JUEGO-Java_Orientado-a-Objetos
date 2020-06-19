@@ -117,6 +117,7 @@ public class Archivo
             nivel = archivo.nextInt();
             /*Concatena la fecha y la hora.*/
             // System.out.println(archivo.next() + archivo.next());
+            fecha = ""; //Reiniciar la cadena, ya que si no, se sigue concatenando.
             fecha = fecha.concat(archivo.next() +" "+ archivo.next());
             /*Viernes, 19 de junio de 2020 <- Aquí hay un error.*/
             arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
