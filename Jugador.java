@@ -1,14 +1,32 @@
 import javax.swing.JOptionPane; //Para el pop-up que pedirá el nombre del jugador. Que tenga un límite de caracteres.
 import java.awt.HeadlessException; //Excepción de input de JOption.
 /**
- * Write a description of class NombreJugador here.
+ * En esta clase se manejará todo lo que respecta al jugador:
+ *  - Nombre
+ *  - Puntos
+ *  - Nivel
+ *  - Fecha
+ * Luego se llamará a Marcadores para agregar estos datos al archivo de los marcadores.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jacob) 
+ * @version (Jueves, 18 de junio de 2020)
  */
 /*Clase que maneja métodos relacionados con el nombre del jugador.*/
-public abstract class Jugador{
-    private String nombreJugador;
+public class Jugador{
+    private Marcadores marcadores;
+    private Archivo archivo; //El archivo en donde estarán los marcadores.
+    protected String nombreJugador; //Este se ingresará.
+    private String fechaActual;
+    private int puntos;
+    private int nivel; //El nivel en que se quedó el jugador.
+    public Jugador(int puntos){
+        this.puntos = puntos; //Antes de morir, se mandarán los puntos para no recibirlos reiniciados.
+        fechaActual = Fecha.getFecha(); //Obtener la hora actual.
+        nivel = Niveles.getNivelActual(); //Obtener el nivel en el que nos quedamos.
+        pedirNombreJugador();
+        marcadores = new Marcadores(this); //Ahora llamar a los marcadores con este objeto.
+    }
+    
     //Método que pedirá el nombre de usuario del jugador que será añadido a los marcadores.
     /* Fuentes: 
      - https://www.greenfoot.org/topics/3583
@@ -21,7 +39,7 @@ public abstract class Jugador{
                                                         String title, int messageType) throws HeadlessException*/
                 nombreJugador = JOptionPane.showInputDialog(null, "Ingresa tu nombre (Máximo de caracteres = "+ maxCaracteres +"):",
                                                         "NOMBRE", JOptionPane.PLAIN_MESSAGE);
-                if(nombreJugador == null)
+                if(nombreJugador == null) //Si se presionó el botón cancelar, volver a pedir el nombre.
                     continue;
                 }catch(HeadlessException he){
                     //https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()
@@ -86,17 +104,20 @@ public abstract class Jugador{
                 //https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()
                 //true if this environment cannot support a display, keyboard, and mouse
                 System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
+                Greenfoot.stop();
             }
         // return nombreJugador; //Regresa el nombre del jugador.
     }
     /*Método que revisa si lo que tiene la cadena son solo espacios en blanco.*/
-    private  boolean isCadenaEspacios(String cadena){
+    private boolean isCadenaEspacios(String cadena){
         int contadorEspacios = 0;
         /* Character.compare(char 'A', char 'B'); Esto devuelve 0 si al comparar los caracteres son iguales, 
                                              >0 si el 1er valor es mayor que el segundo
                                              <0 si el 1er valor es menor que el segundo
             -> Also, by using double quotes you create String constant (" "), while with single quotes it's a char constant (' ').
-                https://stackoverflow.com/questions/4510136/how-to-check-if-a-char-is-equal-to-an-empty-space*/
+                https://stackoverflow.com/questions/4510136/how-to-check-if-a-char-is-equal-to-an-empty-space
+                https://stackoverflow.com/questions/11229986/get-string-character-by-index-java
+                https://stackoverflow.com/questions/3247067/how-do-i-check-that-a-java-string-is-not-all-whitespaces*/
         for(int i = 0; i < cadena.length(); i++)
             if(Character.compare(cadena.charAt(i),' ') == 0)
                 contadorEspacios ++;

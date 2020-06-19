@@ -14,15 +14,9 @@ import java.util.ArrayList;
  */
 public class Marcadores  
 {
-    private Archivo archivo; //El archivo en donde estarán los marcadores.
-    private Fecha fecha; //Para obtener la fecha del marcador.
-    protected String nombreJugador; //Este se ingresará.
-    private String fechaActual;
-    private int puntuacion;
-    public Marcadores(int puntuacion, int numNivel){
-        fecha = new Fecha();
-        fechaActual = fecha.getFecha();
-        //pedirNombreUsuario();
+    private Jugador jugador;
+    public Marcadores(Jugador jugador){
+        this.jugador = jugador; //Se recibe el objeto con su información para agregarla a los marcadores.
     }
     public static void mostrarMarcadores(){
         //Abrir el archivo .txt con los marcadores y mostrar cierto número de puntuaciones.

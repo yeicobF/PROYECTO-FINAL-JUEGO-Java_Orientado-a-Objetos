@@ -9,13 +9,13 @@ import java.time.LocalDate;
  * @author (Team Naves) 
  * @version (Miércoles, 17 de junio de 2020)
  */
-public class Fecha{
+public abstract class Fecha{
     //Aquí le daremos el formato a la fecha. Día/Mes/Año Hora:Minutos:segundos.
-    private DateTimeFormatter formatoFecha  = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    private static DateTimeFormatter formatoFecha  = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     //Aquí se obtendrá la fecha local actual.
-    private LocalDateTime fechaActual;
-    public Fecha(){} //Constructor vacío.
-    public String getFecha(){
+    private static LocalDateTime fechaActual;
+    /*Método para obtener la fecha actual en el formato dado arriba.*/
+    public static String getFecha(){
        fechaActual = LocalDateTime.now(); //Obtener la fecha actual.
        //System.out.println(formatoFecha.format(fechaActual));  
        return formatoFecha.format(fechaActual); //Regresar la fecha actual con el formato que le dimos.
