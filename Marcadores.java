@@ -47,7 +47,8 @@ public class Marcadores
                     //true if this environment cannot support a display, keyboard, and mouse
                     System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
                 }
-            if(nombreJugador.length() > maxCaracteres || nombreJugador.isEmpty() || isCadenaEspacios(nombreJugador)) //Máximo de caracteres = 10.
+            if(nombreJugador.length() > maxCaracteres || nombreJugador.isEmpty() 
+                    || isCadenaEspacios(nombreJugador) || hayEspaciosEnBlanco(nombreJugador)) //Máximo de caracteres = 10.
                 
                 //Se pasó el máximo de caracteres o no ingresó nada o ingresó solo espacios. Ingresará de nuevo su nombre.
                 // confirmacion = JOptionPane.showConfirmDialog(null, 
@@ -74,6 +75,12 @@ public class Marcadores
                             JOptionPane.showMessageDialog(null, "Error:\n"
                                     +"Ingresaste solo espacios en blanco.\n\nVuelve a ingresar tu nombre.", 
                                                              "ERROR EN NOMBRE JUGADOR", JOptionPane.ERROR_MESSAGE);
+                        else //La cadena no está solo compuesta de espacios en blanco. Puede tener espacios entre caracteres.
+                            if(hayEspaciosEnBlanco(nombreJugador))
+                                JOptionPane.showMessageDialog(null, "Error:\n"
+                                    +"Hay espacios en blanco en la cadena (Entre letras, al inicio o al final).\n\nVuelve a ingresar tu nombre.", 
+                                                             "ERROR EN NOMBRE JUGADOR", JOptionPane.ERROR_MESSAGE);
+                            
                     }
                     // JOptionPane.showMessageDialog(null, "Error:\n"
                                 // +"Superaste el número de caracteres ("+ maxCaracteres +"), o"
@@ -116,7 +123,15 @@ public class Marcadores
             return true;
         return false;
     }
-    
+    /*Método que verifica si hay espacios en blanco en el nombre del jugador.*/
+    private boolean hayEspaciosEnBlanco(String cadena){
+        //Si la cadena no está compuesta de solo espacios en blanco. MEJOR USARÉ UN else con isCadenaEspacios en el programa.
+        //if(isCadenaEspacios(cadena))
+        for(int i = 0; i < cadena.length(); i++) //Regresa true tan pronto como encuentre un espacio.
+            if(Character.compare(cadena.charAt(i),' ') == 0)
+                return true; //Encontró un espacio en la cadena antes de revisarla completa.
+        return false; //Terminó el ciclo sin encontrar ningún espacio en blanco.
+    }
     
     private class arrayListMarcadores{
         private ArrayList<Marcadores> listaMarcadores; //ArrayList de los marcadores.
