@@ -30,6 +30,16 @@ public class ArrayListJugador extends Jugador
             textoArchivo = textoArchivo.concat(j.getInformacion());
         return textoArchivo; //Regresa el texto ordenado.
     }
+    /** Método que verificará si el nombre ingresado ya existe en los marcadores o no.*/
+    public boolean isNombreMarcadores(String nombreIngresado){
+        for(Jugador j : arrayListJugador){
+            System.out.println(" Nombre Jugador Marcadores: "+ j.getNombreJugador() +", Nombre ingresado: "+ nombreIngresado);
+            if(j.getNombreJugador().equals(nombreIngresado)) //https://www.geeksforgeeks.org/compare-two-strings-in-java/
+                return true; //Si regresa true en algún momento, significa que el nombre ya estaba en los marcadores.
+            }
+        return false; //Si nunca regresó true, llegará hasta aquí y regresará false.
+    }
+    /** Método para ver que el nombre ingresado por el usuario no esté repetido.*/
     public void imprimirArrayList(){
         for(Jugador j : arrayListJugador)
             System.out.println(j); //Se imprimirá mediante el toString.

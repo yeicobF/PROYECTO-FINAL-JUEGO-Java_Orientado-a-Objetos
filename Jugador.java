@@ -15,7 +15,8 @@ import greenfoot.Greenfoot; //Para detener el juego si ocurre una excepción. Au
 /*Clase que maneja métodos relacionados con el nombre del jugador.*/
 public class Jugador implements Comparable{ //Para comparar el arrayList.
     //private Marcadores marcadores;
-    private Archivo archivo; //El archivo en donde estarán los marcadores.
+    private Archivo archivo; //Para revisar que el nombre ingresado no esté repetido.
+    private ArrayListJugador arrListJugador; //ArrayList para ver que el nombre ingresado no exista en los marcadores.
     protected String nombreJugador; //Este se ingresará.
     private String fechaActual;
     private int puntos;
@@ -43,6 +44,10 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
      */
     private void pedirNombreJugador(){  
         int confirmacion = 1, maxCaracteres = 10;
+        archivo = new Archivo("archivos/marcadores.txt");
+        archivo.abrirArchivo();
+        arrListJugador = archivo.guardarArchivoArrayList();
+        
         try{ //Ya que puede haber una HeadlessException
             while(confirmacion == 1){// 0 = Sí está seguro del nombre, 1 = No está seguro del nombre.
                 /*public static String showInputDialog​(Component parentComponent, Object message,
@@ -80,9 +85,14 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
                         }
                 else //No hubo ningún error al ingresar el nombre.
                     //Mostrar cuadro de confirmación con SÍ y NO como opciones.
-                    confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro del nombre?", 
-                                                                 "CONFIRMACIÓN NOMBRE JUGADOR", 
-                                                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); // 0=yes, 1=no
+                    if(arrListJugador.isNombreMarcadores(nombreJugador)) //El nombre está repetido.
+                        JOptionPane.showMessageDialog(null, "Error:\n"
+                                        +"El nombre que ingresaste ya se encuentra en los marcadores.\n\nVuelve a ingresar tu nombre.", 
+                                                                 "ERROR EN NOMBRE JUGADOR", JOptionPane.ERROR_MESSAGE);
+                    else //El nombre no está repetido, se puede confirmar.
+                        confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro del nombre?", 
+                                                                     "CONFIRMACIÓN NOMBRE JUGADOR", 
+                                                                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); // 0=yes, 1=no
             }
             /*//public static void showMessageDialog​(Component parentComponent, Object message,
                                                       String title, int messageType) throws HeadlessException*/

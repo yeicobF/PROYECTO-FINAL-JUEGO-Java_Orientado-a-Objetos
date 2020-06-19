@@ -11,7 +11,7 @@ comment2.target=Archivo(java.lang.String,\ java.lang.String)
 comment2.text=\ Constructor\ para\ cuando\ se\ quiere\ escribir\ en\ el\ archivo.\ Esto\ con\ el\ arrayList.\r\nRecibir\u00E1\ el\ archivo\ base\ y\ el\ archivo\ en\ el\ que\ se\ escribir\u00E1.
 comment3.params=nombreArchivo
 comment3.target=Archivo(java.lang.String)
-comment3.text=Constructor\ para\ escribir\ al\ final\ del\ archivo.
+comment3.text=\ Constructor\ para\ escribir\ al\ final\ del\ archivo.\ Tambi\u00E9n\ para\ comprobar\ que\ el\ nombre\ ingresado\r\npor\ el\ jugador\ no\ se\ encuentre\ en\ los\ marcadores.
 comment4.params=
 comment4.target=void\ abrirArchivo()
 comment5.params=texto
@@ -21,7 +21,7 @@ comment6.params=nombreArchivoEscribir
 comment6.target=void\ escribirEnArchivo(java.lang.String)
 comment6.text=M\u00E9todo\ est\u00E1tico\ para\ escribir\ en\ un\ archivo.\ Es\ est\u00E1tico\ ya\ que\ no\ se\ requiere\r\n\ \ \ \ \ \ \ instanciar\ la\ clase.\r\n\ \ \ \ \ \ \ \ boolean\ escribirAlFinal\ \=\ true\ si\ quieres\ escribir\ al\ final\ del\ archivo.\ False\ si\ al\ principio.\r\n\ \ \ \ \ \ \ \ -\ Esto\ solo\ lo\ necesitar\u00E1\ usar\ la\ clase\ de\ marcadores.\r\n\ \ \ \ \ \ \ \ -\ Insertaremos\ de\ mayor\ puntuaci\u00F3n\ a\ menor.\ As\u00ED\ que\ si\ el\ archivo\ ya\ tiene\ informaci\u00F3n,\r\nhabr\u00E1\ que\ ir\ comparando\ y\ cambiando\ los\ valores.
 comment7.params=
-comment7.target=void\ guardarArchivoArrayList()
+comment7.target=ArrayListJugador\ guardarArchivoArrayList()
 comment7.text=Se\ recorrer\u00E1\ el\ archivo\ guardando\ los\ valores\ en\ el\ arrayList\ para\ luego\ reordenar\ el\ archivo.
 comment8.params=mundo
 comment8.target=void\ mostrarArchivo(greenfoot.World)

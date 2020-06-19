@@ -46,9 +46,11 @@ public class Archivo
         //guardarArchivoArrayList(); //Para probar que funcione.
         escribirEnArchivo(nombreArchivoEscribir); //Escribirá los valores ordenados en el archivo marcadores.txt.
     }
-    /** Constructor para escribir al final del archivo.*/
+    /** Constructor para escribir al final del archivo. También para comprobar que el nombre ingresado
+        por el jugador no se encuentre en los marcadores.*/
     public Archivo(String nombreArchivo){//, String texto){
         this.nombreArchivo = nombreArchivo;
+        arrListJugador = new ArrayListJugador(); //Crear el arrayList de los datos para verificar los nombres.
         //escribirAlFinalArchivo(nombreArchivo, texto);
     }
     public void abrirArchivo(){
@@ -103,7 +105,7 @@ public class Archivo
         }
     }
     /*Se recorrerá el archivo guardando los valores en el arrayList para luego reordenar el archivo.*/
-    private void guardarArchivoArrayList(){
+    public ArrayListJugador guardarArchivoArrayList(){
         //Variables auxiliares para guardar los valores
         String nombreJugador;
         nombreJugador = fecha = "";
@@ -135,6 +137,7 @@ public class Archivo
             // fecha = archivo.next();
             // arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
         // }
+        return arrListJugador; //Regresa el arrayList.
     }
     //Mostrar el archivo de texto abierto.
     public void mostrarArchivo(World mundo){
