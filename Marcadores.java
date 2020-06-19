@@ -40,6 +40,7 @@ public class Marcadores extends World
         textos[3].setImage(texto.crearCuadroTexto("FECHA"));
         calculaEspacioEntreTextos();
         agregaCuadrosTexto();
+        mostrarMarcadores();
     }
     public static void mostrarMarcadores(){
         //Abrir el archivo .txt con los marcadores y mostrar cierto número de puntuaciones.

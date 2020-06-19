@@ -1,13 +1,19 @@
 #BlueJ class context
 comment0.target=Archivo
-comment0.text=\r\n\ Clase\ de\ prueba\ para\ ver\ que\ la\ lectura\ de\ archivos\ funciona.\r\n\ Jueves,\ 11/06\ 1\:01\ PM\ funcion\u00F3\ para\ mostrar\ el\ archivo\ en\ terminal.\r\n\ ->\ Esta\ clase\ era\ diferente,\ pero\ la\ sustitu\u00ED\ por\ la\ clase\ de\ ArchivoPrueba.\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Domingo,\ 14\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ de\ prueba\ para\ ver\ que\ la\ lectura\ de\ archivos\ funciona.\r\n\ Jueves,\ 11/06\ 1\:01\ PM\ funcion\u00F3\ para\ mostrar\ el\ archivo\ en\ terminal.\r\n\ ->\ Esta\ clase\ era\ diferente,\ pero\ la\ sustitu\u00ED\ por\ la\ clase\ de\ ArchivoPrueba.\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Viernes,\ 19\ de\ junio\ de\ 2020)\r\n
 comment1.params=nombreArchivo\ tama\u00F1oFuente\ colorFuente
 comment1.target=Archivo(java.lang.String,\ int,\ greenfoot.Color)
-comment1.text=\r\nConstructor\ for\ objects\ of\ class\ ArchivoPrueba
-comment2.params=
-comment2.target=void\ abrirArchivo()
-comment3.params=mundo
-comment3.target=void\ mostrarArchivo(greenfoot.World)
-comment4.params=
-comment4.target=void\ cerrarArchivo()
-numComments=5
+comment1.text=Constructor\ para\ cuando\ se\ quiere\ mostrar\ el\ archivo\ centrado\ en\ x\ y\ y\ directamente.
+comment2.params=nombreArchivo
+comment2.target=Archivo(java.lang.String)
+comment2.text=Constructor\ para\ cuando\ se\ quiere\ escribir\ en\ el\ archivo.
+comment3.params=
+comment3.target=void\ abrirArchivo()
+comment4.params=escribirAlFinal\ jugador
+comment4.target=void\ escribirEnArchivo(boolean,\ Jugador)
+comment4.text=M\u00E9todo\ est\u00E1tico\ para\ escribir\ en\ un\ archivo.\ Es\ est\u00E1tico\ ya\ que\ no\ se\ requiere\r\n\ \ \ \ \ \ \ instanciar\ la\ clase.\r\n\ \ \ \ \ \ \ \ boolean\ escribirAlFinal\ \=\ true\ si\ quieres\ escribir\ al\ final\ del\ archivo.\ False\ si\ al\ principio.\r\n\ \ \ \ \ \ \ \ -\ Esto\ solo\ lo\ necesitar\u00E1\ usar\ la\ clase\ de\ marcadores.\r\n\ \ \ \ \ \ \ \ -\ Insertaremos\ de\ mayor\ puntuaci\u00F3n\ a\ menor.\ As\u00ED\ que\ si\ el\ archivo\ ya\ tiene\ informaci\u00F3n,\r\n
+comment5.params=mundo
+comment5.target=void\ mostrarArchivo(greenfoot.World)
+comment6.params=
+comment6.target=void\ cerrarArchivo()
+numComments=7
