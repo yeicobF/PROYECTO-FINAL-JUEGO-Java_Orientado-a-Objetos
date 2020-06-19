@@ -2,6 +2,7 @@ import greenfoot.Actor;
 import greenfoot.World;
 import greenfoot.Color;
 import greenfoot.GreenfootImage;
+import greenfoot.Greenfoot;
 import java.util.Scanner;
 /**
  * Clase en la que se manejarán los marcadores. Se agregarán las nuevas puntuaciones
@@ -17,6 +18,7 @@ import java.util.Scanner;
  */
 public class Marcadores extends World
 {
+    private Boton volverMenu;
     private GreenfootImage fondo; //Para mostrar los marcadores.
     private Etiqueta texto; //Para crear los cuadros de texto.
     private Archivo marcadores; //Aquí se hará todo el proceso de ordenar los marcadores.
@@ -31,7 +33,13 @@ public class Marcadores extends World
        2 - Nivel
        3 - Fecha*/
        //Para solo mostrarlos.
-    public Marcadores(){ //Constructor en donde se crea el área de marcadores.
+    /** Constructor de Marcadores que recibe un booleano que verifica
+       si se quieren mostrar los marcadores en este constructor o no.
+       Esto  servirá para que no se muestren los marcadores al ser llamado
+       por el otro constructor que necesita guardar el nuevo marcador
+       y ponerlo en el archivo. Luego se muestran los marcadores.
+       Si se mostraran en este constructor, luego se empalmarían.*/
+    public Marcadores(boolean mostrarMarcadores){ //Constructor en donde se crea el área de marcadores.
         super(1000, 600, 1); //Construir la pantalla de marcadores.
         setBackground("images/espacio5.jpg");
         //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
@@ -46,12 +54,15 @@ public class Marcadores extends World
         textos[3].setImage(texto.crearCuadroTexto("FECHA"));
         calculaEspacioEntreTextos();
         agregaCuadrosTexto();
-        mostrarMarcadores();
+        if(mostrarMarcadores)
+            mostrarMarcadores();
+        texto = new Etiqueta(30, Color.GRAY, null, null);
+        volverMenu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/6, getHeight() - 50, Color.WHITE, null, null, 30, 2);
     }
     public Marcadores(Jugador jugador){
         // super(1000, 600, 1); //Construir la pantalla de marcadores.
         // setBackground("images/espacio5.jpg");
-        this(); //Llamar al otro constructor de marcadores.
+        this(false); //Llamar al otro constructor de marcadores.
         this.jugador = jugador; //Se recibe el objeto con su información para agregarla a los marcadores.
         
         agregaJugadorMarcadores();
@@ -60,6 +71,12 @@ public class Marcadores extends World
         marcadores = new Archivo("archivos/marcadoresSinOrdenar.txt", "archivos/marcadores.txt");
         mostrarMarcadores();
     }
+    
+    public void act(){
+        if(Greenfoot.mouseClicked(volverMenu))
+            Greenfoot.setWorld(new Portada());
+    }
+    
     /** Método que agregará al jugador al archivo de los marcadores.*/
     private void agregaJugadorMarcadores(){
         Archivo a = new Archivo("archivos/marcadoresSinOrdenar.txt");

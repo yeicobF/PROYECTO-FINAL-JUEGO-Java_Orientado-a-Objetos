@@ -51,7 +51,7 @@ public class Portada extends World
         if(Greenfoot.mouseClicked(botonComoJugar))
             Greenfoot.setWorld(new How());
         if(Greenfoot.mouseClicked(botonMarcadores))
-            Greenfoot.setWorld(new Marcadores());
+            Greenfoot.setWorld(new Marcadores(true)); //Se manda true para que se muestren los marcadores.
     }
 
     @Override

@@ -29,19 +29,12 @@ public class Credits extends World
         //a8 = Boton.creaBoton(this, "Regresar al menu", (getWidth()/2) -202, (getHeight()*2/3)+103, Color.GRAY, null, null, 30);
         //Boton.creaBotonSombra(_mundoActual_, _textoBoton_, _texto_, _x_, _y_, _colorFuente_, _colorFondo_, _bordeFuente_, _tamañoFuente_, _divisorLargo_)
         texto = new Etiqueta(30, Color.GRAY, null, null);
-        menu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/2 - 200, (getHeight()*2/3)+100, Color.WHITE, null, null, 30, 2);    
-        prepare();
+        menu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/2 - 200, (getHeight()*2/3)+100, Color.WHITE, null, null, 30, 2);
     }
     
     public void act()
     {
-        if(Greenfoot.mouseClicked(menu) )
-        {
-            Portada world = new Portada();
-            Greenfoot.setWorld(world);
-        }
-    }
-    public void prepare()
-    {
+        if(Greenfoot.mouseClicked(menu))
+            Greenfoot.setWorld(new Portada());
     }
 }
