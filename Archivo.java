@@ -39,7 +39,8 @@ public class Archivo
     public Archivo(String nombreArchivo){
         arrListJugador = new ArrayListJugador();
         this.nombreArchivo = nombreArchivo;
-        guardarArchivoArrayList(); //Para probar que funcione.
+        //guardarArchivoArrayList(); //Para probar que funcione.
+        escribirEnArchivo(); //Escribirá (por ahora) los valores ordenados en un archivo de prueba.
     }
     public void abrirArchivo(){
         try{
@@ -54,7 +55,7 @@ public class Archivo
         - Esto solo lo necesitará usar la clase de marcadores.
         - Insertaremos de mayor puntuación a menor. Así que si el archivo ya tiene información,
             habrá que ir comparando y cambiando los valores.*/
-    public void escribirEnArchivo(Jugador jugador){ 
+    public void escribirEnArchivo(){ 
         /*public FileWriter(String fileName,
           boolean append)
            throws IOException*/
@@ -63,8 +64,14 @@ public class Archivo
            Habría que leer todo el archivo, guardar los valores ordenados en un arrayList y luego
            sobreescribir el archivo.*/
         guardarArchivoArrayList(); //Aquí se guardarán los valores del archivo en un arrayList.
+        arrListJugador.ordenarArrayList(); //Ordenar el arrayList para sobreescribirlo en orden.
         try{
-           escritor = new FileWriter(nombreArchivo, false); //boolean append es para escribir al final  si es true o al inicio con false (sobreescribir).
+           escritor = new FileWriter("archivos/marcadoresPrueba.txt");//, false); //boolean append es para escribir al final  si es true o al inicio con false (sobreescribir).
+           /*Fuente: https://www.youtube.com/watch?v=lHFlAYaNfdo&t=279s*/
+           //arrListJugador.guardarEnCadena();
+           //System.out.println(arrListJugador.guardarEnCadena());
+           escritor.write(arrListJugador.guardarEnCadena()); //Escribir la cadena en el archivo.
+           escritor.close();
         }catch(IOException e){
             /*  if the named file exists but is a directory rather than a regular file, 
              *      does not exist but cannot be created, or cannot be opened for any other reason*/
@@ -85,10 +92,11 @@ public class Archivo
             fecha = archivo.next();
             arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
         }
-        arrListJugador.imprimirArrayList();
-        System.out.println("\nArrayList Ordenado:");
-        arrListJugador.ordenarArrayList();
-        arrListJugador.imprimirArrayList();
+        cerrarArchivo(); //Ya no necesitaremos el archivo abierto.
+        // arrListJugador.imprimirArrayList();
+        // System.out.println("\nArrayList Ordenado:");
+        // arrListJugador.ordenarArrayList();
+        // arrListJugador.imprimirArrayList();
     }
     //Mostrar el archivo de texto abierto.
     public void mostrarArchivo(World mundo){
