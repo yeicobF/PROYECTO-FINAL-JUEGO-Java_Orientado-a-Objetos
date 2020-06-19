@@ -41,8 +41,7 @@ public class Intro extends World
         if(contador!=Bandera)
          {
           Bandera++;
-          //Greenfoot.setWorld(new Niveles(1));//Al terminar ya llama al juego.
-          Greenfoot.setWorld(new Niveles(nivel));
+          Greenfoot.setWorld(new Niveles(1));//Al terminar ya llama al juego.
          }
     }
     
@@ -64,6 +63,7 @@ public class Intro extends World
           this.nivel=2;
           this.Bandera=2;
           break;
+         default: break;
        }
     }
 }
