@@ -66,11 +66,11 @@ public class Archivo
         guardarArchivoArrayList(); //Aquí se guardarán los valores del archivo en un arrayList.
         arrListJugador.ordenarArrayList(); //Ordenar el arrayList para sobreescribirlo en orden.
         try{
-           escritor = new FileWriter("archivos/marcadoresPrueba.txt");//, false); //boolean append es para escribir al final  si es true o al inicio con false (sobreescribir).
+           escritor = new FileWriter("archivos/marcadores.txt");//, false); //boolean append es para escribir al final  si es true o al inicio con false (sobreescribir).
            /*Fuente: https://www.youtube.com/watch?v=lHFlAYaNfdo&t=279s*/
            //arrListJugador.guardarEnCadena();
            //System.out.println(arrListJugador.guardarEnCadena());
-           escritor.write(arrListJugador.guardarEnCadena()); //Escribir la cadena en el archivo.
+           escritor.write(arrListJugador.guardarEnCadena()); //Escribir la cadena con los datos ordenados en el archivo.
            escritor.close();
         }catch(IOException e){
             /*  if the named file exists but is a directory rather than a regular file, 
