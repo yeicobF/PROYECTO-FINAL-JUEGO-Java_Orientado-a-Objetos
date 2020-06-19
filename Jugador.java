@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import javax.swing.JOptionPane; //Para el pop-up que pedirá el nombre del jugador. Que tenga un límite de caracteres.
 import java.awt.HeadlessException; //Excepción de input de JOption.
 import greenfoot.Greenfoot; //Para detener el juego si ocurre una excepción. Aunque podríamos guardar en el archivo de recuperación y no terminar la ejecución.
@@ -13,7 +14,7 @@ import greenfoot.Greenfoot; //Para detener el juego si ocurre una excepción. Au
  * @version (Jueves, 18 de junio de 2020)
  */
 /*Clase que maneja métodos relacionados con el nombre del jugador.*/
-public class Jugador{
+public class Jugador implements Comparable{ //Para comparar el arrayList.
     //private Marcadores marcadores;
     private Archivo archivo; //El archivo en donde estarán los marcadores.
     protected String nombreJugador; //Este se ingresará.
@@ -27,7 +28,13 @@ public class Jugador{
         pedirNombreJugador();
         Greenfoot.setWorld(new Marcadores(this)); //Ahora llamar a los marcadores con este objeto.
     }
-    
+    /*Método para guardar los valores desde el arrayList*/
+    public Jugador(String nombreJugador, int puntos, int nivel, String fechaActual){
+        this.nombreJugador = nombreJugador;
+        this.puntos = puntos;
+        this.nivel = nivel;
+        this.fechaActual = fechaActual;
+    }
     //Método que pedirá el nombre de usuario del jugador que será añadido a los marcadores.
     /* Fuentes: 
      - https://www.greenfoot.org/topics/3583
@@ -117,4 +124,40 @@ public class Jugador{
                 return true; //Encontró un espacio en la cadena antes de revisarla completa.
         return false; //Terminó el ciclo sin encontrar ningún espacio en blanco.
     }
+    public String getNombreJugador(){
+        return nombreJugador;
+    }
+    public int getPuntos(){
+        return puntos;
+    }
+    public int getNivel(){
+        return nivel;
+    }
+    public String getFecha(){
+        return fechaActual;
+    }
+    /*https://beginnersbook.com/2013/12/java-arraylist-of-object-sort-example-comparable-and-comparator/*/
+    @Override
+    public int compareTo(Object comparaJugador){
+        int comparaPuntos = ((Jugador)comparaJugador).getPuntos();
+        /* Para orden descendiente*/
+        return comparaPuntos - this.puntos;
+
+        /* int compareage=((Student)comparestu).getStudentage();
+        /* For Ascending order*/
+        //return this.studentage-compareage;
+
+        /* For Descending order do like this */
+        //return compareage-this.studentage;*/
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre: "+ nombreJugador + ", Puntos: "+ puntos +", Nivel: "+ nivel +", Fecha: "+ fechaActual;
+    }
+    /** Clase que manejará un arrayList de jugador.*/
+    private  class arrayListJugador{
+        
+    }
 }
+

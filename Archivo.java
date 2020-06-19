@@ -51,19 +51,27 @@ public class Archivo
         - Esto solo lo necesitará usar la clase de marcadores.
         - Insertaremos de mayor puntuación a menor. Así que si el archivo ya tiene información,
             habrá que ir comparando y cambiando los valores.*/
-    public void escribirEnArchivo(boolean escribirAlFinal, Jugador jugador){ 
+    public void escribirEnArchivo(Jugador jugador){ 
         /*public FileWriter(String fileName,
           boolean append)
            throws IOException*/
+        /*La idea es ir comparando la puntuación actual con las demás y si encuentra una menor, ir haciendo
+           los cambios con bubbleSort (lento pero fácil de implementar) y así sobreescribir el archivo.
+           Habría que leer todo el archivo, guardar los valores ordenados en un arrayList y luego
+           sobreescribir el archivo.*/
+        
         try{
-           escritor = new FileWriter(nombreArchivo, escribirAlFinal);
+           escritor = new FileWriter(nombreArchivo, false); //boolean append es para escribir al final  si es true o al inicio con false (sobreescribir).
         }catch(IOException e){
             /*  if the named file exists but is a directory rather than a regular file, 
              *      does not exist but cannot be created, or cannot be opened for any other reason*/
             System.out.println("Ocurrió un error con el archivo.");
         }
     }
-    
+    private void guardarArchivoArrayList(){
+        abrirArchivo();
+        /*Guardar cada valor del archivo en el arrayList de jugador.*/
+    }
     //Mostrar el archivo de texto abierto.
     public void mostrarArchivo(World mundo){
         boolean primerLinea = true; //En la primer linea del texto indicaré el tamaño del archivo, es decir, sus filas para así centrarlo.

@@ -9,11 +9,13 @@ comment2.target=Archivo(java.lang.String)
 comment2.text=Constructor\ para\ cuando\ se\ quiere\ escribir\ en\ el\ archivo.
 comment3.params=
 comment3.target=void\ abrirArchivo()
-comment4.params=escribirAlFinal\ jugador
-comment4.target=void\ escribirEnArchivo(boolean,\ Jugador)
-comment4.text=M\u00E9todo\ est\u00E1tico\ para\ escribir\ en\ un\ archivo.\ Es\ est\u00E1tico\ ya\ que\ no\ se\ requiere\r\n\ \ \ \ \ \ \ instanciar\ la\ clase.\r\n\ \ \ \ \ \ \ \ boolean\ escribirAlFinal\ \=\ true\ si\ quieres\ escribir\ al\ final\ del\ archivo.\ False\ si\ al\ principio.\r\n\ \ \ \ \ \ \ \ -\ Esto\ solo\ lo\ necesitar\u00E1\ usar\ la\ clase\ de\ marcadores.\r\n\ \ \ \ \ \ \ \ -\ Insertaremos\ de\ mayor\ puntuaci\u00F3n\ a\ menor.\ As\u00ED\ que\ si\ el\ archivo\ ya\ tiene\ informaci\u00F3n,\r\n
-comment5.params=mundo
-comment5.target=void\ mostrarArchivo(greenfoot.World)
-comment6.params=
-comment6.target=void\ cerrarArchivo()
-numComments=7
+comment4.params=jugador
+comment4.target=void\ escribirEnArchivo(Jugador)
+comment4.text=M\u00E9todo\ est\u00E1tico\ para\ escribir\ en\ un\ archivo.\ Es\ est\u00E1tico\ ya\ que\ no\ se\ requiere\r\n\ \ \ \ \ \ \ instanciar\ la\ clase.\r\n\ \ \ \ \ \ \ \ boolean\ escribirAlFinal\ \=\ true\ si\ quieres\ escribir\ al\ final\ del\ archivo.\ False\ si\ al\ principio.\r\n\ \ \ \ \ \ \ \ -\ Esto\ solo\ lo\ necesitar\u00E1\ usar\ la\ clase\ de\ marcadores.\r\n\ \ \ \ \ \ \ \ -\ Insertaremos\ de\ mayor\ puntuaci\u00F3n\ a\ menor.\ As\u00ED\ que\ si\ el\ archivo\ ya\ tiene\ informaci\u00F3n,\r\nhabr\u00E1\ que\ ir\ comparando\ y\ cambiando\ los\ valores.
+comment5.params=
+comment5.target=void\ guardarArchivoArrayList()
+comment6.params=mundo
+comment6.target=void\ mostrarArchivo(greenfoot.World)
+comment7.params=
+comment7.target=void\ cerrarArchivo()
+numComments=8

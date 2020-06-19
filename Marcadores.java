@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import greenfoot.Actor;
 import greenfoot.World;
 import greenfoot.Color;
@@ -64,10 +63,10 @@ public class Marcadores extends World
         }
     }
     
-    private class arrayListMarcadores{
-        private ArrayList<Marcadores> listaMarcadores; //ArrayList de los marcadores.
-        public void addMarcador(){ //Método en donde agregaremos las puntuaciones.
+    // private class arrayListMarcadores{
+        // private ArrayList<Marcadores> listaMarcadores; //ArrayList de los marcadores.
+        // public void addMarcador(){ //Método en donde agregaremos las puntuaciones.
             
-        }
-    }
+        // }
+    // }
 }
