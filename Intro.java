@@ -33,7 +33,17 @@ public class Intro extends World
                     this.contador=2;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
              }
              break;
-           case 2: break;  
+           case 2: 
+           if(Greenfoot.isKeyDown("enter"))//Checa si se presiono alguna tecla
+             {
+                    this.contador=9;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
+             }
+           break;
+           case 3:
+           if(Greenfoot.isKeyDown("enter"))//Checa si se presiono alguna tecla
+             {
+                    this.contador=14;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
+             }
            default: break;  
         }
             
@@ -41,7 +51,7 @@ public class Intro extends World
         if(contador!=Bandera)
          {
           Bandera++;
-          Greenfoot.setWorld(new Niveles(1));//Al terminar ya llama al juego.
+          Greenfoot.setWorld(new Niveles(nivel));//Al terminar ya llama al juego.
          }
     }
     
@@ -59,10 +69,22 @@ public class Intro extends World
           addObject(Cuadro,500,200);//Coloca el cuadro de texto
           break;
          case 2://Aqui se toma como el 
-          this.contador=2;
+          this.contador=8;
           this.nivel=2;
-          this.Bandera=2;
+          this.Bandera=8;
+          Texto Introduccion2 = new Texto(0); // Objeto permanente para que le jugador sepa que debe presionar Enter para avanzar dialogos
+          Texto Cuadro2 = new Texto(8); //Objeto reutilizable para los dialogos
+          addObject(Introduccion2,500,560);//Coloca la instruccion
+          addObject(Cuadro2,500,200);//Coloca el cuadro de texto
           break;
+          case 3:
+          this.contador=8;
+          this.nivel=3;
+          this.Bandera=8;
+          Texto Introduccion3 = new Texto(0); // Objeto permanente para que le jugador sepa que debe presionar Enter para avanzar dialogos
+          Texto Cuadro3 = new Texto(14); //Objeto reutilizable para los dialogos
+          addObject(Introduccion3,500,560);//Coloca la instruccion
+          addObject(Cuadro3,500,200);//Coloca el cuadro de texto
          default: break;
        }
     }
