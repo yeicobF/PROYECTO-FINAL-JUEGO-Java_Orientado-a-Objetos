@@ -1,0 +1,11 @@
+10
+Movimiento:
+- Arriba: W o Flecha hacia arriba.
+- Abajo: S o Flecha hacia abajo.
+- Izquierda: A o Flecha hacia la izquierda.
+- Derecha: D o Flecha hacia la derecha.
+- Acelerar movimiento: Shift + tecla movimiento.
+- NOTA: Combinando las teclas se puede lograr
+un movimiento en diagonal.
+
+Disparar: Presionar barra espaciadora.
