@@ -26,10 +26,10 @@ public class SeleccionNave extends Menu
         numNave = 1; //Empezar con la primer nave.
         /*Crear botones de flechas:
             public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, String nombreImagen, int x, int y)*/
-        imagen = new GreenfootImage("Elementos/flechaRoja.png");
-        flechaDerecha = Boton.creaBotonImagen(this, imagen, "Elementos/flechaRoja.png", getWidth() - imagen.getWidth()/2, getHeight()/2);
-        imagen.mirrorHorizontally();
-        flechaDerecha = Boton.creaBotonImagen(this, imagen, "Elementos/flechaRoja.png", imagen.getWidth()/2, getHeight()/2);
+        imagen = new GreenfootImage("Elementos/flechaRojaDerecha.png");
+        flechaDerecha = Boton.creaBotonImagen(this, imagen, "Elementos/flechaRojaDerecha.png", getWidth() - imagen.getWidth()/2, getHeight()/2);
+        imagen = new GreenfootImage("Elementos/flechaRojaIzquierda.png"); //Volver a crear, que si no se queda como referencia y se modifican las dos.
+        flechaIzquierda = Boton.creaBotonImagen(this, imagen, "Elementos/flechaRojaIzquierda.png", imagen.getWidth()/2, getHeight()/2);
         mostrarNave();
     }
     
