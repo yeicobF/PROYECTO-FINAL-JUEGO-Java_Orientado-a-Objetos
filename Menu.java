@@ -72,11 +72,11 @@ public class Menu extends World
             Greenfoot.setWorld(new Niveles(1));
         }
         if( Greenfoot.mouseClicked(botonCreditos))
-            Greenfoot.setWorld(new Credits());
+            Greenfoot.setWorld(new Creditos());
         if(Greenfoot.mouseClicked(botonAcercaDe))
-            Greenfoot.setWorld(new About());
+            Greenfoot.setWorld(new AcercaDe());
         if(Greenfoot.mouseClicked(botonComoJugar))
-            Greenfoot.setWorld(new How());
+            Greenfoot.setWorld(new ComoJugar());
         if(Greenfoot.mouseClicked(botonMarcadores))
             Greenfoot.setWorld(new Marcadores(true)); //Se manda true para que se muestren los marcadores.
     }

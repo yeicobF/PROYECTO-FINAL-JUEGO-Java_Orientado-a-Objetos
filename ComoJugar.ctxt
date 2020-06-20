@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ComoJugar
+comment0.text=\r\n\ Clase\ en\ donde\ se\ mostrar\u00E1n\ las\ instrucciones\ de\ c\u00F3mo\ jugar.\r\n\ \ Antes\ llamada\ How\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Viernes,\ 19\ de\ junio\ de\ 2020)\r\n
+comment1.params=
+comment1.target=ComoJugar()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ ComoJugar.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ act()
+numComments=3

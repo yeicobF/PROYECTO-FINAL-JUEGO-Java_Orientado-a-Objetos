@@ -1,11 +1,22 @@
-import greenfoot.*;
-
-public class How extends Menu
+import greenfoot.Actor;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.World;
+import greenfoot.Color;
+/**
+ * Clase en donde se mostrarán las instrucciones de cómo jugar.
+ *  Antes llamada How
+ * 
+ * @author (Team Naves) 
+ * @version (Viernes, 19 de junio de 2020)
+ */
+public class ComoJugar extends Menu
 {
     private Actor a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15;
     private Actor exit;
-    public How()
-    {
+    /**
+     * Constructor for objects of class ComoJugar.
+     * 
+     */
+    public ComoJugar(){
         super(false);
         a1 = Boton.creaBoton(this, "Para moverte necesitaras las teclas WASD: W (Arriba), A (Izquierda),", getWidth()/2, getHeight() * 1/4-50,Color.WHITE, null, null, 30);
         a2 = Boton.creaBoton(this, "S (Abajo) y D (Derecha). Usaras la barra de espacio para disparar.", getWidth()/2 -16, getHeight() * 1/4-20,Color.WHITE, null, null, 30);
@@ -25,4 +36,3 @@ public class How extends Menu
         volverMenu();
     }
 }
-

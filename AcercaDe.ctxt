@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=AcercaDe
+comment0.text=\r\n\ Clase\ en\ donde\ se\ dir\u00E1\ informaci\u00F3n\ acerca\ del\ juego.\r\n\ \ Antes\ llamada\ About.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Viernes,\ 19\ de\ junio\ de\ 2020)\r\n
+comment1.params=
+comment1.target=AcercaDe()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ AcercaDe.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ act()
+numComments=3
