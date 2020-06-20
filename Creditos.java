@@ -14,8 +14,6 @@ public class Creditos extends Menu
     public Creditos()
     {    
         super(false);
-        //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente);
-        // texto = new Etiqueta(30, Color.WHITE, null, null);
         /*public Archivo(String nombreArchivo, int tamañoFuente, Color colorFuente)*/
         archivo = new Archivo("archivos/creditos.txt", 30, Color.WHITE);
         archivo.mostrarArchivo(this);

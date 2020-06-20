@@ -36,18 +36,22 @@ public class Menu extends World
     /** Constructor que solo usarán las subclases y que recibirá true si se quiere crear
             un botón de siguiente para avanzar a la siguiente "pantalla", o false si no se requiere.*/
     protected Menu(boolean siguiente){
+        /*siguiente = true -> crea botón de "siguiente".
+           siguiente = false -> crea botón de "anterior". Esto se hará por ahora en sus respectivas clases,
+                                                           para que no se cree en las demás pantallas sin requerirlo.
+                                                           Habría que pensar en una mejor implementación.*/
         super(1000, 600, 1);
-        setBackground("escenarios/espacio1.jpeg");
+        setBackground("escenarios/espacio5.jpg");
         texto = new Etiqueta(30, Color.GRAY, null, null);
         volverMenu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/6, getHeight() - 50, Color.WHITE, null, null, 30, 2);
         if(siguiente){
             crearSiguiente();
             botonAnterior = null; //Inicializar el botón anterior como null.
         }
-        else{
-            crearAnterior(); //Crear botón para volver.
-            botonSiguiente = null; //Inicializar el botón siguiente como null para que no lo detecte.
-        }
+        // else{
+            // crearAnterior(); //Crear botón para volver.
+            // botonSiguiente = null; //Inicializar el botón siguiente como null para que no lo detecte.
+        // }
     }
     public Menu(){    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
