@@ -54,12 +54,12 @@ public class SeleccionNave extends Menu
         if(cambioCompleto){ //Si se cambió de nave lo hace. Para que no lo haga todo el tiempo.
             cambioCompleto = false; //Aquí empieza el cambio
             xActual = getWidth()/2; //La nave actualmente mostrada está localizada en la mitad de la pantalla.
-            imagen = new GreenfootImage("Naves/Aliadas/NaveA"+ numNaveActual + "Grande.png");
+            imagen = new GreenfootImage("Naves/Aliadas/NaveA"+ numNaveNueva+ "Grande.png");
             if(ladoCambio) //true -> Izquierda. false -> derecha.
-                x = xNueva = imagen.getWidth()/2; //Empezar de la izquierda.
+                x = xNueva = imagen.getWidth()/2; //Empezar de la izquierda, ya que se moverá a la derecha.
             else
-                x = xNueva = getWidth() - imagen.getWidth()/2;
-            naveNueva = Boton.creaBotonImagen(this, imagen, "Naves/Aliadas/NaveA"+ numNaveActual + "Grande.png", x, getHeight()/2);
+                x = xNueva = getWidth() - imagen.getWidth()/2; //Empezar de la derecha, ya que se moverá a la izquierda.
+            naveNueva = Boton.creaBotonImagen(this, imagen, "Naves/Aliadas/NaveA"+ numNaveNueva + "Grande.png", x, getHeight()/2);
         }
         if(!cambioCompleto){
             //addObject(new ActorAuxiliar("Naves/Aliadas/NaveA"+ numNave + "Grande.png"), getWidth()/2, getHeight()/2);
@@ -110,13 +110,13 @@ public class SeleccionNave extends Menu
             numNaveNueva = numNaveActual + 1;
             if(numNaveNueva > numNaveFinal) //Se pasó de la nave máxima.
                 numNaveNueva = numNaveInicial;
-            mostrarLado = false;
+            mostrarLado = true; //La nave sale desde la izquierda y avanza a la derecha.
         }
         if(isFlechaIzquierda()){
             numNaveNueva = numNaveActual - 1;
             if(numNaveNueva < numNaveInicial) //Se pasó de la nave máxima.
                 numNaveNueva = numNaveFinal; //Mostrar la máxima.
-            mostrarLado = true;
+            mostrarLado = false; //La nave sale desde la derecha.
         }
         if(numNaveActual != numNaveNueva)
             mostrarNave(mostrarLado); //Si se puso una nueva nave, mostrarla y borrar la otra.
