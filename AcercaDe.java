@@ -3,7 +3,7 @@ import greenfoot.World;
 import greenfoot.Color;
 import greenfoot.Greenfoot;
 /**
- * Clase en donde se dirá información acerca del juego.
+ * Clase en donde se dirá información acerca del juego. Se mostrará el lore técnicamente.
  *  Antes llamada About.
  * 
  * @author (Team Naves) 
@@ -17,9 +17,9 @@ public class AcercaDe extends Menu
      * 
      */
     public AcercaDe(){
-        super(true);
+        super(false);
         //public ArchivoPrueba(World mundoActual, String nombreArchivo, int tamañoFuente, Color colorFuente)
-        archivo = new Archivo("prueba.txt", 30, Color.WHITE);
+        archivo = new Archivo("archivos/acercaDe.txt", 26, Color.WHITE);
         archivo.mostrarArchivo(this);
         /*public static Actor creaBoton(World mundoActual, String texto, int x, int y, 
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)*/

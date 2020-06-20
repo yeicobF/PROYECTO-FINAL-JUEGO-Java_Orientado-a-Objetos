@@ -1,0 +1,13 @@
+12
+Tienes 3 vidas, cada vez que un meteorito o el enemigo te dañe
+tu contador bajará. Perderás si te quedas sin vidas.
+
+Debes pasar 3 niveles para ganar, cada nivel es diferente. Para pasar
+de nivel debes estar cierto tiempo jugando sin morir.
+
+Aleatoriamente aparecerán items, cada uno proporciona diferentes habilidades:
+- Vida: Te aumenta una vida. Hay un máximo de vidas.
+- Escudo: Te vulves inmune por unos segundos.
+- Subir puntos de salud: Tus puntos de salud aumentan hasta un máximo.
+- Cambiar disparo: Tu tipo de disparo cambia por unos segundos.
+- Puntos extra: Obtienes más puntos por un periodo de tiempo.

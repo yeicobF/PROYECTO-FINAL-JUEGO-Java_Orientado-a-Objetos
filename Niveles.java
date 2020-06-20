@@ -76,7 +76,7 @@ public class Niveles extends World
         nivelActual = numNivel; //Indicar el nivel actual.
         switch(numNivel){
             case 1: //Nivel 1
-                setBackground(new GreenfootImage("Escenarios/Espacio1.jpeg"));
+                setBackground(new GreenfootImage("escenarios/espacio1.jpeg"));
                 if(Pausa.isJuegoReinicio()){
                     Pausa.setReinicioFalse();
                     nave.setVidas(3);

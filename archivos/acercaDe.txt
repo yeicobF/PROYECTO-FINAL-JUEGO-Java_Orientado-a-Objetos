@@ -1,10 +1,21 @@
-Tienes 3 vidas, cada vez que un meteorito o el enemigo te dañe
-tu contador bajará; perderás si te quedas sin vidas.
-Debes pasar 3 niveles para ganar, cada nivel es diferente. Para pasar
-de nivel debes estar cierto tiempo jugando sin morir.
-Aleatoriamente aparecerán items, cada uno proporciona diferentes
-habilidades:
-- Vida: Te aumenta un punto de vida.
-- Escudo: Te vulves inmune por unos segundos.
-- Aliado: Una nave aliada te ayuda por un momento.
-- Daño: Tendrás un mejor daño de ataque temporalmente.
+20
+Algunos años atrás el planeta Tierra estaba en crisis; la sobrepoblación hacía 
+que los alimentos fueran escasos y difícilmente podías tener una vida digna, 
+pues las casas se volvieron departamentos pequeños y no había lugar 
+en el mundo que no estuviera poblado. Definitivamente todo iba mal. 
+Pero afortunadamente se dio a conocer una gran noticia,  se habían encontrado 
+planetas nuevos para habitar y se tenía la tecnología para poder llegar a ellos. 
+La población se dividió en 3. Un grupo se quedaría en la Tierra 
+y buscarían la forma de hacerla más habitablepara la gente que se quedara. 
+Los otros dos grupos se irían a otros dos nuevos planetas: Capra y Eyck, 
+ellos deberán crear una nueva vida y con los cuidados suficientes podrán 
+preservar su especie. De esta manera fue formada UPHA, 
+la unión espacial de planetas habitados por humanos habitados.
+
+Un día, no muy lejano, se perdió la comunicación con el planeta Tierra 
+y por esta razón el gobierno de Capra y Eyck se distanciaron 
+y empezaron a ser poblaciones muy diferentes, 
+con nuevas costumbres, diferente calidad de vida, alimentación variada, etc. 
+Había pasado años de su llegada a su nuevo planeta 
+y el sustento de cada uno tomo fuerza, 
+de esta manera no era necesario depender de ellos mutuamente.

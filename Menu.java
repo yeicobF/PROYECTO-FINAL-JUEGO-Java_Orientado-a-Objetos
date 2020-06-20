@@ -16,7 +16,10 @@ import greenfoot.Color;
  */
 public class Menu extends World
 {
+    protected World mundoAnterior; //Para guardar el mundo en donde estábamos antes de ir a Siguiente página.
     protected Boton volverMenu; //Botón para volver al menú del juego.
+    protected Boton botonSiguiente; //Botón para avanzar a la siguiente "página".
+    protected Boton botonAnterior; //Para volver si presionamos siguiente.
     protected Etiqueta texto; //Para crear los cuadros de texto.
     protected Archivo archivo; //Para mostrar los archivos de texto.
     private Boton botonIniciar;
@@ -31,11 +34,13 @@ public class Menu extends World
      */
     /** Constructor que solo usarán las subclases y que recibirá true si se quiere crear
             un botón de siguiente para avanzar a la siguiente "pantalla", o false si no se requiere.*/
-    protected Menu(boolean Siguiente){
+    protected Menu(boolean siguiente){
         super(1000, 600, 1);
         setBackground("escenarios/espacio1.jpeg");
         texto = new Etiqueta(30, Color.GRAY, null, null);
         volverMenu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/6, getHeight() - 50, Color.WHITE, null, null, 30, 2);
+        if(siguiente)
+            botonSiguiente = Boton.creaBotonSombra(this, "Siguiente", texto, getWidth()/6*5, getHeight() - 50, Color.WHITE, null, null, 30, 2);
     }
     public Menu(){    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -76,7 +81,7 @@ public class Menu extends World
         if(Greenfoot.mouseClicked(botonAcercaDe))
             Greenfoot.setWorld(new AcercaDe());
         if(Greenfoot.mouseClicked(botonComoJugar))
-            Greenfoot.setWorld(new ComoJugar());
+            Greenfoot.setWorld(new ComoJugar(false)); //false porque no es la pantalla siguiente, sino la inicial.
         if(Greenfoot.mouseClicked(botonMarcadores))
             Greenfoot.setWorld(new Marcadores(true)); //Se manda true para que se muestren los marcadores.
     }
@@ -84,6 +89,26 @@ public class Menu extends World
     protected void volverMenu(){
         if(Greenfoot.mouseClicked(volverMenu))
              Greenfoot.setWorld(new Menu());
+    }
+    /** Método para crear un botón "siguiente".*/
+    protected void crearSiguiente(){
+        botonSiguiente = Boton.creaBotonSombra(this, "Siguiente", texto, getWidth()/6*5, getHeight() - 50, Color.WHITE, null, null, 30, 2);
+    }
+    /** Método para verificar si se presionó "siguiente para avanzar a la siguiente "página".*/
+    protected boolean isSiguiente(){
+        if(Greenfoot.mouseClicked(botonSiguiente))
+            return true; //Si se presionó el botón, regresar true.
+        return false; //No se tocó el botón.
+    }
+    /** Método para crear un botón que regrese a la "página" anterior.*/
+    protected void crearAnterior(){
+        botonSiguiente = Boton.creaBotonSombra(this, "Anterior", texto, getWidth()/6*5, getHeight() - 50, Color.WHITE, null, null, 30, 2);
+    }
+    /** Método que verifica si se presionó el botón "anterior" para volver.*/
+    protected boolean isAnterior(){
+        if(Greenfoot.mouseClicked(botonAnterior))
+            return true;
+        return false;
     }
     // /** Método que verificará que parte del menú se seleccionó.*/
     // private void seleccionMenu(World seleccion){

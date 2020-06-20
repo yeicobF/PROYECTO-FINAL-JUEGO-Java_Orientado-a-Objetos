@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Menu
 comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ el\ acceso\ a\ todos\ los\ submen\u00FAs,\ adem\u00E1s\ de\ m\u00E9todos\ que\ tendr\u00E1n\ en\ com\u00FAn.\r\n\ \ Antes\ era\ la\ clase\ Portada.\r\n\ -\ Iniciar\r\n\ -\ \u00BFC\u00F3mo\ jugar?\r\n\ -\ Acerca\ de\r\n\ -\ Marcadores\r\n\ -\ Cr\u00E9ditos\r\n\ \r\n\ @author\ (Team\ Nave)\ \r\n\ @version\ (Viernes,\ 20\ de\ junio\ de\ 2020)\r\n
-comment1.params=Siguiente
+comment1.params=siguiente
 comment1.target=Menu(boolean)
 comment1.text=\ Constructor\ que\ solo\ usar\u00E1n\ las\ subclases\ y\ que\ recibir\u00E1\ true\ si\ se\ quiere\ crear\r\nun\ bot\u00F3n\ de\ siguiente\ para\ avanzar\ a\ la\ siguiente\ "pantalla",\ o\ false\ si\ no\ se\ requiere.
 comment2.params=
@@ -11,4 +11,16 @@ comment3.target=void\ act()
 comment4.params=
 comment4.target=void\ volverMenu()
 comment4.text=M\u00E9todo\ para\ volver\ al\ men\u00FA\ en\ los\ submen\u00FAs.
-numComments=5
+comment5.params=
+comment5.target=void\ crearSiguiente()
+comment5.text=M\u00E9todo\ para\ crear\ un\ bot\u00F3n\ "siguiente".
+comment6.params=
+comment6.target=boolean\ isSiguiente()
+comment6.text=M\u00E9todo\ para\ verificar\ si\ se\ presion\u00F3\ "siguiente\ para\ avanzar\ a\ la\ siguiente\ "p\u00E1gina".
+comment7.params=
+comment7.target=void\ crearAnterior()
+comment7.text=M\u00E9todo\ para\ crear\ un\ bot\u00F3n\ que\ regrese\ a\ la\ "p\u00E1gina"\ anterior.
+comment8.params=
+comment8.target=boolean\ isAnterior()
+comment8.text=M\u00E9todo\ que\ verifica\ si\ se\ presion\u00F3\ el\ bot\u00F3n\ "anterior"\ para\ volver.
+numComments=9

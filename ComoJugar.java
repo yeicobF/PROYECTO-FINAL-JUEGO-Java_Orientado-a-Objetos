@@ -1,6 +1,7 @@
 import greenfoot.Actor;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.World;
 import greenfoot.Color;
+import greenfoot.Greenfoot; //Para crear el mundo de la pantalla siguiente.
 /**
  * Clase en donde se mostrarán las instrucciones de cómo jugar.
  *  Antes llamada How
@@ -15,8 +16,8 @@ public class ComoJugar extends Menu
      * Constructor for objects of class ComoJugar.
      * 
      */
-    public ComoJugar(){
-        super(false);
+    public ComoJugar(boolean siguiente){ //siguiente revisa si se avanzó a la siguiente página o no.
+        super(!siguiente); //Si se avanzó a la página siguiente, siguiente = true, entonces enviar false para no crear el botón.
         // a1 = Boton.creaBoton(this, "Para moverte necesitaras las teclas WASD: W (Arriba), A (Izquierda),", getWidth()/2, getHeight() * 1/4-50,Color.WHITE, null, null, 30);
         // a2 = Boton.creaBoton(this, "S (Abajo) y D (Derecha). Usaras la barra de espacio para disparar.", getWidth()/2 -16, getHeight() * 1/4-20,Color.WHITE, null, null, 30);
         // a3 = Boton.creaBoton(this, "Tienes 3 vidas, cada vez que un meteorito o el enemigo te dañe", getWidth()/2 -30, getHeight() * 1/4 + 10,Color.WHITE, null, null, 30);
@@ -30,11 +31,26 @@ public class ComoJugar extends Menu
         // a7 = Boton.creaBoton(this, "- Aliado: Una nave aliada te ayuda por un momento.", getWidth()/2-92, getHeight() * 1/4 + 250,Color.WHITE, null, null, 30);
         // a7 = Boton.creaBoton(this, "- Daño: Tendrás un mejor daño de ataque temporalmente.", getWidth()/2-60, getHeight() * 1/4 + 280,Color.WHITE, null, null, 30);
         /*public Archivo(String nombreArchivo, int tamañoFuente, Color colorFuente)*/
-        archivo = new Archivo("archivos/comoJugar.txt", 30, Color.WHITE);
+        if(!siguiente) //No se ha avanzado de página
+            archivo = new Archivo("archivos/comoJugar1.txt", 30, Color.WHITE);
+        else{
+            crearAnterior(); //Crear botón para volver.
+            archivo = new Archivo("archivos/comoJugar2.txt", 30, Color.WHITE);
+        }
         archivo.mostrarArchivo(this);
     }
 
     public void act(){
+        if(isSiguiente()){
+            // //removeObject(botonSiguiente);
+            // //super(false); //Crear mundo sin botón de siguiente.
+            // archivo.mostrarArchivo(this);
+            System.out.println("Presionó siguiente.");
+            mundoAnterior = this; //Guardar el mundo anterior. Esto no deja hacer el siguiente paso.
+            Greenfoot.setWorld(new Menu()); //true porque se avanzó al siguiente.
+        }
+        if(isAnterior()) //Se presionó el botón de anterior. Restablecer el mundo pasado.
+            Greenfoot.setWorld(mundoAnterior);
         volverMenu();
     }
 }
