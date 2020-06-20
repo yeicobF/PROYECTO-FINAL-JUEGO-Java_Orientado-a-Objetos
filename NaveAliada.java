@@ -33,10 +33,12 @@ public class NaveAliada extends Nave
     private int tipoDisparoInicial;
     private static int anchoImagen;
     private static int altoImagen;
-    /** Constructor para la selección de naves que mostrará la nave actual, pero más grande.*/
-    public NaveAliada(int numNave){
-        setImage("Naves/Aliadas/NaveA"+ numNave + "Grande.png");
-    }
+    /** Constructor para la selección de naves que mostrará la nave actual, pero más grande.
+       No es factible, ya que ejecuta el act() y causa problemas. Mejor utilizaré el
+        actor auxiliar.*/
+    // public NaveAliada(int numNave){
+        // setImage("Naves/Aliadas/NaveA"+ numNave + "Grande.png");
+    // }
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
     public NaveAliada(){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.

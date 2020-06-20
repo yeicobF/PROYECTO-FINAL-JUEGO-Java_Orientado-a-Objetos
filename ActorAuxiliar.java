@@ -10,4 +10,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ActorAuxiliar extends Actor
 {
     public ActorAuxiliar(){} 
+    /** Constructor para establecer la imagen con la recibida en el parámetro.*/
+    public ActorAuxiliar(String nombreImagen){
+        setImage(nombreImagen);
+    }
 }

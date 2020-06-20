@@ -85,7 +85,8 @@ public class Menu extends World
             // NaveAliada.setDiseñoNaveAliada(1);
             // NaveAliada.setTipoDisparo(1);
             // Greenfoot.setWorld(new Intro());
-            Greenfoot.setWorld(new Niveles(1));
+            Greenfoot.setWorld(new SeleccionNave());
+            // Greenfoot.setWorld(new Niveles(1));
         }
         if( Greenfoot.mouseClicked(botonCreditos))
             Greenfoot.setWorld(new Creditos());
