@@ -14,7 +14,7 @@ public class Portada extends World
         super(1000, 600, 1);
         /* public static Actor creaBoton(World mundoActual, String texto, int x, int y,
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)*/
-        setBackground("images/espacio5.jpg");
+        setBackground("images/escenarios/espacio5.jpg");
         /* Crear cuadros de texto no necesariamente interactuables:
             -> public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
             -> public GreenfootImage crearCuadroTexto(String s) <- Recibir los cuadros de texto como imagen.*/
