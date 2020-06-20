@@ -7,8 +7,8 @@ import greenfoot.Color;
  * Clase que manejará la selección de naves. Mostrará las naves y dependiendo de a cuál
  *  se le haga click, se le establecerán sus propiedades.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jacob) 
+ * @version (Sábado, 20 de junio de 2020)
  */
 public class SeleccionNave extends Menu
 {
