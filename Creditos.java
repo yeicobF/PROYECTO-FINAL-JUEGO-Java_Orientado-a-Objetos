@@ -10,7 +10,6 @@ import greenfoot.Color;
  */
 public class Creditos extends Menu
 {
-    private Actor a1,a2,a3,a4,a5,a6,a7,a8;
     public Creditos()
     {    
         super(false);
