@@ -20,5 +20,5 @@ comment6.target=boolean\ isFlechaIzquierda()
 comment6.text=M\u00E9todo\ que\ verifica\ si\ se\ presion\u00F3\ la\ flecha\ izquierda.
 comment7.params=
 comment7.target=void\ seleccionNave()
-comment7.text=M\u00E9todo\ que\ ver\u00E1\ que\ nave\ elegiste.
+comment7.text=\ M\u00E9todo\ que\ ver\u00E1\ que\ nave\ elegiste.\ Solo\ se\ podr\u00E1\ elegir\ la\ nave\ si\ est\u00E1\ en\ medio\ de\ la\ pantalla.\r\n\ \ \ \ \ \ \ \ No\ exactamente\ en\ medio\ porque\ esto\ va\ a\ variar\ dependiendo\ de\ la\ cantidad\ de\ movimiento,\r\npero\ dentro\ de\ un\ rango\ dado.
 numComments=8

@@ -1,5 +1,8 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import greenfoot.World;
+import greenfoot.Actor;
+import greenfoot.GreenfootImage;
+import greenfoot.Greenfoot;
+import greenfoot.Color;
 /**
  * Clase que manejará la selección de naves. Mostrará las naves y dependiendo de a cuál
  *  se le haga click, se le establecerán sus propiedades.
@@ -27,6 +30,10 @@ public class SeleccionNave extends Menu
     {
         super(false); //Para no crear botón de "siguiente".
         setBackground("escenarios/espacio1.jpeg");
+        /* Crear un texto que indique que es la selección de nave.*/
+            //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
+        texto = new Etiqueta(35, Color.WHITE, null, null);
+        getBackground().drawImage(texto.crearCuadroTexto("SELECCIONE SU NAVE"), getWidth()/2 - texto.getXCentrada(), 40);
         numNaveActual = numNaveNueva = 1; //Empezar con la primer nave.
         /*Crear botones de flechas:
             public static Boton creaBotonImagen(World mundoActual, GreenfootImage imagen, String nombreImagen, int x, int y)*/
@@ -44,6 +51,7 @@ public class SeleccionNave extends Menu
     
     public void act(){
         //nave.move(1);
+        seleccionNave();
         cambiarNave(); //Verificará si se cambió la nave.
         volverMenu(); //Volver al menú si se presiona el respectivo botón.
     }
@@ -51,6 +59,7 @@ public class SeleccionNave extends Menu
        boolean cambio indicará si se cambió de nave.
      * boolean ladoCambio verificará hacia dónde se hizo el cambio de la nave.*/
     private void mostrarNave(boolean ladoCambio){ //boolean ladoCambio verificará hacia dónde se hizo el cambio de la nave.
+        int cantidadMovimiento = 5; //Número de pixeles que se desplazarán las naves al moverse.
         if(cambioCompleto){ //Si se cambió de nave lo hace. Para que no lo haga todo el tiempo.
             cambioCompleto = false; //Aquí empieza el cambio
             xActual = getWidth()/2; //La nave actualmente mostrada está localizada en la mitad de la pantalla.
@@ -64,23 +73,26 @@ public class SeleccionNave extends Menu
         if(!cambioCompleto){
             //addObject(new ActorAuxiliar("Naves/Aliadas/NaveA"+ numNave + "Grande.png"), getWidth()/2, getHeight()/2);
             if(xActual < getWidth() - naveActual.getImage().getWidth()/2 && ladoCambio){ //Saldrá hacia la derecha.
-                xActual ++;
+                xActual += cantidadMovimiento;
                 naveActual.setLocation(xActual, getHeight()/2);
             }
             if(xActual > naveActual.getImage().getWidth()/2 && !ladoCambio){ //Saldrá hacia la izquierda.
-                xActual --;
+                xActual -= cantidadMovimiento;
                 naveActual.setLocation(xActual, getHeight()/2);
             }
             if(xNueva != getWidth()/2){
                 if(xNueva < getWidth()/2)
-                    xNueva ++;
+                    xNueva += cantidadMovimiento;
                 else
-                    xNueva --;
+                    xNueva -= cantidadMovimiento;
                 naveNueva.setLocation(xNueva, getHeight()/2);
                 // naveNueva.move(1);
             }
-            if(xActual == getWidth() - naveActual.getImage().getWidth()/2 || xActual == naveActual.getImage().getWidth()/2
-                && xNueva == getWidth()/2){
+            if(xActual >= getWidth() - naveActual.getImage().getWidth()/2 || xActual <= naveActual.getImage().getWidth()/2
+                && xNueva >= getWidth()/2 - 5 && xNueva <= getWidth()/2 + 5){
+                    /* Si la nave actual sobrepasa los límites y la nueva está dentro de los límites
+                       establecidos que están conforme al centro de la pantalla. Esto porque dependerá de la cantidad de movimiento,
+                       así que si aumenta más, podría fallar.*/
                 removeObject(naveActual); //Eliminar la nave actual (la que se estaba yendo).
                 naveActual = naveNueva; //Ahora la nave actual es la nueva.
                 naveNueva = null;
@@ -135,9 +147,16 @@ public class SeleccionNave extends Menu
             return true;
         return false;
     }
-    /** Método que verá que nave elegiste.*/
+    /** Método que verá que nave elegiste. Solo se podrá elegir la nave si está en medio de la pantalla.
+        No exactamente en medio porque esto va a variar dependiendo de la cantidad de movimiento,
+            pero dentro de un rango dado.*/
     private void seleccionNave(){
-        NaveAliada.setDiseñoNaveAliada(numNaveActual);
-        NaveAliada.setTipoDisparo(1); //El tipo de disparo base.
+        /* Si se seleccionó la nave y está en medio de la pantalla.*/
+        if(Greenfoot.mouseClicked(naveActual) && naveActual.getX() >= getWidth()/2 - 5 && naveActual.getX() <= getWidth()/2 + 5){
+            //System.out.println("- Se pudo seleccionar la nave porque está en medio de la pantalla.");
+            NaveAliada.setDiseñoNaveAliada(numNaveActual);
+            NaveAliada.setTipoDisparo(1); //El tipo de disparo base.
+            Greenfoot.setWorld(new Niveles(1));
+        }
     }
 }

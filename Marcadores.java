@@ -105,7 +105,7 @@ public class Marcadores extends Menu
         for(int i = 0; i < 4; i++)
             sumaTamTextos += textos[i].getImage().getWidth(); //El getWidth devuelve el ancho desde la mitad de la imagen.
         espacioEntreTextos = (getWidth() - sumaTamTextos)/5; //Calcular el espacio entre cada texto dividiendo lo sobrante de la pantalla entre 5.
-        System.out.println("SumaTamTextos = "+ sumaTamTextos +", Espacio entre textos: "+ espacioEntreTextos +", getWidth(): "+ getWidth());
+        //System.out.println("SumaTamTextos = "+ sumaTamTextos +", Espacio entre textos: "+ espacioEntreTextos +", getWidth(): "+ getWidth());
     }
     /* Método que agregará los cuadros de texto de acuerdo al espacio entre estos.*/
     private void agregaCuadrosTexto(){
