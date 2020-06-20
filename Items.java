@@ -104,8 +104,8 @@ public class Items extends Actor
     public void act()
     {
         //Hay que implementar que se mueva para abajo el item y cuando toque el piso desaparezca.
-        if(tipoItemStatic == 3 || tipoItemStatic == 4)
-            turn(90); //Si es el de cambiar disparo o nuclear, hacerlos girar
+        if(tipoItemStatic == 3 || tipoItemStatic == 6)
+            turn(1); //Si es el de cambiar disparo o nuclear, hacerlos girar
         movimientoItem(velocidadItem);
         limitesItem();
     }
