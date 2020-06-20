@@ -19,7 +19,7 @@ public class SeleccionNave extends Menu
     {
         super(false); //Para no crear botón de "siguiente".
         setBackground("escenarios/espacio1.jpeg");
-        numNave = 2; //Empezar con la primer nave.
+        numNave = 4; //Empezar con la primer nave.
         mostrarNave();
     }
     
