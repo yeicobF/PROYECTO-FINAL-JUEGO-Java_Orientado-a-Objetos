@@ -229,7 +229,7 @@ public class NaveAliada extends Nave
                         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
                         diseñoOriginalActivo = false;//Ya que aquí el diseño cambia por el escudo.
                         break;
-                    case 3: //Aimenta los PS. Sólo aparece si están más bajos de los iniciales-
+                    case 3: //Aumenta los PS. Sólo aparece si están más bajos de los iniciales-
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         if(puntosSalud < puntosSaludIniciales)
                             puntosSalud += 25;
@@ -243,7 +243,10 @@ public class NaveAliada extends Nave
                         while((auxiliarTipo = Aleatorio.getNumeroAleatorio(1, 3)) == tipoDisparoInicial){}//Que el tipo sea diferente.
                         tipoDisparoAliada = auxiliarTipo;
                         break;
-                    case 5:
+                    case 5: //Puntos dobles.
+                        Items.setTiempoFinalItem(System.currentTimeMillis()); //Que dure 3.5 segundos.
+                        break;
+                    case 6: //NUCLEAR. No la incluiremos en el juego.
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         mundo.removeObjects(getWorld().getObjects(Roca.class));
                         mundo.removeObjects(getWorld().getObjects(NaveEnemiga.class));
@@ -298,8 +301,12 @@ public class NaveAliada extends Nave
                 }
                 if(perder()) //Si perdimos, pedir información para marcadores.
                     jugador = new Jugador(puntos);
-                else //Si aún no perdemos, seguir reiniciando el nivel.
+                else{ //Si aún no perdemos, seguir reiniciando el nivel.
+                    Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
+                    tipoDisparoAliada = 1; //Reiniciar el tipo de disparo por si morimos con otro tipo.
+                    Items.setTiempoFinalItem(System.currentTimeMillis()); //Reiniciar el tiempo de los items.
                     Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));//Este método crea el mundo de nuevo después de morir.
+                }
         }
     }
     //Desaparecer si ya perdimos todas las vidas.

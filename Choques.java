@@ -39,6 +39,8 @@ public abstract class Choques
                 Por ahora esto funciona para el escudo, pero cuando se implementen otros items que no
                 implementen la inmunidad podría traer problemas.
             Al tener el escudo tendremos inmunidad. Los disparos siempre pueden destruir.*/
+        if(Items.getTipoItem() == 5) //Más puntos
+            puntosNave *= 2; //Duplicar los puntos que obtendremos.
         if(choqueActores(objetoChoque) && Items.getTipoItem() != 2 || objetoChoque instanceof Disparo){ //Para destruir, la salud tiene que ser menor o igual a 0. No destruir en el choque inmediat0.
             // if(objetoChoque instanceof NaveEnemiga)
                 // objetoChoque.eliminaCuadroPS(NaveEnemiga.getMostrarInfo(), mundoActual);
