@@ -33,11 +33,10 @@ public class ComoJugar extends Menu
         /*public Archivo(String nombreArchivo, int tamañoFuente, Color colorFuente)*/
         if(!siguiente) //No se ha avanzado de página
             archivo = new Archivo("archivos/comoJugar1.txt", 30, Color.WHITE);
-        else{
-            crearAnterior(); //Crear botón para volver.
+        else
             archivo = new Archivo("archivos/comoJugar2.txt", 30, Color.WHITE);
-        }
         archivo.mostrarArchivo(this);
+        //mundoAnterior = this; //Guardar el mundo anterior. Esto no deja hacer el siguiente paso.
     }
 
     public void act(){
@@ -45,12 +44,15 @@ public class ComoJugar extends Menu
             // //removeObject(botonSiguiente);
             // //super(false); //Crear mundo sin botón de siguiente.
             // archivo.mostrarArchivo(this);
-            System.out.println("Presionó siguiente.");
-            mundoAnterior = this; //Guardar el mundo anterior. Esto no deja hacer el siguiente paso.
-            Greenfoot.setWorld(new Menu()); //true porque se avanzó al siguiente.
+            //System.out.println("Presionó siguiente.");
+            // tiempoCambio = System.currentTimeMillis(); //Obtener el tiempo en que se hizo el cambio
+            // System.out.println("tiempo cambio: "+ tiempoCambio);
+            Greenfoot.setWorld(new ComoJugar(true)); //true porque se avanzó al siguiente.
         }
-        if(isAnterior()) //Se presionó el botón de anterior. Restablecer el mundo pasado.
-            Greenfoot.setWorld(mundoAnterior);
+        /*Deberá pasar medio segundo para detectar el anterior.*/
+        if(isAnterior())// && System.currentTimeMillis() - tiempoCambio >= 500) //Se presionó el botón de anterior. Restablecer el mundo pasado.
+            // System.out.println("Presionó anterior.");
+            Greenfoot.setWorld(new ComoJugar(false));
         volverMenu();
     }
 }

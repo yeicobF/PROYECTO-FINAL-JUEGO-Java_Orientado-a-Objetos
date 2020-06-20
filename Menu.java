@@ -16,7 +16,8 @@ import greenfoot.Color;
  */
 public class Menu extends World
 {
-    protected World mundoAnterior; //Para guardar el mundo en donde estábamos antes de ir a Siguiente página.
+    //protected static World mundoAnterior; //Para guardar el mundo en donde estábamos antes de ir a Siguiente página. Estático para que no se reestablezca.
+    // protected static long tiempoCambio; //El tiempo que ha transcurrido desde que se avanzó hacia adelante o atrás. Esto para que no detecte un click a los dos botones inmediatamente.
     protected Boton volverMenu; //Botón para volver al menú del juego.
     protected Boton botonSiguiente; //Botón para avanzar a la siguiente "página".
     protected Boton botonAnterior; //Para volver si presionamos siguiente.
@@ -39,8 +40,14 @@ public class Menu extends World
         setBackground("escenarios/espacio1.jpeg");
         texto = new Etiqueta(30, Color.GRAY, null, null);
         volverMenu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/6, getHeight() - 50, Color.WHITE, null, null, 30, 2);
-        if(siguiente)
-            botonSiguiente = Boton.creaBotonSombra(this, "Siguiente", texto, getWidth()/6*5, getHeight() - 50, Color.WHITE, null, null, 30, 2);
+        if(siguiente){
+            crearSiguiente();
+            botonAnterior = null; //Inicializar el botón anterior como null.
+        }
+        else{
+            crearAnterior(); //Crear botón para volver.
+            botonSiguiente = null; //Inicializar el botón siguiente como null para que no lo detecte.
+        }
     }
     public Menu(){    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -96,17 +103,17 @@ public class Menu extends World
     }
     /** Método para verificar si se presionó "siguiente para avanzar a la siguiente "página".*/
     protected boolean isSiguiente(){
-        if(Greenfoot.mouseClicked(botonSiguiente))
+        if(Greenfoot.mouseClicked(botonSiguiente) && botonSiguiente != null) //El botón existe.
             return true; //Si se presionó el botón, regresar true.
         return false; //No se tocó el botón.
     }
     /** Método para crear un botón que regrese a la "página" anterior.*/
     protected void crearAnterior(){
-        botonSiguiente = Boton.creaBotonSombra(this, "Anterior", texto, getWidth()/6*5, getHeight() - 50, Color.WHITE, null, null, 30, 2);
+        botonAnterior = Boton.creaBotonSombra(this, "Anterior", texto, getWidth()/6*5, getHeight() - 50, Color.WHITE, null, null, 30, 2);
     }
     /** Método que verifica si se presionó el botón "anterior" para volver.*/
     protected boolean isAnterior(){
-        if(Greenfoot.mouseClicked(botonAnterior))
+        if(Greenfoot.mouseClicked(botonAnterior) && botonAnterior != null) //El botón existe.
             return true;
         return false;
     }
