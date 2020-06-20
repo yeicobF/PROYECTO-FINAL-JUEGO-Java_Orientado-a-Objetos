@@ -82,8 +82,8 @@ public class Menu extends World
             musica.stop();
             //Mode world = new Mode();
             //Niveles nivel = new Niveles();
-            NaveAliada.setDiseñoNaveAliada(1);
-            NaveAliada.setTipoDisparo(1);
+            // NaveAliada.setDiseñoNaveAliada(1);
+            // NaveAliada.setTipoDisparo(1);
             // Greenfoot.setWorld(new Intro());
             Greenfoot.setWorld(new Niveles(1));
         }

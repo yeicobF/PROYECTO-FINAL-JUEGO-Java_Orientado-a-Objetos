@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=SeleccionNave
+comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ la\ selecci\u00F3n\ de\ naves.\ Mostrar\u00E1\ las\ naves\ y\ dependiendo\ de\ a\ cu\u00E1l\r\n\ \ se\ le\ haga\ click,\ se\ le\ establecer\u00E1n\ sus\ propiedades.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=SeleccionNave()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SeleccionNave.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ mostrarNave()
+comment3.text=M\u00E9todo\ que\ mostrar\u00E1\ la\ nave\ actual.
+comment4.params=
+comment4.target=void\ cambiarNave()
+comment4.text=M\u00E9todo\ que\ ir\u00E1\ cambiando\ la\ nave\ que\ se\ muestra.
+comment5.params=
+comment5.target=void\ seleccionNave()
+comment5.text=M\u00E9todo\ que\ ver\u00E1\ que\ nave\ elegiste.
+numComments=6
