@@ -63,10 +63,17 @@ public class Etiqueta// extends Actor
         en el método drawImage(), ya que en las coordenadas hay
         que tomar el tamaño de la letra para centrarlo.*/
     public int getXCentrada(){
-        if(texto.length()%2 == 1) //El texto tiene letras impares, centrar más a la izquierda.
-            return (mensaje.getWidth()/texto.length())*(texto.length()/2 + 1);
-        else //El número de letras es par, centrar normal.
-            return (mensaje.getWidth()/texto.length())*(texto.length()/2);
+        if(texto.isEmpty()) //Si no hay nada en la línea de texto regresar 0 como coordenada, si no, dará problemas.
+            return 0;
+        else
+            if(texto.length()%2 == 1){ //El texto tiene letras impares, centrar más a la izquierda.
+                System.out.println("IMPAR: "+ (mensaje.getWidth()/texto.length())*(texto.length()/2 + 1));
+                return (mensaje.getWidth()/texto.length())*(texto.length()/2 + 1);
+            }
+            else{ //El número de letras es par, centrar normal.
+                System.out.println("PAR: "+ (mensaje.getWidth()/texto.length())*(texto.length()/2));
+                return (mensaje.getWidth()/texto.length())*(texto.length()/2);
+            }
     }
     /* Método que devolverá x para la sombra de un texto. La sombra está a la izquierda.*/
     public int getXSombra(int divisorLargo){  /*El divisorLargo es para la sombra en X se acomode. Depende del tamaño de la fuente.*/
