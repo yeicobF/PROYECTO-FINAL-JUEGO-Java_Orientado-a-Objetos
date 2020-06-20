@@ -17,7 +17,7 @@ public class ArrayListJugador extends Jugador
         textoArchivo = "";
     }
     public void addJugador(String nombre, int puntos, int nivel, String fecha){
-        System.out.println("Entró a crear jugador.");
+        //System.out.println("Entró a crear jugador.");
         arrayListJugador.add(new Jugador(nombre, puntos, nivel, fecha));
     }
     public void ordenarArrayList(){
@@ -33,7 +33,7 @@ public class ArrayListJugador extends Jugador
     /** Método que verificará si el nombre ingresado ya existe en los marcadores o no.*/
     public boolean isNombreMarcadores(String nombreIngresado){
         for(Jugador j : arrayListJugador){
-            System.out.println(" Nombre Jugador Marcadores: "+ j.getNombreJugador() +", Nombre ingresado: "+ nombreIngresado);
+            //System.out.println(" Nombre Jugador Marcadores: "+ j.getNombreJugador() +", Nombre ingresado: "+ nombreIngresado);
             if(j.getNombreJugador().equals(nombreIngresado)) //https://www.geeksforgeeks.org/compare-two-strings-in-java/
                 return true; //Si regresa true en algún momento, significa que el nombre ya estaba en los marcadores.
             }
