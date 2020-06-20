@@ -1,9 +1,14 @@
 #BlueJ class context
 comment0.target=Menu
 comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ el\ acceso\ a\ todos\ los\ submen\u00FAs,\ adem\u00E1s\ de\ m\u00E9todos\ que\ tendr\u00E1n\ en\ com\u00FAn.\r\n\ \ Antes\ era\ la\ clase\ Portada.\r\n\ -\ Iniciar\r\n\ -\ \u00BFC\u00F3mo\ jugar?\r\n\ -\ Acerca\ de\r\n\ -\ Marcadores\r\n\ -\ Cr\u00E9ditos\r\n\ \r\n\ @author\ (Team\ Nave)\ \r\n\ @version\ (Viernes,\ 20\ de\ junio\ de\ 2020)\r\n
-comment1.params=
-comment1.target=Menu()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Menu.\r\n\ \r\n
+comment1.params=Siguiente
+comment1.target=Menu(boolean)
+comment1.text=\ Constructor\ que\ solo\ usar\u00E1n\ las\ subclases\ y\ que\ recibir\u00E1\ true\ si\ se\ quiere\ crear\r\nun\ bot\u00F3n\ de\ siguiente\ para\ avanzar\ a\ la\ siguiente\ "pantalla",\ o\ false\ si\ no\ se\ requiere.
 comment2.params=
-comment2.target=void\ act()
-numComments=3
+comment2.target=Menu()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ volverMenu()
+comment4.text=M\u00E9todo\ para\ volver\ al\ men\u00FA\ en\ los\ submen\u00FAs.
+numComments=5

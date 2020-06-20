@@ -66,7 +66,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
             Greenfoot.setWorld(mundoAntesDePausa);
             }
             if(isSalir())//Aquí se preguntará si se quieren guardar cambios antes de salir o no. Por ahora sólo saldremos a portada.
-                Greenfoot.setWorld(new Portada());
+                Greenfoot.setWorld(new Menu());
             if(isReiniciar())
                 Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));
             //removeObject(pausa);

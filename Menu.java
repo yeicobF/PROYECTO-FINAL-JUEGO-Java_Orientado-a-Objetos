@@ -16,7 +16,9 @@ import greenfoot.Color;
  */
 public class Menu extends World
 {
-    private Etiqueta texto; //Para crear los cuadros de texto.
+    protected Boton volverMenu; //Botón para volver al menú del juego.
+    protected Etiqueta texto; //Para crear los cuadros de texto.
+    protected Archivo archivo; //Para mostrar los archivos de texto.
     private Boton botonIniciar;
     private Boton botonCreditos;
     private Boton botonAcercaDe;
@@ -27,8 +29,15 @@ public class Menu extends World
      * Constructor for objects of class Menu.
      * 
      */
-    public Menu()
-    {    
+    /** Constructor que solo usarán las subclases y que recibirá true si se quiere crear
+            un botón de siguiente para avanzar a la siguiente "pantalla", o false si no se requiere.*/
+    protected Menu(boolean Siguiente){
+        super(1000, 600, 1);
+        setBackground("escenarios/espacio1.jpeg");
+        texto = new Etiqueta(30, Color.GRAY, null, null);
+        volverMenu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/6, getHeight() - 50, Color.WHITE, null, null, 30, 2);
+    }
+    public Menu(){    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
         setBackground("escenarios/espacio2.jpg");
@@ -70,6 +79,11 @@ public class Menu extends World
             Greenfoot.setWorld(new How());
         if(Greenfoot.mouseClicked(botonMarcadores))
             Greenfoot.setWorld(new Marcadores(true)); //Se manda true para que se muestren los marcadores.
+    }
+    /** Método para volver al menú en los submenús.*/
+    protected void volverMenu(){
+        if(Greenfoot.mouseClicked(volverMenu))
+             Greenfoot.setWorld(new Menu());
     }
     // /** Método que verificará que parte del menú se seleccionó.*/
     // private void seleccionMenu(World seleccion){

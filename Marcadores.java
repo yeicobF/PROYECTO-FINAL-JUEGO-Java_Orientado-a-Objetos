@@ -16,11 +16,9 @@ import java.util.Scanner;
  * @author (Jacob) 
  * @version (Viernes, 19 de junio de 2020)
  */
-public class Marcadores extends World
+public class Marcadores extends Menu
 {
-    private Boton volverMenu;
     private GreenfootImage fondo; //Para mostrar los marcadores.
-    private Etiqueta texto; //Para crear los cuadros de texto.
     private Archivo marcadores; //Aquí se hará todo el proceso de ordenar los marcadores.
     private Jugador jugador;
     private Scanner archivo; //Para recorrer el archivo y mostrarlo.
@@ -40,8 +38,7 @@ public class Marcadores extends World
        y ponerlo en el archivo. Luego se muestran los marcadores.
        Si se mostraran en este constructor, luego se empalmarían.*/
     public Marcadores(boolean mostrarMarcadores){ //Constructor en donde se crea el área de marcadores.
-        super(1000, 600, 1); //Construir la pantalla de marcadores.
-        setBackground("images/espacio5.jpg");
+        super(false); //Construir la pantalla de marcadores.
         //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
         texto = new Etiqueta(40, Color.WHITE, null, null);
         xTextos = new int[4];
@@ -56,8 +53,6 @@ public class Marcadores extends World
         agregaCuadrosTexto();
         if(mostrarMarcadores)
             mostrarMarcadores();
-        texto = new Etiqueta(30, Color.GRAY, null, null);
-        volverMenu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/6, getHeight() - 50, Color.WHITE, null, null, 30, 2);
     }
     public Marcadores(Jugador jugador){
         // super(1000, 600, 1); //Construir la pantalla de marcadores.
@@ -73,8 +68,7 @@ public class Marcadores extends World
     }
     
     public void act(){
-        if(Greenfoot.mouseClicked(volverMenu))
-            Greenfoot.setWorld(new Portada());
+        volverMenu();
     }
     
     /** Método que agregará al jugador al archivo de los marcadores.*/

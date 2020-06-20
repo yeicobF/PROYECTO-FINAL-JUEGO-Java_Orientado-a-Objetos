@@ -1,13 +1,12 @@
 import greenfoot.*;
 
-public class How extends World
+public class How extends Menu
 {
     private Actor a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15;
     private Actor exit;
     public How()
     {
-        super(1000, 600, 1);
-        setBackground("images/espacio5.jpg");
+        super(false);
         a1 = Boton.creaBoton(this, "Para moverte necesitaras las teclas WASD: W (Arriba), A (Izquierda),", getWidth()/2, getHeight() * 1/4-50,Color.WHITE, null, null, 30);
         a2 = Boton.creaBoton(this, "S (Abajo) y D (Derecha). Usaras la barra de espacio para disparar.", getWidth()/2 -16, getHeight() * 1/4-20,Color.WHITE, null, null, 30);
         a3 = Boton.creaBoton(this, "Tienes 3 vidas, cada vez que un meteorito o el enemigo te dañe", getWidth()/2 -30, getHeight() * 1/4 + 10,Color.WHITE, null, null, 30);
@@ -20,22 +19,10 @@ public class How extends World
         a7 = Boton.creaBoton(this, "- Escudo: Te vulves inmune por unos segundos.", getWidth()/2-110, getHeight() * 1/4 + 220,Color.WHITE, null, null, 30);
         a7 = Boton.creaBoton(this, "- Aliado: Una nave aliada te ayuda por un momento.", getWidth()/2-92, getHeight() * 1/4 + 250,Color.WHITE, null, null, 30);
         a7 = Boton.creaBoton(this, "- Daño: Tendrás un mejor daño de ataque temporalmente.", getWidth()/2-60, getHeight() * 1/4 + 280,Color.WHITE, null, null, 30);
-        a8 = Boton.creaBoton(this, "Regresar al menu", (getWidth()/2) -202, (getHeight()*2/3)+103, Color.GRAY, null, null, 30);
-        exit = Boton.creaBoton(this, "Regresar al menu", (getWidth()/2) -200, (getHeight()*2/3)+100, Color.WHITE, null, null, 30);
-        prepare();
     }
 
-    public void act()
-    {
-        if(Greenfoot.mouseClicked(exit) )
-        {
-            Portada world = new Portada();
-            Greenfoot.setWorld(world);
-        }
-    }
-
-    public void prepare()
-    {
+    public void act(){
+        volverMenu();
     }
 }
 

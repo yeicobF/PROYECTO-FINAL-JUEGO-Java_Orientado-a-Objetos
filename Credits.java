@@ -1,14 +1,13 @@
 import greenfoot.*; 
 
-public class Credits extends World
+public class Credits extends Menu
 {
     private Actor a1,a2,a3,a4,a5,a6,a7,a8;
     private Boton menu;
     private Etiqueta texto;
     public Credits()
     {    
-        super(1000, 600, 1); 
-        setBackground("images/espacio5.jpg");  
+        super(false);
         //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente);
         texto = new Etiqueta(30, Color.WHITE, null, null);
         //a1 = Boton.creaBoton(this, "VIDEOJUEGO REALIZADO PARA LA EVALUACIÓN DE LA APLICACIÓN ", getWidth()/2, getHeight() * 1/4+20,Color.WHITE, null, null, 30);
@@ -26,15 +25,10 @@ public class Credits extends World
         getBackground().drawImage(texto.crearCuadroTexto("- LIZARAHI PADRON SANTOYO"), getWidth()/2 - texto.getXCentrada(), getHeight() * 1/4 + 150);
         //a7 = Boton.creaBoton(this, "- DANIEL LÓPEZ PADILLA", getWidth()/2 - 140, getHeight() * 1/4 + 270,Color.WHITE, null, null, 30);
         getBackground().drawImage(texto.crearCuadroTexto("- DANIEL LÓPEZ PADILLA"), getWidth()/2 - texto.getXCentrada(), getHeight() * 1/4 + 175);
-        //a8 = Boton.creaBoton(this, "Regresar al menu", (getWidth()/2) -202, (getHeight()*2/3)+103, Color.GRAY, null, null, 30);
-        //Boton.creaBotonSombra(_mundoActual_, _textoBoton_, _texto_, _x_, _y_, _colorFuente_, _colorFondo_, _bordeFuente_, _tamañoFuente_, _divisorLargo_)
-        texto = new Etiqueta(30, Color.GRAY, null, null);
-        menu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/2 - 200, (getHeight()*2/3)+100, Color.WHITE, null, null, 30, 2);
-    }
+        }
     
     public void act()
     {
-        if(Greenfoot.mouseClicked(menu))
-            Greenfoot.setWorld(new Portada());
+        volverMenu();
     }
 }

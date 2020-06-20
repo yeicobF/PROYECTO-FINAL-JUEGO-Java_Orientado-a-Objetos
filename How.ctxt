@@ -4,6 +4,4 @@ comment1.params=
 comment1.target=How()
 comment2.params=
 comment2.target=void\ act()
-comment3.params=
-comment3.target=void\ prepare()
-numComments=4
+numComments=3
