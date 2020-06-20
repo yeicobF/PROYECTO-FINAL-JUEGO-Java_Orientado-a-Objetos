@@ -12,6 +12,7 @@ public class SeleccionNave extends Menu
     // NaveAliada nave; //Para mostrar las naves.
     /* Crear botones de flecha izquierda y derecha.*/
     private GreenfootImage imagen; //Para sacar las medidas de las flechas.
+    private Boton nave; //Será de tipo Botón para que al seleccionarla cambie su tamaño.
     private Boton flechaDerecha;
     private Boton flechaIzquierda;
     int numNave; //Número de la nave mostrada.
@@ -34,11 +35,14 @@ public class SeleccionNave extends Menu
     }
     
     public void act(){
+        nave.move(1);
         volverMenu(); //Volver al menú si se presiona el respectivo botón.
     }
     /** Método que mostrará la nave actual.*/
     private void mostrarNave(){
-        addObject(new ActorAuxiliar("Naves/Aliadas/NaveA"+ numNave + "Grande.png"), getWidth()/2, getHeight()/2);
+        imagen = new GreenfootImage("Naves/Aliadas/NaveA"+ numNave + "Grande.png");
+        nave = Boton.creaBotonImagen(this, imagen, "Naves/Aliadas/NaveA"+ numNave + "Grande.png", getWidth()/2, getHeight()/2);
+        //addObject(new ActorAuxiliar("Naves/Aliadas/NaveA"+ numNave + "Grande.png"), getWidth()/2, getHeight()/2);
     }
     /** Método que irá cambiando la nave que se muestra.*/
     private void cambiarNave(){
