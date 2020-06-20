@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Disparo here.
+ * Esta clase maneja los disparos y les da propiedades dependiendo del tipo del disparo.
  *
  * @author (Team Naves)
- * @version (Jueves, 4 de junio de 2020)
+ * @version (Sábado, 20 de junio de 2020)
  */
 public class Disparo extends Actor
 {
@@ -25,6 +25,7 @@ public class Disparo extends Actor
     private int velocidadDisparo;
     private int numAnimaciones; //Las animaciones del disparo.
     private int animacionActual;
+    private static long tiempoEntreDisparos; //Variable que determinará el tiempo que tardarás en poder disparar de nuevo.
     /*Constructor para aparecer al disparo*/
     /*En cuanto a la direccion del disparo, no pude implementarlo porque no salía como debería salir, así que hay que revisarlo
         porque hay algo que falla. Por ahora solo comentaré las líneas para después implementar dicha función.*/
@@ -42,16 +43,19 @@ public class Disparo extends Actor
                 daño = 25; //daño inicial (que es bajo).
                 velocidadDisparo = 5;
                 numAnimaciones = 6;
+                tiempoEntreDisparos = 1500; //1.5 segundos
                 break;
             case 2: //Menos daño pero más velocidad
                 daño = 15;
                 velocidadDisparo = 6;
                 numAnimaciones = 6;
+                tiempoEntreDisparos = 1000;
                 break;
             case 3: //Más velocidad y daño
                 daño = 35;
                 velocidadDisparo = 7;
                 numAnimaciones = 6;
+                tiempoEntreDisparos = 850;
                 break;
         }
         //public static GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divisor, int multiplicacion)
@@ -87,7 +91,7 @@ public class Disparo extends Actor
             /*Ahora guardaremos nuestra dirección para que sea la que siga el disparo*/
             /*Por ahora, Martes, 5 de mayo de 2020, no se pudo hacer lo de la dirección del disparo,
                 pero ahí quedará la variable para cuando lo implementemos nos puede ser útil.*/
-        if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMilis)>=1150.0){ //Aún falta implementar los tipos de disparo y todo lo relacionado
+        if(Greenfoot.isKeyDown("space") && (System.currentTimeMillis()-inicioDisparoMilis) >= tiempoEntreDisparos){ //Aún falta implementar los tipos de disparo y todo lo relacionado
             inicioDisparoMilis = System.currentTimeMillis();
             //disparo = new Disparo(tipoDisparoAliada, direccion);//, direccion);//Instanciar el disparo en las coordenadas actuales y nuestra direccion.
             //Tomar la imagen de la nave para tomarla en cuenta en la salida del disparo

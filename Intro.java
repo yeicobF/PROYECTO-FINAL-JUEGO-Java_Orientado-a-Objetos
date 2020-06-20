@@ -28,7 +28,7 @@ public class Intro extends World
         switch(this.contador)
         {
            case 1: //Aqui se ejecuta la introduccion.
-            if(Greenfoot.isKeyDown("enter"))//Checa si se presiono alguna tecla
+            if(Greenfoot.isKeyDown("enter"))//Checa si se presiono alguna 
              {
                     this.contador=2;//Contador con el que se sabe cuando se dio un click y modifica el objeto de texto
              }

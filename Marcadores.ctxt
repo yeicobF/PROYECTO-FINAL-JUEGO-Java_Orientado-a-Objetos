@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Marcadores
+comment0.text=\r\n\ Clase\ en\ la\ que\ se\ manejar\u00E1n\ los\ marcadores.\ Se\ agregar\u00E1n\ las\ nuevas\ puntuaciones\r\n\ \ y\ se\ mostrar\u00E1n\ las\ que\ ya\ hay.\ Se\ podr\u00EDan\ mostrar\ hasta\ un\ l\u00EDmite\ de\ n\ puntuaciones.\r\n\ \ Para\ esto\ se\ utilizar\u00E1\ el\ manejo\ de\ archivos\ de\ dicha\ clase.\r\n\ \r\n\ \ \ \ \ \ Se\ mostrar\u00E1n\ los\ marcadores\ como\:\r\n\ \ \ \ \ \ \ \ \ \ \ \ Nombre\ \ Puntuaci\u00F3n\ \ \ Nivel\ \ \ Fecha\r\n\ \ \ \ \ \ \ \ \ \ \ \ ------\ ------------\ \ -----\ \ -------\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Viernes,\ 19\ de\ junio\ de\ 2020)\r\n
+comment1.params=mostrarMarcadores
+comment1.target=Marcadores(boolean)
+comment1.text=\ Constructor\ de\ Marcadores\ que\ recibe\ un\ booleano\ que\ verifica\r\n\ \ \ \ \ \ \ si\ se\ quieren\ mostrar\ los\ marcadores\ en\ este\ constructor\ o\ no.\r\n\ \ \ \ \ \ \ Esto\ \ servir\u00E1\ para\ que\ no\ se\ muestren\ los\ marcadores\ al\ ser\ llamado\r\n\ \ \ \ \ \ \ por\ el\ otro\ constructor\ que\ necesita\ guardar\ el\ nuevo\ marcador\r\n\ \ \ \ \ \ \ y\ ponerlo\ en\ el\ archivo.\ Luego\ se\ muestran\ los\ marcadores.\r\nSi\ se\ mostraran\ en\ este\ constructor,\ luego\ se\ empalmar\u00EDan.
+comment2.params=jugador
+comment2.target=Marcadores(Jugador)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ agregaJugadorMarcadores()
+comment4.text=M\u00E9todo\ que\ agregar\u00E1\ al\ jugador\ al\ archivo\ de\ los\ marcadores.
+comment5.params=
+comment5.target=void\ mostrarMarcadores()
+comment6.params=
+comment6.target=void\ calculaEspacioEntreTextos()
+comment6.text=M\u00E9todo\ que\ calcula\ el\ espacio\ entre\ cuadro\ de\ texto\ y\ cuadro\ de\ texto\ para\ que\ queden\ bien\ repartidos.
+comment7.params=
+comment7.target=void\ agregaCuadrosTexto()
+comment7.text=M\u00E9todo\ que\ agregar\u00E1\ los\ cuadros\ de\ texto\ de\ acuerdo\ al\ espacio\ entre\ estos.
+numComments=8

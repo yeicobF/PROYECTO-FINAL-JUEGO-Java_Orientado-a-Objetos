@@ -82,9 +82,13 @@ public class Items extends Actor
                 //Disparo.setDaño(Disparo.getDaño()*2); //Que haga el doble de daño.
                 setImage("Items/Item4CambiarDisparo.png");
                 break;
-            case 5: //NUCLEAR. Destruirá todo lo que hay en el mapa.
+            case 5:
+                tiempoActividad = 3500;
+                setImage("Items/Item5PuntosExtra.png");
+                break;
+            case 6: //NUCLEAR. Destruirá todo lo que hay en el mapa.
                 tiempoActividad = 0;
-                setImage("Items/Item5Nuclear.png");
+                setImage("Items/Item6Nuclear.png");
         }
         //public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divisor, int multiplicacion)
         //Reescalar los items a la mitad del tamaño del sprite.
@@ -100,8 +104,8 @@ public class Items extends Actor
     public void act()
     {
         //Hay que implementar que se mueva para abajo el item y cuando toque el piso desaparezca.
-        if(tipoItemStatic == 3 || tipoItemStatic == 4)
-            turn(90); //Si es el de cambiar disparo o nuclear, hacerlos girar
+        if(tipoItemStatic == 3 || tipoItemStatic == 6)
+            turn(1); //Si es el de cambiar disparo o nuclear, hacerlos girar
         movimientoItem(velocidadItem);
         limitesItem();
     }

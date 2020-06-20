@@ -8,12 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class NaveAliada extends Nave
 {
-    /**
-     * Act - do whatever the NaveAliada wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-
-
+    private Jugador jugador; //Para al perder, enviar nuestra información.
     /*protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
         Se puede usar aquí porque es protected en la superclase Nave.*/
     //Medir el tiempo para no poder disparar de manera tan seguida, tener un delay entre disparo y disparo.
@@ -38,6 +33,12 @@ public class NaveAliada extends Nave
     private int tipoDisparoInicial;
     private static int anchoImagen;
     private static int altoImagen;
+    /** Constructor para la selección de naves que mostrará la nave actual, pero más grande.
+       No es factible, ya que ejecuta el act() y causa problemas. Mejor utilizaré el
+        actor auxiliar.*/
+    // public NaveAliada(int numNave){
+        // setImage("Naves/Aliadas/NaveA"+ numNave + "Grande.png");
+    // }
     //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
     public NaveAliada(){
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
@@ -180,29 +181,29 @@ public class NaveAliada extends Nave
     /*Método que va a verificar si se presionó shift y además cambiará los valores
       para que se vea con más velcidad en pantalla*/
     private void presionoShift(int[] aumenta){ //Como es un arreglo, los valores se modifican
-      //aumenta[0] <- aumentaX; aumenta[1] = aumentaY;
-      // + 1 si es en diagonal, +2 si es recto
-      /* - NO AUMENTAR EL VALOR A LAS DIAGONALES PORQUE IRÁN MÁS RÁPIDO, YA QUE DE BASE ACTÚAN CON LAS
-            VELOCIDADES DE LAS TECLAS COMBINADAS.*/
-      if(Greenfoot.isKeyDown("shift"))
-        //En esta condición no puede haber un valor con 0
-          //LÍNEAS RECTAS (ARRIBA, ABAJO, IZQUIERDA, DERECHA) Aumentan de 2 en 2
-        //X y Y no pueden ser diferentes a 0 al mismo tiempo
-        /*En las diagonales va más rápido, habría que asignarles 1 en lugar de 2, pero por ahora así está bien.*/
-        switch(direccion){
-            case Direccion.ARRIBA:
-                aumenta[1] -= 2;
-                break;
-            case Direccion.ABAJO:
-                aumenta[1] += 2;
-                break;
-            case Direccion.IZQUIERDA:
-                aumenta[0] -= 2;
-                break;
-            case Direccion.DERECHA:
-                aumenta[0] += 2;
-                break;
-        }
+          //aumenta[0] <- aumentaX; aumenta[1] = aumentaY;
+          // + 1 si es en diagonal, +2 si es recto
+          /* - NO AUMENTAR EL VALOR A LAS DIAGONALES PORQUE IRÁN MÁS RÁPIDO, YA QUE DE BASE ACTÚAN CON LAS
+                VELOCIDADES DE LAS TECLAS COMBINADAS.*/
+        if(Greenfoot.isKeyDown("shift"))
+            //En esta condición no puede haber un valor con 0
+              //LÍNEAS RECTAS (ARRIBA, ABAJO, IZQUIERDA, DERECHA) Aumentan de 2 en 2
+            //X y Y no pueden ser diferentes a 0 al mismo tiempo
+            /*En las diagonales va más rápido, habría que asignarles 1 en lugar de 2, pero por ahora así está bien.*/
+            switch(direccion){
+                case Direccion.ARRIBA:
+                    aumenta[1] -= 2;
+                    break;
+                case Direccion.ABAJO:
+                    aumenta[1] += 2;
+                    break;
+                case Direccion.IZQUIERDA:
+                    aumenta[0] -= 2;
+                    break;
+                case Direccion.DERECHA:
+                    aumenta[0] += 2;
+                    break;
+            }
     }
     /*Método que determinará si chocamos con un item y le dará su habilidad o efecto a la nave.
         Regresará el tipo del item que servirá para condicionar los métodos que se ejectutan en act().
@@ -228,7 +229,7 @@ public class NaveAliada extends Nave
                         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
                         diseñoOriginalActivo = false;//Ya que aquí el diseño cambia por el escudo.
                         break;
-                    case 3: //Aimenta los PS. Sólo aparece si están más bajos de los iniciales-
+                    case 3: //Aumenta los PS. Sólo aparece si están más bajos de los iniciales-
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         if(puntosSalud < puntosSaludIniciales)
                             puntosSalud += 25;
@@ -242,7 +243,10 @@ public class NaveAliada extends Nave
                         while((auxiliarTipo = Aleatorio.getNumeroAleatorio(1, 3)) == tipoDisparoInicial){}//Que el tipo sea diferente.
                         tipoDisparoAliada = auxiliarTipo;
                         break;
-                    case 5:
+                    case 5: //Puntos dobles.
+                        Items.setTiempoFinalItem(System.currentTimeMillis()); //Que dure 3.5 segundos.
+                        break;
+                    case 6: //NUCLEAR. No la incluiremos en el juego.
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         mundo.removeObjects(getWorld().getObjects(Roca.class));
                         mundo.removeObjects(getWorld().getObjects(NaveEnemiga.class));
@@ -277,6 +281,10 @@ public class NaveAliada extends Nave
             tipoDisparoAliada = tipoDisparoInicial;
             Items.setItemActivoFalso();
         }
+        if(System.currentTimeMillis() >= Items.getTiempoFinalItem()){
+            Items.setItemActivoFalso();
+            Items.setTipoItemCero();
+        }
     }
     /*Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
     /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
@@ -295,13 +303,22 @@ public class NaveAliada extends Nave
                 }catch(InterruptedException ie){
                     System.out.println("Interrupción sleep.");
                 }
-                Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));//Este método crea el mundo de nuevo después de morir.
+                if(perder()) //Si perdimos, pedir información para marcadores.
+                    jugador = new Jugador(puntos);
+                else{ //Si aún no perdemos, seguir reiniciando el nivel.
+                    Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
+                    tipoDisparoAliada = 1; //Reiniciar el tipo de disparo por si morimos con otro tipo.
+                    Items.setTiempoFinalItem(System.currentTimeMillis()); //Reiniciar el tiempo de los items.
+                    Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));//Este método crea el mundo de nuevo después de morir.
+                }
         }
     }
     //Desaparecer si ya perdimos todas las vidas.
-    private void perder(){
+    private boolean perder(){
         if(vidas == 0)
-            Greenfoot.stop(); //Si ya perdimos todas las vidas, entonces parar
+            return true;
+        return false;
+            //Greenfoot.stop(); //Si ya perdimos todas las vidas, entonces parar
         //REINICIAR NIVEL PERO CON LAS VIDAS, PUNTUACIÓN, ETCÉTERA INTACTOS DESPUÉS DE SU MODIFICACIÓN
         //Tal vez así las vidas no se reiniciarán
             /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/

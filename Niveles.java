@@ -76,7 +76,7 @@ public class Niveles extends World
         nivelActual = numNivel; //Indicar el nivel actual.
         switch(numNivel){
             case 1: //Nivel 1
-                setBackground(new GreenfootImage("Escenarios/Espacio1.jpeg"));
+                setBackground("escenarios/espacio1.jpeg");
                 if(Pausa.isJuegoReinicio()){
                     Pausa.setReinicioFalse();
                     nave.setVidas(3);
@@ -86,7 +86,7 @@ public class Niveles extends World
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public Roca(int numRocasMax, int tiempoRegeneracion)
                 //Establecer el máximo de rocas
-                Roca.setNumRocasMax(7);
+                Roca.setNumRocasMax(5);
                 Roca.setTiempoRegeneracion(10000);
                 // System.out.println(" - NIVELES 1-");
                 //
@@ -95,7 +95,7 @@ public class Niveles extends World
                 //public NaveEnemiga(int tipoEnemigo, int tipoDisparo)
                 addObject(new NaveEnemiga(2, 2), getWidth()/2+getWidth()/4, getHeight()/2-getHeight()/4);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
                 addObject(new NaveEnemiga(1, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
-                addObject(new NaveEnemiga(3, 1), getWidth()/2-getWidth()/4, getHeight()/2+getHeight()/4);
+                // addObject(new NaveEnemiga(3, 1), getWidth()/2-getWidth()/4, getHeight()/2+getHeight()/4);
                 //Greenfoot.setWorld(new Espacio());
                 break;
         }
@@ -146,7 +146,7 @@ public class Niveles extends World
             if(NaveAliada.getVidasJugador() == 5)//Generará todos los items menos el corazón, ya que tiene el máximo de vidas.
                 tipoItem = Aleatorio.getNumeroAleatorio(2, 5);
             else
-                if(nave.getPuntosSalud() >= nave.getPuntosSaludIniciales()){
+                if(nave.getPuntosSalud() >= nave.getPuntosSaludIniciales()){ //Se tienen todos los PS.
                     while((aleatorio = Aleatorio.getNumeroAleatorio(1, 5)) == 3){}//Mientras se cree el de PS seguir ciclando
                     tipoItem = aleatorio; //Salió del ciclo. Ya no salió el 3.
                 }
