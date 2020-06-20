@@ -281,10 +281,12 @@ public class NaveAliada extends Nave
             tipoDisparoAliada = tipoDisparoInicial;
             Items.setItemActivoFalso();
         }
-        if(System.currentTimeMillis() >= Items.getTiempoFinalItem()){
+        if(choqueItem() == 5 && System.currentTimeMillis() >= Items.getTiempoFinalItem()) //Se acabaron los puntos dobles.
             Items.setItemActivoFalso();
-            Items.setTipoItemCero();
-        }
+        // if(System.currentTimeMillis() >= Items.getTiempoFinalItem()){
+            // Items.setItemActivoFalso();
+            // Items.setTipoItemCero();
+        // }
     }
     /*Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
     /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/

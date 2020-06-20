@@ -21,7 +21,7 @@ public class GameOver extends World
     public void act(){
     if(Greenfoot.isKeyDown("enter"))
     {
-     Greenfoot.setWorld(new Portada());   
+     Greenfoot.setWorld(new Menu());   
     }
     }
 }
