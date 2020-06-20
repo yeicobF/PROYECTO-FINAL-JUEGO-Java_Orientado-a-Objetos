@@ -18,6 +18,7 @@ public class SeleccionNave extends Menu
     private int numNaveActual, numNaveNueva, xActual, xNueva; //Número de la nave mostrada actualmente y la que se mostrará.
     private final int numNaveInicial = 1, numNaveFinal = 4;
     private boolean cambioCompleto; //Verificará que el cambio de naves se ha terminado y se puede hacer otro.
+    private boolean mostrarLado; //Para ver si la nave se muestra a la izquierda o derecha.
     /**
      * Constructor for objects of class SeleccionNave.
      * 
@@ -50,24 +51,23 @@ public class SeleccionNave extends Menu
        boolean cambio indicará si se cambió de nave.
      * boolean ladoCambio verificará hacia dónde se hizo el cambio de la nave.*/
     private void mostrarNave(boolean ladoCambio){ //boolean ladoCambio verificará hacia dónde se hizo el cambio de la nave.
-        int x; //Coordenada de donde saldrá la nueva nave.
         if(cambioCompleto){ //Si se cambió de nave lo hace. Para que no lo haga todo el tiempo.
             cambioCompleto = false; //Aquí empieza el cambio
             xActual = getWidth()/2; //La nave actualmente mostrada está localizada en la mitad de la pantalla.
             imagen = new GreenfootImage("Naves/Aliadas/NaveA"+ numNaveNueva+ "Grande.png");
             if(ladoCambio) //true -> Izquierda. false -> derecha.
-                x = xNueva = imagen.getWidth()/2; //Empezar de la izquierda, ya que se moverá a la derecha.
+                xNueva = imagen.getWidth()/2; //Empezar de la izquierda, ya que se moverá a la derecha.
             else
-                x = xNueva = getWidth() - imagen.getWidth()/2; //Empezar de la derecha, ya que se moverá a la izquierda.
-            naveNueva = Boton.creaBotonImagen(this, imagen, "Naves/Aliadas/NaveA"+ numNaveNueva + "Grande.png", x, getHeight()/2);
+                xNueva = getWidth() - imagen.getWidth()/2; //Empezar de la derecha, ya que se moverá a la izquierda.
+            naveNueva = Boton.creaBotonImagen(this, imagen, "Naves/Aliadas/NaveA"+ numNaveNueva + "Grande.png", xNueva, getHeight()/2);
         }
         if(!cambioCompleto){
             //addObject(new ActorAuxiliar("Naves/Aliadas/NaveA"+ numNave + "Grande.png"), getWidth()/2, getHeight()/2);
-            if(xActual < getWidth() - naveActual.getImage().getWidth()/2 && !ladoCambio){ //Saldrá hacia la derecha.
+            if(xActual < getWidth() - naveActual.getImage().getWidth()/2 && ladoCambio){ //Saldrá hacia la derecha.
                 xActual ++;
                 naveActual.setLocation(xActual, getHeight()/2);
             }
-            if(xActual > naveActual.getImage().getWidth()/2 && ladoCambio){ //Saldrá hacia la izquierda.
+            if(xActual > naveActual.getImage().getWidth()/2 && !ladoCambio){ //Saldrá hacia la izquierda.
                 xActual --;
                 naveActual.setLocation(xActual, getHeight()/2);
             }
@@ -83,6 +83,7 @@ public class SeleccionNave extends Menu
                 && xNueva == getWidth()/2){
                 removeObject(naveActual); //Eliminar la nave actual (la que se estaba yendo).
                 naveActual = naveNueva; //Ahora la nave actual es la nueva.
+                naveNueva = null;
                 numNaveActual = numNaveNueva;
                 cambioCompleto = true; //Se terminaron los cambios y muestra de naves.
             }
@@ -101,18 +102,18 @@ public class SeleccionNave extends Menu
     // }
     /** Método que irá cambiando la nave que se muestra.*/
     private void cambiarNave(){
-        boolean mostrarLado = false; //Para ver si se muestra a la izquierda o derecha.
         /*if(boton = derecha) numNave ++;
            if(boton == izquierda) numNave --;
            if(numNave > navesMax) numNave = 1; //Se reinicia el conteo.
            if(numNave < 1) numNave = navesMax; //Pasar a la máxima.*/
-        if(isFlechaDerecha()){
+        //cambioCompleto se verifica para ver si ya se puede cambiar de nave.
+        if(isFlechaDerecha() && cambioCompleto){
             numNaveNueva = numNaveActual + 1;
             if(numNaveNueva > numNaveFinal) //Se pasó de la nave máxima.
                 numNaveNueva = numNaveInicial;
             mostrarLado = true; //La nave sale desde la izquierda y avanza a la derecha.
         }
-        if(isFlechaIzquierda()){
+        if(isFlechaIzquierda() && cambioCompleto){
             numNaveNueva = numNaveActual - 1;
             if(numNaveNueva < numNaveInicial) //Se pasó de la nave máxima.
                 numNaveNueva = numNaveFinal; //Mostrar la máxima.
@@ -120,7 +121,7 @@ public class SeleccionNave extends Menu
         }
         if(numNaveActual != numNaveNueva)
             mostrarNave(mostrarLado); //Si se puso una nueva nave, mostrarla y borrar la otra.
-                //true -> Izquierda. false -> derecha.
+            //true -> Izquierda. false -> derecha.
     }
     /** Método que verifica si se presionó la flecha derecha.*/
     private boolean isFlechaDerecha(){
