@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Disparo here.
+ * Esta clase maneja los disparos y les da propiedades dependiendo del tipo del disparo.
  *
  * @author (Team Naves)
- * @version (Jueves, 4 de junio de 2020)
+ * @version (Sábado, 20 de junio de 2020)
  */
 public class Disparo extends Actor
 {
