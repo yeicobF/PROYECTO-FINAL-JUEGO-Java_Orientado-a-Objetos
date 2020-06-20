@@ -47,12 +47,13 @@ public class ComoJugar extends Menu
             //System.out.println("Presionó siguiente.");
             // tiempoCambio = System.currentTimeMillis(); //Obtener el tiempo en que se hizo el cambio
             // System.out.println("tiempo cambio: "+ tiempoCambio);
+            mundoAnterior = this;
             Greenfoot.setWorld(new ComoJugar(true)); //true porque se avanzó al siguiente.
         }
         /*Deberá pasar medio segundo para detectar el anterior.*/
         if(isAnterior())// && System.currentTimeMillis() - tiempoCambio >= 500) //Se presionó el botón de anterior. Restablecer el mundo pasado.
             // System.out.println("Presionó anterior.");
-            Greenfoot.setWorld(new ComoJugar(false));
+            Greenfoot.setWorld(mundoAnterior);
         volverMenu();
     }
 }

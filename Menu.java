@@ -16,7 +16,7 @@ import greenfoot.Color;
  */
 public class Menu extends World
 {
-    //protected static World mundoAnterior; //Para guardar el mundo en donde estábamos antes de ir a Siguiente página. Estático para que no se reestablezca.
+    protected static World mundoAnterior; //Para guardar el mundo en donde estábamos antes de ir a Siguiente página. Estático para que no se reestablezca.
     // protected static long tiempoCambio; //El tiempo que ha transcurrido desde que se avanzó hacia adelante o atrás. Esto para que no detecte un click a los dos botones inmediatamente.
     protected Boton volverMenu; //Botón para volver al menú del juego.
     protected Boton botonSiguiente; //Botón para avanzar a la siguiente "página".
