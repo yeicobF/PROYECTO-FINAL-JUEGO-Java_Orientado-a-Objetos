@@ -27,6 +27,7 @@ public class NaveAliada extends Nave
     // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
+    private static int puntosIniciales; //Puntos con los que comenzamos los niveles. Se manejarán con getters y setters.
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
     private static int diseñoNaveAliada;  //Para la creación del nivel será necesario.
     private static int tipoDisparoAliada;
@@ -56,7 +57,8 @@ public class NaveAliada extends Nave
         //public MostrarInfo(int puntosSalud, int tipoInfo, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
         infoPS = new MostrarInfo(puntosSalud, 0, 15, Color.RED, Color.WHITE, null);
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
-        puntos = 0; //Reiniciar los puntos al morir.
+        //this.puntosIniciales = puntosIniciales; //Iniciar con los puntos recibidos.
+        puntos = puntosIniciales; //Reiniciar los puntos al morir. Si se pasa de nivel, se quedan. Por lo que habrá que tener puntos iniciales.
         setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada + ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
@@ -306,7 +308,8 @@ public class NaveAliada extends Nave
                     System.out.println("Interrupción sleep.");
                 }
                 if(perder()) //Si perdimos, pedir información para marcadores.
-                    jugador = new Jugador(puntos);
+                    Greenfoot.setWorld(new GameOver(this)); //Poner la pantalla de Game Over. Desde ahí se pedirá la información. Se manda la nave para tener las stats.
+                    //jugador = new Jugador(puntos);
                 else{ //Si aún no perdemos, seguir reiniciando el nivel.
                     Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
                     tipoDisparoAliada = 1; //Reiniciar el tipo de disparo por si morimos con otro tipo.
@@ -366,6 +369,16 @@ public class NaveAliada extends Nave
     /*Setter para las vidas para cuando se reinicie el nivel*/
     public void setVidas(int vidasDadas){
         vidas = vidasDadas;
+    }
+    /** Método que establecerá los puntos iniciales del jugador. Estos serán 0
+       en el primer nivel. Después serán los puntos con los que se terminó en
+       el nivel anterior, por lo que puntosIniciales = puntosUltimoNivel.*/
+    public static void setPuntosIniciales(int pts){
+        puntosIniciales = pts;
+    }
+    /* Creo que este getter no lo necesitaremos.*/
+    public static int getPuntosIniciales(){
+        return puntosIniciales;
     }
     /*Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
         se mandará un número negativo.*/

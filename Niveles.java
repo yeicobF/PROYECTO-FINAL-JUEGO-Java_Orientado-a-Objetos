@@ -70,7 +70,7 @@ public class Niveles extends World
             if(nivelActual <= 3) //Si el nivel a crear es menor al 3, que es el máximo.
                 Greenfoot.setWorld(new Intro(nivelActual));
             else //Si númeroActual == 4 significa que el juego terminó.
-                Greenfoot.setWorld(new GameOver()); //Poner la pantalla de Game Over.
+                Greenfoot.setWorld(new GameOver(nave)); //Poner la pantalla de Game Over. Se manda la nave para tener las stats.
             //Avanzar de nivel creando primero la intro.
             // Greenfoot.stop();
         }
@@ -89,6 +89,7 @@ public class Niveles extends World
                     Pausa.setReinicioFalse();
                     nave.setVidas(3);
                 }
+                NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
                 tiempoDuracionJuego = 60000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
