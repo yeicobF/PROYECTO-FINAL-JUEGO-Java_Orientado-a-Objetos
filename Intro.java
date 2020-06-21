@@ -26,7 +26,7 @@ public class Intro extends World
         addObject(textosIntro, 500, 200);
     }
     public void act(){
-        if(textosIntro.isIntroFinal()) //Revisa si se llegó al final de la introducción y se presionó enter.
+        if(textosIntro.isIntroFinal() && Greenfoot.isKeyDown("enter")) //Revisa si se llegó al final de la introducción y se presionó enter.
             Greenfoot.setWorld(new Niveles(nivel));//Al terminar la introducción ya llama al juego.
     }
 }
