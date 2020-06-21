@@ -14,11 +14,13 @@ public class Niveles extends World
      * Constructor for objects of class Niveles.
      *
      */
+    private GreenfootImage fondo; //Para el fondo de pantalla de cada nivel.
     protected Roca roca; //Todos los nieles tendrán rocas (meteoros).
     protected NaveAliada nave;
     //protected NaveAliada nave; //Porque en todos los niveles estará la nave.
     private static int nivelActual = 0;//Indica el nivel en que nos encontramos
     private static long tiempoDuracionJuego; //Definirá cuánto durará el nivel.
+    private static long tiempoRestante; //El tiempo restante del nivel.
     protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
     protected long tiempoFinalJuego;
     private int tipoItem;
@@ -36,6 +38,7 @@ public class Niveles extends World
         super(1000, 600, 1); //Todos los escenarios tendrán estas dimensiones.
         // nivelActual = numNivel;
         //getBackground().setImage("Escenarios/Escenario1.png");
+        // NaveAliada.setPuntosIniciales(115);
         nave = new NaveAliada();
         crearNivel(numNivel);
         tiempoInicialMilis = System.currentTimeMillis();
@@ -49,6 +52,7 @@ public class Niveles extends World
        addObject(new MostrarInfo(1, 30, Color.WHITE, Color.BLACK, null), 500, 50);//Vidas
        addObject(new MostrarInfo(2, 30, Color.WHITE, Color.BLACK, Color.RED), 500, 50+30);//Sumo 30 en y por el tamaño de la fuente anterior
        addObject(new MostrarInfo(3, 20, Color.WHITE, Color.BLACK, null), 50, getHeight()-20);
+       addObject(new MostrarInfo(4, 20, Color.WHITE, Color.RED, null), getWidth() - 150, getHeight()-20);
        //Crear las rocas que tendrá el nivel.
        roca.crearRocas(Roca.getNumRocasMax(), this); //Crear las rocas primero. Luego que se vayan eliminando se crearán con el tiempo.
        //System.out.println(" - NIVELES -");
@@ -56,6 +60,7 @@ public class Niveles extends World
 
     }
     public void act(){
+        tiempoRestante = tiempoFinalJuego - System.currentTimeMillis(); //El tiempo que le esta a la partida.
         /*Pausa: Este método revisa si se activó la pausa.*/
         if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
             //public Pausa(World mundoAntesDePausa)
@@ -64,8 +69,16 @@ public class Niveles extends World
             // Greenfoot.stop();
         //Condición para saber cuándo se pasó el tiempo del juego
           
-        if(System.currentTimeMillis() - tiempoFinalJuego >= 0)
-          Greenfoot.stop();
+        /** Se terminó el tiempo.*/
+        if(isTiempoFin()){
+            nivelActual ++; //Avanzar de nivel.
+            if(nivelActual <= 3) //Si el nivel a crear es menor al 3, que es el máximo.
+                Greenfoot.setWorld(new Intro(nivelActual));
+            else //Si númeroActual == 4 significa que el juego terminó.
+                Greenfoot.setWorld(new GameOver(nave)); //Poner la pantalla de Game Over. Se manda la nave para tener las stats.
+            //Avanzar de nivel creando primero la intro.
+            // Greenfoot.stop();
+        }
           //public void crearRocasTiempo(World mundoActual)
         roca.crearRocasTiempo(this);
         crearItemTiempo(nave);
@@ -74,14 +87,19 @@ public class Niveles extends World
         //int numRocasMax;
         //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
         nivelActual = numNivel; //Indicar el nivel actual.
+        addObject(nave, getWidth()/2-NaveAliada.getAnchoImagen()/2, getHeight()/2+NaveAliada.getAltoImagen()/2);//Aparecer a la nave en el centro
+        if(Pausa.isJuegoReinicio()){
+            Pausa.setReinicioFalse();
+            nave.setVidas(3);
+        }
+        /* public NaveEnemiga(int tipoEnemigo, int tipoDisparo)*/
         switch(numNivel){
             case 1: //Nivel 1
                 setBackground("escenarios/espacio1.jpeg");
-                if(Pausa.isJuegoReinicio()){
-                    Pausa.setReinicioFalse();
-                    nave.setVidas(3);
-                }
-                tiempoDuracionJuego = 60000;
+                
+                NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
+                NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
+                tiempoDuracionJuego = 10000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public Roca(int numRocasMax, int tiempoRegeneracion)
@@ -91,17 +109,42 @@ public class Niveles extends World
                 // System.out.println(" - NIVELES 1-");
                 //
                 // System.out.println(" - NIVELES 2-");
-                addObject(nave, getWidth()/2-NaveAliada.getAnchoImagen()/2, getHeight()/2+NaveAliada.getAltoImagen()/2);//Aparecer a la nave en el centro
                 //public NaveEnemiga(int tipoEnemigo, int tipoDisparo)
                 addObject(new NaveEnemiga(2, 2), getWidth()/2+getWidth()/4, getHeight()/2-getHeight()/4);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
                 addObject(new NaveEnemiga(1, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
                 // addObject(new NaveEnemiga(3, 1), getWidth()/2-getWidth()/4, getHeight()/2+getHeight()/4);
                 //Greenfoot.setWorld(new Espacio());
                 break;
+            case 2:
+                tiempoDuracionJuego = 25000;
+                NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
+                NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
+                fondo = new GreenfootImage("escenarios/espacio9.png");
+                fondo.scale(1000, 600);
+                setBackground(fondo);
+                Roca.setNumRocasMax(10);
+                Roca.setTiempoRegeneracion(7000);
+                addObject(new NaveEnemiga(1, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
+                break;
+            case 3:
+                tiempoDuracionJuego = 30000;
+                NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
+                NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
+                fondo = new GreenfootImage("escenarios/espacio11.png");
+                fondo.scale(1000, 600);
+                setBackground(fondo);
+                Roca.setNumRocasMax(15);
+                Roca.setTiempoRegeneracion(5000);
+                addObject(new NaveEnemiga(3, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
+                break;
         }
+        tiempoRestante = tiempoDuracionJuego;
         // roca = new Roca(numRocasMax, 10000); //Esto no se puede porque después de instanciar el mundo no sale hasta moror.
     }
-    
+    /** Métdo que verifica si se termino el tiempo establecido en el nivel*/
+    private boolean isTiempoFin(){
+        return System.currentTimeMillis() - tiempoFinalJuego >= 0;
+    }
     // public void act(){
         // if(!nivelCreado){
             // nivelCreado = true;
@@ -125,6 +168,9 @@ public class Niveles extends World
     }
     public static long getTiempoDuracionJuego(){
         return tiempoDuracionJuego;
+    }
+    public static long getTiempoRestanteNivel(){
+        return tiempoRestante;
     }
     /* - MÉTODOS QUE PODRÁN UTILIZAR TODOS LOS NIVELES*/
 

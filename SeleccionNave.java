@@ -156,7 +156,8 @@ public class SeleccionNave extends Menu
             //System.out.println("- Se pudo seleccionar la nave porque está en medio de la pantalla.");
             NaveAliada.setDiseñoNaveAliada(numNaveActual);
             NaveAliada.setTipoDisparo(1); //El tipo de disparo base.
-            Greenfoot.setWorld(new Niveles(1));
+            Greenfoot.setWorld(new Intro(1)); //Mostrar la instroducción del primer nivel.
+            // Greenfoot.setWorld(new Niveles(1));
         }
     }
 }

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=SeleccionNave
-comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ la\ selecci\u00F3n\ de\ naves.\ Mostrar\u00E1\ las\ naves\ y\ dependiendo\ de\ a\ cu\u00E1l\r\n\ \ se\ le\ haga\ click,\ se\ le\ establecer\u00E1n\ sus\ propiedades.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Clase\ que\ manejar\u00E1\ la\ selecci\u00F3n\ de\ naves.\ Mostrar\u00E1\ las\ naves\ y\ dependiendo\ de\ a\ cu\u00E1l\r\n\ \ se\ le\ haga\ click,\ se\ le\ establecer\u00E1n\ sus\ propiedades.\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (S\u00E1bado,\ 20\ de\ junio\ de\ 2020)\r\n
 comment1.params=
 comment1.target=SeleccionNave()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SeleccionNave.\r\n\ \r\n
