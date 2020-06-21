@@ -1,5 +1,6 @@
 import greenfoot.World;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.Greenfoot;
+import greenfoot.GreenfootImage;
 /**
  * Clase en la que se manejará la introducción de cada nivel.
  * Para llamar la introduccion 1,2 o 3 usar: Greenfoot.setWorld(new Intro("inserta aca el numero"));
@@ -21,6 +22,9 @@ public class Intro extends World
     public Intro(int nivelIntro){    
         // Create a new world with 1000x600 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1);
+        GreenfootImage fondo = new GreenfootImage("escenarios/espacio8Original.png");
+        fondo.scale(1000, 600); //Reescalar el fondo para que quepa en pantalla.
+        setBackground(fondo);
         nivel = nivelIntro; //El número de la introducción indicará el número del nivel.
         actualizarvariables(nivelIntro);
     }
@@ -41,10 +45,10 @@ public class Intro extends World
         }
             
         //}while(this.contador<=7);
-        if(contador!=Bandera){
-              Bandera++;
-              Greenfoot.setWorld(new Niveles(nivel));//Al terminar ya llama al juego.
-         }
+        // if(contador!=Bandera){
+              // Bandera++;
+              // Greenfoot.setWorld(new Niveles(nivel));//Al terminar ya llama al juego.
+         // }
     }
     
     public void actualizarvariables(int tipo){

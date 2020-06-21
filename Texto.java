@@ -28,6 +28,7 @@ public class Texto extends Actor
             // case 14: contador=14; limite=17; break;
         // }
         // contador=1;
+        setImage("historia/presionaEnter.png"); //Imagen que indicará que deberás presionar enter para cambiar de texto.
         this.nivel = nivel;
         switch(nivel){ //Se establecerá el máximo de imágenes para la intro.
             case 1: limiteImagen = 7; break;
@@ -35,7 +36,6 @@ public class Texto extends Actor
             case 3: limiteImagen = 5; break;
         }
         numImagen = 1; //Empezar desde la primer imagen.
-        setImage("historia/presionaEnter.png"); //Imagen que indicará que deberás presionar enter para cambiar de texto.
     }
     public void act()
     {
@@ -50,6 +50,7 @@ public class Texto extends Actor
            // default: break;//Un default para que no haga nada.
           // }
         // } 
+        actualizarIntro();
     }
     private void actualizarIntro() 
     {
@@ -63,12 +64,11 @@ public class Texto extends Actor
               // Greenfoot.delay(15);
             // }
        // }
-       if(numImagen <= limiteImagen){
-           if(isEnter()){ //Si se presiona enter, cambiar de imagen.
+       if(numImagen <= limiteImagen && isEnter()){//Si se presiona enter, cambiar de imagen.
                setImage("historia/intro"+ nivel +"_"+ numImagen +".png");
                numImagen ++;
+               Greenfoot.delay(15);
            }
-       }
     }    
     /** Veriica si se presoonó enter para cambiar de imagen.*/
     private boolean isEnter(){
