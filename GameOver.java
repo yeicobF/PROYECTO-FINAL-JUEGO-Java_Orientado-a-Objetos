@@ -20,8 +20,7 @@ public class GameOver extends World
         setBackground("escenarios/gameOver.png");
     }
     public void act(){
-        if(Greenfoot.isKeyDown("enter")){
-            Greenfoot.setWorld(new Menu());   
-        }
+        if(Greenfoot.isKeyDown("enter"))
+            Greenfoot.setWorld(new Menu());  
     }
 }

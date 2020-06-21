@@ -64,8 +64,16 @@ public class Niveles extends World
             // Greenfoot.stop();
         //Condición para saber cuándo se pasó el tiempo del juego
           
-        if(System.currentTimeMillis() - tiempoFinalJuego >= 0)
-          Greenfoot.stop();
+        /** Se terminó el tiempo.*/
+        if(isTiempoFin()){
+            nivelActual ++; //Avanzar de nivel.
+            if(nivelActual <= 3) //Si el nivel a crear es menor al 3, que es el máximo.
+                Greenfoot.setWorld(new Intro(nivelActual));
+            else //Si númeroActual == 4 significa que el juego terminó.
+                Greenfoot.setWorld(new GameOver()); //Poner la pantalla de Game Over.
+            //Avanzar de nivel creando primero la intro.
+            // Greenfoot.stop();
+        }
           //public void crearRocasTiempo(World mundoActual)
         roca.crearRocasTiempo(this);
         crearItemTiempo(nave);
@@ -101,7 +109,10 @@ public class Niveles extends World
         }
         // roca = new Roca(numRocasMax, 10000); //Esto no se puede porque después de instanciar el mundo no sale hasta moror.
     }
-    
+    /** Métdo que verifica si se termino el tiempo establecido en el nivel*/
+    private boolean isTiempoFin(){
+        return System.currentTimeMillis() - tiempoFinalJuego >= 0;
+    }
     // public void act(){
         // if(!nivelCreado){
             // nivelCreado = true;
