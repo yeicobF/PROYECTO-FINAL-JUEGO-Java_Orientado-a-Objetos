@@ -1,11 +1,9 @@
 #BlueJ class context
 comment0.target=Intro
-comment0.text=\r\n\ Clase\ en\ la\ que\ se\ manejar\u00E1\ la\ introducci\u00F3n\ de\ cada\ nivel.\r\n\ Para\ llamar\ la\ introduccion\ 1,2\ o\ 3\ usar\:\ Greenfoot.setWorld(new\ Intro("inserta\ aca\ el\ numero"));\r\n\ \r\n\ @author\ (Daniel)\ \r\n\ @version\ (Viernes,\ 19\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ en\ la\ que\ se\ manejar\u00E1\ la\ introducci\u00F3n\ de\ cada\ nivel.\r\n\ Para\ llamar\ la\ introduccion\ 1,2\ o\ 3\ usar\:\ Greenfoot.setWorld(new\ Intro("inserta\ aca\ el\ numero"));\r\n\ \r\n\ @author\ (Daniel)\ \r\n\ @version\ (S\u00E1bado,\ 20\ de\ junio\ de\ 2020)\r\n
 comment1.params=nivelIntro
 comment1.target=Intro(int)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Intro.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()
-comment3.params=tipo
-comment3.target=void\ actualizarvariables(int)
-numComments=4
+numComments=3

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Texto
-comment0.text=\r\n\ Clase\ que\ mostrar\u00E1\ las\ im\u00E1genes\ de\ cada\ introducci\u00F3n\ de\ nivel.\r\n\ La\ imagen\ se\ mostrar\u00E1\ dependiendo\ del\ nivel\ y\ el\ n\u00FAmero\ de\ imagen.\r\n\ \r\n\ @author\ (Daniel)\ \r\n\ @version\ (S\u00E1bado,\ 20\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ que\ mostrar\u00E1\ las\ im\u00E1genes\ de\ cada\ introducci\u00F3n\ de\ nivel.\r\n\ La\ imagen\ se\ mostrar\u00E1\ dependiendo\ del\ nivel\ y\ el\ n\u00FAmero\ de\ imagen.\r\n\ \r\n\ @author\ (Daniel,\ Jacob\ (optimizaci\u00F3n))\ \r\n\ @version\ (S\u00E1bado,\ 20\ de\ junio\ de\ 2020)\r\n
 comment1.params=nivel
 comment1.target=Texto(int)
 comment2.params=
@@ -10,4 +10,7 @@ comment3.target=void\ actualizarIntro()
 comment4.params=
 comment4.target=boolean\ isEnter()
 comment4.text=Veriica\ si\ se\ presoon\u00F3\ enter\ para\ cambiar\ de\ imagen.
-numComments=5
+comment5.params=
+comment5.target=boolean\ isIntroFinal()
+comment5.text=M\u00E9todo\ que\ verifica\ si\ se\ termin\u00F3\ la\ intro,\ para\ as\u00ED\ proceder\ a\ avanzar\ de\ nivel.
+numComments=6
