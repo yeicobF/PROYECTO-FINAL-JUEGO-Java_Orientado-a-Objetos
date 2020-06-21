@@ -58,7 +58,7 @@ public class NaveAliada extends Nave
         infoPS = new MostrarInfo(puntosSalud, 0, 15, Color.RED, Color.WHITE, null);
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
         //this.puntosIniciales = puntosIniciales; //Iniciar con los puntos recibidos.
-        puntos = puntosIniciales; //Reiniciar los puntos al morir. Si se pasa de nivel, se quedan. Por lo que habrá que tener puntos iniciales.
+        //puntos = puntosIniciales; //Reiniciar los puntos al morir. Si se pasa de nivel, se quedan. Por lo que habrá que tener puntos iniciales.
         setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada + ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
@@ -309,11 +309,15 @@ public class NaveAliada extends Nave
                 }
                 if(perder()) //Si perdimos, pedir información para marcadores.
                     Greenfoot.setWorld(new GameOver(this)); //Poner la pantalla de Game Over. Desde ahí se pedirá la información. Se manda la nave para tener las stats.
-                    //jugador = new Jugador(puntos);
+                //jugador = new Jugador(puntos);
                 else{ //Si aún no perdemos, seguir reiniciando el nivel.
                     Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
                     tipoDisparoAliada = 1; //Reiniciar el tipo de disparo por si morimos con otro tipo.
                     Items.setTiempoFinalItem(System.currentTimeMillis()); //Reiniciar el tiempo de los items.
+                    if(Niveles.getNivelActual() > 1)
+                        puntosIniciales = puntos;
+                    else
+                        puntosIniciales = 0;
                     Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));//Este método crea el mundo de nuevo después de morir.
                 }
         }

@@ -38,6 +38,7 @@ public class Niveles extends World
         super(1000, 600, 1); //Todos los escenarios tendrán estas dimensiones.
         // nivelActual = numNivel;
         //getBackground().setImage("Escenarios/Escenario1.png");
+        // NaveAliada.setPuntosIniciales(115);
         nave = new NaveAliada();
         crearNivel(numNivel);
         tiempoInicialMilis = System.currentTimeMillis();
@@ -97,6 +98,7 @@ public class Niveles extends World
                 setBackground("escenarios/espacio1.jpeg");
                 
                 NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
+                NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 tiempoDuracionJuego = 10000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
@@ -116,6 +118,7 @@ public class Niveles extends World
             case 2:
                 tiempoDuracionJuego = 25000;
                 NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
+                NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 fondo = new GreenfootImage("escenarios/espacio9.png");
                 fondo.scale(1000, 600);
                 setBackground(fondo);
@@ -125,6 +128,7 @@ public class Niveles extends World
                 break;
             case 3:
                 tiempoDuracionJuego = 30000;
+                NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
                 fondo = new GreenfootImage("escenarios/espacio11.png");
                 fondo.scale(1000, 600);

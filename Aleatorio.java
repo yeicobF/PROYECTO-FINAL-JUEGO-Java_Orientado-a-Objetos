@@ -9,11 +9,6 @@ import greenfoot.Greenfoot; //Contiene el getRandomNumber.
  */
 public abstract class Aleatorio 
 {
-    /**
-     * Constructor for objects of class Random
-     */
-    public Aleatorio(){}
-
     /*MÉTODO PARA CALCULAR UN NÚMERO ALEATORIO EN UN RANGO DE NÚMEROS*/
     public static int getNumeroAleatorio(int numeroInicial, int numeroFinal){
        int numeroAleatorio = Greenfoot.getRandomNumber(numeroFinal - numeroInicial +1);
