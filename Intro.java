@@ -53,27 +53,27 @@ public class Intro extends World
               this.contador=1;
               this.nivel=1;
               this.Bandera=1;
-              Texto Introduccion = new Texto(0); // Objeto permanente para que le jugador sepa que debe presionar Enter para avanzar dialogos
+              //Texto Introduccion = new Texto(0); // Objeto permanente para que le jugador sepa que debe presionar Enter para avanzar dialogos
               Texto Cuadro = new Texto(1); //Objeto reutilizable para los dialogos
-              addObject(Introduccion,500,560);//Coloca la instruccion
+              //addObject(Introduccion,500,560);//Coloca la instruccion
               addObject(Cuadro,500,200);//Coloca el cuadro de texto
               break;
          case 2://Aqui se toma como el 
               this.contador=8;
               this.nivel=2;
               this.Bandera=8;
-              Texto Introduccion2 = new Texto(0); // Objeto permanente para que le jugador sepa que debe presionar Enter para avanzar dialogos
-              Texto Cuadro2 = new Texto(8); //Objeto reutilizable para los dialogos
-              addObject(Introduccion2,500,560);//Coloca la instruccion
+              //Texto Introduccion2 = new Texto(0); // Objeto permanente para que le jugador sepa que debe presionar Enter para avanzar dialogos
+              Texto Cuadro2 = new Texto(2); //Objeto reutilizable para los dialogos
+              //addObject(Introduccion2,500,560);//Coloca la instruccion
               addObject(Cuadro2,500,200);//Coloca el cuadro de texto
               break;
          case 3:
               this.contador=8;
               this.nivel=3;
               this.Bandera=8;
-              Texto Introduccion3 = new Texto(0); // Objeto permanente para que le jugador sepa que debe presionar Enter para avanzar dialogos
-              Texto Cuadro3 = new Texto(14); //Objeto reutilizable para los dialogos
-              addObject(Introduccion3,500,560);//Coloca la instruccion
+              // Texto Introduccion3 = new Texto(0); // Objeto permanente para que le jugador sepa que debe presionar Enter para avanzar dialogos
+              Texto Cuadro3 = new Texto(3); //Objeto reutilizable para los dialogos
+              // addObject(Introduccion3,500,560);//Coloca la instruccion
               addObject(Cuadro3,500,200);//Coloca el cuadro de texto
               break;
          default: break;
