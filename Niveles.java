@@ -19,6 +19,7 @@ public class Niveles extends World
     //protected NaveAliada nave; //Porque en todos los niveles estará la nave.
     private static int nivelActual = 0;//Indica el nivel en que nos encontramos
     private static long tiempoDuracionJuego; //Definirá cuánto durará el nivel.
+    private static long tiempoRestante; //El tiempo restante del nivel.
     protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
     protected long tiempoFinalJuego;
     private int tipoItem;
@@ -49,6 +50,7 @@ public class Niveles extends World
        addObject(new MostrarInfo(1, 30, Color.WHITE, Color.BLACK, null), 500, 50);//Vidas
        addObject(new MostrarInfo(2, 30, Color.WHITE, Color.BLACK, Color.RED), 500, 50+30);//Sumo 30 en y por el tamaño de la fuente anterior
        addObject(new MostrarInfo(3, 20, Color.WHITE, Color.BLACK, null), 50, getHeight()-20);
+       addObject(new MostrarInfo(4, 20, Color.WHITE, Color.RED, null), getWidth() - 150, getHeight()-20);
        //Crear las rocas que tendrá el nivel.
        roca.crearRocas(Roca.getNumRocasMax(), this); //Crear las rocas primero. Luego que se vayan eliminando se crearán con el tiempo.
        //System.out.println(" - NIVELES -");
@@ -56,6 +58,7 @@ public class Niveles extends World
 
     }
     public void act(){
+        tiempoRestante = tiempoFinalJuego - System.currentTimeMillis(); //El tiempo que le esta a la partida.
         /*Pausa: Este método revisa si se activó la pausa.*/
         if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
             //public Pausa(World mundoAntesDePausa)
@@ -90,7 +93,7 @@ public class Niveles extends World
                     nave.setVidas(3);
                 }
                 NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
-                tiempoDuracionJuego = 60000;
+                tiempoDuracionJuego = tiempoRestante = 60000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public Roca(int numRocasMax, int tiempoRegeneracion)
@@ -137,6 +140,9 @@ public class Niveles extends World
     }
     public static long getTiempoDuracionJuego(){
         return tiempoDuracionJuego;
+    }
+    public static long getTiempoRestanteNivel(){
+        return tiempoRestante;
     }
     /* - MÉTODOS QUE PODRÁN UTILIZAR TODOS LOS NIVELES*/
 

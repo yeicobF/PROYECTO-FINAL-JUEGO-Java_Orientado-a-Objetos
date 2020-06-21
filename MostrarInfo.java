@@ -13,6 +13,7 @@ public class MostrarInfo extends Actor
     /*puntosSalud proviene de la clase Nave de la cual hereda NaveAliada y esta hereda de NaveAliada,
         el atributo es protegido, por eso podemos acceder.*/
     int vidas, puntos, puntosSalud, nivelActual;
+    long tiempoRestante; //El tiempo restante del nivel actual.
     /* Constructor para NaveAliada y NaveEnemiga en donde pasarán la salud inicial de estas.
         Esto para luego mostrar y actualizar la salud, ya que quitaré los atributos de ser estáticos,
             esto porque causa problemas con las Naves enemigas, porque todas tendrán el mismo valor
@@ -56,6 +57,10 @@ public class MostrarInfo extends Actor
             nivelActual = Niveles.getNivelActual(); //Ya que aún no se implementa la clase
             setImage(e.crearCuadroTexto("Nivel "+ Niveles.getNivelActual()));
             break;
+        case 4: //Tiempo Restante.
+            tiempoRestante = Niveles.getTiempoRestanteNivel();
+            setImage(e.crearCuadroTexto("Tiempo restante: "+ Niveles.getTiempoRestanteNivel()));
+            break;
         // case 5: //PS de nave enemiga
             // puntosSalud = NaveEnemiga.getPuntosSalud();
             // setImage(e.crearCuadroTexto("PS: "+ NaveEnemiga.getPuntosSalud()));//Sólo mostrar los PS encima.
@@ -86,15 +91,11 @@ public class MostrarInfo extends Actor
                 // if(isTouching(NaveAliada.class))
                     // getWorld().removeObject(this);
                 break; //Puntos de salud, llamaré al otro método.
-            case 1:
-                vidas = mostrarInformacion("Vidas: ", vidas, NaveAliada.getVidasJugador());
-                break;
-            case 2:
-                puntos = mostrarInformacion("Puntos: ", puntos, NaveAliada.getPuntos());
-                break;
-            case 3: //Este es un poco innecesario porque sólo cambiará al instanciar nivel, pero no hace tanto daño.
-                nivelActual = mostrarInformacion("Nivel: ", nivelActual, Niveles.getNivelActual());
-                break;
+            case 1: vidas = mostrarInformacion("Vidas: ", vidas, NaveAliada.getVidasJugador()); break;
+            case 2: puntos = mostrarInformacion("Puntos: ", puntos, NaveAliada.getPuntos()); break;
+            //Este es un poco innecesario porque sólo cambiará al instanciar nivel, pero no hace tanto daño.
+            case 3: nivelActual = mostrarInformacion("Nivel: ", nivelActual, Niveles.getNivelActual()); break;
+            case 4: tiempoRestante = mostrarInformacion("Tiempo restante: ", tiempoRestante, Niveles.getTiempoRestanteNivel()); break;
             default:
                 //getWorld().removeObject(this); //Quitar el cuadro de texto, aunque creo que no será necesario.
                 Greenfoot.stop();//Parar el mundo porque no se ingresó un tipo de Información válido.
@@ -102,6 +103,15 @@ public class MostrarInfo extends Actor
         }
         
     }   
+    //Método que verificará si los valores han cambiado para actualizar la imagen. Esto para que la imagen no cambie todo el tiempo.
+    private long mostrarInformacion(String textoInfo, long valorAntes, long valorNuevo){
+        if(valorAntes != valorNuevo){
+            setImage(e.crearCuadroTexto(textoInfo + valorNuevo));
+            //System.out.println(textoInfo+ "-> Antes: "+ valorAntes +" ValorAhora: "+ valorNuevo);
+            return valorNuevo;
+        }
+        return valorAntes;
+    }
     //Método que verificará si los valores han cambiado para actualizar la imagen. Esto para que la imagen no cambie todo el tiempo.
     private int mostrarInformacion(String textoInfo, int valorAntes, int valorNuevo){
         if(valorAntes != valorNuevo){

@@ -23,7 +23,7 @@ public class GameOver extends World
         this.nave = nave;
     }
     public void act(){
-        Greenfoot.delay(50);
+        Greenfoot.delay(70);
         jugador = new Jugador(nave.getPuntos());
     }
     // public void act(){
