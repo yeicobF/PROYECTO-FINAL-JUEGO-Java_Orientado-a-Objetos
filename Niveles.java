@@ -5,7 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  *  La clase será abstracta porque no  necesitará instanciarse.
  *
  * @author (Jacob)
- * @version (Jueves, 4 de junio de 2020)
+ * @version (Lunes, 22 de junio de 2020)
  */
 public class Niveles extends World
 {
@@ -24,6 +24,7 @@ public class Niveles extends World
     protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
     protected long tiempoFinalJuego;
     private int tipoItem;
+    private boolean pasarNivel = false; //Booleano que indica si se pasó de nivel. Esto servirá para establecer los puntos iniciales solo al pasar.
     //Pausa pausa; //Para instanciar el menú de pausa.
     // private boolean nivelCreado;
 
@@ -72,8 +73,10 @@ public class Niveles extends World
         /** Se terminó el tiempo.*/
         if(isTiempoFin()){
             nivelActual ++; //Avanzar de nivel.
-            if(nivelActual <= 3) //Si el nivel a crear es menor al 3, que es el máximo.
+            if(nivelActual <= 3){ //Si el nivel a crear es menor al 3, que es el máximo.
+                pasarNivel = true; //Indicar que se pasó de nivel para establecer los puntos iniciales.
                 Greenfoot.setWorld(new Intro(nivelActual));
+            }
             else //Si númeroActual == 4 significa que el juego terminó.
                 Greenfoot.setWorld(new GameOver(nave)); //Poner la pantalla de Game Over. Se manda la nave para tener las stats.
             //Avanzar de nivel creando primero la intro.
@@ -88,6 +91,10 @@ public class Niveles extends World
         //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
         nivelActual = numNivel; //Indicar el nivel actual.
         addObject(nave, getWidth()/2-NaveAliada.getAnchoImagen()/2, getHeight()/2+NaveAliada.getAltoImagen()/2);//Aparecer a la nave en el centro
+        if(pasarNivel && numNivel > 1){
+            NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
+            pasarNivel = false;
+        }
         if(Pausa.isJuegoReinicio()){
             Pausa.setReinicioFalse();
             nave.setVidas(3);
@@ -98,7 +105,7 @@ public class Niveles extends World
                 setBackground("escenarios/espacio1.jpeg");
                 
                 NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
-                // NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
+                NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 tiempoDuracionJuego = 10000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
@@ -117,8 +124,7 @@ public class Niveles extends World
                 break;
             case 2:
                 tiempoDuracionJuego = 25000;
-                NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
-                // NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
+                NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 fondo = new GreenfootImage("escenarios/espacio9.png");
                 fondo.scale(1000, 600);
                 setBackground(fondo);
@@ -129,7 +135,7 @@ public class Niveles extends World
             case 3:
                 tiempoDuracionJuego = 30000;
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
-                NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
+                // NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
                 fondo = new GreenfootImage("escenarios/espacio11.png");
                 fondo.scale(1000, 600);
                 setBackground(fondo);

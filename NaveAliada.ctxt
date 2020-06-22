@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=NaveAliada
-comment0.text=\r\n\ Esta\ es\ una\ subclase\ de\ la\ superclase\ Nave\ que\ tiene\ como\ funci\u00F3n\ manejar\ las\ naves\ que\ controlar\u00E1\ el\ jugador.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Martes,\ 2\ de\ junio\ -\ Mi\u00E9rcoles\ 3\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Esta\ es\ una\ subclase\ de\ la\ superclase\ Nave\ que\ tiene\ como\ funci\u00F3n\ manejar\ las\ naves\ que\ controlar\u00E1\ el\ jugador.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Lunes,\ 22\ de\ junio\ de\ 2020)\r\n
 comment1.params=
 comment1.target=NaveAliada()
 comment1.text=\ Constructor\ para\ la\ selecci\u00F3n\ de\ naves\ que\ mostrar\u00E1\ la\ nave\ actual,\ pero\ m\u00E1s\ grande.\r\n\ \ \ \ \ \ \ No\ es\ factible,\ ya\ que\ ejecuta\ el\ act()\ y\ causa\ problemas.\ Mejor\ utilizar\u00E9\ el\r\nactor\ auxiliar.
