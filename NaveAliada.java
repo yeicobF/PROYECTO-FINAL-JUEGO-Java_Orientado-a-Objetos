@@ -27,7 +27,7 @@ public class NaveAliada extends Nave
     // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
     // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
-    private static int puntosIniciales; //Puntos con los que comenzamos los niveles. Se manejarán con getters y setters.
+    private static int puntosIniciales = 0; //Puntos con los que comenzamos los niveles. Se manejarán con getters y setters.
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
     private static int diseñoNaveAliada;  //Para la creación del nivel será necesario.
     private static int tipoDisparoAliada;
@@ -58,7 +58,7 @@ public class NaveAliada extends Nave
         infoPS = new MostrarInfo(puntosSalud, 0, 15, Color.RED, Color.WHITE, null);
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
         //this.puntosIniciales = puntosIniciales; //Iniciar con los puntos recibidos.
-        //puntos = puntosIniciales; //Reiniciar los puntos al morir. Si se pasa de nivel, se quedan. Por lo que habrá que tener puntos iniciales.
+        puntos = puntosIniciales; //Reiniciar los puntos al morir. Si se pasa de nivel, se quedan. Por lo que habrá que tener puntos iniciales.
         setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada + ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
@@ -386,8 +386,11 @@ public class NaveAliada extends Nave
     }
     /*Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
         se mandará un número negativo.*/
-    public static void setPuntos(int puntosRecibidos){
+    public static void sumaPuntos(int puntosRecibidos){
         puntos += puntosRecibidos;
+    }
+    public static void setPuntos(int puntosRecibidos){
+        puntos = puntosRecibidos;
     }
     //Regresa los PS máximos (con lo que inciamos)
     public int getPuntosSaludIniciales(){
