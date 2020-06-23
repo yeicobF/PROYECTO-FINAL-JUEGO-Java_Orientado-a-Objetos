@@ -104,7 +104,7 @@ public class Niveles extends World
         switch(numNivel){
             case 1: //Nivel 1
                 setBackground("escenarios/espacio1.jpeg");
-                
+                NaveAliada.setVidas(3);
                 NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 tiempoDuracionJuego = 10000;
