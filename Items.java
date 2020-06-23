@@ -33,6 +33,7 @@ public class Items extends Actor
      * Act - do whatever the Items wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
     private World mundo; //Para métodos getHeight, ...
     protected Pantalla pantalla;
     private long inicioDisparoMillis = 0;//Variable para comprobar hace cuánto se creó el último item.
@@ -55,6 +56,7 @@ public class Items extends Actor
         itemActivo = true;
         tocoItem = false;
         tiempoFinalItem = System.currentTimeMillis();
+        
         //Ya no es necesaria esta variable. Ya logré la condición que deseaba.
         // existeImagenItem = true;//Esto para indicar que se creó la imagen del item.
         switch(tipoItem){ //Switch case para

@@ -17,6 +17,7 @@ public class NaveAliada extends Nave
     /*Bandera para que no se esté haciendo el setImage() constantemente cuando no se cumplan ciertas condiciones.
        Por ejemplo, que no lo esté haciendo una y otra vez cuando se terminó el escudo, sino solo se haga una vez
         porque la bandera va a cambiar una vez cambie.*/
+    private GreenfootSound sonidoItem;
     private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
     private static int x, y; //Para obtener las coordenadas desde las naves enemigas.
     private int puntosSaludIniciales;
@@ -45,12 +46,15 @@ public class NaveAliada extends Nave
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         //super();//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
         //System.out.println("PS NAVE: "+ puntosSalud);
-        if(diseñoNaveAliada == 1){ //La nave potente por ser la más poderosa que se podrá obtener
-            //setImage("NavePotente.png");
-            puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
-            //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
+        sonidoItem = new GreenfootSound("tocarItems.mp3"); //El sonido que se reproducirá al tocar un item.
+        
+        puntosSalud += 200;
+        // if(diseñoNaveAliada == 1){ //La nave potente por ser la más poderosa que se podrá obtener
+            // //setImage("NavePotente.png");
+            // puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
+            // //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
 
-        }//Si no, que se utilice la nave predeterminada que es la que establecimos con los diseños de Greenfoot
+        // }//Si no, que se utilice la nave predeterminada que es la que establecimos con los diseños de Greenfoot
         // else
             // if(Character.compare(diseñoNave, '1')==0)//Algún otro diseño y así sucesivamente
             // //vida+=50;//Cada que se modifique la nave aumentará la vida y cosas así
@@ -216,6 +220,7 @@ public class NaveAliada extends Nave
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
                 //No necesitan bajarse los PS porque no se los asignamos
                 //Switch case para ver el tipo de item y actuar.
+                sonidoItem.play(); //Reproducir el efecto al tocar el item.
                 switch(Items.getTipoItem()){
                     case 1: //Aumentar el número de vidas. Es lo único que hacemos, por lo que terminamos de inmediato.
                         Items.setTiempoFinalItem(System.currentTimeMillis());

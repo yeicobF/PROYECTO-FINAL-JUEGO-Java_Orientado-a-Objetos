@@ -1,10 +1,13 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import greenfoot.Actor;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.World;
+import greenfoot.GreenfootImage;
+import greenfoot.GreenfootSound;
+import greenfoot.Greenfoot;
 /**
  * Esta clase maneja los disparos y les da propiedades dependiendo del tipo del disparo.
  *
  * @author (Team Naves)
- * @version (Sábado, 20 de junio de 2020)
+ * @version (Lunes, 22 de junio de 2020)
  */
 public class Disparo extends Actor
 {
@@ -14,8 +17,9 @@ public class Disparo extends Actor
      *  heredando de la misma superclase. Lo había pensado porque no sabía cómo acceder a los atributos
      *  si se instancia nada más en las naves, pero no es necesario que herede de Nave.
      */
-    World mundo;
-    Pantalla pantalla;
+    private GreenfootSound sonidoDisparo; //Para el efecto de disparo.
+    private World mundo;
+    private Pantalla pantalla;
     private boolean seAsignoDireccion;
     private int direccion; //Creo que no son necesarias las coordenadas por el getX() y getY()
     /* - EQUIVALENTES DE LAS DIRECCIONES - Sacadas de la clase Nave, por lo que se podrá hacer una generalización,
@@ -35,6 +39,8 @@ public class Disparo extends Actor
         // this.cordY=cordY;
         this.direccion = direccion;//Para guardar la direccion del disparo. - Por ahora no se pudo hacer, pero lo comentaré.
         this.tipoDisparo = tipoDisparo;
+        sonidoDisparo = new GreenfootSound("disparo.mp3");
+        sonidoDisparo.play();
         animacionActual = 1;
         setImage("Disparos/"+ tipoDisparo +"_"+ 1 +".png");
         seAsignoDireccion = false;

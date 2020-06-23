@@ -1,11 +1,11 @@
 import greenfoot.GreenfootImage;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.Actor;
-
+import greenfoot.GreenfootSound; //Para el sonido de las explosiones.
 /**
  * Write a description of class Explosion here.
  *
  * @author (Jacob)
- * @version (Martes, 9 de junio de 2020)
+ * @version (Lunes, 22 de junio de 2020)
  */
 public class Explosion extends Actor
 {
@@ -13,7 +13,8 @@ public class Explosion extends Actor
      * Act - do whatever the Explosion wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    Imagen imagen;
+    private GreenfootSound sonidoExplosion; //Los sonidos de explosión.
+    private Imagen imagen; //Para modificar el ancho y el alto.
     private int modificadorImagen; //Para cambiar el tamaño de la imagen.
     private final long tiempoCambioTamaño = 15;//El tiempo con el que cambie de tamaño la explosión.
     private long tiempoDiferencia; //Es el tiempo que tendrá que pasar para que cambie de tamaño la explosión.
@@ -21,6 +22,8 @@ public class Explosion extends Actor
     /*Recibir la imagen del objeto que explotó para que la explosión mida el mismo tamaño.*/
     public Explosion(GreenfootImage imagenObjeto){
         setImage("Explosion.png");
+        sonidoExplosion = new GreenfootSound("explosion"+ Aleatorio.getNumeroAleatorio(1, 7) +".mp3");
+        sonidoExplosion.play();
         /*Reescalar la imagen al tamaño del objeto que explotó.
          * El tamaño de la explosión será equivalente al tamaño del objeto que explotó, pero medirá
             1/2 tamaño más que la original para que quede un poco más grande la explosión.*/

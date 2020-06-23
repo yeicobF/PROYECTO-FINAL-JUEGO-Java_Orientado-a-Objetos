@@ -22,6 +22,7 @@ public class AcercaDe extends Menu
         archivo = new Archivo("archivos/acercaDe.txt", 26, Color.WHITE);
         archivo.mostrarArchivo(this);
     }
-    public void act(){volverMenu();
+    public void act(){
+        volverMenu();
     }
 }

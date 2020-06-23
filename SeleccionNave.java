@@ -14,6 +14,7 @@ public class SeleccionNave extends Menu
 {
     // NaveAliada nave; //Para mostrar las naves.
     /* Crear botones de flecha izquierda y derecha.*/
+    // private Etiqueta
     private GreenfootImage imagen; //Para sacar las medidas de las flechas.
     private Boton naveActual, naveNueva; //Será de tipo Botón para que al seleccionarla cambie su tamaño.
     private Boton flechaDerecha;

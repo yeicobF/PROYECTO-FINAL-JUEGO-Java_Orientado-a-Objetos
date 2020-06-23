@@ -17,7 +17,7 @@ import greenfoot.Color;
 public class Menu extends World
 {
     protected static World mundoAnterior; //Para guardar el mundo en donde estábamos antes de ir a Siguiente página. Estático para que no se reestablezca.
-    // protected static long tiempoCambio; //El tiempo que ha transcurrido desde que se avanzó hacia adelante o atrás. Esto para que no detecte un click a los dos botones inmediatamente.
+    protected static long tiempoCambio; //El tiempo que ha transcurrido desde que se avanzó hacia adelante o atrás. Esto para que no detecte un click a los dos botones inmediatamente.
     protected Boton volverMenu; //Botón para volver al menú del juego.
     protected Boton botonSiguiente; //Botón para avanzar a la siguiente "página".
     protected Boton botonAnterior; //Para volver si presionamos siguiente.
@@ -53,8 +53,7 @@ public class Menu extends World
             // botonSiguiente = null; //Inicializar el botón siguiente como null para que no lo detecte.
         // }
     }
-    public Menu(){    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+    public Menu(){
         super(1000, 600, 1); 
         setBackground("escenarios/espacio2.jpg");
         /* public static Actor creaBoton(World mundoActual, String texto, int x, int y,
@@ -71,13 +70,14 @@ public class Menu extends World
         botonMarcadores = Boton.creaBotonSombra(this, "Marcadores", texto, getWidth()/2, getHeight()/10*7, Color.WHITE, null, null, 50, 20);
         botonCreditos = Boton.creaBotonSombra(this, "Créditos", texto, getWidth()/2, getHeight()/10*9, Color.WHITE, null, null, 50, 5);
         
-        // if(musica != null) //Si ya se estaba reproduciendo música.
-            // musica.stop();
+        if(musica != null) //Si ya se estaba reproduciendo música.
+            musica.stop();
         musica = new GreenfootSound("sounds/TitleScreen.mp3");
-        musica.playLoop(); //Reproducir la canción en un loop.
+        // musica.playLoop(); //Reproducir la canción en un loop.
     }
     public void act()
     {
+        musica.playLoop(); //Reproducir la canción en un loop.
         if(Greenfoot.mouseClicked(botonIniciar)){
             musica.stop();
             //Mode world = new Mode();
@@ -88,7 +88,7 @@ public class Menu extends World
             Greenfoot.setWorld(new SeleccionNave());
             // Greenfoot.setWorld(new Niveles(1));
         }
-        if( Greenfoot.mouseClicked(botonCreditos))
+        if(Greenfoot.mouseClicked(botonCreditos))
             Greenfoot.setWorld(new Creditos());
         if(Greenfoot.mouseClicked(botonAcercaDe))
             Greenfoot.setWorld(new AcercaDe());
