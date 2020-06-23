@@ -25,7 +25,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  *      - 9. Insta Kill. Igual como en COD, esta podría destruir a los enemigos de un disparo en lugar de varios, ya que
  *              los disparos quitarán puntos de salud (HP o PS).
  * @author (Team Naves)
- * @version (Martes, 2 de junio - Miércoles 3 de junio de 2020)
+ * @version (Lunes, 22 de junio de 2020)
  */
 public class Items extends Actor
 {
@@ -33,7 +33,8 @@ public class Items extends Actor
      * Act - do whatever the Items wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    
+    private static MostrarInfo nombreItem; //Mostrará un cuadro con el nombre del item.
+    private static MostrarInfo duracionItem; //Mostrará un cuadro con la suración del item.
     private World mundo; //Para métodos getHeight, ...
     protected Pantalla pantalla;
     private long inicioDisparoMillis = 0;//Variable para comprobar hace cuánto se creó el último item.
@@ -118,6 +119,16 @@ public class Items extends Actor
         setRotation(90); //Esto moverá hacia abajo pero volteará el objeto. Debemos buscar una solución.
         move(velocidadItem);
     }
+    /** Método que mostrará la info del item actual.*/
+    public static void mostrarInfoItem(World mundoActual){
+        //public MostrarInfo(int tipoInfo, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
+        //5.- Nombre del item. 6.- Duración item.
+        nombreItem = new MostrarInfo(5, 15, Color.WHITE, Color.YELLOW, null);
+        duracionItem = new MostrarInfo(6, 15, Color.WHITE, Color.YELLOW, null);
+        mundoActual.addObject(nombreItem, 0, 0); //Agregar a la esquina superior izquierda.
+        mundoActual.addObject(nombreItem, 0, 15);
+    }
+    
     /*Método que verá los límites de -y para desaparecer el item.*/
     private void limitesItem(){
         mundo = getWorld();
@@ -168,6 +179,28 @@ public class Items extends Actor
             return 0;
         else
             return tipoItemStatic;//Si ya se tocó el item, ahora sí regresar su valor real
+    }
+    /** Método que devuelve el nombre del item actual.*/
+    public static String getNombreItem(){
+        /*
+           1.- Vida
+           2.- Escudo
+           3.- Subir PS
+           4.- Cambiar disparo
+           5.- Puntos extra
+           6.- Nuclear*/
+        String nombre = "";
+        switch(tipoItemStatic){
+            case 0: nombre = "Nada"; break;
+            case 1: nombre = "Vida"; break;
+            case 2: nombre = "Escudo"; break;
+            case 3: nombre = "Subir PS"; break;
+            case 4: nombre = "Cambiar disparo"; break;
+            case 5: nombre = "Puntos extra"; break;
+            case 6: nombre = "Nuclear"; break;
+            default: nombre = "Item no existente"; break;
+        }
+        return nombre;
     }
     /*Setter del tipo de item para definir la habilidad o efecto. Aunque no es necesario porque si no existe pues no necesita ser 0.*/
     public static void setTipoItemCero(){
