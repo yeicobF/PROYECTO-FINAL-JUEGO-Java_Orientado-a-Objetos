@@ -42,6 +42,10 @@ public class Menu extends World
                                                            Habría que pensar en una mejor implementación.*/
         super(1000, 600, 1);
         setBackground("escenarios/espacio5.jpg");
+        /* Aquí no se necesita checar lo del gameOver porque esto solo es para poner boton de volver al menú y siguiente
+           en los submenús. No es el constructor para el menú principal.*/
+        // if(GameOver.isMusicaReproduciendose()) //Si se está reproduciendo música de gameOver.
+            // GameOver.pararMusica(); //Detener la música de GameOver.
         texto = new Etiqueta(30, Color.GRAY, null, null);
         volverMenu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/6, getHeight() - 50, Color.WHITE, null, null, 30, 2);
         if(siguiente){
@@ -56,6 +60,8 @@ public class Menu extends World
     public Menu(){
         super(1000, 600, 1); 
         setBackground("escenarios/espacio2.jpg");
+        if(GameOver.isMusicaReproduciendose()) //Si se está reproduciendo música de gameOver.
+            GameOver.pararMusica(); //Detener la música de GameOver.
         /* public static Actor creaBoton(World mundoActual, String texto, int x, int y,
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)*/
         /* Crear cuadros de texto no necesariamente interactuables:
