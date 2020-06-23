@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Esta es una subclase de la superclase Nave que tiene como función manejar las naves que controlará el jugador.
  *
  * @author (Team Naves)
- * @version (Martes, 2 de junio - Miércoles 3 de junio de 2020)
+ * @version (Lunes, 22 de junio de 2020)
  */
 public class NaveAliada extends Nave
 {
@@ -17,12 +17,13 @@ public class NaveAliada extends Nave
     /*Bandera para que no se esté haciendo el setImage() constantemente cuando no se cumplan ciertas condiciones.
        Por ejemplo, que no lo esté haciendo una y otra vez cuando se terminó el escudo, sino solo se haga una vez
         porque la bandera va a cambiar una vez cambie.*/
+    private GreenfootSound sonidoItem;
     private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
     private static int x, y; //Para obtener las coordenadas desde las naves enemigas.
     private int puntosSaludIniciales;
-    private long inicioDisparoMilis=0;
+    private long inicioDisparoMilis = 0;
     private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
-    private int puntosMenosAlMorir = -10;
+    private int puntosMenosAlMorir = 0;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
     // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
@@ -45,12 +46,15 @@ public class NaveAliada extends Nave
         //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
         //super();//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
         //System.out.println("PS NAVE: "+ puntosSalud);
-        if(diseñoNaveAliada == 1){ //La nave potente por ser la más poderosa que se podrá obtener
-            //setImage("NavePotente.png");
-            puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
-            //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
+        sonidoItem = new GreenfootSound("tocarItems.mp3"); //El sonido que se reproducirá al tocar un item.
+        
+        puntosSalud += 200;
+        // if(diseñoNaveAliada == 1){ //La nave potente por ser la más poderosa que se podrá obtener
+            // //setImage("NavePotente.png");
+            // puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
+            // //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
 
-        }//Si no, que se utilice la nave predeterminada que es la que establecimos con los diseños de Greenfoot
+        // }//Si no, que se utilice la nave predeterminada que es la que establecimos con los diseños de Greenfoot
         // else
             // if(Character.compare(diseñoNave, '1')==0)//Algún otro diseño y así sucesivamente
             // //vida+=50;//Cada que se modifique la nave aumentará la vida y cosas así
@@ -58,7 +62,7 @@ public class NaveAliada extends Nave
         infoPS = new MostrarInfo(puntosSalud, 0, 15, Color.RED, Color.WHITE, null);
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
         //this.puntosIniciales = puntosIniciales; //Iniciar con los puntos recibidos.
-        //puntos = puntosIniciales; //Reiniciar los puntos al morir. Si se pasa de nivel, se quedan. Por lo que habrá que tener puntos iniciales.
+        // puntos = puntosIniciales; //Reiniciar los puntos al morir. Si se pasa de nivel, se quedan. Por lo que habrá que tener puntos iniciales.
         setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada + ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
         /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
             public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
@@ -216,6 +220,8 @@ public class NaveAliada extends Nave
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
                 //No necesitan bajarse los PS porque no se los asignamos
                 //Switch case para ver el tipo de item y actuar.
+                Items.mostrarInfoItem(getWorld());
+                sonidoItem.play(); //Reproducir el efecto al tocar el item.
                 switch(Items.getTipoItem()){
                     case 1: //Aumentar el número de vidas. Es lo único que hacemos, por lo que terminamos de inmediato.
                         Items.setTiempoFinalItem(System.currentTimeMillis());
@@ -314,10 +320,10 @@ public class NaveAliada extends Nave
                     Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
                     tipoDisparoAliada = 1; //Reiniciar el tipo de disparo por si morimos con otro tipo.
                     Items.setTiempoFinalItem(System.currentTimeMillis()); //Reiniciar el tiempo de los items.
-                    if(Niveles.getNivelActual() > 1)
-                        puntosIniciales = puntos;
-                    else
-                        puntosIniciales = 0;
+                    // if(Niveles.getNivelActual() > 1)
+                        // puntosIniciales = puntos;
+                    // else
+                        // puntosIniciales = 0;
                     Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));//Este método crea el mundo de nuevo después de morir.
                 }
         }
@@ -371,7 +377,7 @@ public class NaveAliada extends Nave
         // return puntosSalud;
     // }
     /*Setter para las vidas para cuando se reinicie el nivel*/
-    public void setVidas(int vidasDadas){
+    public static void setVidas(int vidasDadas){
         vidas = vidasDadas;
     }
     /** Método que establecerá los puntos iniciales del jugador. Estos serán 0
@@ -386,8 +392,11 @@ public class NaveAliada extends Nave
     }
     /*Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
         se mandará un número negativo.*/
-    public static void setPuntos(int puntosRecibidos){
+    public static void sumaPuntos(int puntosRecibidos){
         puntos += puntosRecibidos;
+    }
+    public static void setPuntos(int puntosRecibidos){
+        puntos = puntosRecibidos;
     }
     //Regresa los PS máximos (con lo que inciamos)
     public int getPuntosSaludIniciales(){

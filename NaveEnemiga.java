@@ -55,16 +55,30 @@ public class NaveEnemiga extends Nave
         //Revisa cuál medida es mayor para tomar el radio.
         radio = (getImage().getWidth() >= getImage().getHeight()) ? getImage().getWidth() : getImage().getHeight();
         // System.out.println("Ancho total: "+ anchoImagen +"Alto total: "+ altoImagen +"Radio: "+ radio);
-        if(tipoEnemigo == 1){//BOSS == "0"
-            puntosSalud+= 100;//Que las naves de BOSSES tengan más vida
-            puntosPorDisparo = 50;
-            //tipoDisparo=1;//Disparo más potente pero más lento
+        switch(tipoEnemigo){
+            case 1:
+                puntosSalud += 100;//Que las naves de BOSSES tengan más vida
+                puntosPorDisparo = 50;
+                break;
+            case 2:
+                puntosSalud += 150;//Que las naves de BOSSES tengan más vida
+                puntosPorDisparo = 75;
+                break;
+            case 3:
+                puntosSalud += 300;//Que las naves de BOSSES tengan más vida
+                puntosPorDisparo = 100;
+                break;
         }
-        else{//ENEMIGOS PEQUEÑOS
-            puntosSalud-= 50;//Que las naves de enemigos pequeños tengan menos vida (vida=100-50)
-            puntosPorDisparo = 25;
-            //tipoDisparo=2;//Disparo menos potente pero más rápido
-        }
+        // if(tipoEnemigo == 1){//BOSS == "0"
+            // puntosSalud+= 100;//Que las naves de BOSSES tengan más vida
+            // puntosPorDisparo = 50;
+            // //tipoDisparo=1;//Disparo más potente pero más lento
+        // }
+        // else{//ENEMIGOS PEQUEÑOS
+            // puntosSalud-= 50;//Que las naves de enemigos pequeños tengan menos vida (vida=100-50)
+            // puntosPorDisparo = 25;
+            // //tipoDisparo=2;//Disparo menos potente pero más rápido
+        // }
         anguloGiro = 0;
         //setRotation(270);
         pantalla = new Pantalla(this);

@@ -48,7 +48,7 @@ public abstract class Choques
             // Items.setImagenItemFalso();//Después de que entra cuando la imagen del item está activa, se indica que se desactivó.
             puntosSalud -= daño; //Restar el daño al objeto
             //Sumarle los puntos que indicamos. Si nosotros chocamos, se nos sumará un número negativo.
-            NaveAliada.setPuntos(puntosNave);//Se le suman los puntos al jugador
+            NaveAliada.sumaPuntos(puntosNave);//Se le suman los puntos al jugador
             /*Si los puntos de salud de lo impactado <= 0, se nos dará el doble de puntos,
                 pero hay que revisar que los que perdieron toda la salud no
                 somos nosotros, porque si no nos quitará el doble de puntos
@@ -58,7 +58,7 @@ public abstract class Choques
                 mundoActual.addObject(new Explosion(objetoRaiz.getImage()), objetoRaiz.getX(), objetoRaiz.getY()); 
                 mundoActual.removeObject(objetoRaiz);//Se elimina el objeto que chocó. El objeto que llama el método.
                 if(!(objetoRaiz instanceof NaveAliada)) //Si el objeto no somos nosotros, sumarnos los puntos.
-                    NaveAliada.setPuntos(puntosNave);//Como se destruyo el objeto se nos volverán a sumar los puntos.
+                    NaveAliada.sumaPuntos(puntosNave);//Como se destruyo el objeto se nos volverán a sumar los puntos.
             }
                 //return true;//Regresar verdadero si se hizo el procedimiento anterior. Es decir, se eliminó el objeto.
             // if(objetoRaiz instanceof Roca) //Tal vez podría ponerlo en la misma roca, pero como ya no existiría después del return, no haría efecto.
@@ -68,7 +68,7 @@ public abstract class Choques
                 Items.setTocoItemTrue();//Se tocó el item.
         }
         if(NaveAliada.getPuntos() < 0) //No queremos que salgan puntos negativos.
-            NaveAliada.setPuntos(-NaveAliada.getPuntos());//Sumar los números que están por debajo para dejarlos en 0.
+            NaveAliada.setPuntos(0);//Sumar los números que están por debajo para dejarlos en 0.
         return puntosSalud;//Regresa los puntos de salud para que se siga evaluando el método.
     }//En el método de destruir nave habrá que bajar vidas si se eliminó.
 

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Niveles
-comment0.text=\r\n\ Superclase\ que\ tendr\u00E1\ como\ subclases\ a\ cada\ uno\ de\ los\ niveles.\r\n\ \ La\ clase\ ser\u00E1\ abstracta\ porque\ no\ \ necesitar\u00E1\ instanciarse.\r\n\r\n\ @author\ (Jacob)\r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Superclase\ que\ tendr\u00E1\ como\ subclases\ a\ cada\ uno\ de\ los\ niveles.\r\n\ \ La\ clase\ ser\u00E1\ abstracta\ porque\ no\ \ necesitar\u00E1\ instanciarse.\r\n\r\n\ @author\ (Jacob)\r\n\ @version\ (Lunes,\ 22\ de\ junio\ de\ 2020)\r\n
 comment1.params=numNivel
 comment1.target=Niveles(int)
 comment2.params=
