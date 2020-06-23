@@ -124,7 +124,7 @@ public class Niveles extends World
                 //Greenfoot.setWorld(new Espacio());
                 break;
             case 2:
-                tiempoDuracionJuego = 25000;
+                tiempoDuracionJuego = 60000;
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 fondo = new GreenfootImage("escenarios/espacio9.png");
                 fondo.scale(1000, 600);
@@ -134,14 +134,14 @@ public class Niveles extends World
                 addObject(new NaveEnemiga(1, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
                 break;
             case 3:
-                tiempoDuracionJuego = 30000;
+                tiempoDuracionJuego = 90000;
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 // NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
                 fondo = new GreenfootImage("escenarios/espacio11.png");
                 fondo.scale(1000, 600);
                 setBackground(fondo);
-                Roca.setNumRocasMax(15);
-                Roca.setTiempoRegeneracion(5000);
+                Roca.setNumRocasMax(20);
+                Roca.setTiempoRegeneracion(3000);
                 addObject(new NaveEnemiga(3, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
                 break;
         }
