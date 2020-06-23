@@ -24,7 +24,7 @@ public class Niveles extends World
     protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
     protected long tiempoFinalJuego;
     private int tipoItem;
-    private boolean pasarNivel = false; //Booleano que indica si se pasó de nivel. Esto servirá para establecer los puntos iniciales solo al pasar.
+    private static boolean pasarNivel = false; //Booleano que indica si se pasó de nivel. Esto servirá para establecer los puntos iniciales solo al pasar.
     //Pausa pausa; //Para instanciar el menú de pausa.
     // private boolean nivelCreado;
 
@@ -40,6 +40,7 @@ public class Niveles extends World
         // nivelActual = numNivel;
         //getBackground().setImage("Escenarios/Escenario1.png");
         // NaveAliada.setPuntosIniciales(115);
+        //pasarNivel = false;
         nave = new NaveAliada();
         crearNivel(numNivel);
         tiempoInicialMilis = System.currentTimeMillis();
