@@ -1,5 +1,8 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import greenfoot.World;
+import greenfoot.GreenfootSound;
+import greenfoot.GreenfootImage;
+import greenfoot.Color;
+import greenfoot.Greenfoot;
 /**
  * Superclase que tendrá como subclases a cada uno de los niveles.
  *  La clase será abstracta porque no  necesitará instanciarse.
@@ -9,42 +12,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Niveles extends World
 {
-
-    /**
-     * Constructor for objects of class Niveles.
-     *
-     */
-    //Inicializar con la canción para que se pueda verificar desde el menú si hay música reproduciéndose.
-    private static GreenfootSound musicaNivel = new GreenfootSound("Nivel1.mp3"); /* Para reproducir la música de cada nivel. Estática para detener la del nivel anterior y así.*/
-    private GreenfootImage fondo; //Para el fondo de pantalla de cada nivel.
     protected Roca roca; //Todos los nieles tendrán rocas (meteoros).
     protected NaveAliada nave;
-    //protected NaveAliada nave; //Porque en todos los niveles estará la nave.
+    protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
+    protected long tiempoFinalJuego;
+    //Inicializar con la canción para que se pueda verificar desde el menú si hay música reproduciéndose.
+    private static GreenfootSound musicaNivel = new GreenfootSound("Nivel1.mp3"); /* Para reproducir la música de cada nivel. Estática para detener la del nivel anterior y así.*/
+    private static boolean pasarNivel = false; //Booleano que indica si se pasó de nivel. Esto servirá para establecer los puntos iniciales solo al pasar
     private static int nivelActual = 0;//Indica el nivel en que nos encontramos
     private static long tiempoDuracionJuego; //Definirá cuánto durará el nivel.
     private static long tiempoRestante; //El tiempo restante del nivel.
-    protected long tiempoInicialMilis; //Tomar el tiempo en que el juego inició.
-    protected long tiempoFinalJuego;
+    private GreenfootImage fondo; //Para el fondo de pantalla de cada nivel.
     private int tipoItem;
-    private static boolean pasarNivel = false; //Booleano que indica si se pasó de nivel. Esto servirá para establecer los puntos iniciales solo al pasar.
-    //Pausa pausa; //Para instanciar el menú de pausa.
-    // private boolean nivelCreado;
-
-    //Constructor para crear el mundo del juego.
-    // public Niveles(){
-        // super(1000, 600, 1);
-    // }
-    //Constructor que, dependiendo del nivel asignará los valores necesarios.
-    public Niveles(int numNivel)
-    {
+    /** Constructor de Niveles que, dependiendo del nivel asignará los valores necesarios.*/
+    public Niveles(int numNivel){
         //Ancho, alto, tamaño de pixel.
         super(1000, 600, 1); //Todos los escenarios tendrán estas dimensiones.
-        // nivelActual = numNivel;
-        //getBackground().setImage("Escenarios/Escenario1.png");
-        // NaveAliada.setPuntosIniciales(115);
-        //pasarNivel = false;
         NaveAliada.setVidas(NaveAliada.getVidasJugador());
-        // nave.setVidas(nave.getVidasJugador()); //Al iniciar el nivel, iniciar con las vidas actuales.
         nave = new NaveAliada();
         crearNivel(numNivel);
         tiempoInicialMilis = System.currentTimeMillis();
@@ -61,41 +45,30 @@ public class Niveles extends World
        addObject(new MostrarInfo(4, 20, Color.WHITE, Color.RED, null), getWidth() - 150, getHeight()-20);
        //Crear las rocas que tendrá el nivel.
        roca.crearRocas(Roca.getNumRocasMax(), this); //Crear las rocas primero. Luego que se vayan eliminando se crearán con el tiempo.
-       //System.out.println(" - NIVELES -");
-        // nivelCreado = false;
-
     }
     public void act(){
         tiempoRestante = tiempoFinalJuego - System.currentTimeMillis(); //El tiempo que le esta a la partida.
         musicaNivel.playLoop(); //Reproducir la música en Loop.
         /*Pausa: Este método revisa si se activó la pausa.*/
         if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
-            //public Pausa(World mundoAntesDePausa)
             Greenfoot.setWorld(new Pausa(this, getBackground()));
-            // Greenfoot.setWorld(new Pausa(this));
-            // Greenfoot.stop();
-        //Condición para saber cuándo se pasó el tiempo del juego
-          
-        /** Se terminó el tiempo.*/
+        /* Se terminó el tiempo.*/
         if(isTiempoFin()){
             musicaNivel.stop(); //Parar la música de nivel al terminarlo.
             nivelActual ++; //Avanzar de nivel.
             if(nivelActual <= 3){ //Si el nivel a crear es menor al 3, que es el máximo.
                 pasarNivel = true; //Indicar que se pasó de nivel para establecer los puntos iniciales.
-                Greenfoot.setWorld(new Intro(nivelActual));
+                Greenfoot.setWorld(new Intro(nivelActual)); //Avanzar de nivel creando primero la intro.
             }
             else //Si númeroActual == 4 significa que el juego terminó.
                 Greenfoot.setWorld(new GameOver(nave)); //Poner la pantalla de Game Over. Se manda la nave para tener las stats.
-            //Avanzar de nivel creando primero la intro.
-            // Greenfoot.stop();
         }
           //public void crearRocasTiempo(World mundoActual)
         roca.crearRocasTiempo(this);
         crearItemTiempo(nave);
     }
-    public void crearNivel(int numNivel){//, NaveAliada nave){
-        //int numRocasMax;
-        //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
+    /** Método que crea el nivel que recibió por parámetro.*/
+    public void crearNivel(int numNivel){
         if(musicaNivel.isPlaying()) //Si hay música del nivel reproduciéndose, pararla.
             musicaNivel.stop(); 
         if(pasarNivel)
@@ -115,25 +88,16 @@ public class Niveles extends World
         switch(numNivel){
             case 1: //Nivel 1
                 setBackground("escenarios/espacio1.jpeg");
-                //NaveAliada.setVidas(3);
                 NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 tiempoDuracionJuego = 30000;
-                //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
-                //Instanciar roca con las rocas máximas y su ratio de aparición.
-                //public Roca(int numRocasMax, int tiempoRegeneracion)
                 //Establecer el máximo de rocas
                 Roca.setNumRocasMax(5);
-                Roca.setTiempoRegeneracion(700);
-                // System.out.println(" - NIVELES 1-");
-                //
-                // System.out.println(" - NIVELES 2-");
+                Roca.setTiempoRegeneracion(700); //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public NaveEnemiga(int tipoEnemigo, int tipoDisparo)
                 addObject(new NaveEnemiga(2, 2), getWidth()/2+getWidth()/4, getHeight()/2-getHeight()/4);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
                 addObject(new NaveEnemiga(1, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
                 addObject(new NaveEnemiga(1, 2), getWidth()/2, 0);
-                // addObject(new NaveEnemiga(3, 1), getWidth()/2-getWidth()/4, getHeight()/2+getHeight()/4);
-                //Greenfoot.setWorld(new Espacio());
                 break;
             case 2:
                 tiempoDuracionJuego = 60000;
@@ -151,7 +115,6 @@ public class Niveles extends World
             case 3:
                 tiempoDuracionJuego = 60000;
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
-                // NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
                 fondo = new GreenfootImage("escenarios/espacio11.png");
                 fondo.scale(1000, 600);
                 setBackground(fondo);
@@ -168,7 +131,6 @@ public class Niveles extends World
                 break;
         }
         tiempoRestante = tiempoDuracionJuego;
-        // roca = new Roca(numRocasMax, 10000); //Esto no se puede porque después de instanciar el mundo no sale hasta moror.
     }
     /** Método que verifica si la música del nivel se está reproduciendo.*/
     public static boolean isMusicaReproduciendose(){
@@ -182,24 +144,7 @@ public class Niveles extends World
     private boolean isTiempoFin(){
         return System.currentTimeMillis() - tiempoFinalJuego >= 0;
     }
-    // public void act(){
-        // if(!nivelCreado){
-            // nivelCreado = true;
-            // Greenfoot.setWorld(new Espacio(System.currentTimeMillis() + 30000, 1, 10));
-        // }
-        // /* - */
-        // Condición para saber cuándo se pasó el tiempo del juego
-      // /*Aquí en lugar de que pare podríamos sacar al boss y al matarlo ahora sí pasar de nivel.*/
-      // /*Pausa: Este método revisa si se activó la pausa.*/
-        // if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
-            // Greenfoot.stop();
-      // if(System.currentTimeMillis() - tiempoFinalJuego >= 0)
-          // Greenfoot.stop();
-          // public void crearRocasTiempo(World mundoActual)
-        // roca.crearRocasTiempo(this);
-        // crearItemTiempo(nave);
-    // }
-    //Método estático que devuelve el nivel actual
+    /** Método estático que devuelve el nivel actual.*/
     public static int getNivelActual(){
         return nivelActual;
     }
@@ -209,23 +154,19 @@ public class Niveles extends World
     public static long getTiempoRestanteNivel(){
         return tiempoRestante;
     }
-    /* - MÉTODOS QUE PODRÁN UTILIZAR TODOS LOS NIVELES*/
-
-    /*Método en el que se creará un item cada cierto tiempo dependiendo de la última vez que se creó y que
-     *  un tiempo generado aleatoriamente supere al tiempo mínimo en la coindición.*/
-    protected void crearItemTiempo(NaveAliada nave){ //El item se creará mínimo cada 30 segundos después de haber hecho efecto por última vez
+    /** Método en el que se creará un item cada cierto tiempo dependiendo de la última vez que se creó y que
+          un tiempo generado aleatoriamente supere al tiempo mínimo en la coindición.*/
+    private void crearItemTiempo(NaveAliada nave){ //El item se creará mínimo cada 30 segundos después de haber hecho efecto por última vez
         int x, y, aleatorio;
+        int velocidadItem = 1;//Cuando inicia el nivel iniciarla así y cuando avance el tiempo cambiarla
         tipoItem = 0;
-        int velocidadItem = 1;//Cuando inicia el nivel iniciarla así y cuandi avance el tiempo cambiarla
-        //Revisará que no exista el item para generar uno nuevo y que se respete el mínimo de tiempo. Se creará en un rango de 10 a 20 segundos.
-        if(!Items.isItemActivo() && (System.currentTimeMillis() - Items.getTiempoFinalItem()) >= Aleatorio.getNumeroAleatorio(1000, 2000)){
+        //Revisará que no exista el item para generar uno nuevo y que se respete el mínimo de tiempo. Se creará en un rango de 1 a 5 segundos.
+        if(!Items.isItemActivo() && (System.currentTimeMillis() - Items.getTiempoFinalItem()) >= Aleatorio.getNumeroAleatorio(1000, 5000)){
             //Generar ancho y alto restándole su mitad a los límites para que no aparezca cortado en pantalla.
             x = Aleatorio.getNumeroAleatorio(Items.getAnchoItem()/2, super.getWidth()-Items.getAnchoItem()/2);
-            //Recordar que y = 0 está en el centro de la pantalla
             /*No están funcionando los límites. (CREO QUE YA, estaba considerando que y iba de -MinY hasta MaxY, pero
              *      "y" es 0 hasta arriba del escenario y getHeight hasta abajo.)*/
             y = Aleatorio.getNumeroAleatorio(Items.getAltoItem(), super.getHeight()/2-Items.getAltoItem()/2);
-            //System.out.println("x: "+ x+ "y: "+ y);
             if(NaveAliada.getVidasJugador() == 5)//Generará todos los items menos el corazón, ya que tiene el máximo de vidas.
                 tipoItem = Aleatorio.getNumeroAleatorio(2, 5);
             else

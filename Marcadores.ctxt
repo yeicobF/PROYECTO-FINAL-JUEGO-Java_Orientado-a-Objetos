@@ -13,6 +13,7 @@ comment4.target=void\ agregaJugadorMarcadores()
 comment4.text=M\u00E9todo\ que\ agregar\u00E1\ al\ jugador\ al\ archivo\ de\ los\ marcadores.
 comment5.params=
 comment5.target=void\ mostrarMarcadores()
+comment5.text=M\u00E9todo\ para\ mostrar\ los\ marcadores\ en\ orden\ descendiente.
 comment6.params=
 comment6.target=void\ calculaEspacioEntreTextos()
 comment6.text=M\u00E9todo\ que\ calcula\ el\ espacio\ entre\ cuadro\ de\ texto\ y\ cuadro\ de\ texto\ para\ que\ queden\ bien\ repartidos.
