@@ -23,4 +23,5 @@ comment7.target=void\ seleccionNave()
 comment7.text=\ M\u00E9todo\ que\ ver\u00E1\ que\ nave\ elegiste.\ Solo\ se\ podr\u00E1\ elegir\ la\ nave\ si\ est\u00E1\ en\ medio\ de\ la\ pantalla.\r\n\ \ \ \ \ \ \ \ No\ exactamente\ en\ medio\ porque\ esto\ va\ a\ variar\ dependiendo\ de\ la\ cantidad\ de\ movimiento,\r\npero\ dentro\ de\ un\ rango\ dado.
 comment8.params=
 comment8.target=greenfoot.GreenfootSound\ getMusica()
+comment8.text=M\u00E9todo\ que\ devuelve\ la\ canci\u00F3n\ que\ se\ reproduce\ para\ detenerla.
 numComments=9

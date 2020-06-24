@@ -1,4 +1,3 @@
-import greenfoot.World;
 import greenfoot.Actor;
 import greenfoot.GreenfootImage;
 import greenfoot.Greenfoot;
@@ -13,9 +12,6 @@ import greenfoot.GreenfootSound;
  */
 public class SeleccionNave extends Menu
 {
-    // NaveAliada nave; //Para mostrar las naves.
-    /* Crear botones de flecha izquierda y derecha.*/
-    // private Etiqueta
     private static GreenfootSound musicaSeleccion = new GreenfootSound("seleccionNave.mp3");; //Estática y diferente para poder evaluar desde main.
     private GreenfootImage imagen; //Para sacar las medidas de las flechas.
     private Boton naveActual, naveNueva; //Será de tipo Botón para que al seleccionarla cambie su tamaño.
@@ -35,7 +31,6 @@ public class SeleccionNave extends Menu
         setBackground("escenarios/espacio1.jpeg");
         /* Crear un texto que indique que es la selección de nave.*/
             //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
-        // musica = new GreenfootSound("seleccionNave.mp3");
         texto = new Etiqueta(35, Color.WHITE, null, null);
         getBackground().drawImage(texto.crearCuadroTexto("SELECCIONE SU NAVE"), getWidth()/2 - texto.getXCentrada(), 40);
         numNaveActual = numNaveNueva = 1; //Empezar con la primer nave.
@@ -49,12 +44,10 @@ public class SeleccionNave extends Menu
         
         imagen = new GreenfootImage("Naves/Aliadas/NaveA"+ numNaveActual + "Grande.png");
         naveActual = Boton.creaBotonImagen(this, imagen, "Naves/Aliadas/NaveA"+ numNaveActual + "Grande.png", getWidth()/2, getHeight()/2);
-        cambioCompleto = true; //Inicializar verdadero, ya que se permite el cambio
-        // mostrarNave();
+        cambioCompleto = true; //Inicializar verdadero, ya que se permite el cambio de la nave actual.
     }
     
     public void act(){
-        //nave.move(1);
         musicaSeleccion.playLoop();
         seleccionNave();
         cambiarNave(); //Verificará si se cambió la nave.
@@ -76,7 +69,6 @@ public class SeleccionNave extends Menu
             naveNueva = Boton.creaBotonImagen(this, imagen, "Naves/Aliadas/NaveA"+ numNaveNueva + "Grande.png", xNueva, getHeight()/2);
         }
         if(!cambioCompleto){
-            //addObject(new ActorAuxiliar("Naves/Aliadas/NaveA"+ numNave + "Grande.png"), getWidth()/2, getHeight()/2);
             if(xActual < getWidth() - naveActual.getImage().getWidth()/2 && ladoCambio){ //Saldrá hacia la derecha.
                 xActual += cantidadMovimiento;
                 naveActual.setLocation(xActual, getHeight()/2);
@@ -91,7 +83,6 @@ public class SeleccionNave extends Menu
                 else
                     xNueva -= cantidadMovimiento;
                 naveNueva.setLocation(xNueva, getHeight()/2);
-                // naveNueva.move(1);
             }
             if(xActual >= getWidth() - naveActual.getImage().getWidth()/2 || xActual <= naveActual.getImage().getWidth()/2
                 && xNueva >= getWidth()/2 - 5 && xNueva <= getWidth()/2 + 5){
@@ -106,17 +97,6 @@ public class SeleccionNave extends Menu
             }
         }
     }
-    /** Método que mueve las naves cuando hay un cambio de estas.*/
-    // private void moverNaves(int xActual, int xNueva){
-        // if(xActual < getWidth() - naveActual.getImage().getWidth()/2 && !ladoCambio){ //Saldrá hacia la derecha.
-            // xActual ++;
-            // naveActual.move(1);
-        // }
-        // if(xActual > naveActual.getImage().getWidth()/2 && ladoCambio){ //Saldrá hacia la izquierda.
-            // xActual --;
-            // naveActual.move(1);
-        // }
-    // }
     /** Método que irá cambiando la nave que se muestra.*/
     private void cambiarNave(){
         /*if(boton = derecha) numNave ++;
@@ -159,12 +139,10 @@ public class SeleccionNave extends Menu
         /* Si se seleccionó la nave y está en medio de la pantalla.*/
         if((Greenfoot.mouseClicked(naveActual) || Greenfoot.isKeyDown("enter"))
                 && naveActual.getX() >= getWidth()/2 - 5 && naveActual.getX() <= getWidth()/2 + 5){
-            //System.out.println("- Se pudo seleccionar la nave porque está en medio de la pantalla.");
             NaveAliada.setDiseñoNaveAliada(numNaveActual);
             NaveAliada.setTipoDisparo(1); //El tipo de disparo base.
             musicaSeleccion.stop(); //Detener la música , al seleccionar la nave.
             Greenfoot.setWorld(new Intro(1)); //Mostrar la instroducción del primer nivel.
-            // Greenfoot.setWorld(new Niveles(1));
         }
     }
     /** Método que devuelve la canción que se reproduce para detenerla.*/
