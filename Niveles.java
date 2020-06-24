@@ -157,10 +157,10 @@ public class Niveles extends World
                 setBackground(fondo);
                 Roca.setNumRocasMax(12);
                 Roca.setTiempoRegeneracion(450);
-                addObject(new NaveEnemiga(3, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
-                addObject(new NaveEnemiga(3, 2), getWidth()/2+getWidth()/4, getHeight()/2-getHeight()/4);
-                addObject(new NaveEnemiga(3, 2), getWidth()/2-getWidth()/4, getHeight()/2+getHeight()/4);
-                addObject(new NaveEnemiga(3, 2), getWidth()/2-getWidth()/4, getHeight()/2-getHeight()/4);
+                addObject(new NaveEnemiga(3, 2), getWidth()/4, getHeight()/2+getHeight()/4);
+                addObject(new NaveEnemiga(3, 2), getWidth()/4, getHeight()/2-getHeight()/4);
+                addObject(new NaveEnemiga(3, 2), getWidth()/4, getHeight()/2+getHeight()/4);
+                addObject(new NaveEnemiga(3, 2), getWidth()/4, getHeight()/2-getHeight()/4);
                 addObject(new NaveEnemiga(2, 2), 0, 0);
                 addObject(new NaveEnemiga(2, 2), getWidth(), 0);
                 addObject(new NaveEnemiga(1, 2), getWidth(), getHeight());

@@ -2,6 +2,7 @@ import greenfoot.Greenfoot;  // (World, Actor, GreenfootImage, Greenfoot and Mou
 import greenfoot.World;
 import greenfoot.GreenfootSound;
 import greenfoot.Color;
+import greenfoot.GreenfootImage; 
 /**
  * Clase que manejará el acceso a todos los submenús, además de métodos que tendrán en común.
  *  Antes era la clase Portada.
@@ -18,6 +19,7 @@ public class Menu extends World
 {
     protected static World mundoAnterior; //Para guardar el mundo en donde estábamos antes de ir a Siguiente página. Estático para que no se reestablezca.
     protected static long tiempoCambio; //El tiempo que ha transcurrido desde que se avanzó hacia adelante o atrás. Esto para que no detecte un click a los dos botones inmediatamente.
+    private GreenfootImage fondo; //Para el fondo del menú.
     protected Boton volverMenu; //Botón para volver al menú del juego.
     protected Boton botonSiguiente; //Botón para avanzar a la siguiente "página".
     protected Boton botonAnterior; //Para volver si presionamos siguiente.
@@ -28,7 +30,7 @@ public class Menu extends World
     private Boton botonAcercaDe;
     private Boton botonComoJugar;
     private Boton botonMarcadores;
-    protected static GreenfootSound musica; //Para reproducir la música de fondo.
+    protected static GreenfootSound musica = new GreenfootSound("sounds/TitleScreen.mp3"); //Para reproducir la música de fondo.
     /**
      * Constructor for objects of class Menu.
      * 
@@ -42,30 +44,22 @@ public class Menu extends World
                                                            Habría que pensar en una mejor implementación.*/
         super(1000, 600, 1);
         setBackground("escenarios/espacio5.jpg");
-        /* Aquí no se necesita checar lo del gameOver porque esto solo es para poner boton de volver al menú y siguiente
-           en los submenús. No es el constructor para el menú principal.*/
-        // if(GameOver.isMusicaReproduciendose()) //Si se está reproduciendo música de gameOver.
-            // GameOver.pararMusica(); //Detener la música de GameOver.
         texto = new Etiqueta(30, Color.GRAY, null, null);
         volverMenu = Boton.creaBotonSombra(this, "Regresar al menu", texto, getWidth()/6, getHeight() - 50, Color.WHITE, null, null, 30, 2);
         if(siguiente){
             crearSiguiente();
             botonAnterior = null; //Inicializar el botón anterior como null.
         }
-        // else{
-            // crearAnterior(); //Crear botón para volver.
-            // botonSiguiente = null; //Inicializar el botón siguiente como null para que no lo detecte.
-        // }
     }
     public Menu(){
         super(1000, 600, 1); 
-        setBackground("escenarios/espacio2.jpg");
+        fondo = new GreenfootImage("escenarios/espacio2.jpg");
+        fondo.scale(1000, 600);
+        setBackground(fondo);
         if(GameOver.isMusicaReproduciendose()) //Si se está reproduciendo música de gameOver.
             GameOver.pararMusica(); //Detener la música de GameOver.
         if(Niveles.isMusicaReproduciendose())
             Niveles.pararMusica();
-            /* public static Actor creaBoton(World mundoActual, String texto, int x, int y,
-                    Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)*/
         /* Crear cuadros de texto no necesariamente interactuables:
             -> public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
             -> public GreenfootImage crearCuadroTexto(String s) <- Recibir los cuadros de texto como imagen.*/
@@ -77,25 +71,15 @@ public class Menu extends World
         botonAcercaDe = Boton.creaBotonSombra(this, "Acerca de", texto, getWidth()/2, getHeight()/10*5, Color.WHITE, null, null, 50, 20);
         botonMarcadores = Boton.creaBotonSombra(this, "Marcadores", texto, getWidth()/2, getHeight()/10*7, Color.WHITE, null, null, 50, 20);
         botonCreditos = Boton.creaBotonSombra(this, "Créditos", texto, getWidth()/2, getHeight()/10*9, Color.WHITE, null, null, 50, 5);
-        
-        if(musica != null) //Si ya se estaba reproduciendo música.
-            musica.stop();
-        musica = new GreenfootSound("sounds/TitleScreen.mp3");
-        // musica.playLoop(); //Reproducir la canción en un loop.
     }
-    public void act()
-    {
+    public void act(){
         musica.playLoop(); //Reproducir la canción en un loop.
-        if(Greenfoot.mouseClicked(botonIniciar)){
-            // musica.stop();
-            //Mode world = new Mode();
-            //Niveles nivel = new Niveles();
-            // NaveAliada.setDiseñoNaveAliada(1);
-            // NaveAliada.setTipoDisparo(1);
-            // Greenfoot.setWorld(new Intro());
+        seleccionMenu();
+    }
+    /** Método que verá qué parte del menú se seleccionó.*/
+    private void seleccionMenu(){
+        if(Greenfoot.mouseClicked(botonIniciar))
             Greenfoot.setWorld(new SeleccionNave());
-            // Greenfoot.setWorld(new Niveles(1));
-        }
         if(Greenfoot.mouseClicked(botonCreditos))
             Greenfoot.setWorld(new Creditos());
         if(Greenfoot.mouseClicked(botonAcercaDe))
@@ -116,9 +100,9 @@ public class Menu extends World
     }
     /** Método para verificar si se presionó "siguiente para avanzar a la siguiente "página".*/
     protected boolean isSiguiente(){
-        if(Greenfoot.mouseClicked(botonSiguiente) && botonSiguiente != null) //El botón existe.
-            return true; //Si se presionó el botón, regresar true.
-        return false; //No se tocó el botón.
+        return Greenfoot.mouseClicked(botonSiguiente) && botonSiguiente != null; //El botón existe.
+        //Si se presionó el botón, regresar true.
+        //No se tocó el botón.
     }
     /** Método para crear un botón que regrese a la "página" anterior.*/
     protected void crearAnterior(){
@@ -126,13 +110,6 @@ public class Menu extends World
     }
     /** Método que verifica si se presionó el botón "anterior" para volver.*/
     protected boolean isAnterior(){
-        if(Greenfoot.mouseClicked(botonAnterior) && botonAnterior != null) //El botón existe.
-            return true;
-        return false;
+        return Greenfoot.mouseClicked(botonAnterior) && botonAnterior != null; //El botón existe.
     }
-    // /** Método que verificará que parte del menú se seleccionó.*/
-    // private void seleccionMenu(World seleccion){
-        // musica.stop(); //Detener la música. Aunque realmente solo es necesario al iniciar el juego. Así que mejor lo comentaré.
-        // Greenfoot.setWorld(seleccion);
-    // }
 }
