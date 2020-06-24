@@ -1,4 +1,4 @@
-import greenfoot.Greenfoot;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.Greenfoot;
 import greenfoot.World;
 import greenfoot.GreenfootSound;
 import greenfoot.Color;
@@ -12,14 +12,14 @@ import greenfoot.GreenfootImage;
  * - Marcadores
  * - Créditos
  * 
- * @author (Team Nave) 
- * @version (Viernes, 20 de junio de 2020)
+ * @author (Team Naves) 
+ * @version (Miércoles, 23 de junio de 2020)
  */
 public class Menu extends World
 {
+    protected static GreenfootSound musica = new GreenfootSound("sounds/TitleScreen.mp3"); //Para reproducir la música de fondo.
     protected static World mundoAnterior; //Para guardar el mundo en donde estábamos antes de ir a Siguiente página. Estático para que no se reestablezca.
     protected static long tiempoCambio; //El tiempo que ha transcurrido desde que se avanzó hacia adelante o atrás. Esto para que no detecte un click a los dos botones inmediatamente.
-    private GreenfootImage fondo; //Para el fondo del menú.
     protected Boton volverMenu; //Botón para volver al menú del juego.
     protected Boton botonSiguiente; //Botón para avanzar a la siguiente "página".
     protected Boton botonAnterior; //Para volver si presionamos siguiente.
@@ -30,11 +30,7 @@ public class Menu extends World
     private Boton botonAcercaDe;
     private Boton botonComoJugar;
     private Boton botonMarcadores;
-    protected static GreenfootSound musica = new GreenfootSound("sounds/TitleScreen.mp3"); //Para reproducir la música de fondo.
-    /**
-     * Constructor for objects of class Menu.
-     * 
-     */
+    private GreenfootImage fondo; //Para el fondo del menú.
     /** Constructor que solo usarán las subclases y que recibirá true si se quiere crear
             un botón de siguiente para avanzar a la siguiente "pantalla", o false si no se requiere.*/
     protected Menu(boolean siguiente){
@@ -56,10 +52,6 @@ public class Menu extends World
         fondo = new GreenfootImage("escenarios/espacio2.jpg");
         fondo.scale(1000, 600);
         setBackground(fondo);
-        // musica = new GreenfootSound("sounds/TitleScreen.mp3");
-        // if(musica.isPlaying())
-            // musica.stop();
-        // musica = new GreenfootSound("sounds/TitleScreen.mp3");
         if(SeleccionNave.getMusica().isPlaying())
             SeleccionNave.getMusica().stop(); //Detener la canción de la selección de naves.
         if(GameOver.isMusicaReproduciendose()) //Si se está reproduciendo música de gameOver.
@@ -101,7 +93,6 @@ public class Menu extends World
     /** Método para volver al menú en los submenús.*/
     protected void volverMenu(){
         if(Greenfoot.mouseClicked(volverMenu))
-            // musica.stop(); //Detener la música reproduciéndose.
             Greenfoot.setWorld(new Menu());
     }
     /** Método para crear un botón "siguiente".*/
@@ -112,7 +103,6 @@ public class Menu extends World
     protected boolean isSiguiente(){
         return Greenfoot.mouseClicked(botonSiguiente) && botonSiguiente != null; //El botón existe.
         //Si se presionó el botón, regresar true.
-        //No se tocó el botón.
     }
     /** Método para crear un botón que regrese a la "página" anterior.*/
     protected void crearAnterior(){
