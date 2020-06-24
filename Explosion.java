@@ -2,46 +2,40 @@ import greenfoot.GreenfootImage;  // (World, Actor, GreenfootImage, Greenfoot an
 import greenfoot.Actor;
 import greenfoot.GreenfootSound; //Para el sonido de las explosiones.
 /**
- * Write a description of class Explosion here.
+ * Clase que mostrará una explosión cuando un objeto sea destruido.
  *
  * @author (Jacob)
  * @version (Lunes, 22 de junio de 2020)
  */
 public class Explosion extends Actor
 {
-    /**
-     * Act - do whatever the Explosion wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private final long tiempoCambioTamaño = 15;//El tiempo con el que cambie de tamaño la explosión.
     private GreenfootSound sonidoExplosion; //Los sonidos de explosión.
     private Imagen imagen; //Para modificar el ancho y el alto.
     private int modificadorImagen; //Para cambiar el tamaño de la imagen.
-    private final long tiempoCambioTamaño = 15;//El tiempo con el que cambie de tamaño la explosión.
     private long tiempoDiferencia; //Es el tiempo que tendrá que pasar para que cambie de tamaño la explosión.
-    boolean crecio, decrecio; //Booleano que indicará si ya creció y decreció a explosión.
+    private boolean crecio, decrecio; //Booleano que indicará si ya creció y decreció a explosión.
     /*Recibir la imagen del objeto que explotó para que la explosión mida el mismo tamaño.*/
     public Explosion(GreenfootImage imagenObjeto){
         setImage("Explosion.png");
         sonidoExplosion = new GreenfootSound("explosion"+ Aleatorio.getNumeroAleatorio(1, 7) +".mp3");
         sonidoExplosion.play();
-        /*Reescalar la imagen al tamaño del objeto que explotó.
-         * El tamaño de la explosión será equivalente al tamaño del objeto que explotó, pero medirá
+        /* El tamaño de la explosión será equivalente al tamaño del objeto que explotó, pero medirá
             1/2 tamaño más que la original para que quede un poco más grande la explosión.*/
+        /*Reescalar la imagen al tamaño del objeto que explotó.*/
         getImage().scale(imagenObjeto.getWidth()*3/2, imagenObjeto.getHeight()*3/2);
         imagen = new Imagen(getImage());
         modificadorImagen = 0; //Hacer que la imagen aparezca pequeña para que vaya creciendo.
         tiempoDiferencia = System.currentTimeMillis();
-        //System.out.println(" - EXPLOSIÓN - ");
         /*Aquí se hará la imagen lo más pequeña posible.*/
         setImage(imagen.modificaImagenAnchoAltoMin(getImage(), 1, 1)); //Se pondrá la imagen con el tamaño mínimo.
         crecio = decrecio = false; //Inicializar para las condiciones de imagen.
     }
-
     public void act(){
         if(animarExplosion())
             getWorld().removeObject(this);
     }
-    /*Método que hará que la explosión empiece siendo pequeña, crezca y luego se vuelva a hacer pequeña.*/
+    /** Método que hará que la explosión empiece siendo pequeña, crezca y luego se vuelva a hacer pequeña.*/
     private boolean animarExplosion(){
         //public static boolean isEscalaModificable(GreenfootImage imagen, int divisor, int multiplicacion)
             /* Si la imagen se puede modificar (sus dimensiones != 0), entonces modficarla.*/
@@ -69,7 +63,6 @@ public class Explosion extends Actor
           setImage("Explosion.png");
           setImage(imagen.modificaImagenAnchoAltoMin(getImage(), 1, modificadorImagen));
         }
-        //System.out.println("Crecio :"+ crecio +", Decrecio: "+ decrecio);
         return crecio && decrecio; //Devuelve true si terminó su proceso.
     }
 }

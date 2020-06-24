@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Explosion
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Explosion\ here.\r\n\r\n\ @author\ (Jacob)\r\n\ @version\ (Lunes,\ 22\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ que\ mostrar\u00E1\ una\ explosi\u00F3n\ cuando\ un\ objeto\ sea\ destruido.\r\n\r\n\ @author\ (Jacob)\r\n\ @version\ (Lunes,\ 22\ de\ junio\ de\ 2020)\r\n
 comment1.params=imagenObjeto
 comment1.target=Explosion(greenfoot.GreenfootImage)
 comment1.text=Recibir\ la\ imagen\ del\ objeto\ que\ explot\u00F3\ para\ que\ la\ explosi\u00F3n\ mida\ el\ mismo\ tama\u00F1o.
