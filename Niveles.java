@@ -43,6 +43,8 @@ public class Niveles extends World
         //getBackground().setImage("Escenarios/Escenario1.png");
         // NaveAliada.setPuntosIniciales(115);
         //pasarNivel = false;
+        NaveAliada.setVidas(NaveAliada.getVidasJugador());
+        // nave.setVidas(nave.getVidasJugador()); //Al iniciar el nivel, iniciar con las vidas actuales.
         nave = new NaveAliada();
         crearNivel(numNivel);
         tiempoInicialMilis = System.currentTimeMillis();
@@ -96,6 +98,8 @@ public class Niveles extends World
         //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
         if(musicaNivel.isPlaying()) //Si hay música del nivel reproduciéndose, pararla.
             musicaNivel.stop(); 
+        if(pasarNivel)
+            NaveAliada.setVidas(3); //Al iniciar cada nivel, dar 3 vidas.
         nivelActual = numNivel; //Indicar el nivel actual.
         addObject(nave, getWidth()/2-NaveAliada.getAnchoImagen()/2, getHeight()/2+NaveAliada.getAltoImagen()/2);//Aparecer a la nave en el centro
         musicaNivel = new GreenfootSound("Nivel"+ numNivel +".mp3"); //Se pondrá la canción dependiendo del número del nivel.

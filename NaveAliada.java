@@ -22,7 +22,7 @@ public class NaveAliada extends Nave
     private static int x, y; //Para obtener las coordenadas desde las naves enemigas.
     private int puntosSaludIniciales;
     private long inicioDisparoMilis = 0;
-    private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
+    private static int vidas;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int puntosMenosAlMorir = 0;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
     // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
