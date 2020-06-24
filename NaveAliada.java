@@ -22,7 +22,7 @@ public class NaveAliada extends Nave
     private static int x, y; //Para obtener las coordenadas desde las naves enemigas.
     private int puntosSaludIniciales;
     private long inicioDisparoMilis = 0;
-    private static int vidas = 3;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
+    private static int vidas;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
     private int puntosMenosAlMorir = 0;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
     // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
@@ -220,7 +220,7 @@ public class NaveAliada extends Nave
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
                 //No necesitan bajarse los PS porque no se los asignamos
                 //Switch case para ver el tipo de item y actuar.
-                Items.mostrarInfoItem(getWorld());
+                // Items.mostrarInfoItem(getWorld());
                 sonidoItem.play(); //Reproducir el efecto al tocar el item.
                 switch(Items.getTipoItem()){
                     case 1: //Aumentar el número de vidas. Es lo único que hacemos, por lo que terminamos de inmediato.

@@ -28,7 +28,7 @@ public class Menu extends World
     private Boton botonAcercaDe;
     private Boton botonComoJugar;
     private Boton botonMarcadores;
-    private GreenfootSound musica; //Para reproducir la música de fondo.
+    protected static GreenfootSound musica; //Para reproducir la música de fondo.
     /**
      * Constructor for objects of class Menu.
      * 
@@ -62,7 +62,9 @@ public class Menu extends World
         setBackground("escenarios/espacio2.jpg");
         if(GameOver.isMusicaReproduciendose()) //Si se está reproduciendo música de gameOver.
             GameOver.pararMusica(); //Detener la música de GameOver.
-        /* public static Actor creaBoton(World mundoActual, String texto, int x, int y,
+        if(Niveles.isMusicaReproduciendose())
+            Niveles.pararMusica();
+            /* public static Actor creaBoton(World mundoActual, String texto, int x, int y,
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)*/
         /* Crear cuadros de texto no necesariamente interactuables:
             -> public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
@@ -85,7 +87,7 @@ public class Menu extends World
     {
         musica.playLoop(); //Reproducir la canción en un loop.
         if(Greenfoot.mouseClicked(botonIniciar)){
-            musica.stop();
+            // musica.stop();
             //Mode world = new Mode();
             //Niveles nivel = new Niveles();
             // NaveAliada.setDiseñoNaveAliada(1);

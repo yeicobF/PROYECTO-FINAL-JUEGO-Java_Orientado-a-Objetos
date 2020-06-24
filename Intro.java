@@ -25,6 +25,8 @@ public class Intro extends World
         fondo.scale(1000, 600); //Reescalar el fondo para que quepa en pantalla.
         setBackground(fondo);
         nivel = nivelIntro; //El número de la introducción indicará el número del nivel.
+        if(nivel == 1)
+            NaveAliada.setVidas(3); //Si entramos en el primer nivel, establecer las vidas como 3.
         textosIntro = new Texto(nivelIntro);
         addObject(textosIntro, 500, 200);
     }
