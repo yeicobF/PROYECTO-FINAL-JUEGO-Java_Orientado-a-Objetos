@@ -8,78 +8,43 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class NaveAliada extends Nave
 {
-    private Jugador jugador; //Para al perder, enviar nuestra información.
-    /*protected MetodosGenerales m = new MetodosGenerales();//Variable para usar sus métodos como el de reescalar la imagen.
-        Se puede usar aquí porque es protected en la superclase Nave.*/
-    //Medir el tiempo para no poder disparar de manera tan seguida, tener un delay entre disparo y disparo.
-    /*GreenfootImage imagen; //Esta variable guardará la imagen actual para reescalarla con su respectivo método.
-        * NO HACE FALTA LA VARIABLE PORQUE LE MÉTODO REGRESA LA IMAGEN YA MODIFICADA * */
-    /*Bandera para que no se esté haciendo el setImage() constantemente cuando no se cumplan ciertas condiciones.
-       Por ejemplo, que no lo esté haciendo una y otra vez cuando se terminó el escudo, sino solo se haga una vez
-        porque la bandera va a cambiar una vez cambie.*/
-    private GreenfootSound sonidoItem;
-    private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
-    private static int x, y; //Para obtener las coordenadas desde las naves enemigas.
-    private int puntosSaludIniciales;
-    private long inicioDisparoMilis = 0;
-    private static int vidas;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
-    private int puntosMenosAlMorir = 0;
     //Manejar separados de NaveEnemiga, si no se combinarán sus puntos de salud en todas las instancias.
-    // private static int puntosSalud;//Privados porque MostrarInfo no los mostrará en tiempo real siendo protegidos.
     /*El número de vidas será estático para que no se reinicie sino que se quede su número cada que se reinicie el mundo.*/
-    // private static int vidas = 3;//Número de vidas actuales del jugador. Estas se descuentan al perder todos los puntos de Salud.
+    private static boolean diseñoOriginalActivo; //Estático para revisar al tomar el escudo no destruya a los enemigos.
+    private static int anchoImagen;
+    private static int altoImagen;
+    private static int vidas;// Inicializar vidas en 3 como estáticas para que al instanciar no se reinicien. Aunque esto aún no funciona.
+    private static int x, y; //Para obtener las coordenadas desde las naves enemigas.
     private static int puntosIniciales; //Puntos con los que comenzamos los niveles. Se manejarán con getters y setters.
     private static int puntos;//La puntuación del jugador que se reiniciará al morir
     private static int diseñoNaveAliada;  //Para la creación del nivel será necesario.
     private static int tipoDisparoAliada;
+    private Jugador jugador;
+    private GreenfootSound sonidoItem;
+    private int puntosSaludIniciales;
+    private int puntosMenosAlMorir = 0;
     private int tipoDisparoInicial;
-    private static int anchoImagen;
-    private static int altoImagen;
-    /** Constructor para la selección de naves que mostrará la nave actual, pero más grande.
-       No es factible, ya que ejecuta el act() y causa problemas. Mejor utilizaré el
-        actor auxiliar.*/
-    // public NaveAliada(int numNave){
-        // setImage("Naves/Aliadas/NaveA"+ numNave + "Grande.png");
-    // }
-    //CONSTRUCTOR que tomará en cuenta el diseño de la nave, por ejemplo, para cuandola modificamos
+    private long inicioDisparoMilis = 0;
+    
+    /** Constructor de la nave del jugador.*/
     public NaveAliada(){
-        //-> El tipo de disparo lo debería determinar el diseño y no deberíamos mandarlo. Esto es una posibilidad, pero hay que pensarlo.
-        //super();//Los puntos de salud son de 100 como base, ya que el super constructor (de la clase Nave) lo establece.
-        //System.out.println("PS NAVE: "+ puntosSalud);
         sonidoItem = new GreenfootSound("tocarItems.mp3"); //El sonido que se reproducirá al tocar un item.
-        
-        puntosSalud += 200;
-        // if(diseñoNaveAliada == 1){ //La nave potente por ser la más poderosa que se podrá obtener
-            // //setImage("NavePotente.png");
-            // puntosSalud+= 100;//Como es una nave más poderosa, se aumentará su vida
-            // //tipoDisparo= Algún disparo poderoso que determinaremos más adelante.
-
-        // }//Si no, que se utilice la nave predeterminada que es la que establecimos con los diseños de Greenfoot
-        // else
-            // if(Character.compare(diseñoNave, '1')==0)//Algún otro diseño y así sucesivamente
-            // //vida+=50;//Cada que se modifique la nave aumentará la vida y cosas así
+        puntosSalud += 200; //Tendremos 100 + 200 PS.
         //public MostrarInfo(int puntosSalud, int tipoInfo, int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
         infoPS = new MostrarInfo(puntosSalud, 0, 15, Color.RED, Color.WHITE, null);
         diseñoOriginalActivo = true; //El diseño original es el que no ha sido afectado por los items.
-        //this.puntosIniciales = puntosIniciales; //Iniciar con los puntos recibidos.
-        // puntos = puntosIniciales; //Reiniciar los puntos al morir. Si se pasa de nivel, se quedan. Por lo que habrá que tener puntos iniciales.
         setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada + ".png"); //De esta forma pondremos la imagen dependiendo del diseño para no repetirlo en cada diseño.
-        /*El método de abajo (implementado en la clase Espacio) servirá para reescalar la imagen.
-            public GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divsior, int multiplicacion)*/
-            //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
+        //imagen = espacio.modificarEscalaImagen(getImage(), 2, 1); //Enviar la imagen con sus modificadores y establecerla reescalada.
         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1));//Acomodar la imagen modificada. La recibimos del método directamente. No necesitamos ninguna variable.
-        /*Hay que tener una condición para el diseño de la nave. Este se estableció con el super construcor.*/
-        //public Pantalla(World mundoActual, Actor objeto)
-            //Instanciamos después de establecer la imagen. La necesitamos.
+        /*Hay que tener una condición para el diseño de la nave. Este se estableció con el super constructor.*/
         anchoImagen = getImage().getWidth();
         altoImagen = getImage().getHeight();
         puntosSaludIniciales = puntosSalud;
+        /*public Pantalla(World mundoActual, Actor objeto)
+            -> Instanciamos después de establecer la imagen. La necesitamos.*/
         pantalla = new Pantalla(this);
     }
-    /*Clase para el movimiento manual de la nave. La diferimos del Movimiento de la nave enemiga porque
-     * esa se moverá con numeros generados de manera aleatoria. Si la podemos hacer más general, lo haremos.*/
-    public void act()
-    {
+    public void act(){
         //Método para mostrar los PS de cada nave y que se muevan con ellos. Implementado en clase Nave como PROTECTED.
         mundo = getWorld();
         //Tomar las coordenadas para dárselas a las naves enemigas.
@@ -89,53 +54,36 @@ public class NaveAliada extends Nave
         /*public static long disparar(World mundoActual, GreenfootImage imagenNave,
                         long inicioDisparoMilis, int tipoDisparo, int direccion, int x, int y)*/
         inicioDisparoMilis = Disparo.disparar(mundo, getImage(), inicioDisparoMilis, tipoDisparoAliada, direccion, getX(), getY());
-        //public static void manetenerObjetoLimite(World mundoActual, Actor objeto, int x, int y)
-        //Pantalla.manetenerObjetoLimite(w, this, getX(), getY());//Mantiene el objeto dentro de los límites.
-        //public void mantenerObjetoLimite(int x, int y)
-        movimientoLimites(mundo, getX(), getY());
-        //Revisamos que el item siga dentro de su tiempo y que haya chocado, que haya un tipo de item.
+         movimientoLimites(mundo, getX(), getY());
         efectosItem();
-            
-        // /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
-        // Ya implementé esto en un método
         morirChoque(puntosSalud);//Método que reinicia el juego si perdiste una vida
-        perder(); //Método que detiene el juego
-        // if(m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Roca.class), this,  (Espacio)getWorld())
-            // || m.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, NaveEnemiga.class), this,  (Espacio)getWorld())){
-            // vidas--;
-            // Greenfoot.setWorld(new Espacio());//Este método crea el mundo de nuevo después de morir.
-            // /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/
-        // }
+        perder();
     }
-
-    /*Método que controlará el movimiento de nuestra nave.*/
+    /** Método que controlará el movimiento de nuestra nave.*/
     protected void movimiento(){
-        //Checar que esté dentro de loslímites en x y y para que no se corte la nave. Limitaré con la altura para cuando estamos volteados.
-        // if((getX() >= getImage().getHeight()) && (getX() <= (w.getWidth() - getImage().getHeight()))
-                // && (getY() >= getImage().getHeight()) && (getY() <= w.getHeight() - getImage().getHeight())){
-            if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w"))//ARRIBA
-               setDireccion(Direccion.ARRIBA); //super.act(direccion); //Se podría hacer así si recibiera esos parámetros el método act() de la superclse
-            if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s"))
-                setDireccion(Direccion.ABAJO);//ABAJO
-            if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a"))
-                setDireccion(Direccion.IZQUIERDA);//IZQUIERDA
-            if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d"))
-                setDireccion(Direccion.DERECHA);//DERECHA
-            /*Los métodos siguientes están así porque se revisan todas las posibilidades. Es decir, todas las combinaciones
-                de teclas que podrían causar un tipo de movimiento en diagonal. Porque esto se toma en cuenta para
-                modificar la posición de los sprites.*/
-            if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w"))
-                    || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("up")))
-                setDireccion(Direccion.ARRIBA_DERECHA); //ARRIBA_DERECHA
-            if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("up")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("w"))
-                    || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("up")))
-                setDireccion(Direccion.ARRIBA_IZQUIERDA);//ARRIBA_IZQUIERDA
-            if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("s"))
-                    || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("down")))
-                setDireccion(Direccion.ABAJO_DERECHA);//ABAJO_DERECHA
-            if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("s"))
-                    || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("down")))
-                setDireccion(Direccion.ABAJO_IZQUIERDA);//ABAJO_IZQUIERD
+        if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w"))//ARRIBA
+           setDireccion(Direccion.ARRIBA); //super.act(direccion); //Se podría hacer así si recibiera esos parámetros el método act() de la superclse
+        if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s"))
+            setDireccion(Direccion.ABAJO);//ABAJO
+        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a"))
+            setDireccion(Direccion.IZQUIERDA);//IZQUIERDA
+        if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d"))
+            setDireccion(Direccion.DERECHA);//DERECHA
+        /*Los métodos siguientes están así porque se revisan todas las posibilidades. Es decir, todas las combinaciones
+            de teclas que podrían causar un tipo de movimiento en diagonal. Porque esto se toma en cuenta para
+            modificar la posición de los sprites.*/
+        if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w"))
+                || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("up")))
+            setDireccion(Direccion.ARRIBA_DERECHA); //ARRIBA_DERECHA
+        if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("up")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("w"))
+                || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("up")))
+            setDireccion(Direccion.ARRIBA_IZQUIERDA);//ARRIBA_IZQUIERDA
+        if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("s"))
+                || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("down")))
+            setDireccion(Direccion.ABAJO_DERECHA);//ABAJO_DERECHA
+        if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("s"))
+                || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("down")))
+            setDireccion(Direccion.ABAJO_IZQUIERDA);//ABAJO_IZQUIERD
     }
     protected void setDireccion(int direccion){
         this.direccion = direccion; //Establecer nuestra direccion

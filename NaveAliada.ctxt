@@ -3,7 +3,7 @@ comment0.target=NaveAliada
 comment0.text=\r\n\ Esta\ es\ una\ subclase\ de\ la\ superclase\ Nave\ que\ tiene\ como\ funci\u00F3n\ manejar\ las\ naves\ que\ controlar\u00E1\ el\ jugador.\r\n\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Lunes,\ 22\ de\ junio\ de\ 2020)\r\n
 comment1.params=
 comment1.target=NaveAliada()
-comment1.text=\ Constructor\ para\ la\ selecci\u00F3n\ de\ naves\ que\ mostrar\u00E1\ la\ nave\ actual,\ pero\ m\u00E1s\ grande.\r\n\ \ \ \ \ \ \ No\ es\ factible,\ ya\ que\ ejecuta\ el\ act()\ y\ causa\ problemas.\ Mejor\ utilizar\u00E9\ el\r\nactor\ auxiliar.
+comment1.text=Constructor\ de\ la\ nave\ del\ jugador.
 comment10.params=
 comment10.target=int\ getCordX()
 comment10.text=Getters\ est\u00E1ticos\ de\ coordenadas\ para\ NaveEnemiga.
@@ -31,7 +31,6 @@ comment19.target=void\ setPuntosIniciales(int)
 comment19.text=\ M\u00E9todo\ que\ establecer\u00E1\ los\ puntos\ iniciales\ del\ jugador.\ Estos\ ser\u00E1n\ 0\r\n\ \ \ \ \ \ \ en\ el\ primer\ nivel.\ Despu\u00E9s\ ser\u00E1n\ los\ puntos\ con\ los\ que\ se\ termin\u00F3\ en\r\nel\ nivel\ anterior,\ por\ lo\ que\ puntosIniciales\ \=\ puntosUltimoNivel.
 comment2.params=
 comment2.target=void\ act()
-comment2.text=Clase\ para\ el\ movimiento\ manual\ de\ la\ nave.\ La\ diferimos\ del\ Movimiento\ de\ la\ nave\ enemiga\ porque\r\nesa\ se\ mover\u00E1\ con\ numeros\ generados\ de\ manera\ aleatoria.\ Si\ la\ podemos\ hacer\ m\u00E1s\ general,\ lo\ haremos.
 comment20.params=
 comment20.target=int\ getPuntosIniciales()
 comment20.text=Creo\ que\ este\ getter\ no\ lo\ necesitaremos.
