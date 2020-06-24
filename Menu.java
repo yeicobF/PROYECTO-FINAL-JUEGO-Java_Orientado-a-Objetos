@@ -62,7 +62,9 @@ public class Menu extends World
         setBackground("escenarios/espacio2.jpg");
         if(GameOver.isMusicaReproduciendose()) //Si se está reproduciendo música de gameOver.
             GameOver.pararMusica(); //Detener la música de GameOver.
-        /* public static Actor creaBoton(World mundoActual, String texto, int x, int y,
+        if(Niveles.isMusicaReproduciendose())
+            Niveles.pararMusica();
+            /* public static Actor creaBoton(World mundoActual, String texto, int x, int y,
                     Color colorFuente, Color colorFondo, Color bordeFuente, int tamañoFuente)*/
         /* Crear cuadros de texto no necesariamente interactuables:
             -> public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)

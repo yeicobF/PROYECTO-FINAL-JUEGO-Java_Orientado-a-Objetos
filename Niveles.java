@@ -14,6 +14,8 @@ public class Niveles extends World
      * Constructor for objects of class Niveles.
      *
      */
+    //Inicializar con la canción para que se pueda verificar desde el menú si hay música reproduciéndose.
+    private static GreenfootSound musicaNivel = new GreenfootSound("Nivel1.mp3"); /* Para reproducir la música de cada nivel. Estática para detener la del nivel anterior y así.*/
     private GreenfootImage fondo; //Para el fondo de pantalla de cada nivel.
     protected Roca roca; //Todos los nieles tendrán rocas (meteoros).
     protected NaveAliada nave;
@@ -63,6 +65,7 @@ public class Niveles extends World
     }
     public void act(){
         tiempoRestante = tiempoFinalJuego - System.currentTimeMillis(); //El tiempo que le esta a la partida.
+        musicaNivel.playLoop(); //Reproducir la música en Loop.
         /*Pausa: Este método revisa si se activó la pausa.*/
         if(Pausa.isPausa()) //Si se pausa, mostrar el menú.
             //public Pausa(World mundoAntesDePausa)
@@ -73,6 +76,7 @@ public class Niveles extends World
           
         /** Se terminó el tiempo.*/
         if(isTiempoFin()){
+            musicaNivel.stop(); //Parar la música de nivel al terminarlo.
             nivelActual ++; //Avanzar de nivel.
             if(nivelActual <= 3){ //Si el nivel a crear es menor al 3, que es el máximo.
                 pasarNivel = true; //Indicar que se pasó de nivel para establecer los puntos iniciales.
@@ -90,8 +94,11 @@ public class Niveles extends World
     public void crearNivel(int numNivel){//, NaveAliada nave){
         //int numRocasMax;
         //nave = new NaveAliada();//Inicializar la nave después de haberle dado los valores en la selección
+        if(musicaNivel.isPlaying()) //Si hay música del nivel reproduciéndose, pararla.
+            musicaNivel.stop(); 
         nivelActual = numNivel; //Indicar el nivel actual.
         addObject(nave, getWidth()/2-NaveAliada.getAnchoImagen()/2, getHeight()/2+NaveAliada.getAltoImagen()/2);//Aparecer a la nave en el centro
+        musicaNivel = new GreenfootSound("Nivel"+ numNivel +".mp3"); //Se pondrá la canción dependiendo del número del nivel.
         if(pasarNivel && numNivel > 1){
             NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
             pasarNivel = false;
@@ -104,7 +111,7 @@ public class Niveles extends World
         switch(numNivel){
             case 1: //Nivel 1
                 setBackground("escenarios/espacio1.jpeg");
-                NaveAliada.setVidas(3);
+                //NaveAliada.setVidas(3);
                 NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 tiempoDuracionJuego = 10000;
@@ -147,6 +154,14 @@ public class Niveles extends World
         }
         tiempoRestante = tiempoDuracionJuego;
         // roca = new Roca(numRocasMax, 10000); //Esto no se puede porque después de instanciar el mundo no sale hasta moror.
+    }
+    /** Método que verifica si la música del nivel se está reproduciendo.*/
+    public static boolean isMusicaReproduciendose(){
+        return musicaNivel.isPlaying();
+    }
+    /** Método que detiene la canción que se esté reproduciendo del nivel.*/
+    public static void pararMusica(){
+        musicaNivel.stop();
     }
     /** Métdo que verifica si se termino el tiempo establecido en el nivel*/
     private boolean isTiempoFin(){
