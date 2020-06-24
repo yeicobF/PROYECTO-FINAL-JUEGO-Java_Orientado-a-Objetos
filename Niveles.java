@@ -118,19 +118,20 @@ public class Niveles extends World
                 //NaveAliada.setVidas(3);
                 NaveAliada.setPuntosIniciales(0); //En el primer nivel siempre apareceremos con 0 puntos.
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
-                tiempoDuracionJuego = 10000;
+                tiempoDuracionJuego = 30000;
                 //public Espacio(int tiempoFinalJuego, int tipoNaveAliada, int numRocasMax)
                 //Instanciar roca con las rocas máximas y su ratio de aparición.
                 //public Roca(int numRocasMax, int tiempoRegeneracion)
                 //Establecer el máximo de rocas
                 Roca.setNumRocasMax(5);
-                Roca.setTiempoRegeneracion(10000);
+                Roca.setTiempoRegeneracion(700);
                 // System.out.println(" - NIVELES 1-");
                 //
                 // System.out.println(" - NIVELES 2-");
                 //public NaveEnemiga(int tipoEnemigo, int tipoDisparo)
                 addObject(new NaveEnemiga(2, 2), getWidth()/2+getWidth()/4, getHeight()/2-getHeight()/4);//Utilizo el super, ya que esta clase hereda de World y ahí se encuentran esos métodos
                 addObject(new NaveEnemiga(1, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
+                addObject(new NaveEnemiga(1, 2), getWidth()/2, 0);
                 // addObject(new NaveEnemiga(3, 1), getWidth()/2-getWidth()/4, getHeight()/2+getHeight()/4);
                 //Greenfoot.setWorld(new Espacio());
                 break;
@@ -141,19 +142,29 @@ public class Niveles extends World
                 fondo.scale(1000, 600);
                 setBackground(fondo);
                 Roca.setNumRocasMax(10);
-                Roca.setTiempoRegeneracion(7000);
+                Roca.setTiempoRegeneracion(600);
                 addObject(new NaveEnemiga(1, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
+                addObject(new NaveEnemiga(1, 2), getWidth()/2-getWidth()/4, getHeight()/2-getHeight()/4);
+                addObject(new NaveEnemiga(2, 2), getWidth()/2, 0);
+                addObject(new NaveEnemiga(3, 2), getWidth()/2, getHeight());
                 break;
             case 3:
-                tiempoDuracionJuego = 90000;
+                tiempoDuracionJuego = 60000;
                 NaveAliada.setPuntos(NaveAliada.getPuntosIniciales());
                 // NaveAliada.setPuntosIniciales(NaveAliada.getPuntos());
                 fondo = new GreenfootImage("escenarios/espacio11.png");
                 fondo.scale(1000, 600);
                 setBackground(fondo);
-                Roca.setNumRocasMax(20);
-                Roca.setTiempoRegeneracion(3000);
+                Roca.setNumRocasMax(12);
+                Roca.setTiempoRegeneracion(450);
                 addObject(new NaveEnemiga(3, 2), getWidth()/2+getWidth()/4, getHeight()/2+getHeight()/4);
+                addObject(new NaveEnemiga(3, 2), getWidth()/2+getWidth()/4, getHeight()/2-getHeight()/4);
+                addObject(new NaveEnemiga(3, 2), getWidth()/2-getWidth()/4, getHeight()/2+getHeight()/4);
+                addObject(new NaveEnemiga(3, 2), getWidth()/2-getWidth()/4, getHeight()/2-getHeight()/4);
+                addObject(new NaveEnemiga(2, 2), 0, 0);
+                addObject(new NaveEnemiga(2, 2), getWidth(), 0);
+                addObject(new NaveEnemiga(1, 2), getWidth(), getHeight());
+                addObject(new NaveEnemiga(1, 2), 0, getHeight());
                 break;
         }
         tiempoRestante = tiempoDuracionJuego;

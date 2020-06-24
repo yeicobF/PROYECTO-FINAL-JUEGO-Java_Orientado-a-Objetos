@@ -49,19 +49,19 @@ public class Disparo extends Actor
                 daño = 25; //daño inicial (que es bajo).
                 velocidadDisparo = 5;
                 numAnimaciones = 6;
-                tiempoEntreDisparos = 1500; //1.5 segundos
+                tiempoEntreDisparos = 1000; //1.5 segundos
                 break;
             case 2: //Menos daño pero más velocidad
                 daño = 15;
                 velocidadDisparo = 6;
                 numAnimaciones = 6;
-                tiempoEntreDisparos = 1000;
+                tiempoEntreDisparos = 850;
                 break;
             case 3: //Más velocidad y daño
                 daño = 35;
                 velocidadDisparo = 7;
                 numAnimaciones = 6;
-                tiempoEntreDisparos = 850;
+                tiempoEntreDisparos = 500;
                 break;
         }
         //public static GreenfootImage modificarEscalaImagen(GreenfootImage imagen, int divisor, int multiplicacion)

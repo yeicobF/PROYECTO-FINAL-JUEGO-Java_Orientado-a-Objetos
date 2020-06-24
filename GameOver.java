@@ -25,6 +25,8 @@ public class GameOver extends World
         setBackground("escenarios/gameOver.jpg");
         this.nave = nave;
         // musica = new GreenfootSound("GameOver.mp3");
+        if(Niveles.isMusicaReproduciendose()) //Si aún hay música reproduciendose de los niveles.
+            Niveles.pararMusica();
         musica.playLoop(); //Reproducir en loop hasta salir de los marcadores al menú.
         // musica.
     }

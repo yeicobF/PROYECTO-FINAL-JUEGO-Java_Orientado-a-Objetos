@@ -28,7 +28,7 @@ public class Menu extends World
     private Boton botonAcercaDe;
     private Boton botonComoJugar;
     private Boton botonMarcadores;
-    private GreenfootSound musica; //Para reproducir la música de fondo.
+    protected static GreenfootSound musica; //Para reproducir la música de fondo.
     /**
      * Constructor for objects of class Menu.
      * 
@@ -87,7 +87,7 @@ public class Menu extends World
     {
         musica.playLoop(); //Reproducir la canción en un loop.
         if(Greenfoot.mouseClicked(botonIniciar)){
-            musica.stop();
+            // musica.stop();
             //Mode world = new Mode();
             //Niveles nivel = new Niveles();
             // NaveAliada.setDiseñoNaveAliada(1);

@@ -136,15 +136,15 @@ public class SeleccionNave extends Menu
             mostrarNave(mostrarLado); //Si se puso una nueva nave, mostrarla y borrar la otra.
             //true -> Izquierda. false -> derecha.
     }
-    /** Método que verifica si se presionó la flecha derecha.*/
+    /** Método que verifica si se presionó la flecha derecha con el mouse o teclado.*/
     private boolean isFlechaDerecha(){
-        if(Greenfoot.mouseClicked(flechaDerecha))
+        if(Greenfoot.mouseClicked(flechaDerecha) || Greenfoot.isKeyDown("right"))
             return true;
         return false;
     }
     /** Método que verifica si se presionó la flecha izquierda.*/
     private boolean isFlechaIzquierda(){
-        if(Greenfoot.mouseClicked(flechaIzquierda))
+        if(Greenfoot.mouseClicked(flechaIzquierda) || Greenfoot.isKeyDown("left"))
             return true;
         return false;
     }
@@ -153,10 +153,12 @@ public class SeleccionNave extends Menu
             pero dentro de un rango dado.*/
     private void seleccionNave(){
         /* Si se seleccionó la nave y está en medio de la pantalla.*/
-        if(Greenfoot.mouseClicked(naveActual) && naveActual.getX() >= getWidth()/2 - 5 && naveActual.getX() <= getWidth()/2 + 5){
+        if((Greenfoot.mouseClicked(naveActual) || Greenfoot.isKeyDown("enter"))
+                && naveActual.getX() >= getWidth()/2 - 5 && naveActual.getX() <= getWidth()/2 + 5){
             //System.out.println("- Se pudo seleccionar la nave porque está en medio de la pantalla.");
             NaveAliada.setDiseñoNaveAliada(numNaveActual);
             NaveAliada.setTipoDisparo(1); //El tipo de disparo base.
+            musica.stop(); //Detener la música (heredada del menú), al seleccionar la nave.
             Greenfoot.setWorld(new Intro(1)); //Mostrar la instroducción del primer nivel.
             // Greenfoot.setWorld(new Niveles(1));
         }

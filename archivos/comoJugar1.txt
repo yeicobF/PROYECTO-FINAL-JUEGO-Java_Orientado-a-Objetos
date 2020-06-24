@@ -1,4 +1,4 @@
-10
+12
 Movimiento:
 - Arriba: W o Flecha hacia arriba.
 - Abajo: S o Flecha hacia abajo.
@@ -9,3 +9,5 @@ Movimiento:
 un movimiento en diagonal.
 
 Disparar: Presionar barra espaciadora.
+
+Pausar: Presionar letra "p".

@@ -220,7 +220,7 @@ public class NaveAliada extends Nave
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
                 //No necesitan bajarse los PS porque no se los asignamos
                 //Switch case para ver el tipo de item y actuar.
-                Items.mostrarInfoItem(getWorld());
+                // Items.mostrarInfoItem(getWorld());
                 sonidoItem.play(); //Reproducir el efecto al tocar el item.
                 switch(Items.getTipoItem()){
                     case 1: //Aumentar el número de vidas. Es lo único que hacemos, por lo que terminamos de inmediato.
