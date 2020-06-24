@@ -56,6 +56,12 @@ public class Menu extends World
         fondo = new GreenfootImage("escenarios/espacio2.jpg");
         fondo.scale(1000, 600);
         setBackground(fondo);
+        // musica = new GreenfootSound("sounds/TitleScreen.mp3");
+        // if(musica.isPlaying())
+            // musica.stop();
+        // musica = new GreenfootSound("sounds/TitleScreen.mp3");
+        if(SeleccionNave.getMusica().isPlaying())
+            SeleccionNave.getMusica().stop(); //Detener la canción de la selección de naves.
         if(GameOver.isMusicaReproduciendose()) //Si se está reproduciendo música de gameOver.
             GameOver.pararMusica(); //Detener la música de GameOver.
         if(Niveles.isMusicaReproduciendose())
@@ -73,13 +79,16 @@ public class Menu extends World
         botonCreditos = Boton.creaBotonSombra(this, "Créditos", texto, getWidth()/2, getHeight()/10*9, Color.WHITE, null, null, 50, 5);
     }
     public void act(){
-        musica.playLoop(); //Reproducir la canción en un loop.
+        if(!musica.isPlaying()) //Si la música no se está reproduciendo.
+            musica.playLoop(); //Reproducir la canción en un loop.
         seleccionMenu();
     }
     /** Método que verá qué parte del menú se seleccionó.*/
     private void seleccionMenu(){
-        if(Greenfoot.mouseClicked(botonIniciar))
+        if(Greenfoot.mouseClicked(botonIniciar)){
+            musica.stop();
             Greenfoot.setWorld(new SeleccionNave());
+        }
         if(Greenfoot.mouseClicked(botonCreditos))
             Greenfoot.setWorld(new Creditos());
         if(Greenfoot.mouseClicked(botonAcercaDe))
@@ -92,7 +101,8 @@ public class Menu extends World
     /** Método para volver al menú en los submenús.*/
     protected void volverMenu(){
         if(Greenfoot.mouseClicked(volverMenu))
-             Greenfoot.setWorld(new Menu());
+            // musica.stop(); //Detener la música reproduciéndose.
+            Greenfoot.setWorld(new Menu());
     }
     /** Método para crear un botón "siguiente".*/
     protected void crearSiguiente(){
