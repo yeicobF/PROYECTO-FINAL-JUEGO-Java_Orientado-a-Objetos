@@ -4,18 +4,14 @@ import greenfoot.Color;
 import greenfoot.Greenfoot; //Para crear el mundo de la pantalla siguiente.
 /**
  * Clase en donde se mostrarán las instrucciones de cómo jugar.
- *  Antes llamada How
+ *  Antes llamada How.
  * 
  * @author (Team Naves) 
  * @version (Viernes, 19 de junio de 2020)
  */
 public class ComoJugar extends Menu
 {
-    
-    /**
-     * Constructor for objects of class ComoJugar.
-     * 
-     */
+    /** Constructor de a clase ComoJugar.*/
     public ComoJugar(boolean siguiente){ //siguiente revisa si se avanzó a la siguiente página o no.
         super(!siguiente); //Si se avanzó a la página siguiente, siguiente = true, entonces enviar false para no crear el botón.
         /*public Archivo(String nombreArchivo, int tamañoFuente, Color colorFuente)*/
@@ -30,23 +26,14 @@ public class ComoJugar extends Menu
             archivo = new Archivo("archivos/comoJugar2.txt", 30, Color.WHITE);
         }
         archivo.mostrarArchivo(this);
-        //mundoAnterior = this; //Guardar el mundo anterior. Esto no deja hacer el siguiente paso.
     }
 
     public void act(){
         if(isSiguiente()){
-            // //removeObject(botonSiguiente);
-            // //super(false); //Crear mundo sin botón de siguiente.
-            // archivo.mostrarArchivo(this);
-            //System.out.println("Presionó siguiente.");
-            // tiempoCambio = System.currentTimeMillis(); //Obtener el tiempo en que se hizo el cambio
-            // System.out.println("tiempo cambio: "+ tiempoCambio);
             mundoAnterior = this;
             Greenfoot.setWorld(new ComoJugar(true)); //true porque se avanzó al siguiente.
         }
-        /*Deberá pasar medio segundo para detectar el anterior.*/
-        if(isAnterior())// && System.currentTimeMillis() - tiempoCambio >= 500) //Se presionó el botón de anterior. Restablecer el mundo pasado.
-            // System.out.println("Presionó anterior.");
+        if(isAnterior())//Se presionó el botón de anterior. Restablecer el mundo pasado.
             Greenfoot.setWorld(mundoAnterior);
         volverMenu();
     }
