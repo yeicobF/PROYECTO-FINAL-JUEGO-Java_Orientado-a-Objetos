@@ -13,12 +13,12 @@ import greenfoot.GreenfootSound;
 public class SeleccionNave extends Menu
 {
     private static GreenfootSound musicaSeleccion = new GreenfootSound("seleccionNave.mp3");; //Estática y diferente para poder evaluar desde main.
+    private final int numNaveInicial = 1, numNaveFinal = 4;
     private GreenfootImage imagen; //Para sacar las medidas de las flechas.
     private Boton naveActual, naveNueva; //Será de tipo Botón para que al seleccionarla cambie su tamaño.
     private Boton flechaDerecha;
     private Boton flechaIzquierda;
     private int numNaveActual, numNaveNueva, xActual, xNueva; //Número de la nave mostrada actualmente y la que se mostrará.
-    private final int numNaveInicial = 1, numNaveFinal = 4;
     private boolean cambioCompleto; //Verificará que el cambio de naves se ha terminado y se puede hacer otro.
     private boolean mostrarLado; //Para ver si la nave se muestra a la izquierda o derecha.
     /**
