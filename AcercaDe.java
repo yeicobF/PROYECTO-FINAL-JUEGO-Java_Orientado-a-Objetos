@@ -11,11 +11,7 @@ import greenfoot.Greenfoot;
  */
 public class AcercaDe extends Menu
 {
-
-    /**
-     * Constructor for objects of class AcercaDe.
-     * 
-     */
+    /** Constructor de la clase AcercaDe.*/
     public AcercaDe(){
         super(false);
         //public ArchivoPrueba(World mundoActual, String nombreArchivo, int tamañoFuente, Color colorFuente)
