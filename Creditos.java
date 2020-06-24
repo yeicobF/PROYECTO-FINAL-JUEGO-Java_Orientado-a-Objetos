@@ -1,5 +1,4 @@
 import greenfoot.World;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import greenfoot.Actor;
 import greenfoot.Color;
 /**
  * Clase que mostrará los créditos del juego.
@@ -10,14 +9,13 @@ import greenfoot.Color;
  */
 public class Creditos extends Menu
 {
-    public Creditos()
-    {    
+    /** Constructor de la clase Creditos.*/
+    public Creditos(){    
         super(false);
         /*public Archivo(String nombreArchivo, int tamañoFuente, Color colorFuente)*/
         archivo = new Archivo("archivos/creditos.txt", 30, Color.WHITE);
         archivo.mostrarArchivo(this);
     }
-    
     public void act(){
         volverMenu();
     }

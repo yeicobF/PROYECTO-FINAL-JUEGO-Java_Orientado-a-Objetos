@@ -3,6 +3,7 @@ comment0.target=Creditos
 comment0.text=\r\n\ Clase\ que\ mostrar\u00E1\ los\ cr\u00E9ditos\ del\ juego.\r\n\ \ Esta\ clase\ antes\ se\ llamaba\ Credits.\r\n\ \r\n\ @author\ (Team\ Naves)\ \r\n\ @version\ (Viernes,\ 19\ de\ junio\ de\ 2020)\r\n
 comment1.params=
 comment1.target=Creditos()
+comment1.text=Constructor\ de\ la\ clase\ Creditos.
 comment2.params=
 comment2.target=void\ act()
 numComments=3
