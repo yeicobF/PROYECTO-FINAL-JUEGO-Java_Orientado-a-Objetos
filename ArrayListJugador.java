@@ -9,17 +9,18 @@ import java.util.Collections;
  */
 public class ArrayListJugador extends Jugador 
 {
-    // ArrayList<Student> arraylist = new ArrayList<Student>();
     ArrayList<Jugador> arrayListJugador;
     String textoArchivo; //El texto que se guardará en el archivo.
+    /** Constructor para la clase de ArrayListJugador.*/
     public ArrayListJugador(){
         arrayListJugador = new ArrayList<Jugador>(); //Inicializar el arrayList.
         textoArchivo = "";
     }
+    /** Método para agregar a un jugador al arrayList.*/
     public void addJugador(String nombre, int puntos, int nivel, String fecha){
-        //System.out.println("Entró a crear jugador.");
         arrayListJugador.add(new Jugador(nombre, puntos, nivel, fecha));
     }
+    /** Método para ordenar el arrayList dependiendo de los puntos del jugador.*/
     public void ordenarArrayList(){
          Collections.sort(arrayListJugador); //Los metodos compareTo y toString fueron sobrecargados (Override) en jugador.
     }
