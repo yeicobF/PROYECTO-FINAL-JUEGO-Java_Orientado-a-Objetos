@@ -64,7 +64,7 @@ public class Niveles extends World
                 Greenfoot.setWorld(new GameOver(nave)); //Poner la pantalla de Game Over. Se manda la nave para tener las stats.
         }
           //public void crearRocasTiempo(World mundoActual)
-        roca.crearRocasTiempo(this);
+        roca.crearRocasTiempo(this); /* No funciona. Creo que debería ser estático. (Miércoles, 23 de junio de 2020).*/
         crearItemTiempo(nave);
     }
     /** Método que crea el nivel que recibió por parámetro.*/
