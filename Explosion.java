@@ -17,7 +17,7 @@ public class Explosion extends Actor
     private boolean crecio, decrecio; //Booleano que indicará si ya creció y decreció a explosión.
     /*Recibir la imagen del objeto que explotó para que la explosión mida el mismo tamaño.*/
     public Explosion(GreenfootImage imagenObjeto){
-        setImage("Explosion.png");
+        setImage("efectos/explosion.png");
         sonidoExplosion = new GreenfootSound("explosion"+ Aleatorio.getNumeroAleatorio(1, 7) +".mp3");
         sonidoExplosion.play();
         /* El tamaño de la explosión será equivalente al tamaño del objeto que explotó, pero medirá
@@ -60,7 +60,7 @@ public class Explosion extends Actor
           /*Es necesario el setImage antes de reescalar la imagen porque leí que no es recomendable
                 reescalar imagenes ya reescaladas. Esto porque había un problema que mostraba un cuadro
                 blanco en lugar de la imagen.*/
-          setImage("Explosion.png");
+          setImage("efectos/explosion.png");
           setImage(imagen.modificaImagenAnchoAltoMin(getImage(), 1, modificadorImagen));
         }
         return crecio && decrecio; //Devuelve true si terminó su proceso.
