@@ -1,5 +1,7 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import greenfoot.Actor;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.GreenfootSound;
+import greenfoot.Color;
+import greenfoot.Greenfoot;
 /**
  * Esta es una subclase de la superclase Nave que tiene como función manejar las naves que controlará el jugador.
  *
@@ -72,7 +74,7 @@ public class NaveAliada extends Nave
         /*Los métodos siguientes están así porque se revisan todas las posibilidades. Es decir, todas las combinaciones
             de teclas que podrían causar un tipo de movimiento en diagonal. Porque esto se toma en cuenta para
             modificar la posición de los sprites.*/
-        if((Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w"))
+        if((Greenfoot.isKeyDown("right")&& Greenfoot.isKeyDown("up") )|| (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("w"))
                 || (Greenfoot.isKeyDown("right")&&Greenfoot.isKeyDown("w")) || (Greenfoot.isKeyDown("d")&&Greenfoot.isKeyDown("up")))
             setDireccion(Direccion.ARRIBA_DERECHA); //ARRIBA_DERECHA
         if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("up")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("w"))
