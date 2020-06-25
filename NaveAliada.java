@@ -83,8 +83,9 @@ public class NaveAliada extends Nave
             setDireccion(Direccion.ABAJO_DERECHA);//ABAJO_DERECHA
         if((Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("down") )|| (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("s"))
                 || (Greenfoot.isKeyDown("left")&&Greenfoot.isKeyDown("s")) || (Greenfoot.isKeyDown("a")&&Greenfoot.isKeyDown("down")))
-            setDireccion(Direccion.ABAJO_IZQUIERDA);//ABAJO_IZQUIERD
+            setDireccion(Direccion.ABAJO_IZQUIERDA);//ABAJO_IZQUIERDA
     }
+    /** Método que establece la dirección en la que el jugador se mueve. Además, mueve a la nave en pantalla.*/
     protected void setDireccion(int direccion){
         this.direccion = direccion; //Establecer nuestra direccion
         int aumentaX = 0, aumentaY = 0; //Variables para ver cuánto se mueve dependiendo de la condición.
@@ -126,24 +127,17 @@ public class NaveAliada extends Nave
         //Asignar los valores al arreglo
         aumenta[0] = aumentaX;
         aumenta[1] = aumentaY;
-        //private void presionoShift(int[] aumenta){
-        presionoShift(aumenta);
-
+        presionoShift(aumenta); //private void presionoShift(int[] aumenta)
         //Verificar en dónde se modificaron los valores para aumentarlos
         setLocation(getX() + aumenta[0], getY() + aumenta[1]);
     }
-    /*Método que va a verificar si se presionó shift y además cambiará los valores
+    /** Método que va a verificar si se presionó shift y además cambiará los valores
       para que se vea con más velcidad en pantalla*/
     private void presionoShift(int[] aumenta){ //Como es un arreglo, los valores se modifican
-          //aumenta[0] <- aumentaX; aumenta[1] = aumentaY;
-          // + 1 si es en diagonal, +2 si es recto
+          //aumenta[0] <- aumentaX; aumenta[1] <- aumentaY;
           /* - NO AUMENTAR EL VALOR A LAS DIAGONALES PORQUE IRÁN MÁS RÁPIDO, YA QUE DE BASE ACTÚAN CON LAS
                 VELOCIDADES DE LAS TECLAS COMBINADAS.*/
         if(Greenfoot.isKeyDown("shift"))
-            //En esta condición no puede haber un valor con 0
-              //LÍNEAS RECTAS (ARRIBA, ABAJO, IZQUIERDA, DERECHA) Aumentan de 2 en 2
-            //X y Y no pueden ser diferentes a 0 al mismo tiempo
-            /*En las diagonales va más rápido, habría que asignarles 1 en lugar de 2, pero por ahora así está bien.*/
             switch(direccion){
                 case Direccion.ARRIBA:
                     aumenta[1] -= 2;
@@ -159,14 +153,13 @@ public class NaveAliada extends Nave
                     break;
             }
     }
-    /*Método que determinará si chocamos con un item y le dará su habilidad o efecto a la nave.
+    /** Método que determinará si chocamos con un item y le dará su habilidad o efecto a la nave.
         Regresará el tipo del item que servirá para condicionar los métodos que se ejectutan en act().
             Por ejemplo con el escudo, no se bajará la salud de la nave.*/
     private int choqueItem(){
     //eliminarObjetoChoque(Actor objetoChoque, Actor objetoRaiz, World mundoActual, int puntosSalud, int daño, int puntosNave)
         if(Choques.eliminarObjetoChoque(getOneObjectAtOffset(0, 0, Items.class), this, getWorld(), puntosSalud, 1, 0)
             == puntosSalud-1){ //Le quita 1 de vida solo para indicar que tocó el item y luego se lo volverá a aumentar.
-                //No necesitan bajarse los PS porque no se los asignamos
                 //Switch case para ver el tipo de item y actuar.
                 // Items.mostrarInfoItem(getWorld());
                 sonidoItem.play(); //Reproducir el efecto al tocar el item.
@@ -175,11 +168,9 @@ public class NaveAliada extends Nave
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         Items.setItemActivoFalso();
                         vidas++;
-                        //System.out.println("Vidas: "+ vidas);
                         break;
                     case 2: //ESCUDO. Poner el sprite del escudo y al terminar el tiempo cambiarlo.
                         //Mandar el tiempo en el que se tocó el item
-                        //Debería bajar la velocidad. Aunque creo que no se puede porque se utiliza el setDirection.
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         setImage("Naves/Aliadas/NaveA"+ diseñoNaveAliada +"Escudo.png");
                         setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
@@ -202,22 +193,17 @@ public class NaveAliada extends Nave
                     case 5: //Puntos dobles.
                         Items.setTiempoFinalItem(System.currentTimeMillis()); //Que dure 3.5 segundos.
                         break;
-                    case 6: //NUCLEAR. No la incluiremos en el juego.
+                    case 6: //NUCLEAR. No la incluiremos en el juego. Podría mostrar un texto de "has destruido a todo ser viviente".
                         Items.setTiempoFinalItem(System.currentTimeMillis());
                         mundo.removeObjects(getWorld().getObjects(Roca.class));
                         mundo.removeObjects(getWorld().getObjects(NaveEnemiga.class));
                         mundo.removeObjects(getWorld().getObjects(MostrarInfo.class)); //Se borraría el nuestro también.
-                        //public Etiqueta(int tamañoFuente, Color colorFuente, Color colorFondo, Color bordeFuente)
-                        // Etiqueta e = new Etiqueta(50, Color.WHITE, Color.RED, Color.YELLOW);
-                        // e.crearCuadroTexto(" HAS DESTRUIDO A TODO SER VIVO ");
-                        // mundo.addObject(e, mundo.getWidth()/2 + e.getImage().getWidth()/2, mundo.getHeight()/2 - e.getImage().getHeight()/2);
-                        //Archivo a = new Archivo("prueba.txt");
                         break;
                 }
         }
         return Items.getTipoItem(); //No hay item si regresa 0.
     }
-    /* Clase que controlará los efectos de los items.*/
+    /** Clase que controlará los efectos de los items.*/
     private void efectosItem(){
         if(choqueItem() == 2 && System.currentTimeMillis() < Items.getTiempoFinalItem()){ //El item actual es el escudo.
             /*Pasamos que el daño sea 0 para que no nos afecte a nosotros pero sí dañe lo demás.
@@ -230,8 +216,6 @@ public class NaveAliada extends Nave
                 setImage(Imagen.modificarEscalaImagen(getImage(), 2, 1)); //Reescalarla, ya que volverá a tomar el tamaño original.
                 diseñoOriginalActivo = true;
                 Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
-                // Mandar el tiempo en el que se terminó el item
-                // Items.setTiempoFinalItem(System.currentTimeMillis());
             }
         if(choqueItem() == 4 && System.currentTimeMillis() >= Items.getTiempoFinalItem()){ //Se acabó el efecto del disparo.
             tipoDisparoAliada = tipoDisparoInicial;
@@ -239,13 +223,8 @@ public class NaveAliada extends Nave
         }
         if(choqueItem() == 5 && System.currentTimeMillis() >= Items.getTiempoFinalItem()) //Se acabaron los puntos dobles.
             Items.setItemActivoFalso();
-        // if(System.currentTimeMillis() >= Items.getTiempoFinalItem()){
-            // Items.setItemActivoFalso();
-            // Items.setTipoItemCero();
-        // }
     }
-    /*Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
-    /*Método que baja una vida al jugador si choca con una roca, con una nave enemiga o con un disparo enemigo (aún no implementado).*/
+    /** Método para ver si la nave choca con algo y elimina los objetos que chocaron, además baja el número de vidas.*/
     private void morirChoque(int daño){ //Aquí tomamos en cuenta que se hayan perdido todos los PS
         /* -> Para eliminar el cuadro de texto al morir.
          * protected int eliminaCuadroPS(MostrarInfo infoPS, Actor objetoChoque,
@@ -254,47 +233,33 @@ public class NaveAliada extends Nave
             || eliminaCuadroPS(infoPS, getOneObjectAtOffset(0, 0, NaveEnemiga.class), this, getWorld(), puntosSalud, daño, puntosMenosAlMorir) == 0){//&& Items.getTipoItem() != 2){//Que el item no sea el escudo.
                 Items.setItemActivoFalso(); //
                 vidas --;
-                //System.out.println("Vidas: "+ vidas);
-                /*Sería bueno detener el juego unos milisegundos después de morir.*/
-                try{
+                try{ /*Sería bueno detener el juego unos milisegundos después de morir.*/
                     Thread.sleep(500);//Parar el sistema un momento.
                 }catch(InterruptedException ie){
                     System.out.println("Interrupción sleep.");
                 }
                 if(perder()) //Si perdimos, pedir información para marcadores.
                     Greenfoot.setWorld(new GameOver(this)); //Poner la pantalla de Game Over. Desde ahí se pedirá la información. Se manda la nave para tener las stats.
-                //jugador = new Jugador(puntos);
                 else{ //Si aún no perdemos, seguir reiniciando el nivel.
                     Items.setItemActivoFalso(); //Hacemos al item falso luego de terminar su periodo.
                     tipoDisparoAliada = 1; //Reiniciar el tipo de disparo por si morimos con otro tipo.
                     Items.setTiempoFinalItem(System.currentTimeMillis()); //Reiniciar el tiempo de los items.
-                    // if(Niveles.getNivelActual() > 1)
-                        // puntosIniciales = puntos;
-                    // else
-                        // puntosIniciales = 0;
                     Greenfoot.setWorld(new Niveles(Niveles.getNivelActual()));//Este método crea el mundo de nuevo después de morir.
                 }
         }
     }
-    //Desaparecer si ya perdimos todas las vidas.
+    /** Método que verifica si perdimos.*/
     private boolean perder(){
-        if(vidas == 0)
-            return true;
-        return false;
-            //Greenfoot.stop(); //Si ya perdimos todas las vidas, entonces parar
-        //REINICIAR NIVEL PERO CON LAS VIDAS, PUNTUACIÓN, ETCÉTERA INTACTOS DESPUÉS DE SU MODIFICACIÓN
-        //Tal vez así las vidas no se reiniciarán
-            /*Aunque para el reinicio hay que tomar en cuenta el reinicio de vidas y todo eso.*/
+        return vidas == 0; //True si tenemos 0 vidas, false si no.
     }
-
-    /*Getters estáticos de coordenadas para NaveEnemiga.*/
+    /** Getters estáticos de coordenadas para NaveEnemiga.*/
     public static int getCordX(){
         return x;
     }
     public static int getCordY(){
         return y;
     }
-    //Getter y setter para el diseño de la nave. El setter para la selección de nave.
+    /** Getter y setter para el diseño de la nave. El setter para la selección de nave.*/
     public static int getDiseñoNaveAliada(){
         return diseñoNaveAliada;
     }
@@ -307,24 +272,15 @@ public class NaveAliada extends Nave
     public static int getTipoDisparo(){
         return tipoDisparoAliada;
     }
-    /*Método para obtener las vidas actuales del jugador.*/
+    /** Método para obtener las vidas actuales del jugador.*/
     public static int getVidasJugador(){
         return vidas;
     }
-    /*Método para recuperar los puntos de salud del jugador.*/
-    //NO SE NECESITA PORQUE EN LA SUPERCLASE NAVE ES PROTEGIDO.
-    // public abstract static int getPuntosSalud(){
-        // return puntosSalud;
-    // }
-    /*Método para obtener la puntuación actual.*/
+    /** Método para obtener la puntuación actual.*/
     public static int getPuntos(){
         return puntos;
     }
-    //Método estático para obtener los Puntos de Salud de la NaveAliada específicamente.
-    // public int getPuntosSalud(){
-        // return puntosSalud;
-    // }
-    /*Setter para las vidas para cuando se reinicie el nivel*/
+    /** Setter para las vidas para cuando se reinicie el nivel*/
     public static void setVidas(int vidasDadas){
         vidas = vidasDadas;
     }
@@ -334,11 +290,11 @@ public class NaveAliada extends Nave
     public static void setPuntosIniciales(int pts){
         puntosIniciales = pts;
     }
-    /* Creo que este getter no lo necesitaremos.*/
+    /** Creo que este getter no lo necesitaremos.*/
     public static int getPuntosIniciales(){
         return puntosIniciales;
     }
-    /*Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
+    /** Método para establecer la puntuación actual. Esto sumará el parámetr recibido, así que si se pierden puntos,
         se mandará un número negativo.*/
     public static void sumaPuntos(int puntosRecibidos){
         puntos += puntosRecibidos;
@@ -346,26 +302,22 @@ public class NaveAliada extends Nave
     public static void setPuntos(int puntosRecibidos){
         puntos = puntosRecibidos;
     }
-    //Regresa los PS máximos (con lo que inciamos)
+    /** Regresa los PS máximos (con lo que inciamos).*/
     public int getPuntosSaludIniciales(){
         return puntosSaludIniciales;
     }
-    /*Getter booleano para ver si el escudo está activo en métodos generales.*/
+    /**Getter booleano para ver si el escudo está activo en métodos generales.*/
     public static boolean isDiseñoOriginalActivo(){
         return diseñoOriginalActivo;
     }
-    // public static int getCordX(){
-        // int x = getX();
-        // return x;
-    // }
-    /*Getters de dimensiones de la imagen de la nave.*/
+    /** Getters de dimensiones de la imagen de la nave.*/
     public static int getAnchoImagen(){
         return anchoImagen;
     }
     public static int getAltoImagen(){
         return altoImagen;
     }
-    /*Método para obtener la Coordenada en X del disparo. Pero para esto hay que verificar que el disparo exista.
+    /** Método para obtener la Coordenada en X del disparo. Pero para esto hay que verificar que el disparo exista.
         Si el disparo no existe, entonces devolver -1 en x porque no se puede acceder a esa coordenada.*/
     public int getCordXDisparo(){
         if(disparo.getWorld() != null)
@@ -373,7 +325,7 @@ public class NaveAliada extends Nave
         else
             return -1;
     }
-    /*Método para obtener la Coordenada en Y del disparo. Verificamos que el disparo exista y si no, deolver un valor no alcanzable.*/
+    /** Método para obtener la Coordenada en Y del disparo. Verificamos que el disparo exista y si no, deolver un valor no alcanzable.*/
     public int getCordYDisparo(){
         if(disparo.getWorld() != null)
             return disparo.getCordY();
