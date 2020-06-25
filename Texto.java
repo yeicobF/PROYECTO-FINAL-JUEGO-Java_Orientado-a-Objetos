@@ -31,12 +31,10 @@ public class Texto extends Actor
                setImage("historia/intro"+ nivel +"_"+ numImagen +".png");
                numImagen ++;
                Greenfoot.delay(15);
-           }
+        }
     }    
     /** Veriica si se presoonó enter para cambiar de imagen.*/
     private boolean isEnter(){
-        // if(Greenfoot.isKeyDown("enter"))
-            // return true;
         return Greenfoot.isKeyDown("enter"); //Devuele lo que salga dr aquí.
     }
     /** Método que verifica si se terminó la intro, para así proceder a avanzar de nivel.*/
