@@ -69,6 +69,7 @@ public class Menu extends World
         botonAcercaDe = Boton.creaBotonSombra(this, "Acerca de", texto, getWidth()/2, getHeight()/10*5, Color.WHITE, null, null, 50, 20);
         botonMarcadores = Boton.creaBotonSombra(this, "Marcadores", texto, getWidth()/2, getHeight()/10*7, Color.WHITE, null, null, 50, 20);
         botonCreditos = Boton.creaBotonSombra(this, "Créditos", texto, getWidth()/2, getHeight()/10*9, Color.WHITE, null, null, 50, 5);
+        Greenfoot.start(); //Para que inicie el juego.
     }
     public void act(){
         if(!musica.isPlaying()) //Si la música no se está reproduciendo.
