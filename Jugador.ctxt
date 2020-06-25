@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Jugador
-comment0.text=Clase\ que\ maneja\ m\u00E9todos\ relacionados\ con\ el\ nombre\ del\ jugador.
+comment0.text=\r\n\ En\ esta\ clase\ se\ manejar\u00E1\ todo\ lo\ que\ respecta\ al\ jugador\:\r\n\ \ -\ Nombre\r\n\ \ -\ Puntos\r\n\ \ -\ Nivel\r\n\ \ -\ Fecha\r\n\ Luego\ se\ llamar\u00E1\ a\ Marcadores\ para\ agregar\ estos\ datos\ al\ archivo\ de\ los\ marcadores.\r\n\ \r\n\ @author\ (Jacob)\ \r\n\ @version\ (Jueves,\ 18\ de\ junio\ de\ 2020)\r\n
 comment1.params=
 comment1.target=Jugador()
 comment1.text=Constructor\ para\ la\ clase\ del\ arrayList.
@@ -16,12 +16,13 @@ comment13.params=
 comment13.target=java.lang.String\ toString()
 comment2.params=puntos
 comment2.target=Jugador(int)
+comment2.text=Constructor\ para\ que\ el\ jugador\ ingrese\ su\ informaci\u00F3n.
 comment3.params=nombreJugador\ puntos\ nivel\ fechaActual
 comment3.target=Jugador(java.lang.String,\ int,\ int,\ java.lang.String)
 comment3.text=M\u00E9todo\ para\ guardar\ los\ valores\ desde\ el\ arrayList.\ Protected\ porque\ solo\ lo\ usar\u00E1\ el\ arrayList.
 comment4.params=
 comment4.target=void\ pedirNombreJugador()
-comment4.text=\ Fuentes\:\ \r\n\ \ \ \ \ -\ https\://www.greenfoot.org/topics/3583\r\n\ \ \ \ \ -\ https\://mkyong.com/swing/java-swing-how-to-make-a-confirmation-dialog/\r\n
+comment4.text=\ M\u00E9todo\ que\ pedir\u00E1\ el\ nombre\ de\ usuario\ del\ jugador\ que\ ser\u00E1\ a\u00F1adido\ a\ los\ marcadores.\r\n\ \ \ \ \ \ \ \ ->\ Fuentes\:\ \r\n\ \ \ \ \ \ \ \ \ -\ https\://www.greenfoot.org/topics/3583\r\n\ \ \ \ \ \ \ \ \ -\ https\://mkyong.com/swing/java-swing-how-to-make-a-confirmation-dialog/\r\n
 comment5.params=cadena
 comment5.target=boolean\ isCadenaEspacios(java.lang.String)
 comment5.text=M\u00E9todo\ que\ revisa\ si\ lo\ que\ tiene\ la\ cadena\ son\ solo\ espacios\ en\ blanco.

@@ -12,17 +12,17 @@ import greenfoot.Greenfoot; //Para detener el juego si ocurre una excepción. Au
  * @author (Jacob) 
  * @version (Jueves, 18 de junio de 2020)
  */
-/*Clase que maneja métodos relacionados con el nombre del jugador.*/
+
 public class Jugador implements Comparable{ //Para comparar el arrayList.
-    //private Marcadores marcadores;
     private Archivo archivo; //Para revisar que el nombre ingresado no esté repetido.
     private ArrayListJugador arrListJugador; //ArrayList para ver que el nombre ingresado no exista en los marcadores.
     protected String nombreJugador; //Este se ingresará.
     private String fechaActual;
     private int puntos;
     private int nivel; //El nivel en que se quedó el jugador.
-    /*Constructor para la clase del arrayList.*/
+    /** Constructor para la clase del arrayList.*/
     protected Jugador(){}
+    /** Constructor para que el jugador ingrese su información.*/
     public Jugador(int puntos){
         this.puntos = puntos; //Antes de morir, se mandarán los puntos para no recibirlos reiniciados.
         fechaActual = Fecha.getFecha(); //Obtener la hora actual.
@@ -30,24 +30,23 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
         pedirNombreJugador();
         Greenfoot.setWorld(new Marcadores(this)); //Ahora llamar a los marcadores con este objeto.
     }
-    /*Método para guardar los valores desde el arrayList. Protected porque solo lo usará el arrayList.*/
+    /** Método para guardar los valores desde el arrayList. Protected porque solo lo usará el arrayList.*/
     protected Jugador(String nombreJugador, int puntos, int nivel, String fechaActual){
         this.nombreJugador = nombreJugador;
         this.puntos = puntos;
         this.nivel = nivel;
         this.fechaActual = fechaActual;
     }
-    //Método que pedirá el nombre de usuario del jugador que será añadido a los marcadores.
-    /* Fuentes: 
-     - https://www.greenfoot.org/topics/3583
-     - https://mkyong.com/swing/java-swing-how-to-make-a-confirmation-dialog/
+    /** Método que pedirá el nombre de usuario del jugador que será añadido a los marcadores.
+        -> Fuentes: 
+         - https://www.greenfoot.org/topics/3583
+         - https://mkyong.com/swing/java-swing-how-to-make-a-confirmation-dialog/
      */
     private void pedirNombreJugador(){  
         int confirmacion = 1, maxCaracteres = 10;
         archivo = new Archivo("archivos/marcadores.txt");
         archivo.abrirArchivo();
         arrListJugador = archivo.guardarArchivoArrayList();
-        
         try{ //Ya que puede haber una HeadlessException
             while(confirmacion == 1){// 0 = Sí está seguro del nombre, 1 = No está seguro del nombre.
                 /*public static String showInputDialog​(Component parentComponent, Object message,
@@ -99,16 +98,13 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
             JOptionPane.showMessageDialog(null, "Nombre guardado con éxito.", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
         }catch(HeadlessException he){
             //https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/GraphicsEnvironment.html#isHeadless()
-            //true if this environment cannot support a display, keyboard, and mouse
+            /*true if this environment cannot support a display, keyboard, and mouse*/
             System.out.println("El entorno no soporta un monitor, teclado, y mouse.");
             /*Aquí habrá que guardar la información en un archivo de texto de emergencia por si ocurre
              *  algún error, que la información no se pierda.*/
-             
-            //Greenfoot.stop(); //Se detendrá el juego por la excepción. Aunque podríamos no hacer esto.
         }
-        // return nombreJugador; //Regresa el nombre del jugador.
     }
-    /*Método que revisa si lo que tiene la cadena son solo espacios en blanco.*/
+    /** Método que revisa si lo que tiene la cadena son solo espacios en blanco.*/
     private boolean isCadenaEspacios(String cadena){
         int contadorEspacios = 0;
         /* Character.compare(char 'A', char 'B'); Esto devuelve 0 si al comparar los caracteres son iguales, 
@@ -126,7 +122,7 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
             return true;
         return false;
     }
-    /*Método que verifica si hay espacios en blanco en el nombre del jugador.*/
+    /** Método que verifica si hay espacios en blanco en el nombre del jugador.*/
     private boolean hayEspaciosEnBlanco(String cadena){
         //Si la cadena no está compuesta de solo espacios en blanco. MEJOR USARÉ UN else con isCadenaEspacios en el programa.
         //if(isCadenaEspacios(cadena))
@@ -165,9 +161,8 @@ public class Jugador implements Comparable{ //Para comparar el arrayList.
         /* For Descending order do like this */
         //return compareage-this.studentage;*/
     }
-
     @Override
-    public String toString() {
+    public String toString(){
         return "Nombre: "+ nombreJugador + ", Puntos: "+ puntos +", Nivel: "+ nivel +", Fecha: "+ fechaActual;
     }
 }
