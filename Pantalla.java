@@ -11,28 +11,27 @@ public class Pantalla
 {
     Actor objeto;
     private int tamañoImagenMax; //Tomará el tamaño mayor de la imagen como referencia para que siempre cumpla la condición.
-    /*Método que regresa true si el objeto está dentro del límite del mundo.
-        Nos tendrá que regresar luego dentro de los límites para poder seguir actuando,
-            si no la nave se quedará trabada.*/
+    /** Constructor de la clase pantalla.*/
     public Pantalla(Actor objeto){
         this.objeto = objeto;
         if(objeto.getImage().getWidth() > objeto.getImage().getHeight())
             tamañoImagenMax = objeto.getImage().getWidth();
         else
             tamañoImagenMax = objeto.getImage().getHeight();
-        //System.out.println("- Pantalla: "+ tamañoImagenMax);
     }
+    /** Método que regresa true si el objeto está dentro del límite del mundo.
+        Nos tendrá que regresar luego dentro de los límites para poder seguir actuando,
+            si no la nave se quedará trabada.*/
     public boolean isObjetoLimite(World mundoActual, int x, int y){
-      //Comparar límite de la pantalla con el objeto dentro, es decir, se toma en cuenta la mitad de su imagen.
+        //Comparar límite de la pantalla con el objeto dentro, es decir, se toma en cuenta la mitad de su imagen.
         if(x <= tamañoImagenMax/2 || (x >= mundoActual.getWidth() - tamañoImagenMax/2)
             || y <= tamañoImagenMax/2 || (y >= mundoActual.getHeight() - tamañoImagenMax/2)){
             return false;
         }
         return true; //Si está dentro de los límites, regresar false
     }
-    /*Método que regresará al objeto dentro de los límites si se sale de estos.*/
+    /** Método que regresará al objeto dentro de los límites si se sale de estos.*/
     public void regresarObjetoLimite(World mundoActual, int x, int y){
-        //Si le pongo ++ o -- no hace nada
         if(x <= tamañoImagenMax/2)//Izquierda
             objeto.setLocation(x+1, y);
         if(x >= mundoActual.getWidth() - tamañoImagenMax/2) //No necesitamos especificar la condición porque ya sabemos que está fuera de los límites.
