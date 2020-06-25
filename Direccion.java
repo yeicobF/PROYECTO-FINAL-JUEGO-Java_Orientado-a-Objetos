@@ -1,7 +1,7 @@
 /**
- * Clase en donde se manejaràn las constantes de las direcciones: Arriba, abajo, ...
+ * Clase en donde se manejarán las constantes de las direcciones: Arriba, abajo, ...
  * También se manejarán los ángulos de giro.
- * @author (Jacob)
+ * @author (Team Naves)
  * @version (Jueves, 4 de junio de 2020)
  */
 public abstract class Direccion
@@ -26,37 +26,19 @@ public abstract class Direccion
     public static final int ANGULO_ARRIBA_IZQUIERDA = 225;
     public static final int ANGULO_ARRIBA = 270;
     public static final int ANGULO_ARRIBA_DERECHA = 315;
-    
     //Para devolver en el método
     private static int angulo;
-
-    /*Método para obtener el ángulo dependiendo de la dirección dada*/
+    /** Método para obtener el ángulo dependiendo de la dirección dada.*/
     public static int getAnguloDireccion(int direccion){
       switch(direccion){
-        case ARRIBA:
-          angulo = ANGULO_ARRIBA;
-          break;
-        case ABAJO:
-          angulo = ANGULO_ABAJO;
-          break;
-        case IZQUIERDA:
-          angulo = ANGULO_IZQUIERDA;
-          break;
-        case DERECHA:
-          angulo = ANGULO_DERECHA;
-          break;
-        case ARRIBA_IZQUIERDA:
-          angulo = ANGULO_ARRIBA_IZQUIERDA;
-          break;
-        case ARRIBA_DERECHA:
-          angulo = ANGULO_ARRIBA_DERECHA;
-          break;
-        case ABAJO_IZQUIERDA:
-          angulo = ANGULO_ABAJO_IZQUIERDA;
-          break;
-        case ABAJO_DERECHA:
-          angulo = ANGULO_ABAJO_DERECHA;
-          break;
+        case ARRIBA: angulo = ANGULO_ARRIBA; break;
+        case ABAJO: angulo = ANGULO_ABAJO; break;
+        case IZQUIERDA: angulo = ANGULO_IZQUIERDA; break;
+        case DERECHA: angulo = ANGULO_DERECHA; break;
+        case ARRIBA_IZQUIERDA: angulo = ANGULO_ARRIBA_IZQUIERDA; break;
+        case ARRIBA_DERECHA: angulo = ANGULO_ARRIBA_DERECHA; break;
+        case ABAJO_IZQUIERDA: angulo = ANGULO_ABAJO_IZQUIERDA; break;
+        case ABAJO_DERECHA: angulo = ANGULO_ABAJO_DERECHA; break;
       }
       return angulo;
     }

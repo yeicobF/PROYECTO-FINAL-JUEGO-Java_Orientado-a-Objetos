@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Direccion
-comment0.text=\r\n\ Clase\ en\ donde\ se\ manejar\u00E0n\ las\ constantes\ de\ las\ direcciones\:\ Arriba,\ abajo,\ ...\r\n\ Tambi\u00E9n\ se\ manejar\u00E1n\ los\ \u00E1ngulos\ de\ giro.\r\n\ @author\ (Jacob)\r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
+comment0.text=\r\n\ Clase\ en\ donde\ se\ manejar\u00E1n\ las\ constantes\ de\ las\ direcciones\:\ Arriba,\ abajo,\ ...\r\n\ Tambi\u00E9n\ se\ manejar\u00E1n\ los\ \u00E1ngulos\ de\ giro.\r\n\ @author\ (Team\ Naves)\r\n\ @version\ (Jueves,\ 4\ de\ junio\ de\ 2020)\r\n
 comment1.params=direccion
 comment1.target=int\ getAnguloDireccion(int)
-comment1.text=M\u00E9todo\ para\ obtener\ el\ \u00E1ngulo\ dependiendo\ de\ la\ direcci\u00F3n\ dada
+comment1.text=M\u00E9todo\ para\ obtener\ el\ \u00E1ngulo\ dependiendo\ de\ la\ direcci\u00F3n\ dada.
 numComments=2
