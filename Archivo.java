@@ -26,7 +26,6 @@ public class Archivo
     private String fecha; //Para concatenar la fecha y hora del jugador.
     private int tamañoFuente; //Tamaño de la fuente del texto del archivo.
     private int numLineasArchivo; //Número de líneas totales del archivo.
-    // private int numLineaActual; //Para indicar en el número de línea que nos encontramos en el archivo y calcular altura del texto.
     /** Constructor para cuando se quiere mostrar el archivo centrado en x y y directamente.*/
     public Archivo(String nombreArchivo, int tamañoFuente, Color colorFuente){
         this.nombreArchivo = nombreArchivo;
@@ -41,9 +40,6 @@ public class Archivo
     public Archivo(String nombreArchivo, String nombreArchivoEscribir){
         arrListJugador = new ArrayListJugador();
         this.nombreArchivo = nombreArchivo;
-        //nombreArchivo = "archivos/marcadoresSinOrdenar.txt"
-        //nombreArchivoEscribir = "archivos/marcadores.txt"
-        //guardarArchivoArrayList(); //Para probar que funcione.
         escribirEnArchivo(nombreArchivoEscribir); //Escribirá los valores ordenados en el archivo marcadores.txt.
     }
     /** Constructor para escribir al final del archivo. También para comprobar que el nombre ingresado
@@ -51,7 +47,6 @@ public class Archivo
     public Archivo(String nombreArchivo){//, String texto){
         this.nombreArchivo = nombreArchivo;
         arrListJugador = new ArrayListJugador(); //Crear el arrayList de los datos para verificar los nombres.
-        //escribirAlFinalArchivo(nombreArchivo, texto);
     }
     public void abrirArchivo(){
         try{
@@ -60,7 +55,7 @@ public class Archivo
             System.out.println("El archivo no se encontró.");
         }
     }
-    /*Método que escribirá el texto ingresado al final de un archivo.*/
+    /** Método que escribirá el texto ingresado al final de un archivo.*/
     public void escribirAlFinalArchivo(String texto){
         abrirArchivo();
         try{ /*boolean append es para escribir al final  si es true o al inicio con false.*/
@@ -74,7 +69,7 @@ public class Archivo
         }
         cerrarArchivo();
     }
-    /*Método estático para escribir en un archivo. Es estático ya que no se requiere
+    /** Método estático para escribir en un archivo. Es estático ya que no se requiere
        instanciar la clase.
         boolean escribirAlFinal = true si quieres escribir al final del archivo. False si al principio.
         - Esto solo lo necesitará usar la clase de marcadores.
@@ -104,7 +99,7 @@ public class Archivo
             System.out.println("Ocurrió un error con el archivo.");
         }
     }
-    /*Se recorrerá el archivo guardando los valores en el arrayList para luego reordenar el archivo.*/
+    /** Método que recorrerá el archivo guardando los valores en el arrayList para luego reordenar el archivo.*/
     public ArrayListJugador guardarArchivoArrayList(){
         //Variables auxiliares para guardar los valores
         String nombreJugador;
@@ -118,28 +113,15 @@ public class Archivo
             puntos = archivo.nextInt();
             nivel = archivo.nextInt();
             /*Concatena la fecha y la hora.*/
-            // System.out.println(archivo.next() + archivo.next());
             fecha = ""; //Reiniciar la cadena, ya que si no, se sigue concatenando.
             fecha = fecha.concat(archivo.next() +" "+ archivo.next());
             /*Viernes, 19 de junio de 2020 <- Aquí hay un error.*/
             arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
         }
         cerrarArchivo(); //Ya no necesitaremos el archivo abierto.
-        // //Variables auxiliares para guardar los valores
-        // String nombreJugador, fecha;
-        // int puntos, nivel;
-        // abrirArchivo();
-        // /*Guardar cada valor del archivo en el arrayList de jugador.*/
-        // while(archivo.hasNext()){ //Recorrerá cada cadena.
-            // nombreJugador = archivo.next();
-            // puntos = archivo.nextInt();
-            // nivel = archivo.nextInt();
-            // fecha = archivo.next();
-            // arrListJugador.addJugador(nombreJugador, puntos, nivel, fecha);
-        // }
         return arrListJugador; //Regresa el arrayList.
     }
-    //Mostrar el archivo de texto abierto.
+    /** Método que mostrará el archivo de texto abierto.*/
     public void mostrarArchivo(World mundo){
         boolean primerLinea = true; //En la primer linea del texto indicaré el tamaño del archivo, es decir, sus filas para así centrarlo.
         int altura = 0;
